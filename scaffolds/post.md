@@ -1,5 +1,7 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags:
+tags: 
+categories: 
 ---
+欢迎阅读我的新文章！

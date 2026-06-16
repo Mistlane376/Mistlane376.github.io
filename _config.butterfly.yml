@@ -67,7 +67,7 @@ disable_top_img: false
 default_top_img:
 
 # The banner image of index page
-index_img: /images/top.jpg
+index_img: /images/selection1.png
 
 # The banner image of archive page
 archive_img:
@@ -94,7 +94,7 @@ footer_img: false
 # Website Background
 # Can set it to color, image URL or an array containing colors and/or image URLs
 # If an array is provided, a random background will be selected from the array on each load
-background: 
+background: /images/selection1.png
 
 cover:
   # Disable the cover or not
