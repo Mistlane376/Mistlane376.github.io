@@ -47,8 +47,11 @@ code_blocks:
 # Formal:
 #   icon: link || the description || color
 social:
-  # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
-  # fas fa-envelope: mailto:xxxxxx@gmail.com || Email || '#4a7dbe'
+  fab fa-github: https://github.com/Mistlane376 || Github || '#24292e'
+  fab fa-qq: /images/QQ.jpg || QQ || '#12b7f5'
+  fab fa-weixin: /images/weixin.jpg || 微信 || '#07c160'
+  fab fa-tiktok: /images/douyin.jpg || 抖音 || '#000000'
+  fas fa-play: https://space.bilibili.com/1146476510 || B站 || '#fb7299'
 
 # --------------------------------------
 # Image Settings
@@ -78,7 +81,14 @@ tag_img: /images/selection1.png
 # 可以为每个标签单独设置横幅图片
 # 格式：
 #  - 标签名称: xxxxx
-tag_per_img: /images/selection1.png
+tag_per_img:
+  博客: /images/selection1.png
+  Markdown: /images/selection1.png
+  C/C++: /images/selection2.png
+  项目: /images/selection2.png
+  总结: /images/selection1.png
+  大学: /images/selection1.png
+  生活: /images/selection1.png
 
 # 注意：这是单个分类页，不是分类总览页
 category_img: /images/selection2.png
@@ -87,8 +97,11 @@ category_img: /images/selection2.png
 # 格式：
 #  - 分类名称: xxxxx
 category_per_img:
+  日常: /images/selection1.png
+  教程: /images/selection1.png
+  项目练习: /images/selection2.png
 
-# 页脚的背景图片（设为 false 则不显示）
+  # If set to false, no image will be shown
 footer_img: true
 
 # 网站背景
@@ -102,7 +115,7 @@ cover:
   aside_enable: true
   archives_enable: true
   # 当文章未设置封面时，显示的默认封面
-  default_cover:  /images/log.png
+  default_cover:  /images/selection1.png
     # - xxx.jpg
 
 # 图片加载失败时的替代图片
@@ -400,13 +413,13 @@ darkmode:
   # autoChangeMode: 1  Following System Settings, if the system doesn't support dark mode, it will switch dark mode between 6 pm to 6 am
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
-  autoChangeMode: false
+  autoChangeMode: 2
   # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
   start:
   end:
 
 # Show scroll percent in scroll-to-top button
-rightside_scroll_percent: false
+rightside_scroll_percent: true
 
 # Don't modify the following settings unless you know how they work
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
@@ -442,7 +455,7 @@ copy:
 
 # Need to install the hexo-wordcount plugin
 wordcount:
-  enable: false
+  enable: true
   # Display the word count of the article in post meta
   post_wordcount: true
   # Display the time to read the article in post meta
@@ -487,7 +500,7 @@ math:
 search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
-  use:
+  use: local_search
   placeholder:
 
   # Algolia Search
@@ -498,8 +511,7 @@ search:
   # Local Search
   local_search:
     # Preload the search data when the page loads.
-    preload: false
-    # Show top n results per article, show all results by setting to -1
+    preload: true    # Show top n results per article, show all results by setting to -1
     top_n_per_article: 1
     # Unescape html strings to the readable one.
     unescape: false
@@ -546,7 +558,7 @@ comments:
   # Leave it empty if you don't need comments
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
   # Format of two comments system : Disqus,Waline
-  use:
+  use: Utterances
   # Display the comment name next to the button
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -611,7 +623,7 @@ waline:
 # Utterances
 # https://utteranc.es/
 utterances:
-  repo:
+  repo: Mistlane376/Mistlane376.github.io
   # Issue Mapping: pathname/url/title/og:title
   issue_term: pathname
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
@@ -790,8 +802,8 @@ site_verification:
 # The user interface setting of category and tag page
 # Choose: index - same as Homepage UI / default - same as archives UI
 # leave it empty or index
-category_ui:
-tag_ui:
+category_ui: index
+tag_ui: index
 
 # Rounded corners for UI elements
 rounded_corners_ui: true
@@ -1024,7 +1036,7 @@ instantpage: false
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
-  enable: false
+  enable: true
   # Use browser's native lazyload instead of vanilla-lazyload
   native: false
   # Specify the field to use lazyload (site or post)

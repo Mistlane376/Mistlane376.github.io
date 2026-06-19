@@ -1,7 +1,10 @@
 ---
 title: {{ title }}
 date: {{ date }}
-tags: 
-categories: 
+updated: {{ date }}
+tags:
+categories:
+description:
+top_img:
+cover:
 ---
-欢迎阅读我的新文章！
