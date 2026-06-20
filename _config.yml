@@ -121,3 +121,23 @@ tag_plugins:
     iconfont: //at.alicdn.com/t/font_2032782_8d5kxvn09md.js #参看https://akilar.top/posts/d2ebecef/
     carousel: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js
     tag_plugins_css: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css
+
+# --------------------------------------
+# Bangumi 追番配置
+# --------------------------------------
+bangumi:
+  enable: false                      # 已改用 AniList API
+  path: bangumis/index.html         # 番剧页面路径
+  vmid: 1146476510                  # 你的B站UID（请确认此UID正确）
+  title: '追番列表'                  # 页面标题
+  quote: '生命不息，追番不止！'        # 页面顶部寄语（支持HTML）
+  show: 1                           # 默认显示：0=想看, 1=在看, 2=看过
+  loading: /images/loading.gif      # 图片加载前的占位图（可选）
+  metaColor: "#555"                 # 元数据字体颜色
+  color: "#555"                     # 简介字体颜色
+  webp: true                        # 使用WebP格式封面图（Safari不兼容需设为false）
+  progress: true                    # 更新数据时显示进度条
+  extra_options:
+    pagination: true                # 启用分页
+    star: true                      # 显示评分
+    starProgress: true              # 显示评分进度条
