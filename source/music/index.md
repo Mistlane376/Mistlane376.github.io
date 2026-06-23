@@ -23,4 +23,6 @@ aplayer: true
 
 </div>
 
-<div class="aplayer" data-server="netease" data-type="playlist" data-id="18083014843" data-api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r" data-fixed="false" data-mini="false" data-autoplay="false" data-theme="#5e72e4" data-loop="all" data-order="random" data-preload="auto" data-volume="0.7" data-listFolded="false" data-listMaxHeight="500px" data-lrcType="3"></div>
+<div class="music-page-aplayer">
+  <div class="aplayer" data-server="netease" data-type="playlist" data-id="18083014843" data-api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&r=:r" data-fixed="false" data-mini="false" data-autoplay="false" data-theme="#eab308" data-loop="all" data-order="random" data-preload="auto" data-volume="0.7" data-listFolded="false" data-listMaxHeight="500px" data-lrcType="3"></div>
+</div>
