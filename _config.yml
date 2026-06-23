@@ -141,3 +141,9 @@ bangumi:
     pagination: true                # 启用分页
     star: true                      # 显示评分
     starProgress: true              # 显示评分进度条
+# --------------------------------------
+# 音乐播放器
+# --------------------------------------
+aplayer:
+  meting: true
+  asset_inject: false
