@@ -109,7 +109,52 @@
       injectEqBars(players[i]);
       bindPlayingState(players[i]);
       injectSpeedBtn(players[i]);
+      injectTimePills(players[i]);
     }
+  }
+
+  /**
+   * 在进度条两侧注入时间药丸（替代被 CSS 隐藏的原生时间）
+   */
+  function injectTimePills(aplayerEl) {
+    var controller = aplayerEl.querySelector('.aplayer-controller');
+    if (!controller || controller.querySelector('.aplayer-time-pill')) return;
+    var barWrap = controller.querySelector('.aplayer-bar-wrap');
+    if (!barWrap) return;
+
+    var times = controller.querySelectorAll('.aplayer-time');
+    var curText = times.length >= 1 ? times[0].textContent : '00:00';
+    var durText = times.length >= 2 ? times[1].textContent : '00:00';
+
+    var curPill = document.createElement('span');
+    curPill.className = 'aplayer-time-pill cur';
+    curPill.textContent = curText;
+
+    var durPill = document.createElement('span');
+    durPill.className = 'aplayer-time-pill dur';
+    durPill.textContent = durText;
+
+    controller.insertBefore(curPill, barWrap);
+    controller.insertBefore(durPill, barWrap.nextSibling);
+
+    // 每 500ms 从隐藏的原生 time 同步
+    var sync = setInterval(function () {
+      var t = controller.querySelectorAll('.aplayer-time');
+      if (t.length >= 1) curPill.textContent = t[0].textContent;
+      if (t.length >= 2) durPill.textContent = t[1].textContent;
+    }, 500);
+
+    // 播放器销毁时清理
+    var obs = new MutationObserver(function (mutations) {
+      for (var m = 0; m < mutations.length; m++) {
+        for (var r = 0; r < mutations[m].removedNodes.length; r++) {
+          if (mutations[m].removedNodes[r] === aplayerEl) {
+            clearInterval(sync); obs.disconnect(); return;
+          }
+        }
+      }
+    });
+    if (aplayerEl.parentNode) obs.observe(aplayerEl.parentNode, { childList: true });
   }
 
   // ═══════ 1. MetingJS 初始化 ═══════

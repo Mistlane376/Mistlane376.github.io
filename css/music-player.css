@@ -198,11 +198,75 @@
   background-blend-mode: multiply;
 }
 
-/* ---- 控制器行 ---- */
+/* ---- 控制器行：flex-wrap 允许进度条独占一行 ---- */
 .music-float-player .aplayer .aplayer-controller,
 .music-page-aplayer .aplayer .aplayer-controller {
   display: flex !important; align-items: center !important;
-  gap: 8px; margin-top: 2px;
+  gap: 6px; margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+/* 音量 — 锚定左侧 */
+.music-float-player .aplayer .aplayer-controller .aplayer-volume-wrap,
+.music-page-aplayer .aplayer .aplayer-controller .aplayer-volume-wrap {
+  margin-right: auto;
+}
+
+/* 列表按钮 — 锚定右侧 */
+.music-float-player .aplayer .aplayer-controller .aplayer-icon-menu,
+.music-page-aplayer .aplayer .aplayer-controller .aplayer-icon-menu {
+  margin-left: auto;
+}
+
+/* ---- 进度条独占第一行 ---- */
+.music-float-player .aplayer .aplayer-controller .aplayer-bar-wrap,
+.music-page-aplayer .aplayer .aplayer-controller .aplayer-bar-wrap {
+  flex: 1 1 100% !important;
+  order: -10;
+  margin-bottom: 2px;
+}
+
+/* 控制器中隐藏时间（改用 JS 注入的时间药丸放在进度条两侧） */
+.music-float-player .aplayer .aplayer-controller > .aplayer-time,
+.music-page-aplayer .aplayer .aplayer-controller > .aplayer-time {
+  display: none !important;
+}
+
+/* JS 注入的时间药丸 — 进度条上方左右两侧 */
+.aplayer-time-pill {
+  font-size: 10px; color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2px 7px; border-radius: 4px;
+  white-space: nowrap; line-height: 1.4;
+  flex-shrink: 0;
+}
+.aplayer-time-pill.cur { order: -11; }
+.aplayer-time-pill.dur { order: -9; margin-left: auto; }
+
+/* ---- 进度条行：bar + 两侧时间 ---- */
+.music-float-player .aplayer .aplayer-controller .aplayer-bar-wrap,
+.music-page-aplayer .aplayer .aplayer-controller .aplayer-bar-wrap {
+  flex: 1 1 0% !important;
+  min-width: 80px;
+  order: -10;
+  margin-bottom: 0;
+}
+
+/* ---- 导航三键 ---- */
+/* 上一曲 / 下一曲 — 半透明小图标 */
+.music-float-player .aplayer .aplayer-icon-back,
+.music-float-player .aplayer .aplayer-icon-forward,
+.music-page-aplayer .aplayer .aplayer-icon-back,
+.music-page-aplayer .aplayer .aplayer-icon-forward {
+  width: 22px !important; height: 22px !important; min-width: 22px;
+  color: rgba(255, 255, 255, 0.5) !important;
+  transition: color 0.15s, transform 0.15s;
+}
+.music-float-player .aplayer .aplayer-icon-back:hover,
+.music-float-player .aplayer .aplayer-icon-forward:hover,
+.music-page-aplayer .aplayer .aplayer-icon-back:hover,
+.music-page-aplayer .aplayer .aplayer-icon-forward:hover {
+  color: #fff !important; transform: scale(1.15);
 }
 
 /* ---- 图标按钮通用 ---- */
@@ -272,6 +336,7 @@
   border: none; border-radius: 5px;
   cursor: pointer; transition: all 0.2s;
   line-height: 1; font-family: inherit;
+  margin-left: auto;
 }
 .aplayer-speed-btn:hover {
   color: #1db954; background: rgba(29, 185, 84, 0.15);
