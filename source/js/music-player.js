@@ -1,78 +1,61 @@
 /**
- * 音乐播放器 — 自定义按钮方案
+ * 音乐浮窗播放器 — 多页面共享，PJAX 持久化
  *
- * 自定义按钮注入到 APlayer 外部（兄弟节点），不受 APlayer 重渲染影响。
- * 点击按钮 → 程序化点击原生 APlayer 按钮（或直接操作 audio 元素）。
- *
- * 浮窗：白色卡片 + 橙色动画条（ahmed150up2 风格）
- * 音乐专页：玻璃拟态卡片 + 浮动圆球（Tsiangana 风格）
+ * 浮窗在 PJAX 导航时不销毁不中断，首次加载自动播放。
+ * 支持拖拽移动，位置持久化到 localStorage。
  */
 (function () {
   'use strict';
 
-  var path = document.location.pathname;
-  var isMusicPage = path === '/music/' || path === '/music' || path.indexOf('/music/') === 0;
-  var SPEEDS = [0.75, 1.0, 1.25, 1.5, 2.0];
   var enhanceTimer = null;
-  var _apDiagDone = false;
 
   // ═══════ 工具函数 ═══════
 
-  function getAPlayerInstance(container) {
+  function getAPlayerInstance() {
     if (window.APlayer && window.APlayer.instances && window.APlayer.instances.length) {
       return window.APlayer.instances[window.APlayer.instances.length - 1];
-    }
-    if (container) {
-      var el = container.querySelector('.aplayer');
-      if (el && el.aplayer) return el.aplayer;
     }
     var all = document.querySelectorAll('.aplayer');
     for (var i = 0; i < all.length; i++) {
       if (all[i].aplayer) return all[i].aplayer;
     }
-    if (!_apDiagDone) {
-      _apDiagDone = true;
-      console.warn('[播放器] APlayer 实例无法直接获取（window.APlayer.instances 不存在），将使用原生按钮点击 + audio 回退模式');
-    }
     return null;
   }
 
-  function getAudio(container) {
-    var ap = getAPlayerInstance(container);
+  function getAudio() {
+    var ap = getAPlayerInstance();
     if (ap && ap.audio) return ap.audio;
-    var audio = container ? container.querySelector('audio') : null;
-    if (audio) return audio;
-    audio = document.querySelector('.aplayer audio');
-    if (audio) return audio;
-    return document.querySelector('audio');
+    return document.querySelector('.aplayer audio') || document.querySelector('audio');
   }
 
   // ═══════ 隐藏原生图标 ═══════
 
   function hideNativeIcons(aplayerEl) {
     if (!aplayerEl) return;
-    var controller = aplayerEl.querySelector('.aplayer-controller');
-    if (!controller) return;
-    var icons = controller.querySelectorAll('.aplayer-icon');
+    var ctrl = aplayerEl.querySelector('.aplayer-controller');
+    if (!ctrl) return;
+    // 改用 opacity:0 + pointer-events:none，保留元素在 DOM 中，避免 APlayer 内部报错
+    var icons = ctrl.querySelectorAll('.aplayer-icon');
     for (var i = 0; i < icons.length; i++) {
-      icons[i].style.setProperty('display', 'none', 'important');
+      icons[i].style.setProperty('opacity', '0', 'important');
+      icons[i].style.setProperty('pointer-events', 'none', 'important');
     }
-    var times = controller.querySelectorAll('.aplayer-time');
+    var times = ctrl.querySelectorAll('.aplayer-time');
     for (var j = 0; j < times.length; j++) {
-      times[j].style.setProperty('display', 'none', 'important');
+      times[j].style.setProperty('opacity', '0', 'important');
+      times[j].style.setProperty('pointer-events', 'none', 'important');
     }
   }
 
   // ═══════ 自定义按钮构建 ═══════
 
-  function buildButtonBar(isFloat) {
+  function buildButtonBar() {
     var bar = document.createElement('div');
-    bar.className = isFloat ? 'custom-float-btnbar' : 'custom-card-btnbar';
-    var cls = isFloat ? 'cbtn' : 'cbtn-card';
+    bar.className = 'custom-float-btnbar';
 
     function btn(extra, html, title) {
       var b = document.createElement('button');
-      b.className = cls + ' ' + extra;
+      b.className = 'cbtn ' + extra;
       b.innerHTML = html;
       b.title = title;
       bar.appendChild(b);
@@ -82,47 +65,30 @@
     btn('cbtn-prev', '⏮', '上一曲');
     var btnPlay = btn('cbtn-play', '▶', '播放/暂停');
     btn('cbtn-next', '⏭', '下一曲');
-    btn('cbtn-list', '☰', '播放列表');
-    var btnSpeed = btn('cbtn-speed', '1.0x', '倍速');
 
-    return { bar: bar, play: btnPlay, speed: btnSpeed };
+    return { bar: bar, play: btnPlay };
   }
 
-  // ═══════ 自定义按钮注入（APlayer 外部） ═══════
-
   function injectCustomButtons(aplayerEl) {
-    if (!aplayerEl) return;
-    var isFloat = !!aplayerEl.closest('.music-float-player');
-    var isCard  = !!aplayerEl.closest('.music-page-aplayer');
-    if (!isFloat && !isCard) return;
-
-    var parent = isFloat
-      ? document.querySelector('.music-float-player')
-      : document.querySelector('.music-page-aplayer');
-    if (!parent) return;
-
-    // 已注入？
-    if (parent.querySelector('.custom-float-btnbar, .custom-card-btnbar')) return;
+    if (!aplayerEl || !aplayerEl.closest('.music-float-player')) return;
+    var parent = document.querySelector('.music-float-player');
+    if (!parent || parent.querySelector('.custom-float-btnbar')) return;
 
     hideNativeIcons(aplayerEl);
 
-    var result = buildButtonBar(isFloat);
+    var result = buildButtonBar();
     var btnBar = result.bar;
     var btnPlay = result.play;
-    var btnSpeed = result.speed;
 
     parent.appendChild(btnBar);
 
-    // 查找原生按钮
     function nativeBtn(cls) {
       return parent.querySelector('.aplayer .aplayer-controller .aplayer-icon-' + cls);
     }
 
-    // 事件绑定
     var allBtns = btnBar.querySelectorAll('button');
     var btnPrev = allBtns[0];
     var btnNext = allBtns[2];
-    var btnList = allBtns[3];
 
     btnPrev.addEventListener('click', function (e) {
       e.stopPropagation(); e.preventDefault();
@@ -134,68 +100,32 @@
     });
     btnPlay.addEventListener('click', function (e) {
       e.stopPropagation(); e.preventDefault();
+      btnPlay.classList.add('cbtn-pop');
+      setTimeout(function () { btnPlay.classList.remove('cbtn-pop'); }, 200);
       var n = nativeBtn('play');
       if (n) { n.click(); } else {
-        var audio = getAudio(parent);
+        var audio = getAudio();
         if (audio) { if (audio.paused) audio.play(); else audio.pause(); }
       }
     });
-    btnList.addEventListener('click', function (e) {
-      e.stopPropagation(); e.preventDefault();
-      var list = aplayerEl.querySelector('.aplayer-list');
-      if (!list) return;
-      var cur = list.style.display || getComputedStyle(list).display;
-      if (cur === 'none' || cur === '') {
-        list.style.setProperty('display', 'block', 'important');
-      } else {
-        list.style.setProperty('display', 'none', 'important');
-      }
-    });
-    btnSpeed.addEventListener('click', function (e) {
-      e.stopPropagation(); e.preventDefault();
-      var audio = getAudio(parent);
-      if (!audio) return;
-      var cur = audio.playbackRate || 1;
-      var idx = SPEEDS.indexOf(cur);
-      if (idx === -1) idx = SPEEDS.indexOf(1.0);
-      var next = SPEEDS[(idx + 1) % SPEEDS.length];
-      audio.playbackRate = next;
-      btnSpeed.textContent = next.toFixed(2).replace(/0+$/, '').replace(/\.$/, '') + 'x';
-    });
 
-    // 状态同步
     setInterval(function () {
-      var audio = getAudio(parent);
-      btnPlay.innerHTML = (audio && !audio.paused) ? '⏸' : '▶';
-      if (audio && !audio.paused) {
-        aplayerEl.classList.add('playing');
-      } else {
-        aplayerEl.classList.remove('playing');
+      var audio = getAudio();
+      var playing = audio && !audio.paused;
+      var newIcon = playing ? '⏸' : '▶';
+      if (btnPlay.innerHTML !== newIcon) {
+        btnPlay.innerHTML = newIcon;
+        btnPlay.classList.add('cbtn-switch');
+        setTimeout(function () { btnPlay.classList.remove('cbtn-switch'); }, 300);
       }
+      if (playing) aplayerEl.classList.add('playing');
+      else aplayerEl.classList.remove('playing');
     }, 600);
 
-    console.log('[播放器] 自定义按钮已注入',
-      '类型:', isFloat ? '浮窗' : '音乐页',
-      '按钮数:', btnBar.children.length);
-
-    // ═══════ 3 秒后 API 诊断 ═══════
-    setTimeout(function () {
-      var listItems = aplayerEl.querySelectorAll('.aplayer-list ol li');
-      var audio = document.querySelector('.aplayer audio') || document.querySelector('audio');
-      var title = aplayerEl.querySelector('.aplayer-title');
-      console.log('=== [播放器诊断] ===');
-      console.log('  歌单歌曲数:', listItems.length);
-      console.log('  audio 元素:', audio ? '存在 src=' + (audio.src ? audio.src.substring(0, 60) + '...' : '(空)') : '不存在');
-      console.log('  当前显示:', (title ? title.textContent : 'N/A'));
-      if (!audio && listItems.length === 1) {
-        console.warn('  ⚠ 只有 1 首歌且无 audio 元素 → API 可能未返回音频直链');
-        console.warn('  → 请在 Console 运行以下命令检查API:');
-        console.warn('  fetch("https://api.injahow.cn/meting/?server=netease&type=playlist&id=18083014843&r="+Math.random()).then(r=>r.json()).then(d=>{console.log("歌曲数:",d.length);d.forEach((s,i)=>{console.log(i,s.title,"url:",s.url||"空","pic:",s.pic||"空")})})');
-      }
-    }, 3000);
+    console.log('[音乐浮窗] 自定义按钮已注入，按钮数:', btnBar.children.length);
   }
 
-  // ═══════ 其他注入 ═══════
+  // ═══════ 增强注入 ═══════
 
   function injectNowPlayingHeading() {
     var fp = document.querySelector('.music-float-player');
@@ -204,7 +134,7 @@
     if (!ap) return;
     var h = document.createElement('div');
     h.className = 'music-float-heading';
-    h.innerHTML = '<span class="music-float-heading-icon">♪</span> 正在播放';
+    h.innerHTML = '<span class="music-float-heading-icon">♪</span> 正在播放'; // ♪ 正在播放
     fp.insertBefore(h, ap);
   }
 
@@ -218,41 +148,6 @@
     music.appendChild(bars);
   }
 
-  function injectTimePills(aplayerEl) {
-    if (aplayerEl.dataset._pills === '1') return;
-    var ctrl = aplayerEl.querySelector('.aplayer-controller');
-    if (!ctrl || ctrl.querySelector('.aplayer-time-pill')) return;
-    var barWrap = ctrl.querySelector('.aplayer-bar-wrap');
-    if (!barWrap) return;
-    var cur = document.createElement('span');
-    cur.className = 'aplayer-time-pill cur'; cur.textContent = '00:00';
-    var dur = document.createElement('span');
-    dur.className = 'aplayer-time-pill dur'; dur.textContent = '00:00';
-    try { ctrl.insertBefore(cur, barWrap); ctrl.insertBefore(dur, barWrap.nextSibling); } catch (e) {}
-    aplayerEl.dataset._pills = '1';
-    setInterval(function () {
-      var t = ctrl.querySelectorAll('.aplayer-time');
-      if (t.length >= 1) cur.textContent = t[0].textContent;
-      if (t.length >= 2) dur.textContent = t[1].textContent;
-    }, 500);
-  }
-
-  function injectCardDecorations() {
-    var pa = document.querySelector('.music-page-aplayer');
-    if (!pa || pa.dataset._decor === '1') return;
-    var ap = pa.querySelector('.aplayer');
-    if (!ap) return;
-    var g = document.createElement('div'); g.className = 'music-glass-overlay'; pa.insertBefore(g, ap);
-    var c = document.createElement('div'); c.className = 'music-card-circle-two'; pa.insertBefore(c, ap);
-    var b = document.createElement('div'); b.className = 'music-card-badge'; b.textContent = 'MUSIC'; pa.insertBefore(b, ap);
-    var ia = document.createElement('div'); ia.className = 'music-card-icon-area'; ia.textContent = '🎵'; ia.title = '播放/暂停';
-    ia.addEventListener('click', function () {
-      var nb = pa.querySelector('.aplayer-icon-play'); if (nb) nb.click();
-    });
-    pa.insertBefore(ia, ap);
-    pa.dataset._decor = '1';
-  }
-
   function isPlayerReady(aplayerEl) {
     return aplayerEl && aplayerEl.querySelector('.aplayer-music') && aplayerEl.querySelector('.aplayer-title');
   }
@@ -262,9 +157,16 @@
     hideNativeIcons(aplayerEl);
     if (aplayerEl.dataset._enhanced === '1') return;
     injectEqBars(aplayerEl);
-    injectTimePills(aplayerEl);
     injectCustomButtons(aplayerEl);
     aplayerEl.dataset._enhanced = '1';
+
+    // 标记为 fixed 防止 PJAX 销毁
+    if (aplayerEl.closest('.music-float-player') && aplayerEl.aplayer) {
+      aplayerEl.aplayer.options.fixed = true;
+      aplayerEl.removeAttribute('data-server');
+      aplayerEl.removeAttribute('data-type');
+      aplayerEl.removeAttribute('data-id');
+    }
   }
 
   function enhanceAllPlayers() {
@@ -272,12 +174,129 @@
     enhanceTimer = setTimeout(function () {
       enhanceTimer = null;
       injectNowPlayingHeading();
-      if (isMusicPage) injectCardDecorations();
       var players = document.querySelectorAll('.aplayer');
       for (var i = 0; i < players.length; i++) {
         try { enhanceOnePlayer(players[i]); } catch (e) {}
       }
     }, 200);
+  }
+
+  // ═══════ 浮窗 & PJAX 防重复 ═══════
+
+  var floatWin = document.getElementById('music-float-window');
+  if (!floatWin) return;
+
+  // 每次页面脚本执行时确保浮窗可见
+  floatWin.style.display = '';
+
+  // PJAX 已初始化则跳过
+  if (floatWin.dataset._initDone === '1') return;
+  floatWin.dataset._initDone = '1';
+
+  // ═══════ PJAX 播放保护（三层防御） ═══════
+
+  // 快速轮询：实例一出现就标记 fixed
+  var _fixPoll = setInterval(function () {
+    var el = floatWin.querySelector('.aplayer');
+    if (el && el.aplayer) { el.aplayer.options.fixed = true; clearInterval(_fixPoll); }
+  }, 80);
+  setTimeout(function () { clearInterval(_fixPoll); }, 20000);
+
+  // 第 1 层：捕获阶段清空 window.aplayers，让 destroyAplayer 无物可毁
+  document.addEventListener('pjax:send', function () {
+    if (window.aplayers && window.aplayers.length) {
+      floatWin._savedAplayers = window.aplayers;
+      window.aplayers = [];
+    }
+    // 保存音频状态
+    var audio = floatWin.querySelector('audio');
+    if (audio) {
+      floatWin._wasPlaying = audio.paused ? '0' : '1';
+      floatWin._audioTime = audio.currentTime;
+    }
+  }, true); // ← capture 阶段，先于 Butterfly 的 bubble 监听器
+
+  // 第 2 层：bubble 阶段再次确保 fixed（双重保险）
+  document.addEventListener('pjax:send', function () {
+    var el = floatWin.querySelector('.aplayer');
+    if (el && el.aplayer) el.aplayer.options.fixed = true;
+  });
+
+  // 第 3 层：导航完成后恢复 aplayers 数组 + 恢复播放
+  document.addEventListener('pjax:complete', function () {
+    // 恢复 aplayers 数组
+    if (floatWin._savedAplayers) {
+      window.aplayers = floatWin._savedAplayers;
+      delete floatWin._savedAplayers;
+    }
+    // 恢复播放
+    if (floatWin._wasPlaying !== '1') return;
+    delete floatWin._wasPlaying;
+    var resume = function () {
+      var audio = floatWin.querySelector('audio');
+      if (audio && audio.paused && audio.src && audio.src !== window.location.href) {
+        if (floatWin._audioTime) { audio.currentTime = parseFloat(floatWin._audioTime); delete floatWin._audioTime; }
+        audio.play().catch(function () {});
+      }
+    };
+    resume();
+    setTimeout(resume, 200);
+    setTimeout(resume, 600);
+  });
+
+  // ═══════ 折叠/展开按钮 ═══════
+
+  var collapseBtn = document.createElement('button');
+  collapseBtn.className = 'music-float-collapse-btn';
+  collapseBtn.innerHTML = '−';
+  collapseBtn.title = '折叠浮窗';
+  floatWin.appendChild(collapseBtn);
+
+  if (localStorage.getItem('music-float-collapsed') === '1') {
+    floatWin.classList.add('collapsed');
+    collapseBtn.innerHTML = '⋮';
+    collapseBtn.title = '展开浮窗';
+  }
+
+  collapseBtn.addEventListener('click', function (e) {
+    e.stopPropagation(); e.preventDefault();
+    if (wasDragged) { wasDragged = false; return; }
+    floatWin.classList.toggle('collapsed');
+    var isCollapsed = floatWin.classList.contains('collapsed');
+    localStorage.setItem('music-float-collapsed', isCollapsed ? '1' : '0');
+    collapseBtn.innerHTML = isCollapsed ? '⋮' : '−';
+    collapseBtn.title = isCollapsed ? '展开浮窗' : '折叠浮窗';
+    if (floatWin.style.left) {
+      var c = clamp(parseFloat(floatWin.style.left), parseFloat(floatWin.style.top));
+      floatWin.style.left = c.left + 'px'; floatWin.style.top = c.top + 'px';
+    }
+  });
+
+  // 点击折叠后的浮窗主体 → 展开
+  floatWin.addEventListener('click', function (e) {
+    if (!floatWin.classList.contains('collapsed')) return;
+    if (wasDragged) { wasDragged = false; return; }
+    if (e.target.closest('.aplayer-button') || e.target.closest('.aplayer-icon') ||
+        e.target.closest('.aplayer-list') || e.target.closest('.aplayer-volume-wrap')) return;
+    if (e.target === collapseBtn || collapseBtn.contains(e.target)) return;
+    floatWin.classList.remove('collapsed');
+    localStorage.setItem('music-float-collapsed', '0');
+    collapseBtn.innerHTML = '−';
+    collapseBtn.title = '折叠浮窗';
+    if (floatWin.style.left) {
+      var c = clamp(parseFloat(floatWin.style.left), parseFloat(floatWin.style.top));
+      floatWin.style.left = c.left + 'px'; floatWin.style.top = c.top + 'px';
+    }
+  });
+
+  // ═══════ 首次自动播放 ═══════
+
+  function tryAutoPlay() {
+    var ap = getAPlayerInstance();
+    if (!ap || !ap.audio) return;
+    if (!ap.audio.paused) return;
+    if (!ap.audio.src || ap.audio.src === window.location.href) return;
+    try { ap.play(); } catch (e) {}
   }
 
   // ═══════ MetingJS 初始化 ═══════
@@ -290,6 +309,9 @@
         setTimeout(enhanceAllPlayers, 1200);
         setTimeout(enhanceAllPlayers, 2500);
         setTimeout(enhanceAllPlayers, 4000);
+        // 自动播放：等歌单加载完再尝试
+        setTimeout(tryAutoPlay, 3000);
+        setTimeout(tryAutoPlay, 6000);
         return true;
       } catch (e) { return false; }
     }
@@ -316,67 +338,6 @@
   bodyObserver.observe(document.body, { childList: true, subtree: true });
   setTimeout(function () { bodyObserver.disconnect(); }, 20000);
 
-  // ═══════ 音乐页隐藏浮窗 ═══════
-
-  var floatWin = document.getElementById('music-float-window');
-  if (!floatWin) return;
-
-  if (isMusicPage) { floatWin.style.display = 'none'; return; }
-
-  // ═══════ 折叠/展开按钮 ═══════
-
-  var collapseBtn = document.createElement('button');
-  collapseBtn.className = 'music-float-collapse-btn';
-  collapseBtn.innerHTML = '−';  // 展开态：minus sign
-  collapseBtn.title = '折叠浮窗';
-  floatWin.appendChild(collapseBtn);
-
-  // 读取折叠状态
-  if (localStorage.getItem('music-float-collapsed') === '1') {
-    floatWin.classList.add('collapsed');
-    collapseBtn.innerHTML = '⋮';  // ⋮ 拖拽把手图标
-    collapseBtn.title = '展开浮窗';
-  }
-
-  collapseBtn.addEventListener('click', function(e) {
-    e.stopPropagation(); e.preventDefault();
-    // 拖拽后不触发折叠/展开
-    if (wasDragged) { wasDragged = false; return; }
-    floatWin.classList.toggle('collapsed');
-    var isCollapsed = floatWin.classList.contains('collapsed');
-    localStorage.setItem('music-float-collapsed', isCollapsed ? '1' : '0');
-    collapseBtn.innerHTML = isCollapsed ? '⋮' : '−';  // ⋮ / −
-    collapseBtn.title = isCollapsed ? '展开浮窗' : '折叠浮窗';
-
-    // 折叠/展开后重新 clamp 位置
-    if (floatWin.style.left) {
-      var c = clamp(parseFloat(floatWin.style.left), parseFloat(floatWin.style.top));
-      floatWin.style.left = c.left + 'px';
-      floatWin.style.top = c.top + 'px';
-    }
-  });
-
-  // 点击折叠后的浮窗主体 → 展开（仅当无拖拽时）
-  floatWin.addEventListener('click', function(e) {
-    if (!floatWin.classList.contains('collapsed')) return;
-    // 拖拽后不展开
-    if (wasDragged) { wasDragged = false; return; }
-    // 点击播放按钮等交互元素时不展开（让它们自己处理）
-    if (e.target.closest('.aplayer-button') || e.target.closest('.aplayer-icon') ||
-        e.target.closest('.aplayer-list') || e.target.closest('.aplayer-volume-wrap')) return;
-    if (e.target === collapseBtn || collapseBtn.contains(e.target)) return;
-
-    floatWin.classList.remove('collapsed');
-    localStorage.setItem('music-float-collapsed', '0');
-    collapseBtn.innerHTML = '−';
-    collapseBtn.title = '折叠浮窗';
-    if (floatWin.style.left) {
-      var c = clamp(parseFloat(floatWin.style.left), parseFloat(floatWin.style.top));
-      floatWin.style.left = c.left + 'px';
-      floatWin.style.top = c.top + 'px';
-    }
-  });
-
   // ═══════ 拖拽 ═══════
 
   var dragHandle = document.getElementById('music-float-drag');
@@ -396,7 +357,8 @@
 
   function savePos() {
     try {
-      localStorage.setItem('music-float-pos', JSON.stringify({ left: floatWin.offsetLeft, top: floatWin.offsetTop }));
+      localStorage.setItem('music-float-pos',
+        JSON.stringify({ left: floatWin.offsetLeft, top: floatWin.offsetTop }));
     } catch (e) {}
   }
 
@@ -426,7 +388,7 @@
   function onStart(e, force) {
     if (!force) {
       if (e.target.closest('.aplayer-list') || e.target.closest('.aplayer-bar-wrap') ||
-          e.target.closest('.cbtn') || e.target.closest('button') || e.target.closest('.music-card-icon-area')) return;
+          e.target.closest('.cbtn') || e.target.closest('button')) return;
     }
     wasDragged = false;
     isDragging = true; floatWin.classList.add('dragging');
@@ -442,7 +404,6 @@
   function onMove(e) {
     if (!isDragging) return;
     wasDragged = true;
-    // 折叠状态下拖拽时，禁用封面播放按钮避免误触
     if (floatWin.classList.contains('collapsed')) suppressPlayBtn();
     var cx = e.touches ? e.touches[0].clientX : e.clientX;
     var cy = e.touches ? e.touches[0].clientY : e.clientY;
@@ -453,12 +414,8 @@
   function onEnd() {
     if (!isDragging) return;
     isDragging = false; floatWin.classList.remove('dragging'); savePos();
-    // 延迟恢复播放按钮，等待 click 事件过去
-    if (wasDragged) {
-      setTimeout(restorePlayBtn, 60);
-    } else {
-      restorePlayBtn();
-    }
+    if (wasDragged) { setTimeout(restorePlayBtn, 60); }
+    else { restorePlayBtn(); }
   }
 
   dragHandle.addEventListener('mousedown', onStart);
@@ -468,16 +425,12 @@
   document.addEventListener('touchmove', onMove, { passive: false });
   document.addEventListener('touchend', onEnd);
 
-  // 折叠状态下整个窗口（含拖拽框）可拖拽
-  floatWin.addEventListener('mousedown', function(e) {
-    if (floatWin.classList.contains('collapsed')) {
-      onStart(e, true);
-    }
+  // 折叠态下整个窗口可拖拽
+  floatWin.addEventListener('mousedown', function (e) {
+    if (floatWin.classList.contains('collapsed')) onStart(e, true);
   });
-  floatWin.addEventListener('touchstart', function(e) {
-    if (floatWin.classList.contains('collapsed')) {
-      onStart(e, true);
-    }
+  floatWin.addEventListener('touchstart', function (e) {
+    if (floatWin.classList.contains('collapsed')) onStart(e, true);
   }, { passive: false });
 
   window.addEventListener('resize', function () {
