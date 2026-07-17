@@ -1,0 +1,411 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mistlane`s blogs | Mistlane`s blogs</title><meta name="author" content="Mistlane376"><meta name="copyright" content="Mistlane376"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="📦 版本归档系统概述版本归档功能用于记录博客的所有版本更新历史和重要里程碑。  📂 文件结构123source&#x2F;└── versions&#x2F;    └── index.md  ← 版本归档页面  🎯 功能特性1. 版本历史记录 记录每个版本的功能变更 包含新增、优化、修复项 详细的更新说明  2. 统计数据 版本对比（代码、文章、功能） 文件大小对比 更新频率分析  3. 里程碑标记 重要时间">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mistlane&#96;s blogs">
+<meta property="og:url" content="http://mistlane.cc.cd/versions/README.html">
+<meta property="og:site_name" content="Mistlane&#96;s blogs">
+<meta property="og:description" content="📦 版本归档系统概述版本归档功能用于记录博客的所有版本更新历史和重要里程碑。  📂 文件结构123source&#x2F;└── versions&#x2F;    └── index.md  ← 版本归档页面  🎯 功能特性1. 版本历史记录 记录每个版本的功能变更 包含新增、优化、修复项 详细的更新说明  2. 统计数据 版本对比（代码、文章、功能） 文件大小对比 更新频率分析  3. 里程碑标记 重要时间">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://mistlane.cc.cd/images/marcus.png">
+<meta property="article:published_time" content="2026-07-17T16:14:46.988Z">
+<meta property="article:modified_time" content="2026-07-17T16:14:46.986Z">
+<meta property="article:author" content="Mistlane376">
+<meta property="article:tag" content="博客,技术,编程,Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://mistlane.cc.cd/images/marcus.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/%5Cimages%5Clog.png"><link rel="canonical" href="http://mistlane.cc.cd/versions/README.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Mistlane`s blogs',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'page'
+}</script><style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style><link rel="stylesheet" href="/css/author-card.css"><link rel="stylesheet" href="/css/about-envelope.css"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/markdown.css"><link rel="stylesheet" href="/css/aside-button.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/images/selection1.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/images/selection1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/%5Cimages%5Clog.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane`s blogs</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title"></h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><h1 id="📦-版本归档系统"><a href="#📦-版本归档系统" class="headerlink" title="📦 版本归档系统"></a>📦 版本归档系统</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>版本归档功能用于记录博客的所有版本更新历史和重要里程碑。</p>
+<hr>
+<h2 id="📂-文件结构"><a href="#📂-文件结构" class="headerlink" title="📂 文件结构"></a>📂 文件结构</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source/</span><br><span class="line">└── versions/</span><br><span class="line">    └── index.md  ← 版本归档页面</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="🎯-功能特性"><a href="#🎯-功能特性" class="headerlink" title="🎯 功能特性"></a>🎯 功能特性</h2><h3 id="1-版本历史记录"><a href="#1-版本历史记录" class="headerlink" title="1. 版本历史记录"></a>1. 版本历史记录</h3><ul>
+<li>记录每个版本的功能变更</li>
+<li>包含新增、优化、修复项</li>
+<li>详细的更新说明</li>
+</ul>
+<h3 id="2-统计数据"><a href="#2-统计数据" class="headerlink" title="2. 统计数据"></a>2. 统计数据</h3><ul>
+<li>版本对比（代码、文章、功能）</li>
+<li>文件大小对比</li>
+<li>更新频率分析</li>
+</ul>
+<h3 id="3-里程碑标记"><a href="#3-里程碑标记" class="headerlink" title="3. 里程碑标记"></a>3. 里程碑标记</h3><ul>
+<li>重要时间节点</li>
+<li>重大更新标记</li>
+<li>功能里程碑</li>
+</ul>
+<h3 id="4-未来计划"><a href="#4-未来计划" class="headerlink" title="4. 未来计划"></a>4. 未来计划</h3><ul>
+<li>已计划功能</li>
+<li>远期目标</li>
+<li>开发路线图</li>
+</ul>
+<hr>
+<h2 id="📝-版本命名规则"><a href="#📝-版本命名规则" class="headerlink" title="📝 版本命名规则"></a>📝 版本命名规则</h2><h3 id="格式"><a href="#格式" class="headerlink" title="格式"></a>格式</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">主版本号.次版本号.修订号</span><br><span class="line"></span><br><span class="line">例如：</span><br><span class="line">v3.0.0 - 主版本3，次版本0，修订0</span><br><span class="line">v2.1.0 - 主版本2，次版本1，修订0</span><br></pre></td></tr></table></figure>
+<h3 id="主版本号（Major）"><a href="#主版本号（Major）" class="headerlink" title="主版本号（Major）"></a>主版本号（Major）</h3><p>重大更新，可能包含不兼容的改动</p>
+<p><strong>触发条件</strong>：</p>
+<ul>
+<li>完全重新设计</li>
+<li>架构变更</li>
+<li>功能模块重构</li>
+</ul>
+<h3 id="次版本号（Minor）"><a href="#次版本号（Minor）" class="headerlink" title="次版本号（Minor）"></a>次版本号（Minor）</h3><p>功能性更新，向下兼容</p>
+<p><strong>触发条件</strong>：</p>
+<ul>
+<li>新增功能模块</li>
+<li>重大优化</li>
+<li>样式系统升级</li>
+</ul>
+<h3 id="修订号（Patch）"><a href="#修订号（Patch）" class="headerlink" title="修订号（Patch）"></a>修订号（Patch）</h3><p>bug 修复和小改进</p>
+<p><strong>触发条件</strong>：</p>
+<ul>
+<li>Bug 修复</li>
+<li>样式调整</li>
+<li>文档更新</li>
+<li>性能优化</li>
+</ul>
+<hr>
+<h2 id="📋-版本记录模板"><a href="#📋-版本记录模板" class="headerlink" title="📋 版本记录模板"></a>📋 版本记录模板</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### vX.X.X - 版本名称 (YYYY-MM-DD)</span></span><br><span class="line"></span><br><span class="line"><span class="section">#### ✨ 新增功能</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**功能模块**</span></span><br><span class="line"><span class="bullet">  -</span> 功能描述</span><br><span class="line"><span class="bullet">  -</span> 功能描述</span><br><span class="line"></span><br><span class="line"><span class="section">#### 🎨 样式优化</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> <span class="strong">**样式模块**</span></span><br><span class="line"><span class="bullet">  -</span> 样式描述</span><br><span class="line"></span><br><span class="line"><span class="section">#### 🔧 优化改进</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 优化项 1</span><br><span class="line"><span class="bullet">-</span> 优化项 2</span><br><span class="line"></span><br><span class="line"><span class="section">#### 🐛 修复</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 修复问题 1</span><br><span class="line"><span class="bullet">-</span> 修复问题 2</span><br><span class="line"></span><br><span class="line"><span class="section">#### 📝 文档</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 文档更新</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="🔄-更新流程"><a href="#🔄-更新流程" class="headerlink" title="🔄 更新流程"></a>🔄 更新流程</h2><h3 id="1-更新版本归档"><a href="#1-更新版本归档" class="headerlink" title="1. 更新版本归档"></a>1. 更新版本归档</h3><p>编辑 <code>source/versions/index.md</code></p>
+<p>在”版本历史”部分添加新版本：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">### v3.1.0 - 版本名称 (YYYY-MM-DD)</span></span><br><span class="line"></span><br><span class="line"><span class="section">#### ✨ 新增功能</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 功能描述</span><br><span class="line"></span><br><span class="line"><span class="section">#### 🐛 修复</span></span><br><span class="line"></span><br><span class="line"><span class="bullet">-</span> 修复描述</span><br></pre></td></tr></table></figure>
+<h3 id="2-更新统计数据"><a href="#2-更新统计数据" class="headerlink" title="2. 更新统计数据"></a>2. 更新统计数据</h3><p>在”版本统计”表格中添加新版本数据</p>
+<h3 id="3-更新里程碑"><a href="#3-更新里程碑" class="headerlink" title="3. 更新里程碑"></a>3. 更新里程碑</h3><p>在”重要里程碑”部分添加新事件</p>
+<h3 id="4-更新-CHANGELOG"><a href="#4-更新-CHANGELOG" class="headerlink" title="4. 更新 CHANGELOG"></a>4. 更新 CHANGELOG</h3><p>编辑项目根目录的 <code>CHANGELOG.md</code></p>
+<h3 id="5-生成站点"><a href="#5-生成站点" class="headerlink" title="5. 生成站点"></a>5. 生成站点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npx hexo clean</span><br><span class="line">npx hexo generate</span><br><span class="line">npx hexo deploy</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="📊-当前版本信息"><a href="#📊-当前版本信息" class="headerlink" title="📊 当前版本信息"></a>📊 当前版本信息</h2><h3 id="v3-0-0-2026-07-17"><a href="#v3-0-0-2026-07-17" class="headerlink" title="v3.0.0 (2026-07-17)"></a>v3.0.0 (2026-07-17)</h3><p><strong>功能</strong>：30+<br><strong>CSS</strong>：4 个（~57 KB）<br><strong>文章</strong>：5 篇<br><strong>文档</strong>：10+ 个</p>
+<hr>
+<h2 id="🗂️-归档目录"><a href="#🗂️-归档目录" class="headerlink" title="🗂️ 归档目录"></a>🗂️ 归档目录</h2><h3 id="历史版本"><a href="#历史版本" class="headerlink" title="历史版本"></a>历史版本</h3><h4 id="v2-0-0-2026-07-13"><a href="#v2-0-0-2026-07-13" class="headerlink" title="v2.0.0 (2026-07-13)"></a>v2.0.0 (2026-07-13)</h4><ul>
+<li>追番页面</li>
+<li>友链页面</li>
+<li>Butterfly 主题配置</li>
+</ul>
+<h4 id="v1-0-0-2026-06-19"><a href="#v1-0-0-2026-06-19" class="headerlink" title="v1.0.0 (2026-06-19)"></a>v1.0.0 (2026-06-19)</h4><ul>
+<li>初始版本</li>
+<li>Hexo + Butterfly</li>
+<li>第一篇文章</li>
+</ul>
+<hr>
+<h2 id="📚-相关文档"><a href="#📚-相关文档" class="headerlink" title="📚 相关文档"></a>📚 相关文档</h2><ul>
+<li><strong><a href="/">CHANGELOG.md</a></strong> - 详细更新日志</li>
+<li><strong><a href="/">README.md</a></strong> - 项目说明</li>
+<li><strong><a href="/about/">about/README.md</a></strong> - About 页面文档</li>
+</ul>
+<hr>
+<h2 id="🎯-使用指南"><a href="#🎯-使用指南" class="headerlink" title="🎯 使用指南"></a>🎯 使用指南</h2><h3 id="查看版本归档"><a href="#查看版本归档" class="headerlink" title="查看版本归档"></a>查看版本归档</h3><p>访问：<code>/versions/</code></p>
+<h3 id="更新版本记录"><a href="#更新版本记录" class="headerlink" title="更新版本记录"></a>更新版本记录</h3><p>编辑：<code>source/versions/index.md</code></p>
+<h3 id="添加版本说明"><a href="#添加版本说明" class="headerlink" title="添加版本说明"></a>添加版本说明</h3><p>在对应版本下添加更新项</p>
+<hr>
+<p><strong>创建日期</strong>：2026-07-17<br><strong>当前版本</strong>：v3.0.0<br><strong>归档版本</strong>：3 个<br><strong>最后更新</strong>：2026-07-17</p>
+</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">Mistlane376</div><div class="author-info-description">齐鲁工业大学 · 计算机科学与技术
+算法竞赛选手 (ACMer) 🏆
+
+热爱编码，痴迷于算法与数据结构的极致博弈。
+在竞赛中不断突破认知边界。
+
+#C++ #算法竞赛 #数据结构
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎大家来到临涧路的精神小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%F0%9F%93%A6-%E7%89%88%E6%9C%AC%E5%BD%92%E6%A1%A3%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">📦 版本归档系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%82-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.</span> <span class="toc-text">📂 文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E5%8A%9F%E8%83%BD%E7%89%B9%E6%80%A7"><span class="toc-number">1.3.</span> <span class="toc-text">🎯 功能特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 版本历史记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 统计数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E9%87%8C%E7%A8%8B%E7%A2%91%E6%A0%87%E8%AE%B0"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 里程碑标记</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9C%AA%E6%9D%A5%E8%AE%A1%E5%88%92"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 未来计划</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-%E7%89%88%E6%9C%AC%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99"><span class="toc-number">1.4.</span> <span class="toc-text">📝 版本命名规则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F"><span class="toc-number">1.4.1.</span> <span class="toc-text">格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%88Major%EF%BC%89"><span class="toc-number">1.4.2.</span> <span class="toc-text">主版本号（Major）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A1%E7%89%88%E6%9C%AC%E5%8F%B7%EF%BC%88Minor%EF%BC%89"><span class="toc-number">1.4.3.</span> <span class="toc-text">次版本号（Minor）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E8%AE%A2%E5%8F%B7%EF%BC%88Patch%EF%BC%89"><span class="toc-number">1.4.4.</span> <span class="toc-text">修订号（Patch）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8B-%E7%89%88%E6%9C%AC%E8%AE%B0%E5%BD%95%E6%A8%A1%E6%9D%BF"><span class="toc-number">1.5.</span> <span class="toc-text">📋 版本记录模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%84-%E6%9B%B4%E6%96%B0%E6%B5%81%E7%A8%8B"><span class="toc-number">1.6.</span> <span class="toc-text">🔄 更新流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%9B%B4%E6%96%B0%E7%89%88%E6%9C%AC%E5%BD%92%E6%A1%A3"><span class="toc-number">1.6.1.</span> <span class="toc-text">1. 更新版本归档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%9B%B4%E6%96%B0%E7%BB%9F%E8%AE%A1%E6%95%B0%E6%8D%AE"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 更新统计数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9B%B4%E6%96%B0%E9%87%8C%E7%A8%8B%E7%A2%91"><span class="toc-number">1.6.3.</span> <span class="toc-text">3. 更新里程碑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%9B%B4%E6%96%B0-CHANGELOG"><span class="toc-number">1.6.4.</span> <span class="toc-text">4. 更新 CHANGELOG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%94%9F%E6%88%90%E7%AB%99%E7%82%B9"><span class="toc-number">1.6.5.</span> <span class="toc-text">5. 生成站点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8A-%E5%BD%93%E5%89%8D%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-number">1.7.</span> <span class="toc-text">📊 当前版本信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v3-0-0-2026-07-17"><span class="toc-number">1.7.1.</span> <span class="toc-text">v3.0.0 (2026-07-17)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%82%EF%B8%8F-%E5%BD%92%E6%A1%A3%E7%9B%AE%E5%BD%95"><span class="toc-number">1.8.</span> <span class="toc-text">🗂️ 归档目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC"><span class="toc-number">1.8.1.</span> <span class="toc-text">历史版本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v2-0-0-2026-07-13"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">v2.0.0 (2026-07-13)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v1-0-0-2026-06-19"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">v1.0.0 (2026-06-19)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-number">1.9.</span> <span class="toc-text">📚 相关文档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97"><span class="toc-number">1.10.</span> <span class="toc-text">🎯 使用指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%BD%92%E6%A1%A3"><span class="toc-number">1.10.1.</span> <span class="toc-text">查看版本归档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%89%88%E6%9C%AC%E8%AE%B0%E5%BD%95"><span class="toc-number">1.10.2.</span> <span class="toc-text">更新版本记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E"><span class="toc-number">1.10.3.</span> <span class="toc-text">添加版本说明</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/ed5d9fa4/" title="代码块宽度自适应测试"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码块宽度自适应测试"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/ed5d9fa4/" title="代码块宽度自适应测试">代码块宽度自适应测试</a><time datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/ed02a91f/" title="代码块样式测试"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码块样式测试"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/ed02a91f/" title="代码块样式测试">代码块样式测试</a><time datetime="2026-07-17T16:00:00.000Z" title="发表于 2026-07-18 00:00:00">2026-07-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a7b8c9d0/" title="算法常用板子"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法常用板子"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/a7b8c9d0/" title="算法常用板子">算法常用板子</a><time datetime="2026-07-17T14:09:42.000Z" title="发表于 2026-07-17 22:09:42">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/be8ae904/" title="项目实践：学生成绩管理系统"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目实践：学生成绩管理系统"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/be8ae904/" title="项目实践：学生成绩管理系统">项目实践：学生成绩管理系统</a><time datetime="2026-06-19T08:20:49.000Z" title="发表于 2026-06-19 16:20:49">2026-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/aeb63fec/" title="大一结语"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大一结语"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/aeb63fec/" title="大一结语">大一结语</a><time datetime="2026-06-16T07:31:21.000Z" title="发表于 2026-06-16 15:31:21">2026-06-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%B5%8B%E8%AF%95/"><span class="card-category-list-name">测试</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><span class="card-category-list-name">算法模板</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/"><span class="card-category-list-name">项目练习</span><span class="card-category-list-count">1</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 1.1em; color: #999">模板</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 1.1em; color: #999">项目</a> <a href="/tags/C-C/" style="font-size: 1.5em; color: #99a9bf">C/C++</a> <a href="/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.5em; color: #99a9bf">博客</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.1em; color: #999">大学</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">总结</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 1.5em; color: #99a9bf">测试</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.1em; color: #999">算法</a> <a href="/tags/%E7%AB%9E%E8%B5%9B/" style="font-size: 1.1em; color: #999">竞赛</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.1em; color: #999">生活</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      
+    </div>
+  
+    <ul class="card-archive-list">
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/07/">
+            <span class="card-archive-list-date">
+              七月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/06/">
+            <span class="card-archive-list-date">
+              六月 2026
+            </span>
+            <span class="card-archive-list-count">3</span>
+          </a>
+        </li>
+      
+        <li class="card-archive-list-item">
+          <a class="card-archive-list-link" href="/archives/2026/04/">
+            <span class="card-archive-list-date">
+              四月 2026
+            </span>
+            <span class="card-archive-list-count">1</span>
+          </a>
+        </li>
+      
+    </ul>
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">13.5k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-17T16:39:55.541Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/selection1.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane376</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/main.min.js"></script><div class="js-pjax"><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
+
+  const loadUtterances = (el = document, key) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyUtterances = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const config = {
+      src: 'https://utteranc.es/client.js',
+      repo: 'Mistlane376/Mistlane376.github.io',
+      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
+      crossorigin: 'anonymous',
+      async: true,
+      ...option,
+      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
+    }
+
+    const ele = document.createElement('script')
+    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
+    el.querySelector('#utterances-wrap').appendChild(ele)
+  }
+
+  const changeUtterancesTheme = theme => {
+    const iframe = document.querySelector('#utterances-wrap iframe')
+    if (iframe) {
+      const message = {
+        type: 'set-theme',
+        theme: getUtterancesTheme(theme)
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
+    }
+  }
+
+  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
+
+  if (isShuoshuo) {
+    'Utterances' === 'Utterances'
+      ? window.shuoshuoComment = { loadComment: loadUtterances }
+      : window.loadOtherComment = loadUtterances
+    return
+  }
+  
+  if ('Utterances' === 'Utterances' || !true) {
+    if (true) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
+    else loadUtterances()
+  } else {
+    window.loadOtherComment = loadUtterances
+  }
+})()</script></div><link rel="stylesheet" href="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://npm.elemecdn.com/meting@1.2.0/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/search/local-search.min.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
