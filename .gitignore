@@ -1,9 +1,14 @@
+# macOS
 .DS_Store
+
+# Windows
 Thumbs.db
-db.json
-*.log
+
+# Hexo
 node_modules/
 public/
 .deploy*/
+.deploy_git/
 _multiconfig.yml/
-.deploy_git
+db.json
+*.log

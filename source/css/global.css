@@ -1,0 +1,533 @@
+/* ========================================
+   全局样式增强 - About 页面风格统一
+   ======================================== */
+
+/* ---------- 扩大整体布局宽度 ---------- */
+.layout {
+  max-width: 1400px !important;
+}
+
+/* 宽屏下进一步扩展 */
+@media screen and (min-width: 2000px) {
+  .layout {
+    max-width: 70% !important;
+  }
+}
+
+/* 隐藏侧边栏时也扩大 */
+.layout.hide-aside {
+  max-width: 1200px !important;
+}
+
+@media screen and (min-width: 2000px) {
+  .layout.hide-aside {
+    max-width: 1500px !important;
+  }
+}
+
+/* ---------- 页面内容区与侧边栏比例优化 ---------- */
+/* 给页面内容稍多一点空间 */
+.layout > div:first-child:not(.nc) {
+  padding: 50px 44px;
+}
+
+@media screen and (max-width: 768px) {
+  .layout > div:first-child:not(.nc) {
+    padding: 32px 18px;
+  }
+}
+
+/* ---------- 全局丝滑过渡 ---------- */
+a,
+button,
+.card-widget,
+.recent-post-item,
+#card-info-btn,
+.layout > div:first-child {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ---------- 卡片悬停增强 - About 风格 ---------- */
+.card-widget:hover,
+.recent-post-item:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ---------- 页面内容进入动画 ---------- */
+#content-inner,
+#article-container,
+.post-body {
+  animation: contentFadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes contentFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 滚动条美化 ---------- */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #eab308 0%, #f59e0b 100%);
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(234, 179, 8, 0.3);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d4a017 100%);
+  box-shadow: 0 0 6px rgba(234, 179, 8, 0.5);
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(234, 179, 8, 0.05);
+  border-radius: 4px;
+}
+
+/* ---------- 导航菜单项间距优化 ---------- */
+#nav .menus_items .menus_item {
+  padding: 0 6px;
+}
+
+#nav .menus_items .menus_item .site-page {
+  padding: 10px 16px;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#nav .menus_items .menus_item .site-page:hover {
+  background: rgba(234, 179, 8, 0.1);
+  color: #eab308;
+}
+
+/* ---------- 按钮样式统一 - About 风格 ---------- */
+button,
+.btn,
+#card-info-btn,
+.post-button {
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+button:hover,
+.btn:hover,
+#card-info-btn:hover,
+.post-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.35) !important;
+}
+
+/* ---------- 输入框样式统一 ---------- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea {
+  border-radius: 12px !important;
+  border: 2px solid rgba(234, 179, 8, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  border-color: #eab308 !important;
+  box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.1) !important;
+  outline: none !important;
+}
+
+/* ---------- 徽章和标签样式 ---------- */
+.badge,
+.tag,
+.label {
+  border-radius: 12px !important;
+  font-weight: 500 !important;
+  padding: 4px 12px !important;
+  background: rgba(234, 179, 8, 0.15) !important;
+  color: #b8860b !important;
+  border: 1px solid rgba(234, 179, 8, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.badge:hover,
+.tag:hover,
+.label:hover {
+  background: rgba(234, 179, 8, 0.25) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(234, 179, 8, 0.2) !important;
+}
+
+/* ---------- 链接样式增强 ---------- */
+a {
+  color: #b8860b;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(184, 134, 11, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+a:hover {
+  color: #d4a017;
+  border-bottom-style: solid;
+  border-bottom-color: #d4a017;
+}
+
+/* ---------- 引用块美化 ---------- */
+blockquote {
+  margin: 20px 0;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.08) 0%, rgba(255, 255, 255, 0.5) 100%);
+  border-left: 4px solid #eab308;
+  border-radius: 0 14px 14px 0;
+  color: #5a4a38;
+  font-style: italic;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+blockquote:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(255, 255, 255, 0.7) 100%);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- 代码块美化 ---------- */
+pre,
+code,
+.highlight {
+  border-radius: 12px !important;
+  font-family: 'Courier New', 'Fira Code', 'Monaco', monospace !important;
+  transition: all 0.3s ease;
+}
+
+pre {
+  background: linear-gradient(135deg, #2a2520 0%, #221d16 100%) !important;
+  padding: 20px !important;
+  border: 1px solid rgba(234, 179, 8, 0.2) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  display: inline-block;
+  max-width: 100%;
+  width: fit-content;
+  min-width: 300px;
+}
+
+pre:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+}
+
+code {
+  background: rgba(234, 179, 8, 0.1) !important;
+  color: #b8860b !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-size: 0.9em !important;
+}
+
+pre code {
+  background: transparent !important;
+  color: #f8f8f2 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+}
+
+/* ---------- 表格美化 ---------- */
+table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 20px 0;
+}
+
+table thead {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+}
+
+table th {
+  padding: 14px 18px;
+  font-weight: 600;
+  color: #3d3226;
+  border-bottom: 2px solid rgba(234, 179, 8, 0.3);
+  text-align: left;
+}
+
+table td {
+  padding: 12px 18px;
+  border-bottom: 1px solid rgba(234, 179, 8, 0.15);
+  color: #5a4a38;
+}
+
+table tbody tr {
+  transition: all 0.3s ease;
+}
+
+table tbody tr:hover {
+  background: rgba(234, 179, 8, 0.05);
+  transform: scale(1.01);
+}
+
+/* ---------- 图片样式 ---------- */
+img {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- 列表样式增强 ---------- */
+ul,
+ol {
+  padding-left: 24px;
+  margin: 16px 0;
+}
+
+li {
+  margin: 8px 0;
+  line-height: 1.8;
+  position: relative;
+}
+
+ul li::marker {
+  color: #eab308;
+}
+
+ol li::marker {
+  color: #eab308;
+  font-weight: 600;
+}
+
+/* ---------- 分隔线美化 ---------- */
+hr {
+  height: 2px;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(180, 160, 130, 0.4) 20%,
+      rgba(234, 179, 8, 0.6) 50%,
+      rgba(180, 160, 130, 0.4) 80%,
+      transparent);
+  border: none;
+  margin: 32px 0;
+  border-radius: 1px;
+}
+
+/* ---------- 标题样式增强 ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: #3d3226;
+  line-height: 1.4;
+  margin: 28px 0 16px;
+  position: relative;
+}
+
+h1 {
+  font-size: 2.2rem;
+  padding-bottom: 12px;
+  border-bottom: 3px solid rgba(234, 179, 8, 0.3);
+}
+
+h2 {
+  font-size: 1.8rem;
+  padding-left: 18px;
+  border-left: 4px solid #eab308;
+}
+
+h3 {
+  font-size: 1.5rem;
+  padding-left: 14px;
+  border-left: 3px solid rgba(234, 179, 8, 0.6);
+}
+
+h4 {
+  font-size: 1.25rem;
+  padding-left: 10px;
+  border-left: 2px solid rgba(234, 179, 8, 0.4);
+}
+
+/* ---------- 段落和文本 ---------- */
+p {
+  line-height: 1.9;
+  margin: 16px 0;
+  color: #4a4035;
+}
+
+strong,
+b {
+  color: #3d3226;
+  font-weight: 600;
+}
+
+em,
+i {
+  color: #6b5840;
+}
+
+/* ---------- 选中文本样式 ---------- */
+::selection {
+  background: rgba(234, 179, 8, 0.3);
+  color: #3d3226;
+}
+
+::-moz-selection {
+  background: rgba(234, 179, 8, 0.3);
+  color: #3d3226;
+}
+
+/* ---------- 焦点可见性 ---------- */
+*:focus-visible {
+  outline: 2px solid #eab308;
+  outline-offset: 2px;
+}
+
+/* ---------- 暗色模式适配 ---------- */
+[data-theme='dark'] {
+  color: #c5b8a8;
+}
+
+[data-theme='dark'] h1,
+[data-theme='dark'] h2,
+[data-theme='dark'] h3,
+[data-theme='dark'] h4,
+[data-theme='dark'] h5,
+[data-theme='dark'] h6 {
+  color: #e0d5c5;
+}
+
+[data-theme='dark'] p {
+  color: #b5a890;
+}
+
+[data-theme='dark'] a {
+  color: #d4a017;
+  border-bottom-color: rgba(212, 160, 23, 0.3);
+}
+
+[data-theme='dark'] a:hover {
+  color: #e8b830;
+  border-bottom-color: #e8b830;
+}
+
+[data-theme='dark'] blockquote {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(50, 45, 38, 0.5) 100%);
+  color: #b5a890;
+}
+
+[data-theme='dark'] code {
+  background: rgba(234, 179, 8, 0.15) !important;
+  color: #eab308 !important;
+}
+
+[data-theme='dark'] table thead {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.2) 0%, rgba(245, 158, 11, 0.15) 100%);
+}
+
+[data-theme='dark'] table th {
+  color: #e0d5c5;
+  border-bottom-color: rgba(234, 179, 8, 0.4);
+}
+
+[data-theme='dark'] table td {
+  color: #b5a890;
+  border-bottom-color: rgba(234, 179, 8, 0.2);
+}
+
+[data-theme='dark'] table tbody tr:hover {
+  background: rgba(234, 179, 8, 0.08);
+}
+
+[data-theme='dark'] strong,
+[data-theme='dark'] b {
+  color: #e0d5c5;
+}
+
+[data-theme='dark'] ::selection {
+  background: rgba(234, 179, 8, 0.4);
+  color: #e0d5c5;
+}
+
+/* ---------- 响应式设计 ---------- */
+@media (max-width: 900px) {
+  .layout {
+    max-width: 100% !important;
+  }
+
+  .layout > div:first-child:not(.nc) {
+    padding: 36px 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout > div:first-child:not(.nc) {
+    padding: 28px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  pre {
+    padding: 16px !important;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  table th,
+  table td {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .layout > div:first-child:not(.nc) {
+    padding: 20px 16px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+  }
+}

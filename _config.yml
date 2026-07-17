@@ -5,7 +5,13 @@
 # Site
 title: Mistlane`s blogs
 subtitle: '临涧路的精神小屋'
-description: '个人博客，记录学习与生活'
+description: |
+  齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
+
+  热爱编码，痴迷于算法与数据结构的极致博弈。信奉"以赛代练"的成长哲学，在高压的竞赛环境中不断突破认知边界，追求代码的严谨与优雅。
+
+  技术标签： #C++ #算法竞赛 #数据结构
+  状态： 持续输入，保持输出，欢迎各路大佬指点交流 🚀
 keywords: 博客,技术,编程,Hexo
 author: Mistlane376
 language: zh-CN
@@ -141,9 +147,3 @@ bangumi:
     pagination: true                # 启用分页
     star: true                      # 显示评分
     starProgress: true              # 显示评分进度条
-# --------------------------------------
-# 音乐播放器
-# --------------------------------------
-aplayer:
-  meting: true
-  asset_inject: false

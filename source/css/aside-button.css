@@ -1,0 +1,244 @@
+/* ========================================
+   侧边栏隐藏按钮样式优化
+   ======================================== */
+
+/* ---------- 侧边栏内部隐藏按钮 ---------- */
+
+/* 侧边栏底部的隐藏按钮 */
+.aside > .hide-aside-btn,
+.aside-hide-button,
+#toggle-menu,
+.menus_items .menus_item:has(.hide-aside) {
+  position: relative;
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 12px;
+  color: #b8860b !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+}
+
+.aside > .hide-aside-btn:hover,
+.aside-hide-button:hover,
+#toggle-menu:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.2) 0%, rgba(245, 158, 11, 0.15) 100%);
+  border-color: rgba(234, 179, 8, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
+  color: #eab308 !important;
+}
+
+/* 侧边栏菜单中的隐藏按钮 */
+#sidebar-menus .menus_item .hide-aside-btn,
+#sidebar-menus .menus_item:has(.fa-eye-slash) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  margin-top: 12px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.06) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: 10px;
+  color: #b8860b !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#sidebar-menus .menus_item .hide-aside-btn:hover,
+#sidebar-menus .menus_item:has(.fa-eye-slash):hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.18) 0%, rgba(245, 158, 11, 0.12) 100%);
+  border-color: rgba(234, 179, 8, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.15);
+}
+
+/* 图标样式 */
+.aside > .hide-aside-btn i,
+#sidebar-menus .menus_item .hide-aside-btn i,
+.aside-hide-button i {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.aside > .hide-aside-btn:hover i,
+#sidebar-menus .menus_item .hide-aside-btn:hover i {
+  transform: scale(1.1);
+}
+
+/* ---------- 右下角隐藏按钮 ---------- */
+
+/* 右下角按钮容器 */
+.hide-aside-btn,
+#hide-aside-btn,
+.rightside-button.hide-aside {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eab308 0%, #f59e0b 100%);
+  border-radius: 50%;
+  box-shadow:
+    0 4px 16px rgba(234, 179, 8, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.hide-aside-btn:hover,
+#hide-aside-btn:hover,
+.rightside-button.hide.aside:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow:
+    0 6px 24px rgba(234, 179, 8, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hide-aside-btn:active,
+#hide-aside-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* 工具提示 */
+.hide-aside-btn::before,
+#hide-aside-btn::before {
+  content: '隐藏侧边栏';
+  position: absolute;
+  right: 54px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  background: rgba(61, 50, 38, 0.95);
+  color: #fff;
+  font-size: 0.85rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.hide-aside-btn::after,
+#hide-aside-btn::after {
+  content: '';
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: rgba(61, 50, 38, 0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.hide-aside-btn:hover::before,
+#hide-aside-btn:hover::before,
+.hide-aside-btn:hover::after,
+#hide-aside-btn:hover::after {
+  opacity: 1;
+}
+
+/* 侧边栏隐藏时的按钮 */
+body.hide-aside .hide-aside-btn::before,
+body.hide-aside #hide-aside-btn::before {
+  content: '显示侧边栏';
+}
+
+/* ---------- 移动端适配 ---------- */
+
+@media (max-width: 768px) {
+  .hide-aside-btn,
+  #hide-aside-btn,
+  .rightside-button.hide.aside {
+    bottom: 80px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .hide-aside-btn::before,
+  #hide-aside-btn::before {
+    right: 50px;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+  }
+
+  .hide-aside-btn::after,
+  #hide-aside-btn::after {
+    right: 44px;
+    border-width: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hide-aside-btn,
+  #hide-aside-btn,
+  .rightside-button.hide.aside {
+    bottom: 70px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .hide-aside-btn::before,
+  #hide-aside-btn::before {
+    right: 46px;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+
+  .hide-aside-btn::after,
+  #hide-aside-btn::after {
+    right: 40px;
+    border-width: 3px;
+  }
+}
+
+/* ---------- 暗色模式 ---------- */
+
+[data-theme='dark'] .aside > .hide-aside-btn,
+[data-theme='dark'] #sidebar-menus .menus_item .hide-aside-btn {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border-color: rgba(234, 179, 8, 0.3);
+  color: #eab308 !important;
+}
+
+[data-theme='dark'] .aside > .hide-aside-btn:hover,
+[data-theme='dark'] #sidebar-menus .menus_item .hide-aside-btn:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(245, 158, 11, 0.18) 100%);
+  border-color: rgba(234, 179, 8, 0.45);
+}
+
+[data-theme='dark'] .hide-aside-btn,
+[data-theme='dark'] #hide-aside-btn,
+[data-theme='dark'] .rightside-button.hide.aside {
+  background: linear-gradient(135deg, #eab308 0%, #f59e0b 100%);
+  color: #1a1a1a !important;
+}
+
+[data-theme='dark'] .hide-aside-btn::before,
+[data-theme='dark'] #hide-aside-btn::before {
+  background: rgba(234, 179, 8, 0.95);
+  color: #1a1a1a;
+}
+
+[data-theme='dark'] .hide-aside-btn::after,
+[data-theme='dark'] #hide-aside-btn::after {
+  border-right-color: rgba(234, 179, 8, 0.95);
+}
