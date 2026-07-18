@@ -267,9 +267,76 @@
 .about-tagline {
   font-size: 1.05rem;
   color: #8b7355;
-  margin: 0;
+  margin: 0 0 16px;
   line-height: 1.6;
   font-style: italic;
+}
+
+/* 个性签名 */
+.about-signature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.08) 0%, rgba(245, 158, 11, 0.06) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.2);
+  border-radius: 24px;
+  font-size: 0.95rem;
+  color: #3d3226;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.about-signature:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border-color: rgba(234, 179, 8, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.15);
+}
+
+.signature-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.signature-item i {
+  font-size: 1rem;
+  color: #eab308;
+}
+
+.signature-divider {
+  color: #eab308;
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+/* 标签样式 */
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-item {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: #b8860b;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tag-item:hover {
+  background: rgba(234, 179, 8, 0.18);
+  border-color: rgba(234, 179, 8, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
 }
 
 /* ---------- 卡片通用样式 ---------- */
@@ -382,6 +449,33 @@
 .about-value.highlight {
   color: #d4a017;
   font-size: 1.1rem;
+}
+
+/* 身份标签列表 */
+.about-identity-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.identity-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 16px;
+  font-size: 0.9rem;
+  color: #3d3226;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.identity-tag:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.2) 0%, rgba(245, 158, 11, 0.15) 100%);
+  border-color: rgba(234, 179, 8, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(234, 179, 8, 0.2);
 }
 
 /* ---------- 成就展示 ---------- */
@@ -950,6 +1044,39 @@
   color: #b5a890;
 }
 
+/* 暗色模式个性签名 */
+[data-theme='dark'] .about-signature {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.1) 0%, rgba(245, 158, 11, 0.08) 100%);
+  border-color: rgba(234, 179, 8, 0.3);
+  color: #d4c9b1;
+}
+
+[data-theme='dark'] .about-signature:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(245, 158, 11, 0.12) 100%);
+  border-color: rgba(234, 179, 8, 0.4);
+}
+
+[data-theme='dark'] .signature-item i {
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .signature-divider {
+  color: #fbbf24;
+  opacity: 0.5;
+}
+
+/* 暗色模式标签 */
+[data-theme='dark'] .tag-item {
+  background: rgba(234, 179, 8, 0.12);
+  border-color: rgba(234, 179, 8, 0.3);
+  color: #fbbf24;
+}
+
+[data-theme='dark'] .tag-item:hover {
+  background: rgba(234, 179, 8, 0.2);
+  border-color: rgba(234, 179, 8, 0.45);
+}
+
 /* 暗色模式卡片 */
 [data-theme='dark'] .about-card {
   background: rgba(40, 35, 28, 0.7);
@@ -987,6 +1114,18 @@
 
 [data-theme='dark'] .about-value.highlight {
   color: #eab308;
+}
+
+/* 身份标签暗色模式 */
+[data-theme='dark'] .identity-tag {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+  border-color: rgba(234, 179, 8, 0.3);
+  color: #e0d5c5;
+}
+
+[data-theme='dark'] .identity-tag:hover {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.25) 0%, rgba(245, 158, 11, 0.2) 100%);
+  border-color: rgba(234, 179, 8, 0.5);
 }
 
 [data-theme='dark'] .about-section-desc {
@@ -1234,6 +1373,23 @@
     font-size: 0.95rem;
   }
 
+  .about-signature {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.9rem;
+    padding: 10px 16px;
+    gap: 8px;
+  }
+
+  .about-tags {
+    justify-content: center;
+  }
+
+  .tag-item {
+    padding: 5px 14px;
+    font-size: 0.85rem;
+  }
+
   .about-card {
     margin: 14px 16px;
     padding: 18px;
@@ -1385,6 +1541,24 @@
 
   .about-tagline {
     font-size: 0.85rem;
+  }
+
+  .about-signature {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .about-tags {
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tag-item {
+    padding: 4px 12px;
+    font-size: 0.8rem;
   }
 
   .about-card {
