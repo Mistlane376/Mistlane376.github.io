@@ -326,13 +326,13 @@ aside:
   card_author:
     enable: true
     description: |
-      齐鲁工业大学 · 计算机科学与技术
-      算法竞赛选手 (ACMer) 🏆
+      齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
 
-      热爱编码，痴迷于算法与数据结构的极致博弈。
-      在竞赛中不断突破认知边界。
-
-      #C++ #算法竞赛 #数据结构
+      <div class="author-tags">
+        <span class="author-tag">#C++</span>
+        <span class="author-tag">#算法竞赛</span>
+        <span class="author-tag">#数据结构</span>
+      </div>
     button:
       enable: true
       icon: fas fa-user-astronaut
@@ -1037,11 +1037,6 @@ pjax:
   exclude:
     # - /xxxxxx/
 
-# Inject the css and script (aplayer/meting)
-aplayerInject:
-  enable: true
-  per_page: true
-
 # Snackbar - Toast Notification
 # https://github.com/polonel/SnackBar
 # position: top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
@@ -1141,9 +1136,6 @@ CDN:
     # activate_power_mode:
     # algolia_js:
     # algolia_search:
-    aplayer_css: https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.css
-    aplayer_js: https://npm.elemecdn.com/aplayer@1.10.1/dist/APlayer.min.js
-    meting_js: https://npm.elemecdn.com/meting@1.2.0/dist/Meting.min.js
     # artalk_css:
     # artalk_js:
     # blueimp_md5:
@@ -1162,7 +1154,7 @@ CDN:
     # fancybox:
     # fancybox_css:
     # fireworks:
-    # fontawesome:
+    fontawesome:
     # gitalk:
     # gitalk_css:
     # giscus:
