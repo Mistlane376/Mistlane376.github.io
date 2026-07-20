@@ -126,9 +126,9 @@ tag_plugins:
 # Bangumi 追番配置
 # --------------------------------------
 bangumi:
-  enable: false                      # 已改用 AniList API
+  enable: true                      # 启用追番功能
   path: bangumis/index.html         # 番剧页面路径
-  vmid: 1146476510                  # 你的B站UID（请确认此UID正确）
+  vmid: 1146476510                  # 你的B站UID
   title: '追番列表'                  # 页面标题
   quote: '生命不息，追番不止！'        # 页面顶部寄语（支持HTML）
   show: 1                           # 默认显示：0=想看, 1=在看, 2=看过
@@ -137,7 +137,3 @@ bangumi:
   color: "#555"                     # 简介字体颜色
   webp: true                        # 使用WebP格式封面图（Safari不兼容需设为false）
   progress: true                    # 更新数据时显示进度条
-  extra_options:
-    pagination: true                # 启用分页
-    star: true                      # 显示评分
-    starProgress: true              # 显示评分进度条

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
+    <title>页面未找到 | Mistlane's blogs</title>
+    <meta name="author" content="Mistlane376">
+    <meta name="copyright" content="Mistlane376">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="页面走丢啦~">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mistlane's blogs">
+    <meta property="og:url" content="http://mistlane.cc.cd/404.html">
+    <meta property="og:site_name" content="Mistlane's blogs">
+    <meta property="og:description" content="页面走丢啦~">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:image" content="http://mistlane.cc.cd/images/marcus.png">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/log.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main container */
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 40px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Glitch effect for 404 */
+        .error-code {
+            font-size: 180px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.5),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 30px rgba(255, 255, 255, 0.2);
+            position: relative;
+            animation: glitch 2s infinite;
+            letter-spacing: -10px;
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow:
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+                transform: translate(0);
+            }
+            2% {
+                text-shadow:
+                    2px 0 10px rgba(255, 0, 0, 0.5),
+                    -2px 0 20px rgba(0, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+                transform: translate(-2px, 2px);
+            }
+            4% {
+                text-shadow:
+                    -2px 0 10px rgba(255, 0, 0, 0.5),
+                    2px 0 20px rgba(0, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+                transform: translate(2px, -2px);
+            }
+            6%, 100% {
+                text-shadow:
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 20px rgba(255, 255, 255, 0.3),
+                    0 0 30px rgba(255, 255, 255, 0.2);
+                transform: translate(0);
+            }
+        }
+
+        /* Error message */
+        .error-title {
+            font-size: 36px;
+            color: #fff;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+
+        .error-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Animated astronaut illustration */
+        .astronaut {
+            font-size: 80px;
+            margin: 30px 0;
+            animation: float-astronaut 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes float-astronaut {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        /* Button styles */
+        .button-group {
+            margin-top: 40px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 120px;
+            }
+
+            .error-title {
+                font-size: 28px;
+            }
+
+            .error-subtitle {
+                font-size: 16px;
+            }
+
+            .astronaut {
+                font-size: 60px;
+            }
+
+            .btn {
+                padding: 12px 30px;
+                font-size: 14px;
+            }
+        }
+
+        /* Typewriter effect */
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end);
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated particles background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main content -->
+    <div class="container">
+        <div class="error-code">404</div>
+
+        <div class="astronaut">
+            <i class="fas fa-user-astronaut"></i>
+        </div>
+
+        <h1 class="error-title">页面走丢啦~</h1>
+        <p class="error-subtitle">
+            看起来这个页面已经飘到太空去了<br>
+            The page you're looking for has drifted into space
+        </p>
+
+        <div class="button-group">
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-home"></i>
+                返回首页
+            </a>
+            <button onclick="history.back()" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i>
+                返回上页
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025-2026 Mistlane376 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank">Butterfly</a></p>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                // Random size
+                const size = Math.random() * 20 + 5;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+
+                // Random animation delay
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add click effect on 404 number
+        document.querySelector('.error-code').addEventListener('click', function() {
+            this.style.transform = 'scale(1.2) rotate(360deg)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1) rotate(0deg)';
+            }, 500);
+        });
+
+        // Add hover effect to astronaut
+        document.querySelector('.astronaut').addEventListener('mouseenter', function() {
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'float-astronaut 0.5s ease-in-out infinite';
+            }, 10);
+        });
+
+        document.querySelector('.astronaut').addEventListener('mouseleave', function() {
+            this.style.animation = 'float-astronaut 3s ease-in-out infinite';
+        });
+
+        // Console easter egg
+        console.log('%c 404 - 页面走丢啦！', 'color: #667eea; font-size: 24px; font-weight: bold;');
+        console.log('%c 但是你可以回到首页继续探索 ✨', 'color: #764ba2; font-size: 16px;');
+        console.log('%c 🚀 祝你旅途愉快！', 'color: #667eea; font-size: 14px;');
+    </script>
+</body>
+</html>

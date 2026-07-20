@@ -127,7 +127,7 @@ error_img:
   post_page: /img/404.jpg
 # A simple 404 page
 error_404:
-  enable: true
+  enable: false
   subtitle: 'Page Not Found'
   background: /img/error-page.png
 
