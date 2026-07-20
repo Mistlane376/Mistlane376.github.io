@@ -297,7 +297,7 @@
 
   document.addEventListener('pjax:error', e => {
     if (e.request.status === 404) {
-      true
+      false
         ? pjax.loadUrl('/404.html')
         : window.location.href = e.request.responseURL
     }
