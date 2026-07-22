@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mistlane&#39;s Blog</title>
+  <icon>https://mistlane.cc.cd/images/favicon.png</icon>
+  <subtitle>临涧路的精神小屋</subtitle>
+  <link href="https://mistlane.cc.cd/atom.xml" rel="self"/>
+  
+  <link href="https://mistlane.cc.cd/"/>
+  <updated>2026-07-21T12:00:00.000Z</updated>
+  <id>https://mistlane.cc.cd/</id>
+  
+  <author>
+    <name>Mistlane376</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>(模板补充)计算几何</title>
+    <link href="https://mistlane.cc.cd/posts/computational-geometry-templates/"/>
+    <id>https://mistlane.cc.cd/posts/computational-geometry-templates/</id>
+    <published>2026-07-21T12:00:00.000Z</published>
+    <updated>2026-07-21T12:00:00.000Z</updated>
+    
+    
+    <summary type="html">计算几何算法模板补充，包含几何算法、极角排序等核心内容，集成自常用板子模板。</summary>
+    
+    
+    
+    <category term="算法模板" scheme="https://mistlane.cc.cd/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"/>
+    
+    
+    <category term="C/C++" scheme="https://mistlane.cc.cd/tags/C-C/"/>
+    
+    <category term="算法" scheme="https://mistlane.cc.cd/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="竞赛" scheme="https://mistlane.cc.cd/tags/%E7%AB%9E%E8%B5%9B/"/>
+    
+    <category term="模板" scheme="https://mistlane.cc.cd/tags/%E6%A8%A1%E6%9D%BF/"/>
+    
+    <category term="计算几何" scheme="https://mistlane.cc.cd/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法常用板子</title>
+    <link href="https://mistlane.cc.cd/posts/a7b8c9d0/"/>
+    <id>https://mistlane.cc.cd/posts/a7b8c9d0/</id>
+    <published>2026-07-17T14:09:42.000Z</published>
+    <updated>2026-07-17T14:09:42.000Z</updated>
+    
+    
+    <summary type="html">算法竞赛常用模板集合，涵盖数论、图论、字符串、数据结构、动态规划等核心算法与数据结构。</summary>
+    
+    
+    
+    <category term="算法模板" scheme="https://mistlane.cc.cd/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"/>
+    
+    
+    <category term="C/C++" scheme="https://mistlane.cc.cd/tags/C-C/"/>
+    
+    <category term="算法" scheme="https://mistlane.cc.cd/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="竞赛" scheme="https://mistlane.cc.cd/tags/%E7%AB%9E%E8%B5%9B/"/>
+    
+    <category term="模板" scheme="https://mistlane.cc.cd/tags/%E6%A8%A1%E6%9D%BF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>项目实践：学生成绩管理系统</title>
+    <link href="https://mistlane.cc.cd/posts/be8ae904/"/>
+    <id>https://mistlane.cc.cd/posts/be8ae904/</id>
+    <published>2026-06-19T08:20:49.000Z</published>
+    <updated>2026-06-19T08:20:49.000Z</updated>
+    
+    
+    <summary type="html">大一C语言课程设计，一个基于控制台的学生成绩管理系统。</summary>
+    
+    
+    
+    <category term="项目练习" scheme="https://mistlane.cc.cd/categories/%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/"/>
+    
+    
+    <category term="C/C++" scheme="https://mistlane.cc.cd/tags/C-C/"/>
+    
+    <category term="项目" scheme="https://mistlane.cc.cd/tags/%E9%A1%B9%E7%9B%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大一结语</title>
+    <link href="https://mistlane.cc.cd/posts/aeb63fec/"/>
+    <id>https://mistlane.cc.cd/posts/aeb63fec/</id>
+    <published>2026-06-16T07:31:21.000Z</published>
+    <updated>2026-06-16T07:31:21.000Z</updated>
+    
+    
+    <summary type="html">回顾大一这一年，总结成长与收获。</summary>
+    
+    
+    
+    <category term="日常" scheme="https://mistlane.cc.cd/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="总结" scheme="https://mistlane.cc.cd/tags/%E6%80%BB%E7%BB%93/"/>
+    
+    <category term="大学" scheme="https://mistlane.cc.cd/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+    <category term="生活" scheme="https://mistlane.cc.cd/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown 使用手册</title>
+    <link href="https://mistlane.cc.cd/posts/e1a9aadf/"/>
+    <id>https://mistlane.cc.cd/posts/e1a9aadf/</id>
+    <published>2026-06-16T07:26:21.000Z</published>
+    <updated>2026-06-16T07:26:21.000Z</updated>
+    
+    
+    <summary type="html">Markdown 语法速查手册，涵盖基础语法、GFM 扩展与高级技巧。</summary>
+    
+    
+    
+    <category term="教程" scheme="https://mistlane.cc.cd/categories/%E6%95%99%E7%A8%8B/"/>
+    
+    
+    <category term="博客" scheme="https://mistlane.cc.cd/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+    <category term="Markdown" scheme="https://mistlane.cc.cd/tags/Markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>我的第一篇文章</title>
+    <link href="https://mistlane.cc.cd/posts/7a776471/"/>
+    <id>https://mistlane.cc.cd/posts/7a776471/</id>
+    <published>2026-04-11T10:00:00.000Z</published>
+    <updated>2026-04-11T10:00:00.000Z</updated>
+    
+    
+    <summary type="html">博客的第一篇文章，记录开始写作的初衷。</summary>
+    
+    
+    
+    <category term="日常" scheme="https://mistlane.cc.cd/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+    
+    <category term="博客" scheme="https://mistlane.cc.cd/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+  </entry>
+  
+</feed>

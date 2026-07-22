@@ -1,59 +1,102 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Mistlane`s blogs - 临涧路的精神小屋</title><meta name="author" content="Mistlane376"><meta name="copyright" content="Mistlane376"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="生命不息，追番不止！        .bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{positio">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>追番 | Mistlane's Blog</title><meta name="author" content="Mistlane376"><meta name="copyright" content="Mistlane376"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="我的追番列表，数据来自 Bilibili">
 <meta property="og:type" content="website">
-<meta property="og:title" content="追番列表">
-<meta property="og:url" content="http://mistlane.cc.cd/bangumis/index.html">
-<meta property="og:site_name" content="Mistlane&#96;s blogs">
-<meta property="og:description" content="生命不息，追番不止！        .bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{positio">
+<meta property="og:title" content="追番">
+<meta property="og:url" content="https://mistlane.cc.cd/bangumis/">
+<meta property="og:site_name" content="Mistlane&#39;s Blog">
+<meta property="og:description" content="我的追番列表，数据来自 Bilibili">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://mistlane.cc.cd/images/marcus.png">
+<meta property="og:image" content="https://mistlane.cc.cd/images/marcus.png">
+<meta property="article:published_time" content="2026-06-20T04:51:33.000Z">
+<meta property="article:modified_time" content="2026-06-20T04:51:33.000Z">
 <meta property="article:author" content="Mistlane376">
-<meta property="article:tag" content="博客,技术,编程,Hexo">
+<meta property="article:tag" content="算法竞赛,C++,数据结构,计算机科学,个人博客">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://mistlane.cc.cd/images/marcus.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/%5Cimages%5Clog.png"><link rel="canonical" href="http://mistlane.cc.cd/bangumis/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.5"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css"><script>
+<meta name="twitter:image" content="https://mistlane.cc.cd/images/marcus.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://mistlane.cc.cd/bangumis/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"><script>
     (() => {
       
     const saveToLocal = {
       set: (key, value, ttl) => {
-        if (!ttl) return
-        const expiry = Date.now() + ttl * 86400000
-        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
       },
       get: key => {
         const itemStr = localStorage.getItem(key)
-        if (!itemStr) return undefined
-        const { value, expiry } = JSON.parse(itemStr)
-        if (Date.now() > expiry) {
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
           localStorage.removeItem(key)
-          return undefined
         }
-        return value
       }
     }
 
+    const scriptCache = new Map()
+    const cssCache = new Map()
     window.btf = {
       saveToLocal,
-      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
-        script.onload = script.onreadystatechange = () => {
-          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
         }
-        script.onerror = reject
-        document.head.appendChild(script)
-      }),
-      getCSS: (url, id) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onload = link.onreadystatechange = () => {
-          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
         }
-        link.onerror = reject
-        document.head.appendChild(link)
-      }),
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
       addGlobalFn: (key, fn, name = false, parent = window) => {
         if (!true && key.startsWith('pjax')) return
         const globalFn = parent.globalFn || {}
@@ -64,16 +107,17 @@
     }
   
       
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
       const activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
         }
       }
       const activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
         }
       }
 
@@ -83,7 +127,12 @@
       const theme = saveToLocal.get('theme')
     
           const hour = new Date().getHours()
-          const isNight = hour <= 6 || hour >= 18
+          const start = 6
+          const end = 18
+          const isNight =
+            start < end
+                ? hour < start || hour >= end
+                : hour >= start || hour < end
           if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
           else theme === 'light' ? activateLightMode() : activateDarkMode()
         
@@ -105,7 +154,7 @@
   </script><script>const GLOBAL_CONFIG = {
   root: '/',
   algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
   translate: undefined,
   highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
   copy: {
@@ -141,314 +190,558 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '追番列表',
+  title: '追番',
   isHighlightShrink: false,
   isToc: false,
-  pageType: 'home'
-}</script><style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style><link rel="stylesheet" href="/css/author-card.css"><link rel="stylesheet" href="/css/about-envelope.css"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/markdown.css"><link rel="stylesheet" href="/css/aside-button.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/images/selection1.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background-image: url(/images/selection1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/%5Cimages%5Clog.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane`s blogs</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">Mistlane`s blogs</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container">
-<blockquote>
-    <p>生命不息，追番不止！</p>
-</blockquote>
+  pageType: 'page'
+}</script><style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style><link rel="stylesheet" href="/css/author-card.css"><link rel="stylesheet" href="/css/about-envelope.css"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/markdown.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Mistlane's Blog" type="application/atom+xml">
+</head><body><div class="bg-animation" id="web_bg" style="background-image: url(/images/selection1.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div></div></div><div class="page type-bangumis" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/images/selection1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">追番</h1></div></header><main class="layout" id="content-inner"><div id="page"><div class="container" id="article-container"><style>
+/* 追番页面样式优化 */
+.bangumi-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-<style>
-    .bangumi-tabs{margin-bottom:15px;margin-top:15px}.bangumi-tab{padding:5px}a.bangumi-tab{text-decoration:none}.bangumi-active{background:#657b83;color:#fff}.bangumi-item{position:relative;clear:both;min-height:170px;padding:10px 0;border-bottom:1px solid #ddd}@media screen and (max-width:600px){.bangumi-item{width:100%}}.bangumi-picture{position:absolute;left:0;top:10px;width:110px}.bangumi-info{padding-left:120px}.bangumi-meta{font-size:12px;padding-right:10px}.bangumi-comments{font-size:12px}.bangumi-pagination{margin-top:15px;text-align:center;margin-bottom:10px}.bangumi-button{padding:5px}.bangumi-button:hover{background:#657b83;color:#fff}.bangumi-hide{display:none}.bangumi-show{display:block}.bangumi-title{font-size:18px}.bangumi-title a{line-height:1;text-decoration:none}.bangumi-info-items{font-size:12px;color:#2fd8d8;padding-top:10px;line-height:1;float:left;width:100%}.bangumi-info-item{display:inline-block;width:13%;border-right:1px solid #2fd8d8;text-align:center;height:34px}.bangumi-info-label{display:block;line-height:12px}.bangumi-info-item em{display:block;padding-top:6px;line-height:17px;font-style:normal;font-weight:700}.bangumi-info-total{padding-top:11px;display:block;line-height:12px}.bangumi-info-item-score{border-right:1px solid #0000;width:50px}.bangumi-info-label-em{color:transparent;opacity:0;visibility:hidden;line-height:6px!important;padding:0!important}@media (max-width:650px){.bangumi-coin{display:none}.bangumi-info-item{width:16%}}@media (max-width:590px){.bangumi-danmaku{display:none}.bangumi-info-item{width:19%}}@media (max-width:520px){.bangumi-play{display:none}.bangumi-info-item{width:24%}}@media (max-width:480px){.bangumi-follow{display:none}.bangumi-info-item{width:30%}}@media (max-width:400px){.bangumi-area{display:none}.bangumi-info-item{width:45%}}
+/* Tab 标签样式 */
+.bangumi-tabs {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0 32px;
+  padding: 0;
+  border-bottom: 2px solid var(--border-color, #e0e0e0);
+}
+
+.bangumi-tab {
+  padding: 12px 28px;
+  border-radius: 12px 12px 0 0;
+  cursor: pointer;
+  color: var(--font-color);
+  background: var(--card-bg);
+  border: 2px solid var(--border-color, #e0e0e0);
+  border-bottom: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
+}
+
+.bangumi-tab::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #657b83, #8ca8c4);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.bangumi-tab:hover {
+  border-color: #657b83;
+  color: #657b83;
+  transform: translateY(-2px);
+}
+
+.bangumi-tab:hover::before {
+  width: 60%;
+}
+
+.bangumi-active {
+  background: linear-gradient(135deg, #657b83 0%, #8ca8c4 100%) !important;
+  color: #fff !important;
+  border-color: #657b83 !important;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(101, 123, 131, 0.3);
+}
+
+.bangumi-active::before {
+  width: 0 !important;
+}
+
+/* 番剧卡片样式 */
+.bangumi-item {
+  position: relative;
+  clear: both;
+  min-height: 200px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-color, #eee);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bangumi-item:hover {
+  background: var(--card-bg-hover, rgba(101, 123, 131, 0.05));
+  border-radius: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.bangumi-picture {
+  position: absolute;
+  left: 0;
+  top: 24px;
+  width: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bangumi-item:hover .bangumi-picture {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.bangumi-picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: opacity 0.3s ease;
+}
+
+.bangumi-info {
+  padding-left: 164px;
+}
+
+.bangumi-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.bangumi-title a {
+  text-decoration: none;
+  color: var(--font-color);
+  transition: color 0.2s ease;
+  background: linear-gradient(90deg, var(--font-color), var(--font-color));
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+}
+
+.bangumi-title a:hover {
+  color: #657b83;
+  background-size: 100% 2px;
+}
+
+.bangumi-meta {
+  font-size: 14px;
+  color: var(--text-color-secondary, #666);
+  margin-top: 8px;
+  line-height: 1.8;
+}
+
+.bangumi-meta span {
+  margin-right: 20px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bangumi-meta .meta-score {
+  color: #e09015;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.bangumi-tags {
+  margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bangumi-tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  background: var(--tag-bg, #f0f0f0);
+  color: var(--text-color-secondary, #666);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.bangumi-tag.format {
+  background: linear-gradient(135deg, #657b83 0%, #8ca8c4 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 6px 16px;
+}
+
+.bangumi-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.bangumi-comments {
+  font-size: 14px;
+  color: var(--text-color-secondary, #888);
+  margin-top: 12px;
+  line-height: 1.7;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 分页样式 */
+.bangumi-pagination {
+  margin: 32px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.bangumi-button {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color, #ddd);
+  color: var(--font-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.bangumi-button:hover {
+  background: #657b83;
+  color: #fff;
+  border-color: #657b83;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(101, 123, 131, 0.3);
+}
+
+.bangumi-pagenum {
+  padding: 10px 16px;
+  font-weight: 600;
+  color: var(--font-color);
+}
+
+/* 总数统计 */
+.bangumi-total {
+  font-size: 15px;
+  color: var(--text-color-secondary, #999);
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(101, 123, 131, 0.1) 0%, rgba(140, 168, 196, 0.1) 100%);
+  border-radius: 8px;
+  border-left: 4px solid #657b83;
+  font-weight: 500;
+}
+
+/* 加载和错误状态 */
+.bangumi-loading,
+.bangumi-error,
+.bangumi-empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--text-color-secondary, #888);
+  font-size: 16px;
+}
+
+.bangumi-loading .spinner {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  border: 4px solid var(--border-color, #ddd);
+  border-top-color: #657b83;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.bangumi-error {
+  color: #e74c3c;
+}
+
+/* 隐藏/显示 */
+.bangumi-hide { display: none !important; }
+.bangumi-show { display: block; }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .bangumi-container {
+    padding: 12px;
+  }
+
+  .bangumi-tabs {
+    gap: 8px;
+    margin: 16px 0 24px;
+  }
+
+  .bangumi-tab {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .bangumi-item {
+    min-height: 160px;
+    padding: 16px 0;
+  }
+
+  .bangumi-picture {
+    width: 100px;
+    top: 16px;
+  }
+
+  .bangumi-info {
+    padding-left: 120px;
+  }
+
+  .bangumi-title {
+    font-size: 17px;
+  }
+
+  .bangumi-meta {
+    font-size: 13px;
+  }
+
+  .bangumi-meta span {
+    margin-right: 12px;
+  }
+
+  .bangumi-comments {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .bangumi-picture {
+    width: 80px;
+  }
+
+  .bangumi-info {
+    padding-left: 96px;
+  }
+
+  .bangumi-title {
+    font-size: 16px;
+  }
+
+  .bangumi-tag {
+    padding: 3px 10px;
+    font-size: 11px;
+  }
+
+  .bangumi-tag.format {
+    padding: 5px 12px;
+  }
+}
 </style>
-<div class="bangumi-tabs">
-    <a class="bangumi-tab" id="bangumi-tab1" href="javascript:;" rel="external" target="_self" onclick="return false">
-    想看
-    (0)</a>
-    <a class="bangumi-tab" id="bangumi-tab2" href="javascript:;" rel="external" target="_self" onclick="return false">
-        在看
-        (0)</a>
-    <a class="bangumi-tab" id="bangumi-tab3" href="javascript:;" rel="external" target="_self" onclick="return false">
-        已看
-        (2)</a>
-</div>
-<div>
-    <div id="bangumi-item1">
-        
-        <div class="bangumi-pagination">
-    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
-    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
-    <span class="bangumi-pagenum">2 / 3</span>
-    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
-    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
-</div>
-    </div>
-    <div id="bangumi-item2">
-        
-        <div class="bangumi-pagination">
-    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
-    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
-    <span class="bangumi-pagenum">2 / 3</span>
-    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
-    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
-</div>
-    </div>
-    <div id="bangumi-item3">
-        
-        <div class="bangumi-item">
-    <div class="bangumi-picture"><img src="https://i0.hdslb.com/bfs/bangumi/803ee7dc0e151ea3f634fe49e73d3b3fb93ca433.jpg@220w_280h.webp" data-src="https://i0.hdslb.com/bfs/bangumi/803ee7dc0e151ea3f634fe49e73d3b3fb93ca433.jpg@220w_280h.webp" referrerPolicy="no-referrer" width="110"/ loading='lazy'>
-    </div>
-    <div class="bangumi-info">
-        <div class="bangumi-title">
-            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md959/">Angel Beats!</a>
-        </div>
-        <div class="bangumi-meta">
-            <span class="bangumi-info-items" style="color:#555">
-                <span class="bangumi-info-item">
-                
-                <span class="bangumi-info-total">全13话</span><em
-                        class="bangumi-info-label-em">0</em>
-                </span>
-                
-                
-                <span class="bangumi-info-item bangumi-area">
-                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
-                </span>
-                
-                <span class="bangumi-info-item bangumi-play">
-                    <span class="bangumi-info-label">总播放</span> <em>4293.5 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-follow">
-                    <span class="bangumi-info-label">追番人数</span> <em>320.6 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-coin">
-                    <span class="bangumi-info-label">硬币数</span> <em>38.7 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-danmaku">
-                    <span class="bangumi-info-label">弹幕总数</span> <em>103.7 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-info-item-score">
-                    <span class="bangumi-info-label">评分</span> <em>9.8</em>
-                </span>
-            </span>
-        </div>
-        <div class="bangumi-comments" style="color:#555"><br/>简介：　　故事从男主角死亡之后从“死后的世界”醒来开始，在“死后的世界”中的学校里，他与一位名为由利(ゆり)、在“死后的世界”率领着一个名为“死んだ(Shinda)世界(Sekai)战线(Sensen)”简... </div>
-    </div>
+
+<div class="bangumi-container">
+  <blockquote>
+    <p>生命不息，追番不止！&nbsp;&nbsp;数据来自 <a href="https://space.bilibili.com/1146476510" target="_blank" rel="noopener">Bilibili</a></p>
+  </blockquote>
+
+  <div id="bangumi-app">
+    <div class="bangumi-loading"><div class="spinner"></div><br>正在加载追番列表...</div>
+  </div>
 </div>
 
-        
-        <div class="bangumi-item">
-    <div class="bangumi-picture"><img src="https://i0.hdslb.com/bfs/bangumi/image/433fceda3574bb232ab7091cf9aacc049678e96a.png@220w_280h.webp" data-src="https://i0.hdslb.com/bfs/bangumi/image/433fceda3574bb232ab7091cf9aacc049678e96a.png@220w_280h.webp" referrerPolicy="no-referrer" width="110"/ loading='lazy'>
-    </div>
-    <div class="bangumi-info">
-        <div class="bangumi-title">
-            <a target="_blank" href="https://www.bilibili.com/bangumi/media/md26641346/">薰香花朵凛然绽放</a>
-        </div>
-        <div class="bangumi-meta">
-            <span class="bangumi-info-items" style="color:#555">
-                <span class="bangumi-info-item">
-                
-                <span class="bangumi-info-total">全13话</span><em
-                        class="bangumi-info-label-em">0</em>
-                </span>
-                
-                
-                <span class="bangumi-info-item bangumi-area">
-                    <span class="bangumi-info-label">番剧</span> <em>日本</em>
-                </span>
-                
-                <span class="bangumi-info-item bangumi-play">
-                    <span class="bangumi-info-label">总播放</span> <em>6900.6 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-follow">
-                    <span class="bangumi-info-label">追番人数</span> <em>217.6 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-coin">
-                    <span class="bangumi-info-label">硬币数</span> <em>45.4 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-danmaku">
-                    <span class="bangumi-info-label">弹幕总数</span> <em>39.6 万</em>
-                </span>
-                <span class="bangumi-info-item bangumi-info-item-score">
-                    <span class="bangumi-info-label">评分</span> <em>9.6</em>
-                </span>
-            </span>
-        </div>
-        <div class="bangumi-comments" style="color:#555"><br/>简介：窗帘的另一头，是和我永远没有交集的世界——
-
-差生云集的底层男校千鸟高中，一直被历史悠久的贵族女校桔梗女校所鄙视。尽管两校的校舍相邻，但桔梗女校从来都是将窗帘拉得严严实实，不让千鸟高中的人看到人影。在... </div>
-    </div>
-</div>
-
-        
-        <div class="bangumi-pagination">
-    <a class="bangumi-button bangumi-firstpage" href="javascript:;" target="_self" onclick="return false"> 首页</a>
-    <a class="bangumi-button bangumi-previouspage" href="javascript:;" target="_self" onclick="return false">上一页</a>
-    <span class="bangumi-pagenum">2 / 3</span>
-    <a class="bangumi-button bangumi-nextpage" href="javascript:;" target="_self" onclick="return false">下一页</a>
-    <a class="bangumi-button bangumi-lastpage" href="javascript:;" target="_self" onclick="return false">尾页</a>
-</div>
-    </div>
-</div>
 <script>
-    "use strict";Element.prototype.siblings=function(){for(var a=[],b=this.parentNode.children,c=0;c<b.length;c++)b[c]!==this&&a.push(b[c]);return a};function tabClick(){this.classList.add("bangumi-active");for(var a=this.siblings(),b=0;b<a.length;b++)a[b].classList.remove("bangumi-active");// 显示对应板块
-var c=this.id.replace("tab","item"),d=document.getElementById(c);d.classList.remove("bangumi-hide"),d.classList.add("bangumi-show"),a=document.getElementById(c).siblings();for(var e=0;e<a.length;e++)a[e].classList.remove("bangumi-show"),a[e].classList.add("bangumi-hide")}for(var tabs=document.getElementsByClassName("bangumi-tab"),i=0;i<tabs.length;i++)tabs[i].onclick=tabClick,tabs[i].onclick.apply(tabs[i]);
+(function() {
+  // 数据保存在站内，避免构建过程依赖第三方 API。
+  const bangumiData = {
+    "wantWatch": [],
+    "watching": [],
+    "watched": [
+      {
+        "title": "Angel Beats!",
+        "type": "番剧",
+        "area": "日本",
+        "cover": "/images/bangumi/angel-beats.webp",
+        "totalCount": "全13话",
+        "id": 959,
+        "follow": "320.6 万",
+        "view": "4293.5 万",
+        "danmaku": "103.7 万",
+        "coin": "38.7 万",
+        "score": 9.8,
+        "des": "　　故事从男主角死亡之后从“死后的世界”醒来开始，在“死后的世界”中的学校里，他与一位名为由利(ゆり)、在“死后的世界”率领着一个名为“死んだ(Shinda)世界(Sekai)战线(Sensen)”简称“SSS”的组织的少女相遇了。“SSS”成立的主要目的是与赐予他们生前悲哀命运的神以及神之使者——天使交战，在天使超乎常理的异能面前，“SSS”只能用枪来反抗。就这样一场发生在“死后的世界”的学校里的超能大战物语开始了……"
+      },
+      {
+        "title": "薰香花朵凛然绽放",
+        "type": "番剧",
+        "area": "日本",
+        "cover": "/images/bangumi/kaoru-hana.webp",
+        "totalCount": "全13话",
+        "id": 26641346,
+        "follow": "217.6 万",
+        "view": "6900.6 万",
+        "danmaku": "39.6 万",
+        "coin": "45.4 万",
+        "score": 9.6,
+        "des": "窗帘的另一头，是和我永远没有交集的世界——\n\n差生云集的底层男校千鸟高中，一直被历史悠久的贵族女校桔梗女校所鄙视。尽管两校的校舍相邻，但桔梗女校从来都是将窗帘拉得严严实实，不让千鸟高中的人看到人影。在..."
+      }
+    ]
+  };
 
-    tabs[1].click();
-    "use strict";var firstpages=document.getElementsByClassName("bangumi-firstpage"),previouspages=document.getElementsByClassName("bangumi-previouspage"),nextpages=document.getElementsByClassName("bangumi-nextpage"),lastpages=document.getElementsByClassName("bangumi-lastpage"),pagenums=document.getElementsByClassName("bangumi-pagenum");function makePageNum(a,b){var c=Math.ceil;return a+1+" / "+c(0==b.length/10?1:c(b.length/10))}function firstBtn(){var a=this.parentNode.siblings();displayPage(a,0),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=makePageNum(0,a)}function previousBtn(){var a=this.parentNode.siblings(),b=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;b=b.substr(0,b.indexOf("/")-1),b=parseInt(b,10)-1,0<b&&b--,displayPage(a,b),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=makePageNum(b,a)}function nextBtn(){var a=this.parentNode.siblings(),b=this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText;b=b.substr(0,b.indexOf("/")-1),b=parseInt(b,10)-1,b<Math.ceil(a.length/10)-1&&b++,displayPage(a,b),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=makePageNum(b,a)}function lastBtn(){var a=Math.ceil,b=this.parentNode.siblings();displayPage(b,a(b.length/10)-1),this.parentNode.getElementsByClassName("bangumi-pagenum")[0].innerText=makePageNum(-1==a(b.length/10)-1?0:a(b.length/10)-1,b)}function displayPage(a,b){for(var c=0;c<a.length;c++)if(Math.floor(c/10)===b){a[c].classList.remove("bangumi-hide");var d=a[c].getElementsByTagName("img")[0];d.src=d.getAttribute("data-src")}else a[c].classList.add("bangumi-hide")}for(var i=0;i<firstpages.length;i++){firstpages[i].onclick=firstBtn,previouspages[i].onclick=previousBtn,nextpages[i].onclick=nextBtn,lastpages[i].onclick=lastBtn;// set page num
-var size=pagenums[i].parentNode.siblings().length;pagenums[i].innerText="1 / "+(0===Math.ceil(size/10)?1:Math.ceil(size/10)),firstpages[i].click()}
+  const STATUS_MAP = {
+    wantWatch: { label: '想看', icon: '📋' },
+    watching: { label: '在看', icon: '👀' },
+    watched: { label: '看过', icon: '✅' }
+  };
 
+  const TAB_ORDER = ['watching', 'watched', 'wantWatch'];
+  const container = document.getElementById('bangumi-app');
+
+  function buildUI() {
+    const groups = { watching: [], watched: [], wantWatch: [] };
+
+    // 填充数据
+    Object.keys(bangumiData).forEach(key => {
+      if (groups[key]) {
+        groups[key] = bangumiData[key];
+      }
+    });
+
+    const tabs = TAB_ORDER.filter(t => groups[t] && groups[t].length > 0);
+
+    if (tabs.length === 0) {
+      container.innerHTML = '<div class="bangumi-empty">追番列表为空，去 <a href="https://www.bilibili.com/anime/timeline/#!/" target="_blank">B站</a> 添加吧~</div>';
+      return;
+    }
+
+    let html = '';
+
+    // Tab bar
+    html += '<div class="bangumi-tabs">';
+    tabs.forEach((t, i) => {
+      html += `<a class="bangumi-tab${i === 0 ? ' bangumi-active' : ''}" data-tab="${t}" href="javascript:;">
+        ${STATUS_MAP[t].icon} ${STATUS_MAP[t].label} (${groups[t].length})</a>`;
+    });
+    html += '</div>';
+
+    // Content panels
+    tabs.forEach((t, i) => {
+      html += `<div id="bangumi-panel-${t}" class="bangumi-panel${i === 0 ? ' bangumi-show' : ' bangumi-hide'}">`;
+      html += `<div class="bangumi-total">共 ${groups[t].length} 部${STATUS_MAP[t].label}的番剧</div>`;
+
+      groups[t].forEach((item, index) => {
+        html += renderCard(item, index);
+      });
+
+      html += '</div>';
+    });
+
+    container.innerHTML = html;
+
+    // Bind tab clicks
+    container.querySelectorAll('.bangumi-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const target = this.dataset.tab;
+
+        // Update active tab
+        container.querySelectorAll('.bangumi-tab').forEach(t => t.classList.remove('bangumi-active'));
+        this.classList.add('bangumi-active');
+
+        // Show/hide panels
+        container.querySelectorAll('.bangumi-panel').forEach(p => {
+          if (p.id === 'bangumi-panel-' + target) {
+            p.classList.remove('bangumi-hide');
+            p.classList.add('bangumi-show');
+          } else {
+            p.classList.remove('bangumi-show');
+            p.classList.add('bangumi-hide');
+          }
+        });
+      });
+    });
+  }
+
+  function renderCard(item, index) {
+    const title = item.title || '未知作品';
+    const cover = item.cover || '';
+    const totalCount = item.totalCount || '?';
+    const area = item.area || '';
+    const view = item.view || '-';
+    const follow = item.follow || '-';
+    const coin = item.coin || '-';
+    const danmaku = item.danmaku || '-';
+    const score = item.score || '-';
+    const des = item.des || '暂无简介';
+    const url = `https://www.bilibili.com/bangumi/media/md${item.id}/`;
+
+    const delay = index * 0.05;
+    let html = `<div class="bangumi-item" style="animation-delay: ${delay}s">`;
+
+    // Cover
+    html += '<div class="bangumi-picture">';
+    if (cover) {
+      html += `<img src="${cover}" data-src="${cover}" referrerPolicy="no-referrer" width="140" alt="${title}" loading="lazy" onload="this.style.opacity=1" style="opacity:0;transition:opacity .3s">`;
+    } else {
+      html += '<div style="width:140px;height:196px;background:var(--border-color,#e8e8e8);border-radius:12px;"></div>';
+    }
+    html += '</div>';
+
+    // Info
+    html += '<div class="bangumi-info">';
+    html += `<div class="bangumi-title"><a href="${url}" target="_blank" rel="noopener">${title}</a></div>`;
+
+    html += '<div class="bangumi-meta">';
+    html += `<span>📺 ${totalCount}</span>`;
+    if (area) html += `<span>🌍 ${area}</span>`;
+    html += `<span>▶️ ${view}</span>`;
+    html += `<span>👥 ${follow}</span>`;
+    html += `<span>🪙 ${coin}</span>`;
+    html += `<span>💬 ${danmaku}</span>`;
+    html += `<span><span class="meta-score">⭐ ${score}</span></span>`;
+    html += '</div>';
+
+    html += '<div class="bangumi-tags">';
+    html += `<span class="bangumi-tag format">${item.type || '番剧'}</span>`;
+    html += '</div>';
+
+    html += `<div class="bangumi-comments">${des}</div>`;
+    html += '</div></div>';
+
+    return html;
+  }
+
+  // Run
+  buildUI();
+})();
 </script>
-</div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="utterances-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">Mistlane376</div><div class="author-info-description">齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">Mistlane376</div><div class="author-info-description">齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
 
 <div class="author-tags">
   <span class="author-tag">#C++</span>
   <span class="author-tag">#算法竞赛</span>
   <span class="author-tag">#数据结构</span>
 </div>
-</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎大家来到临涧路的精神小屋</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/computational-geometry-templates/" title="(模板补充)计算几何"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="(模板补充)计算几何"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/computational-geometry-templates/" title="(模板补充)计算几何">(模板补充)计算几何</a><time datetime="2026-07-21T12:00:00.000Z" title="发表于 2026-07-21 20:00:00">2026-07-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a7b8c9d0/" title="算法常用板子"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="算法常用板子"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/a7b8c9d0/" title="算法常用板子">算法常用板子</a><time datetime="2026-07-17T14:09:42.000Z" title="发表于 2026-07-17 22:09:42">2026-07-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/be8ae904/" title="项目实践：学生成绩管理系统"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目实践：学生成绩管理系统"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/be8ae904/" title="项目实践：学生成绩管理系统">项目实践：学生成绩管理系统</a><time datetime="2026-06-19T08:20:49.000Z" title="发表于 2026-06-19 16:20:49">2026-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/aeb63fec/" title="大一结语"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="大一结语"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/aeb63fec/" title="大一结语">大一结语</a><time datetime="2026-06-16T07:31:21.000Z" title="发表于 2026-06-16 15:31:21">2026-06-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/e1a9aadf/" title="Markdown 使用手册"><img src="/images/selection1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Markdown 使用手册"/ loading='lazy'></a><div class="content"><a class="title" href="/posts/e1a9aadf/" title="Markdown 使用手册">Markdown 使用手册</a><time datetime="2026-06-16T07:26:21.000Z" title="发表于 2026-06-16 15:26:21">2026-06-16</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
-            <i class="fas fa-folder-open"></i>
-            <span>分类</span>
-            
-          </div>
-          <ul class="card-category-list" id="aside-cat-list">
-            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E7%A8%8B/"><span class="card-category-list-name">教程</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/"><span class="card-category-list-name">日常</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/"><span class="card-category-list-name">算法模板</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/"><span class="card-category-list-name">项目练习</span><span class="card-category-list-count">1</span></a></li>
-          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 1.1em; color: #999">项目</a> <a href="/tags/%E7%AB%9E%E8%B5%9B/" style="font-size: 1.3em; color: #99a1ac">竞赛</a> <a href="/tags/%E5%A4%A7%E5%AD%A6/" style="font-size: 1.1em; color: #999">大学</a> <a href="/tags/Markdown/" style="font-size: 1.1em; color: #999">Markdown</a> <a href="/tags/%E6%A8%A1%E6%9D%BF/" style="font-size: 1.3em; color: #99a1ac">模板</a> <a href="/tags/C-C/" style="font-size: 1.5em; color: #99a9bf">C/C++</a> <a href="/tags/%E7%94%9F%E6%B4%BB/" style="font-size: 1.1em; color: #999">生活</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.3em; color: #99a1ac">算法</a> <a href="/tags/%E5%8D%9A%E5%AE%A2/" style="font-size: 1.3em; color: #99a1ac">博客</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" style="font-size: 1.1em; color: #999">计算几何</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 1.1em; color: #999">总结</a></div></div><div class="card-widget card-archives">
-    <div class="item-headline">
-      <i class="fas fa-archive"></i>
-      <span>归档</span>
-      
-    </div>
-  
-    <ul class="card-archive-list">
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/07/">
-            <span class="card-archive-list-date">
-              七月 2026
-            </span>
-            <span class="card-archive-list-count">2</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/06/">
-            <span class="card-archive-list-date">
-              六月 2026
-            </span>
-            <span class="card-archive-list-count">3</span>
-          </a>
-        </li>
-      
-        <li class="card-archive-list-item">
-          <a class="card-archive-list-link" href="/archives/2026/04/">
-            <span class="card-archive-list-date">
-              四月 2026
-            </span>
-            <span class="card-archive-list-count">1</span>
-          </a>
-        </li>
-      
-    </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">17.1k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-21T16:06:28.497Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/selection1.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane376</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.5</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/main.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
-  init: str => {
-    window.typed = new Typed('#subtitle', Object.assign({
-      strings: str,
-      startDelay: 300,
-      typeSpeed: 150,
-      loop: true,
-      backSpeed: 50,
-    }, null))
-  },
-  run: subtitleType => {
-    if (true) {
-      if (typeof Typed === 'function') {
-        subtitleType()
-      } else {
-        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@3.0.0/dist/typed.umd.min.js').then(subtitleType)
-      }
-    } else {
-      subtitleType()
-    }
-  },
-  processSubtitle: (content, extraContents = []) => {
-    if (true) {
-      const sub = ["<i class=\"fas fa-quote-left\"></i> 我愿意面对孤独与恐惧，而不是慌忙寻找慰藉。 —— 迈克尔·阿伦·辛格","<i class=\"fas fa-quote-left\"></i> 我们的夏日翩然逃逸，进入了美之地。 —— 艾米莉·狄金森","<i class=\"fas fa-quote-left\"></i> 阳光灼热，数不尽夏日繁华；蝉鸣幽幽，道不完苦辣酸甜。 —— 危险同居人","<i class=\"fas fa-quote-left\"></i> 你与自己的关系，会奠定下你与其他所有关系的基石。 —— 罗伯特·霍尔登","<i class=\"fas fa-quote-left\"></i> 荒原之上，我既是行走者，也是自己的篝火。","<i class=\"fas fa-quote-left\"></i> 不要温顺地走进那个良夜，怒斥，怒斥光明的消逝。 —— 迪伦·托马斯","<i class=\"fas fa-quote-left\"></i> 我心中有片花海，不为谁开，只为风来。","<i class=\"fas fa-quote-left\"></i> 真正的高贵，是优于过去的自己。 —— 海明威","<i class=\"fas fa-quote-left\"></i> 允许一切发生，如其所是。","<i class=\"fas fa-quote-left\"></i> 做你自己，因为别人都有人做了。 —— 王尔德","<i class=\"fas fa-quote-left\"></i> 去成为你本可以成为的人，任何时候都不算晚。","<i class=\"fas fa-quote-left\"></i> 万物皆有裂痕，那是光照进来的地方。 —— 莱昂纳德·科恩"].slice()
-
-      if (extraContents.length > 0) {
-        sub.unshift(...extraContents)
-      }
-
-      if (typeof content === 'string') {
-        sub.unshift(content)
-      } else if (Array.isArray(content)) {
-        sub.unshift(...content)
-      }
-
-      sub.length > 0 && typedJSFn.init(sub)
-    } else {
-      document.getElementById('subtitle').textContent = typeof content === 'string' ? content :
-        (Array.isArray(content) && content.length > 0 ? content[0] : '')
-    }
-  }
-}
-btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
-</script><script>function subtitleType () {
-  typedJSFn.processSubtitle(["<i class=\"fas fa-quote-left\"></i> 我愿意面对孤独与恐惧，而不是慌忙寻找慰藉。 —— 迈克尔·阿伦·辛格","<i class=\"fas fa-quote-left\"></i> 我们的夏日翩然逃逸，进入了美之地。 —— 艾米莉·狄金森","<i class=\"fas fa-quote-left\"></i> 阳光灼热，数不尽夏日繁华；蝉鸣幽幽，道不完苦辣酸甜。 —— 危险同居人","<i class=\"fas fa-quote-left\"></i> 你与自己的关系，会奠定下你与其他所有关系的基石。 —— 罗伯特·霍尔登","<i class=\"fas fa-quote-left\"></i> 荒原之上，我既是行走者，也是自己的篝火。","<i class=\"fas fa-quote-left\"></i> 不要温顺地走进那个良夜，怒斥，怒斥光明的消逝。 —— 迪伦·托马斯","<i class=\"fas fa-quote-left\"></i> 我心中有片花海，不为谁开，只为风来。","<i class=\"fas fa-quote-left\"></i> 真正的高贵，是优于过去的自己。 —— 海明威","<i class=\"fas fa-quote-left\"></i> 允许一切发生，如其所是。","<i class=\"fas fa-quote-left\"></i> 做你自己，因为别人都有人做了。 —— 王尔德","<i class=\"fas fa-quote-left\"></i> 去成为你本可以成为的人，任何时候都不算晚。","<i class=\"fas fa-quote-left\"></i> 万物皆有裂痕，那是光照进来的地方。 —— 莱昂纳德·科恩"])
-}
-typedJSFn.run(subtitleType)</script><script>(() => {
-  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
-  const option = null
-  const getUtterancesTheme = theme => theme === 'dark' ? 'photon-dark' : 'github-light'
-
-  const loadUtterances = (el = document, key) => {
-    if (isShuoshuo) {
-      window.shuoshuoComment.destroyUtterances = () => {
-        if (el.children.length) {
-          el.innerHTML = ''
-          el.classList.add('no-comment')
-        }
-      }
-    }
-
-    const config = {
-      src: 'https://utteranc.es/client.js',
-      repo: 'Mistlane376/Mistlane376.github.io',
-      theme: getUtterancesTheme(document.documentElement.getAttribute('data-theme')),
-      crossorigin: 'anonymous',
-      async: true,
-      ...option,
-      'issue-term': isShuoshuo ? key : (option && option['issue-term']) || 'pathname'
-    }
-
-    const ele = document.createElement('script')
-    Object.entries(config).forEach(([key, value]) => ele.setAttribute(key, value))
-    el.querySelector('#utterances-wrap').appendChild(ele)
-  }
-
-  const changeUtterancesTheme = theme => {
-    const iframe = document.querySelector('#utterances-wrap iframe')
-    if (iframe) {
-      const message = {
-        type: 'set-theme',
-        theme: getUtterancesTheme(theme)
-      };
-      iframe.contentWindow.postMessage(message, 'https://utteranc.es')
-    }
-  }
-
-  btf.addGlobalFn('themeChange', changeUtterancesTheme, 'utterances')
-
-  if (isShuoshuo) {
-    'Utterances' === 'Utterances'
-      ? window.shuoshuoComment = { loadComment: loadUtterances }
-      : window.loadOtherComment = loadUtterances
-    return
-  }
-  
-  if ('Utterances' === 'Utterances' || !true) {
-    if (true) btf.loadComment(document.getElementById('utterances-wrap'), loadUtterances)
-    else loadUtterances()
-  } else {
-    window.loadOtherComment = loadUtterances
-  }
-})()</script></div><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎大家来到临涧路的精神小屋</div></div><div class="sticky_layout"><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">17.2k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-22T13:16:08.997Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/images/selection1.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane376</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/main.min.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
   const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
 
   window.pjax = new Pjax({
-    elements: 'a:not([target="_blank"])',
+    elements: 'a:not([target="_blank"]):not([data-fancybox])',
     selectors: pjaxSelectors,
     cacheBust: false,
     analytics: false,
@@ -481,8 +774,9 @@ typedJSFn.run(subtitleType)</script><script>(() => {
   document.addEventListener('pjax:complete', () => {
     btf.removeGlobalFnEvent('pjaxCompleteOnce')
     document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
       const newScript = document.createElement('script')
-      const content = item.text || item.textContent || item.innerHTML || ""
+      const content = item.text || item.textContent || ''
       Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
       newScript.appendChild(document.createTextNode(content))
       item.parentNode.replaceChild(newScript, item)
@@ -492,10 +786,13 @@ typedJSFn.run(subtitleType)</script><script>(() => {
   })
 
   document.addEventListener('pjax:error', e => {
-    if (e.request.status === 404) {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
       false
-        ? pjax.loadUrl('/404.html')
-        : window.location.href = e.request.responseURL
+        ? pjax.loadUrl('/404')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
     }
   })
-})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.5.5/source/js/search/local-search.min.js"></script></div></div><!-- hexo injector body_end start --><script async src="//at.alicdn.com/t/font_2032782_8d5kxvn09md.js"></script><!-- hexo injector body_end end --></body></html>
+})</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/search/local-search.min.js"></script></div></div></body></html>
