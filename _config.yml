@@ -3,25 +3,25 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Mistlane`s blogs
+title: "Mistlane's Blog"
 subtitle: '临涧路的精神小屋'
-description: 齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer) #C++ #算法竞赛 #数据结构
-keywords: 博客,技术,编程,Hexo
+description: 齐鲁工业大学计算机专业学生 Mistlane376 的个人博客，记录算法竞赛、C/C++、数据结构与项目实践。
+keywords: 算法竞赛,C++,数据结构,计算机科学,个人博客
 author: Mistlane376
 language: zh-CN
-timezone: ''
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://mistlane.cc.cd
+url: https://mistlane.cc.cd
 permalink: posts/:abbrlink/  # 此处可以自己设置，也可以直接使用 :abbrlink/
 permalink_defaults: 
 abbrlink:
     alg: crc32   #算法： crc16(default) and crc32
     rep: hex     #进制： dec(default) and hex
 pretty_urls:
-  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
-  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+  trailing_index: false # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: false # Set to false to remove trailing '.html' from permalinks
 # Directory
 source_dir: source
 public_dir: public
@@ -31,6 +31,7 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+  - 404.html
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -44,7 +45,7 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: false
 relative_link: false
-future: true
+future: false
 syntax_highlighter: highlight.js
 highlight:
   line_number: true
@@ -82,7 +83,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -99,6 +100,17 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+
+# Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: false
+  content_limit: 200
+  order_by: -date
+  icon: /images/favicon.png
+  autodiscovery: true
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -118,22 +130,6 @@ tag_plugins:
     anima: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css #动画标签anima的依赖
     jquery: https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js #issues标签依赖
     issues: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/issues.js #issues标签依赖
-    iconfont: //at.alicdn.com/t/font_2032782_8d5kxvn09md.js #参看https://akilar.top/posts/d2ebecef/
+    iconfont:
     carousel: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js
     tag_plugins_css: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css
-
-# --------------------------------------
-# Bangumi 追番配置
-# --------------------------------------
-bangumi:
-  enable: true                      # 启用追番功能
-  path: bangumis/index.html         # 番剧页面路径
-  vmid: 1146476510                  # 你的B站UID
-  title: '追番列表'                  # 页面标题
-  quote: '生命不息，追番不止！'        # 页面顶部寄语（支持HTML）
-  show: 1                           # 默认显示：0=想看, 1=在看, 2=看过
-  loading: /images/loading.gif      # 图片加载前的占位图（可选）
-  metaColor: "#555"                 # 元数据字体颜色
-  color: "#555"                     # 简介字体颜色
-  webp: true                        # 使用WebP格式封面图（Safari不兼容需设为false）
-  progress: true                    # 更新数据时显示进度条

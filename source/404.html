@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover">
-    <title>页面未找到 | Mistlane's blogs</title>
+    <title>页面未找到 | Mistlane's Blog</title>
     <meta name="author" content="Mistlane376">
     <meta name="copyright" content="Mistlane376">
     <meta name="format-detection" content="telephone=no">
@@ -13,18 +13,15 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Mistlane's blogs">
-    <meta property="og:url" content="http://mistlane.cc.cd/404.html">
-    <meta property="og:site_name" content="Mistlane's blogs">
+    <meta property="og:title" content="页面未找到 | Mistlane's Blog">
+    <meta property="og:url" content="https://mistlane.cc.cd/404.html">
+    <meta property="og:site_name" content="Mistlane's Blog">
     <meta property="og:description" content="页面走丢啦~">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:image" content="http://mistlane.cc.cd/images/marcus.png">
+    <meta property="og:image" content="https://mistlane.cc.cd/images/marcus.png">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="/images/log.png">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css">
+    <link rel="shortcut icon" href="/images/favicon.png">
 
     <style>
         * {
@@ -36,11 +33,12 @@
         body {
             font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
+            min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             position: relative;
         }
 
@@ -265,6 +263,45 @@
             }
         }
 
+        @media (max-width: 480px) {
+            .container {
+                padding: 24px 18px 100px;
+            }
+
+            .error-code {
+                font-size: 88px;
+                letter-spacing: -4px;
+            }
+
+            .error-title {
+                font-size: 24px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .btn {
+                justify-content: center;
+            }
+
+            .footer {
+                width: calc(100% - 32px);
+                font-size: 12px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* Typewriter effect */
         .typewriter {
             overflow: hidden;
@@ -287,7 +324,7 @@
         <div class="error-code">404</div>
 
         <div class="astronaut">
-            <i class="fas fa-user-astronaut"></i>
+            <span aria-hidden="true">🧑‍🚀</span>
         </div>
 
         <h1 class="error-title">页面走丢啦~</h1>
@@ -298,11 +335,11 @@
 
         <div class="button-group">
             <a href="/" class="btn btn-primary">
-                <i class="fas fa-home"></i>
+                <span aria-hidden="true">⌂</span>
                 返回首页
             </a>
             <button onclick="history.back()" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i>
+                <span aria-hidden="true">←</span>
                 返回上页
             </button>
         </div>
@@ -310,7 +347,7 @@
 
     <!-- Footer -->
     <div class="footer">
-        <p>© 2025-2026 Mistlane376 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank">Butterfly</a></p>
+        <p>© 2025-2026 Mistlane376 | Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> & <a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener">Butterfly</a></p>
     </div>
 
     <script>

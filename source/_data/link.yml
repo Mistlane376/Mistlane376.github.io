@@ -1,22 +1,8 @@
-- class_name: 1.技术支持
-  class_desc: 本网站的搭建由以下开源作者提供技术支持
+- class_name: 友情链接
+  class_desc: 朋友们的个人站点
   link_list:
-    - name: Hexo
-      link: https://hexo.io/zh-cn/
-      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
-      descr: 快速、简单且强大的网志框架
-      siteshot: https://source.fomal.cc/siteshot/hexo.io.jpg
-
-- class_name: 2.友情链接
-  class_desc: （这里可以写这个分组的描述，或者留空）
-  link_list:
-    - name: 示例站点
-      link: https://example.com
-      avatar: https://example.com/avatar.jpg
-      descr: 这是一个示例链接
-      siteshot: https://example.com/siteshot.jpg
     - name: BAMBOOの赛博小屋
       link: https://bamboo2233.cc.cd
-      avatar: https://mistlane.cc.cd/images/Bamboo.jpg
-      descr: 简介
-      siteshot: https://mistlane.cc.cd/images/Bamboo.jpg
+      avatar: /images/Bamboo.jpg
+      descr: 一位朋友的个人博客
+      siteshot: /images/Bamboo.jpg

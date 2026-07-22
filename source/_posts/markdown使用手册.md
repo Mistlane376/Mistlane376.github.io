@@ -8,6 +8,7 @@ categories:
 abbrlink: e1a9aadf
 date: 2026-06-16 15:26:21
 description: Markdown 语法速查手册，涵盖基础语法、GFM 扩展与高级技巧。
+cover: /images/selection2.jpg
 ---
 
 - [1. 概述](#1-概述)

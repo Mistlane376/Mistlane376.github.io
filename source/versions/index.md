@@ -3,9 +3,9 @@ title: 版本归档
 date: 2026-07-17 22:30:00
 permalink: /versions/
 type: "versions"
+description: 临涧路的精神小屋版本更新记录与重要里程碑。
+comments: false
 ---
-
-# 📦 版本归档
 
 本页面记录了博客的所有版本更新历史和重要里程碑。
 

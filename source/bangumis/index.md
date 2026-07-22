@@ -4,6 +4,7 @@ date: 2026-06-20 12:51:33
 type: "bangumis"
 top_img: /images/selection1.jpg
 description: 我的追番列表，数据来自 Bilibili
+comments: false
 ---
 
 <style>
@@ -369,7 +370,7 @@ description: 我的追番列表，数据来自 Bilibili
 
 <div class="bangumi-container">
   <blockquote>
-    <p>生命不息，追番不止！&nbsp;&nbsp;数据来自 <a href="https://space.bilibili.com/1146476510" target="_blank">Bilibili</a></p>
+    <p>生命不息，追番不止！&nbsp;&nbsp;数据来自 <a href="https://space.bilibili.com/1146476510" target="_blank" rel="noopener">Bilibili</a></p>
   </blockquote>
 
   <div id="bangumi-app">
@@ -379,7 +380,7 @@ description: 我的追番列表，数据来自 Bilibili
 
 <script>
 (function() {
-  // 追番数据直接内嵌（由 hexo-bilibili-bangumi-plus 插件生成）
+  // 数据保存在站内，避免构建过程依赖第三方 API。
   const bangumiData = {
     "wantWatch": [],
     "watching": [],
@@ -388,7 +389,7 @@ description: 我的追番列表，数据来自 Bilibili
         "title": "Angel Beats!",
         "type": "番剧",
         "area": "日本",
-        "cover": "https://i0.hdslb.com/bfs/bangumi/803ee7dc0e151ea3f634fe49e73d3b3fb93ca433.jpg@220w_280h.webp",
+        "cover": "/images/bangumi/angel-beats.webp",
         "totalCount": "全13话",
         "id": 959,
         "follow": "320.6 万",
@@ -396,13 +397,13 @@ description: 我的追番列表，数据来自 Bilibili
         "danmaku": "103.7 万",
         "coin": "38.7 万",
         "score": 9.8,
-        "des": "　　故事从男主角死亡之后从"死后的世界"醒来开始，在"死后的世界"中的学校里，他与一位名为由利(ゆり)、在"死后的世界"率领着一个名为"死んだ(Shinda)世界(Sekai)战线(Sensen)"简称"SSS"的组织的少女相遇了。"SSS"成立的主要目的是与赐予他们生前悲哀命运的神以及神之使者——天使交战，在天使超乎常理的异能面前，"SSS"只能用枪来反抗。就这样一场发生在"死后的世界"的学校里的超能大战物语开始了……"
+        "des": "　　故事从男主角死亡之后从“死后的世界”醒来开始，在“死后的世界”中的学校里，他与一位名为由利(ゆり)、在“死后的世界”率领着一个名为“死んだ(Shinda)世界(Sekai)战线(Sensen)”简称“SSS”的组织的少女相遇了。“SSS”成立的主要目的是与赐予他们生前悲哀命运的神以及神之使者——天使交战，在天使超乎常理的异能面前，“SSS”只能用枪来反抗。就这样一场发生在“死后的世界”的学校里的超能大战物语开始了……"
       },
       {
         "title": "薰香花朵凛然绽放",
         "type": "番剧",
         "area": "日本",
-        "cover": "https://i0.hdslb.com/bfs/bangumi/image/433fceda3574bb232ab7091cf9aacc049678e96a.png@220w_280h.webp",
+        "cover": "/images/bangumi/kaoru-hana.webp",
         "totalCount": "全13话",
         "id": 26641346,
         "follow": "217.6 万",
