@@ -116,7 +116,7 @@ feed:
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: git@github.com:Mistlane376/Mistlane376.github.io.git
+  repo: ssh://git@ssh.github.com:443/Mistlane376/Mistlane376.github.io.git
   branch: main
 # tag-plugins-plus
 # see https://akilar.top/posts/615e2dec/

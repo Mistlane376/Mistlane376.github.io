@@ -1,0 +1,85 @@
+{
+  "albums": [
+    {
+      "id": "summer-distance",
+      "name": "夏日与远方",
+      "date": "2026-07-21",
+      "location": "济南",
+      "description": "明亮的天空、花与远处的风。",
+      "photos": [
+        {
+          "src": "/images/selection1.jpg",
+          "alt": "蓝天与向日葵间的夏日插画",
+          "caption": "夏日的颜色",
+          "date": "2026-07-21"
+        },
+        {
+          "src": "/images/selection2.jpg",
+          "alt": "旧街与撑伞少女的插画",
+          "caption": "穿过旧街",
+          "date": "2026-07-21"
+        },
+        {
+          "src": "/images/top.jpg",
+          "alt": "云层下的海面与礁石",
+          "caption": "海面将光收进浪里",
+          "date": "2026-07-20"
+        }
+      ]
+    },
+    {
+      "id": "screen-encounters",
+      "name": "屏幕里的相遇",
+      "date": "2026-07-17",
+      "location": "收藏夹",
+      "description": "故事散场以后，角色仍留在记忆里。",
+      "photos": [
+        {
+          "src": "/images/bangumi/angel-beats.webp",
+          "alt": "Angel Beats 动画封面",
+          "caption": "Angel Beats!",
+          "date": "2026-07-17"
+        },
+        {
+          "src": "/images/bangumi/kaoru-hana.webp",
+          "alt": "薰香花朵凛然绽放动画封面",
+          "caption": "薰香花朵凛然绽放",
+          "date": "2026-07-17"
+        },
+        {
+          "src": "/images/bilbil.jpg",
+          "alt": "哔哩哔哩个人二维码",
+          "caption": "收藏与分享",
+          "date": "2026-07-16"
+        }
+      ]
+    },
+    {
+      "id": "personal-fragments",
+      "name": "关于我的碎片",
+      "date": "2026-04-11",
+      "location": "临涧路",
+      "description": "头像、朋友与博客启程时留下的标记。",
+      "photos": [
+        {
+          "src": "/images/marcus.jpg",
+          "alt": "Mistlane376 的头像插画",
+          "caption": "此刻的头像",
+          "date": "2026-04-11"
+        },
+        {
+          "src": "/images/Bamboo.jpg",
+          "alt": "朋友 Bamboo 的头像",
+          "caption": "朋友的站点",
+          "date": "2026-04-11"
+        },
+        {
+          "src": "/images/log.png",
+          "alt": "博客早期使用的方形图标",
+          "caption": "启程的标记",
+          "date": "2026-04-10"
+        }
+      ]
+    }
+  ]
+}

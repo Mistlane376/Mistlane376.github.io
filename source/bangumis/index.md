@@ -2,9 +2,10 @@
 title: 追番
 date: 2026-06-20 12:51:33
 type: "bangumis"
-top_img: /images/selection1.jpg
-description: 我的追番列表，数据来自 Bilibili
+top_img: false
+aside: false
 comments: false
+description: 我的追番列表，数据来自 Bilibili
 ---
 
 <style>

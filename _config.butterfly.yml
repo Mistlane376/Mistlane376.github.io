@@ -20,12 +20,14 @@ nav:
 menu:
   首页: / || fas fa-home
   时间轴: /archives/ || fas fa-archive
-  版本: /versions/ || fas fa-history
-  标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
+  标签: /tags/ || fas fa-tags
+  相册: /album/ || fas fa-images
+  探索 || fas fa-compass:
+    追番: /bangumis/ || fas fa-play-circle
+    友链: /link/ || fas fa-link
+    版本: /versions/ || fas fa-history
   关于: /about/ || fas fa-user
-  追番: /bangumis/ || fas fa-play-circle
-  友链: /link/ || fas fa-link
 
 # --------------------------------------
 # Code Blocks Settings
@@ -77,10 +79,10 @@ default_top_img: /images/selection1.jpg
 index_img: /images/selection1.jpg
 
 # 归档页的横幅图片
-archive_img: /images/selection1.jpg
+archive_img: false
 
 # 注意：这是单个标签页，不是标签总览页
-tag_img: /images/selection1.jpg
+tag_img: false
 
 # 可以为每个标签单独设置横幅图片
 # 格式：
@@ -95,7 +97,7 @@ tag_per_img:
   生活: /images/selection1.jpg
 
 # 注意：这是单个分类页，不是分类总览页
-category_img: /images/selection2.jpg
+category_img: false
 
 # 可以为每个分类单独设置横幅图片
 # 格式：
@@ -111,7 +113,7 @@ footer_img: true
 # 网站背景
 # 可设为颜色值、图片 URL，或包含颜色/图片 URL 的数组
 # 若设为数组，每次加载时会随机选择其中一项作为背景
-background: /images/selection1.jpg
+background: '#f2f5f4'
 cover:
   # 是否启用封面图
   index_enable: true
@@ -203,7 +205,7 @@ subtitle:
 # 5: Info displayed on the cover
 # 6: Masonry layout - Cover on top, info on the bottom
 # 7: Masonry layout - Info displayed on the cover
-index_layout: 6
+index_layout: 1
 
 # Display the article introduction on homepage
 # 1: description
@@ -211,9 +213,9 @@ index_layout: 6
 # 3: auto_excerpt (default)
 # false: do not show the article introduction
 index_post_content:
-  method: 3
+  method: 2
   # If you set method to 2 or 3, the length need to config
-  length: 180
+  length: 120
 
 # --------------------------------------
 # Post Settings
@@ -450,9 +452,9 @@ rightside_scroll_percent: true
 rightside_item_order:
   enable: true
   # Default: readmode, translate, darkmode, hideAside
-  hide: readmode, darkmode
+  hide: readmode,darkmode
   # Default: toc, chat, comment
-  show: hideAside, toc, chat, comment
+  show: hideAside,toc,chat,comment
 
 # Animation for the bottom right config button
 rightside_config_animation: true
@@ -586,7 +588,7 @@ comments:
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
-  lazyload: true
+  lazyload: false
   # Display comment count in post's top_img
   count: false
   # Display comment count in Home Page
@@ -1110,7 +1112,12 @@ inject:
     - <link rel="stylesheet" href="/css/global.css">
     # Markdown 样式美化
     - <link rel="stylesheet" href="/css/markdown.css">
+    # 全站页面与功能页视觉统一
+    - <link rel="stylesheet" href="/css/site-polish.css">
+    # 相册页面
+    - <link rel="stylesheet" href="/css/album.css">
   bottom:
+    - <script defer src="/js/album.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
