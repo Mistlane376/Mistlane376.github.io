@@ -1,0 +1,688 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>版本归档 | Mistlane's Blog</title><meta name="author" content="Mistlane376"><meta name="copyright" content="Mistlane376"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="临涧路的精神小屋版本更新记录与重要里程碑。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="版本归档">
+<meta property="og:url" content="https://mistlane.cc.cd/versions/">
+<meta property="og:site_name" content="Mistlane&#39;s Blog">
+<meta property="og:description" content="临涧路的精神小屋版本更新记录与重要里程碑。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mistlane.cc.cd/images/marcus.png">
+<meta property="article:published_time" content="2026-07-27T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-07-27T02:30:00.000Z">
+<meta property="article:author" content="Mistlane376">
+<meta property="article:tag" content="算法竞赛,C++,数据结构,计算机科学,个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mistlane.cc.cd/images/marcus.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://mistlane.cc.cd/versions/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const start = 6
+          const end = 18
+          const isNight =
+            start < end
+                ? hour < start || hour >= end
+                : hour >= start || hour < end
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '版本归档',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'page'
+}</script><style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style><link rel="stylesheet" href="/css/author-card.css"><link rel="stylesheet" href="/css/about-envelope.css"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/markdown.css"><link rel="stylesheet" href="/css/site-polish.css"><link rel="stylesheet" href="/css/album.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Mistlane's Blog" type="application/atom+xml">
+</head><body><div class="bg-animation" id="web_bg" style="background-color: #f2f5f4;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page type-versions" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/versions/"><i class="fa-fw fas fa-history"></i><span> 版本</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">版本归档</h1></header><main class="layout" id="content-inner"><div id="page"><div class="page-title">版本归档</div><div class="container" id="article-container"><p>本页面记录了博客的所有版本更新历史和重要里程碑。</p>
+<hr>
+<h2 id="🎯-版本历史"><a href="#🎯-版本历史" class="headerlink" title="🎯 版本历史"></a>🎯 版本历史</h2><h3 id="v4-1-0-视觉统一与相册上线-2026-07-27"><a href="#v4-1-0-视觉统一与相册上线-2026-07-27" class="headerlink" title="v4.1.0 - 视觉统一与相册上线 (2026-07-27)"></a>v4.1.0 - 视觉统一与相册上线 (2026-07-27)</h3><h4 id="✨-重大更新"><a href="#✨-重大更新" class="headerlink" title="✨ 重大更新"></a>✨ 重大更新</h4><p><strong>相册系统正式上线</strong></p>
+<ul>
+<li>新增独立相册页面 <code>/album/</code></li>
+<li>支持分组查看与封面预览</li>
+<li>支持多张照片重叠展示</li>
+<li>支持按日期自动分块浏览</li>
+<li>支持灯箱预览、前后切换与缩略图导航</li>
+<li>兼容本地图片、GitHub Raw 与 jsDelivr 图床</li>
+</ul>
+<p><strong>首页文章列表重构</strong></p>
+<ul>
+<li>首页布局改为更稳定的单列卡片结构</li>
+<li>桌面端采用左图右文，移动端自动切换为上下排布</li>
+<li>首页摘要优先使用 <code>description</code></li>
+<li>统一文章标题、日期、分类与摘要层级</li>
+<li>优化六篇文章卡片的整体视觉节奏</li>
+</ul>
+<p><strong>Markdown 正文阅读系统重构</strong></p>
+<ul>
+<li>正文样式仅作用于文章详情页，不再干扰首页与功能页面</li>
+<li>阅读区宽度调整为约 760px，统一段落节奏和标题层级</li>
+<li>重做引用、列表、代码、表格、图片与提示框样式</li>
+<li>完善暗色模式和手机端阅读体验</li>
+</ul>
+<p><strong>导航与功能页整合</strong></p>
+<ul>
+<li>导航新增“相册”入口</li>
+<li>将“追番 &#x2F; 友链 &#x2F; 版本”收纳到“探索”分组</li>
+<li>分类、标签、归档、关于、友链、追番等页面统一视觉风格</li>
+<li>页面横幅与背景策略更简洁，整体更贴合当前站点气质</li>
+</ul>
+<h4 id="🔧-体验优化"><a href="#🔧-体验优化" class="headerlink" title="🔧 体验优化"></a>🔧 体验优化</h4><ul>
+<li>修复“探索”下拉菜单被页面内容遮挡的问题</li>
+<li>优化相册页在手机端的统计栏与切换按钮显示</li>
+<li>修复关于页标题、签名与分类数量徽章的裁切问题</li>
+<li>补充暗色模式与减少动画偏好适配</li>
+</ul>
+<h4 id="📝-文档"><a href="#📝-文档" class="headerlink" title="📝 文档"></a>📝 文档</h4><ul>
+<li>新增相册使用说明文档</li>
+<li>补充 GitHub 图床接入说明</li>
+<li>完善相册数据结构示例与分类组织方式</li>
+</ul>
+<hr>
+<h3 id="v4-0-0-重大重构-2026-07-18"><a href="#v4-0-0-重大重构-2026-07-18" class="headerlink" title="v4.0.0 - 重大重构 (2026-07-18)"></a>v4.0.0 - 重大重构 (2026-07-18)</h3><h4 id="✨-重大更新-1"><a href="#✨-重大更新-1" class="headerlink" title="✨ 重大更新"></a>✨ 重大更新</h4><p><strong>版本系统重构</strong></p>
+<ul>
+<li>版本 2.0 数据丢失，重新规划版本体系</li>
+<li>跳过 v3.x 系列，直接升级到 v4.0.0</li>
+<li>完善版本归档文档系统</li>
+</ul>
+<p><strong>样式系统增强</strong></p>
+<ul>
+<li>侧边栏个性标签样式</li>
+<li>作者卡片美化（author-card.css）</li>
+<li>标签渐变色系统（蓝&#x2F;紫&#x2F;绿）</li>
+<li>悬停动画和光泽效果</li>
+<li>完整的暗色模式支持</li>
+</ul>
+<p><strong>描述系统简化</strong></p>
+<ul>
+<li>优化站点描述（_config.yml）</li>
+<li>精简个人简介</li>
+<li>标签化展示技术栈</li>
+</ul>
+<p><strong>文档完善</strong></p>
+<ul>
+<li>版本归档 README</li>
+<li>Markdown 使用手册</li>
+<li>样式文档系统化</li>
+</ul>
+<h4 id="🔧-优化改进"><a href="#🔧-优化改进" class="headerlink" title="🔧 优化改进"></a>🔧 优化改进</h4><ul>
+<li>配置文件结构优化</li>
+<li>CSS 样式模块化</li>
+<li>响应式设计完善</li>
+<li>移动端适配增强</li>
+</ul>
+<h4 id="📝-文档-1"><a href="#📝-文档-1" class="headerlink" title="📝 文档"></a>📝 文档</h4><ul>
+<li>创建 TAG_STYLE_SUMMARY.md</li>
+<li>创建 TAG_STYLE_README.md</li>
+<li>更新版本归档系统</li>
+<li>完善 README 文档</li>
+</ul>
+<hr>
+<h3 id="v3-0-0-样式升级-2026-07-17"><a href="#v3-0-0-样式升级-2026-07-17" class="headerlink" title="v3.0.0 - 样式升级 (2026-07-17)"></a>v3.0.0 - 样式升级 (2026-07-17)</h3><h4 id="✨-重大更新-2"><a href="#✨-重大更新-2" class="headerlink" title="✨ 重大更新"></a>✨ 重大更新</h4><p><strong>About 页面全新升级</strong></p>
+<ul>
+<li>迁移到 HTML 格式</li>
+<li>卡片化设计系统</li>
+<li>英雄区域设计</li>
+<li>技能条动画</li>
+<li>成就展示区</li>
+<li>博客特性网格</li>
+</ul>
+<p><strong>CSDN 集成</strong></p>
+<ul>
+<li>About 页面添加 CSDN 按钮</li>
+<li>侧边栏添加 CSDN 社交图标</li>
+</ul>
+<p><strong>样式系统全面升级</strong></p>
+<ul>
+<li>全局样式优化（global.css）</li>
+<li>Markdown 样式美化（markdown.css）</li>
+<li>引用块、代码块、表格美化</li>
+<li>完整的暗色模式支持</li>
+<li>响应式设计</li>
+</ul>
+<p><strong>功能增强</strong></p>
+<ul>
+<li>QQ&#x2F;微信链接指向二维码</li>
+<li>代码块样式修复</li>
+<li>联系方式完整化</li>
+</ul>
+<h4 id="📝-文档-2"><a href="#📝-文档-2" class="headerlink" title="📝 文档"></a>📝 文档</h4><ul>
+<li>创建 CHANGELOG.md</li>
+<li>创建版本归档</li>
+<li>清理冗余文档</li>
+</ul>
+<hr>
+<h3 id="v2-0-0-⚠️-数据丢失-2026-07-13"><a href="#v2-0-0-⚠️-数据丢失-2026-07-13" class="headerlink" title="v2.0.0 - ⚠️ 数据丢失 (2026-07-13)"></a>v2.0.0 - ⚠️ 数据丢失 (2026-07-13)</h3><blockquote>
+<p><strong>注意</strong>：此版本数据已丢失，仅保留版本记录。</p>
+</blockquote>
+<h4 id="📋-已知功能（基于记忆）"><a href="#📋-已知功能（基于记忆）" class="headerlink" title="📋 已知功能（基于记忆）"></a>📋 已知功能（基于记忆）</h4><ul>
+<li>追番页面（bangumis）</li>
+<li>友链页面（link）</li>
+<li>音乐播放器（后期移除）</li>
+<li>站点配置更新</li>
+<li>导航菜单完善</li>
+<li>Butterfly 主题配置</li>
+</ul>
+<p><strong>丢失原因</strong>：未进行版本控制和备份</p>
+<p><strong>经验教训</strong>：</p>
+<ul>
+<li>重要版本需及时提交 Git</li>
+<li>关键配置需要备份</li>
+<li>版本归档要及时更新</li>
+</ul>
+<hr>
+<h3 id="v1-0-0-初始版本-2026-06-19"><a href="#v1-0-0-初始版本-2026-06-19" class="headerlink" title="v1.0.0 - 初始版本 (2026-06-19)"></a>v1.0.0 - 初始版本 (2026-06-19)</h3><h4 id="✨-基础搭建"><a href="#✨-基础搭建" class="headerlink" title="✨ 基础搭建"></a>✨ 基础搭建</h4><ul>
+<li>Hexo + Butterfly 主题</li>
+<li>基础页面配置</li>
+<li>文章发布功能</li>
+<li>GitHub Pages 部署</li>
+</ul>
+<hr>
+<h2 id="📊-版本统计"><a href="#📊-版本统计" class="headerlink" title="📊 版本统计"></a>📊 版本统计</h2><h3 id="代码统计"><a href="#代码统计" class="headerlink" title="代码统计"></a>代码统计</h3><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>CSS 文件</th>
+<th>文章数</th>
+<th>功能数</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v1.0.0</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+<td>✅ 正常</td>
+</tr>
+<tr>
+<td>v2.0.0</td>
+<td>2</td>
+<td>2</td>
+<td>15</td>
+<td>⚠️ 数据丢失</td>
+</tr>
+<tr>
+<td>v3.0.0</td>
+<td>4</td>
+<td>5</td>
+<td>30</td>
+<td>✅ 正常</td>
+</tr>
+<tr>
+<td>v4.0.0</td>
+<td>5</td>
+<td>5</td>
+<td>35+</td>
+<td>✅ 已归档</td>
+</tr>
+<tr>
+<td>v4.1.0</td>
+<td>7</td>
+<td>6+</td>
+<td>45+</td>
+<td>🆕 当前</td>
+</tr>
+</tbody></table>
+<h3 id="文件大小"><a href="#文件大小" class="headerlink" title="文件大小"></a>文件大小</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>v1.0.0</th>
+<th>v2.0.0</th>
+<th>v3.0.0</th>
+<th>v4.0.0</th>
+<th>v4.1.0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CSS</td>
+<td>0 KB</td>
+<td>15 KB</td>
+<td>57 KB</td>
+<td>65 KB</td>
+<td>85 KB+</td>
+</tr>
+<tr>
+<td>文档</td>
+<td>1 KB</td>
+<td>5 KB</td>
+<td>25 KB</td>
+<td>35 KB</td>
+<td>40 KB+</td>
+</tr>
+<tr>
+<td>脚本</td>
+<td>0 KB</td>
+<td>0 KB</td>
+<td>5 KB</td>
+<td>5 KB</td>
+<td>12 KB+</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🗓️-重要里程碑"><a href="#🗓️-重要里程碑" class="headerlink" title="🗓️ 重要里程碑"></a>🗓️ 重要里程碑</h2><h3 id="2026-07-27-v4-1-0"><a href="#2026-07-27-v4-1-0" class="headerlink" title="2026-07-27 - v4.1.0"></a>2026-07-27 - v4.1.0</h3><ul>
+<li>✨ 相册页面正式上线</li>
+<li>✨ 首页文章列表重构</li>
+<li>✨ 探索导航分组完成</li>
+<li>✨ 功能页视觉统一</li>
+<li>✨ 移动端与下拉菜单遮挡修复</li>
+</ul>
+<h3 id="2026-07-18-v4-0-0"><a href="#2026-07-18-v4-0-0" class="headerlink" title="2026-07-18 - v4.0.0"></a>2026-07-18 - v4.0.0</h3><ul>
+<li>✨ 版本系统重构（v2.0 数据丢失）</li>
+<li>✨ 侧边栏个性标签样式</li>
+<li>✨ 文档系统完善</li>
+<li>✨ 样式模块化升级</li>
+</ul>
+<h3 id="2026-07-17-v3-0-0"><a href="#2026-07-17-v3-0-0" class="headerlink" title="2026-07-17 - v3.0.0"></a>2026-07-17 - v3.0.0</h3><ul>
+<li>✨ About 页面全新升级</li>
+<li>✨ CSDN 集成</li>
+<li>✨ 样式系统全面升级</li>
+<li>✨ 代码块修复</li>
+<li>✨ 版本归档功能</li>
+</ul>
+<h3 id="2026-07-13-v2-0-0-⚠️"><a href="#2026-07-13-v2-0-0-⚠️" class="headerlink" title="2026-07-13 - v2.0.0 ⚠️"></a>2026-07-13 - v2.0.0 ⚠️</h3><ul>
+<li>⚠️ 数据丢失（未及时 Git 提交）</li>
+<li>✨ 追番页面</li>
+<li>✨ 友链页面</li>
+<li>✨ 导航菜单完善</li>
+</ul>
+<h3 id="2026-06-19-v1-0-0"><a href="#2026-06-19-v1-0-0" class="headerlink" title="2026-06-19 - v1.0.0"></a>2026-06-19 - v1.0.0</h3><ul>
+<li>✨ 博客正式上线</li>
+<li>✨ Hexo + Butterfly</li>
+<li>✨ 第一篇文章</li>
+</ul>
+<hr>
+<h2 id="🔄-更新频率"><a href="#🔄-更新频率" class="headerlink" title="🔄 更新频率"></a>🔄 更新频率</h2><table>
+<thead>
+<tr>
+<th>时间周期</th>
+<th>更新次数</th>
+<th>平均间隔</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026-04 至 2026-06</td>
+<td>1 次</td>
+<td>~45 天</td>
+<td>初始搭建</td>
+</tr>
+<tr>
+<td>2026-06 至 2026-07</td>
+<td>2 次</td>
+<td>~15 天</td>
+<td>快速迭代</td>
+</tr>
+<tr>
+<td>2026-07（当前）</td>
+<td>3 次</td>
+<td>~5 天</td>
+<td>密集开发</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="📝-更新日志"><a href="#📝-更新日志" class="headerlink" title="📝 更新日志"></a>📝 更新日志</h2><h3 id="2026-07-27-v4-1-0-1"><a href="#2026-07-27-v4-1-0-1" class="headerlink" title="2026-07-27 - v4.1.0"></a>2026-07-27 - v4.1.0</h3><ul>
+<li><p><strong>相册功能</strong></p>
+<ul>
+<li>新增 <code>/album/</code> 独立页面</li>
+<li>支持分组预览、重叠封面与日期分块</li>
+<li>支持灯箱切换、缩略图和多图浏览</li>
+<li>支持 GitHub 图床、本地图片与 CDN 链接</li>
+</ul>
+</li>
+<li><p><strong>视觉优化</strong></p>
+<ul>
+<li>新增 <code>site-polish.css</code> 统一功能页设计</li>
+<li>首页文章卡片结构重做</li>
+<li>导航结构调整为首页 &#x2F; 时间轴 &#x2F; 分类 &#x2F; 标签 &#x2F; 相册 &#x2F; 探索 &#x2F; 关于</li>
+<li>减少不必要的大图横幅，强化页面内容本身</li>
+</ul>
+</li>
+<li><p><strong>兼容修复</strong></p>
+<ul>
+<li>修复“探索”菜单被内容遮挡</li>
+<li>修复移动端相册和关于页局部裁切</li>
+<li>优化手机端布局、暗色模式与动态效果表现</li>
+</ul>
+</li>
+</ul>
+<h3 id="2026-07-18-v4-0-0-1"><a href="#2026-07-18-v4-0-0-1" class="headerlink" title="2026-07-18 - v4.0.0"></a>2026-07-18 - v4.0.0</h3><ul>
+<li><p><strong>样式优化</strong></p>
+<ul>
+<li>侧边栏标签样式（author-card.css）</li>
+<li>渐变色系统</li>
+<li>悬停动画效果</li>
+<li>暗色模式支持</li>
+</ul>
+</li>
+<li><p><strong>功能增强</strong></p>
+<ul>
+<li>个性标签展示</li>
+<li>描述系统简化</li>
+<li>版本归档重构</li>
+</ul>
+</li>
+<li><p><strong>文档完善</strong></p>
+<ul>
+<li>TAG_STYLE_SUMMARY.md</li>
+<li>TAG_STYLE_README.md</li>
+<li>版本系统文档</li>
+<li>Markdown 使用手册</li>
+</ul>
+</li>
+</ul>
+<h3 id="2026-07-17-v3-0-0-1"><a href="#2026-07-17-v3-0-0-1" class="headerlink" title="2026-07-17 - v3.0.0"></a>2026-07-17 - v3.0.0</h3><ul>
+<li><p><strong>样式优化</strong></p>
+<ul>
+<li>global.css 优化</li>
+<li>markdown.css 新增</li>
+<li>代码块修复</li>
+</ul>
+</li>
+<li><p><strong>功能增强</strong></p>
+<ul>
+<li>About 页面升级</li>
+<li>CSDN 集成</li>
+<li>QQ&#x2F;微信优化</li>
+</ul>
+</li>
+<li><p><strong>文档整理</strong></p>
+<ul>
+<li>版本归档</li>
+<li>CHANGELOG</li>
+<li>清理冗余文档</li>
+</ul>
+</li>
+</ul>
+<h3 id="2026-07-13-v2-0-0-⚠️-1"><a href="#2026-07-13-v2-0-0-⚠️-1" class="headerlink" title="2026-07-13 - v2.0.0 ⚠️"></a>2026-07-13 - v2.0.0 ⚠️</h3><ul>
+<li>⚠️ <strong>数据丢失</strong>：此版本数据未保存</li>
+<li>追番页面</li>
+<li>友链页面</li>
+<li>主题配置更新</li>
+</ul>
+<h3 id="2026-06-19-v1-0-0-1"><a href="#2026-06-19-v1-0-0-1" class="headerlink" title="2026-06-19 - v1.0.0"></a>2026-06-19 - v1.0.0</h3><ul>
+<li>初始版本</li>
+<li>基础功能</li>
+<li>第一篇文章</li>
+</ul>
+<hr>
+<h2 id="🎯-下一步计划"><a href="#🎯-下一步计划" class="headerlink" title="🎯 下一步计划"></a>🎯 下一步计划</h2><h3 id="v4-2-0（计划中）"><a href="#v4-2-0（计划中）" class="headerlink" title="v4.2.0（计划中）"></a>v4.2.0（计划中）</h3><ul>
+<li><input disabled="" type="checkbox"> 相册筛选与搜索</li>
+<li><input disabled="" type="checkbox"> 相册图片懒加载优化</li>
+<li><input disabled="" type="checkbox"> 文章卡片信息密度微调</li>
+<li><input disabled="" type="checkbox"> 评论系统集成（Giscus&#x2F;Artalk）</li>
+<li><input disabled="" type="checkbox"> 搜索功能优化</li>
+</ul>
+<h3 id="v5-0-0（远期）"><a href="#v5-0-0（远期）" class="headerlink" title="v5.0.0（远期）"></a>v5.0.0（远期）</h3><ul>
+<li><input disabled="" type="checkbox"> PWA 支持</li>
+<li><input disabled="" type="checkbox"> 多语言国际化</li>
+<li><input disabled="" type="checkbox"> 数据备份系统</li>
+<li><input disabled="" type="checkbox"> 访问统计分析</li>
+<li><input disabled="" type="checkbox"> 更多内容型专题页面</li>
+</ul>
+<hr>
+<h2 id="💡-经验补充"><a href="#💡-经验补充" class="headerlink" title="💡 经验补充"></a>💡 经验补充</h2><h3 id="v4-1-页面与内容系统升级启示"><a href="#v4-1-页面与内容系统升级启示" class="headerlink" title="v4.1 页面与内容系统升级启示"></a>v4.1 页面与内容系统升级启示</h3><p><strong>这次做对了什么</strong>：</p>
+<ul>
+<li>✅ 先统一站点视觉，再补单页细节</li>
+<li>✅ 相册数据与样式、脚本分离，后续维护更轻松</li>
+<li>✅ 同步补文档，降低后续加图和改分类的成本</li>
+</ul>
+<p><strong>后续继续保持</strong>：</p>
+<ul>
+<li>✅ 新功能上线时同步更新版本页</li>
+<li>✅ 新页面优先考虑桌面与移动端双端表现</li>
+<li><input disabled="" type="checkbox"> 代码高亮主题选择</li>
+</ul>
+<hr>
+<h2 id="💡-经验教训"><a href="#💡-经验教训" class="headerlink" title="💡 经验教训"></a>💡 经验教训</h2><h3 id="v2-0-数据丢失反思"><a href="#v2-0-数据丢失反思" class="headerlink" title="v2.0 数据丢失反思"></a>v2.0 数据丢失反思</h3><p><strong>问题</strong>：</p>
+<ul>
+<li>❌ 未及时 Git 提交</li>
+<li>❌ 缺乏版本控制意识</li>
+<li>❌ 没有定期备份机制</li>
+</ul>
+<p><strong>改进</strong>：</p>
+<ul>
+<li>✅ 建立 Git 提交规范</li>
+<li>✅ 重要版本及时归档</li>
+<li>✅ 完善文档记录</li>
+<li>✅ 定期备份配置</li>
+</ul>
+<hr>
+<h2 id="📚-相关文档"><a href="#📚-相关文档" class="headerlink" title="📚 相关文档"></a>📚 相关文档</h2><ul>
+<li><strong><a href="/">CHANGELOG.md</a></strong> - 详细更新日志</li>
+<li><strong><a href="/">README.md</a></strong> - 项目说明</li>
+<li><strong><a href="/about/">关于页面</a></strong> - 作者信息</li>
+</ul>
+<hr>
+<blockquote>
+<p>💡 <strong>提示</strong>：版本归档会随每次重大更新自动更新。</p>
+</blockquote>
+<p><strong>最后更新</strong>：2026-07-27<br><strong>当前版本</strong>：v4.1.0<br><strong>归档日期</strong>：2026-07-27</p>
+</div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="author-info-name">Mistlane376</div><div class="author-info-description">齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
+
+<div class="author-tags">
+  <span class="author-tag">#C++</span>
+  <span class="author-tag">#算法竞赛</span>
+  <span class="author-tag">#数据结构</span>
+</div>
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎大家来到临涧路的精神小屋</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">🎯 版本历史</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v4-1-0-%E8%A7%86%E8%A7%89%E7%BB%9F%E4%B8%80%E4%B8%8E%E7%9B%B8%E5%86%8C%E4%B8%8A%E7%BA%BF-2026-07-27"><span class="toc-number">1.1.</span> <span class="toc-text">v4.1.0 - 视觉统一与相册上线 (2026-07-27)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%9C%A8-%E9%87%8D%E5%A4%A7%E6%9B%B4%E6%96%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">✨ 重大更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%A7-%E4%BD%93%E9%AA%8C%E4%BC%98%E5%8C%96"><span class="toc-number">1.1.2.</span> <span class="toc-text">🔧 体验优化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%9D-%E6%96%87%E6%A1%A3"><span class="toc-number">1.1.3.</span> <span class="toc-text">📝 文档</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v4-0-0-%E9%87%8D%E5%A4%A7%E9%87%8D%E6%9E%84-2026-07-18"><span class="toc-number">1.2.</span> <span class="toc-text">v4.0.0 - 重大重构 (2026-07-18)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%9C%A8-%E9%87%8D%E5%A4%A7%E6%9B%B4%E6%96%B0-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">✨ 重大更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%94%A7-%E4%BC%98%E5%8C%96%E6%94%B9%E8%BF%9B"><span class="toc-number">1.2.2.</span> <span class="toc-text">🔧 优化改进</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%9D-%E6%96%87%E6%A1%A3-1"><span class="toc-number">1.2.3.</span> <span class="toc-text">📝 文档</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v3-0-0-%E6%A0%B7%E5%BC%8F%E5%8D%87%E7%BA%A7-2026-07-17"><span class="toc-number">1.3.</span> <span class="toc-text">v3.0.0 - 样式升级 (2026-07-17)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%9C%A8-%E9%87%8D%E5%A4%A7%E6%9B%B4%E6%96%B0-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">✨ 重大更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%9D-%E6%96%87%E6%A1%A3-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">📝 文档</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v2-0-0-%E2%9A%A0%EF%B8%8F-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1-2026-07-13"><span class="toc-number">1.4.</span> <span class="toc-text">v2.0.0 - ⚠️ 数据丢失 (2026-07-13)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%93%8B-%E5%B7%B2%E7%9F%A5%E5%8A%9F%E8%83%BD%EF%BC%88%E5%9F%BA%E4%BA%8E%E8%AE%B0%E5%BF%86%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">📋 已知功能（基于记忆）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v1-0-0-%E5%88%9D%E5%A7%8B%E7%89%88%E6%9C%AC-2026-06-19"><span class="toc-number">1.5.</span> <span class="toc-text">v1.0.0 - 初始版本 (2026-06-19)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E2%9C%A8-%E5%9F%BA%E7%A1%80%E6%90%AD%E5%BB%BA"><span class="toc-number">1.5.1.</span> <span class="toc-text">✨ 基础搭建</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%8A-%E7%89%88%E6%9C%AC%E7%BB%9F%E8%AE%A1"><span class="toc-number">2.</span> <span class="toc-text">📊 版本统计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%9F%E8%AE%A1"><span class="toc-number">2.1.</span> <span class="toc-text">代码统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F"><span class="toc-number">2.2.</span> <span class="toc-text">文件大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%97%93%EF%B8%8F-%E9%87%8D%E8%A6%81%E9%87%8C%E7%A8%8B%E7%A2%91"><span class="toc-number">3.</span> <span class="toc-text">🗓️ 重要里程碑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-27-v4-1-0"><span class="toc-number">3.1.</span> <span class="toc-text">2026-07-27 - v4.1.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-18-v4-0-0"><span class="toc-number">3.2.</span> <span class="toc-text">2026-07-18 - v4.0.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-17-v3-0-0"><span class="toc-number">3.3.</span> <span class="toc-text">2026-07-17 - v3.0.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-13-v2-0-0-%E2%9A%A0%EF%B8%8F"><span class="toc-number">3.4.</span> <span class="toc-text">2026-07-13 - v2.0.0 ⚠️</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-06-19-v1-0-0"><span class="toc-number">3.5.</span> <span class="toc-text">2026-06-19 - v1.0.0</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%94%84-%E6%9B%B4%E6%96%B0%E9%A2%91%E7%8E%87"><span class="toc-number">4.</span> <span class="toc-text">🔄 更新频率</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97"><span class="toc-number">5.</span> <span class="toc-text">📝 更新日志</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-27-v4-1-0-1"><span class="toc-number">5.1.</span> <span class="toc-text">2026-07-27 - v4.1.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-18-v4-0-0-1"><span class="toc-number">5.2.</span> <span class="toc-text">2026-07-18 - v4.0.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-17-v3-0-0-1"><span class="toc-number">5.3.</span> <span class="toc-text">2026-07-17 - v3.0.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-07-13-v2-0-0-%E2%9A%A0%EF%B8%8F-1"><span class="toc-number">5.4.</span> <span class="toc-text">2026-07-13 - v2.0.0 ⚠️</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2026-06-19-v1-0-0-1"><span class="toc-number">5.5.</span> <span class="toc-text">2026-06-19 - v1.0.0</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%8E%AF-%E4%B8%8B%E4%B8%80%E6%AD%A5%E8%AE%A1%E5%88%92"><span class="toc-number">6.</span> <span class="toc-text">🎯 下一步计划</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v4-2-0%EF%BC%88%E8%AE%A1%E5%88%92%E4%B8%AD%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">v4.2.0（计划中）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v5-0-0%EF%BC%88%E8%BF%9C%E6%9C%9F%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">v5.0.0（远期）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E7%BB%8F%E9%AA%8C%E8%A1%A5%E5%85%85"><span class="toc-number">7.</span> <span class="toc-text">💡 经验补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v4-1-%E9%A1%B5%E9%9D%A2%E4%B8%8E%E5%86%85%E5%AE%B9%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E5%90%AF%E7%A4%BA"><span class="toc-number">7.1.</span> <span class="toc-text">v4.1 页面与内容系统升级启示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E7%BB%8F%E9%AA%8C%E6%95%99%E8%AE%AD"><span class="toc-number">8.</span> <span class="toc-text">💡 经验教训</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v2-0-%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E5%8F%8D%E6%80%9D"><span class="toc-number">8.1.</span> <span class="toc-text">v2.0 数据丢失反思</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9A-%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3"><span class="toc-number">9.</span> <span class="toc-text">📚 相关文档</span></a></li></ol></div></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">6</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">17.2k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2026-07-27T03:37:10.937Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane376</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/main.min.js"></script><div class="js-pjax"></div><script defer src="/js/album.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:description\"]","link[rel=\"canonical\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([data-fancybox])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || ''
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
+    }
+  })
+})</script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/search/local-search.min.js"></script></div></div></body></html>
