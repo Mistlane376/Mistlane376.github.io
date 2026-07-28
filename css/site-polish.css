@@ -98,8 +98,8 @@ a:hover {
 }
 
 #page-header.full_page {
-  height: min(86vh, 820px);
-  min-height: 600px;
+  height: 100vh;
+  height: 100svh;
   background-position: center 42%;
 }
 
@@ -1018,11 +1018,6 @@ a:hover {
 }
 
 @media screen and (max-width: 768px) {
-  #page-header.full_page {
-    height: 78svh;
-    min-height: 520px;
-  }
-
   #page-header.full_page #site-title {
     font-size: 2.15rem;
   }
