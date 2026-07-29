@@ -7966,7 +7966,7 @@ blockquote.pullquote.right {
 }
 @media screen and (max-width: 768px) {
   #local-search .search-dialog .search-result-list {
-    max-height: calc(var(--search-height) - 200px) !important;
+    min-height: calc(var(--search-height) - 255px) !important;
   }
 }
 #local-search #local-search-stats .search-result-stats {

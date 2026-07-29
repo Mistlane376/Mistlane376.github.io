@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>归档 | Mistlane's Blog</title><meta name="author" content="Mistlane"><meta name="copyright" content="Mistlane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="KNOWLEDGE ARCHIVE       归档       按分类与标签整理的知识索引，留住每一次思考和记录。                 --个分类       --个标签       --篇文章                         分类        标签          正在整理分类索引…">
+<meta property="og:type" content="website">
+<meta property="og:title" content="归档">
+<meta property="og:url" content="https://mistlane.cc.cd/archive/">
+<meta property="og:site_name" content="Mistlane&#39;s Blog">
+<meta property="og:description" content="KNOWLEDGE ARCHIVE       归档       按分类与标签整理的知识索引，留住每一次思考和记录。                 --个分类       --个标签       --篇文章                         分类        标签          正在整理分类索引…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mistlane.cc.cd/images/marcus.png">
+<meta property="article:published_time" content="2026-07-28T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-07-28T16:00:00.000Z">
+<meta property="article:author" content="Mistlane">
+<meta property="article:tag" content="算法竞赛,C++,数据结构,计算机科学,个人博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mistlane.cc.cd/images/marcus.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://mistlane.cc.cd/archive/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.6.1"><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const start = 6
+          const end = 18
+          const isNight =
+            start < end
+                ? hour < start || hour >= end
+                : hour >= start || hour < end
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":2,"unescape":true,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '归档',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'page'
+}</script><style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" href="/css/markdown.css"><link rel="stylesheet" href="/css/site-polish.css"><link rel="stylesheet" href="/css/visitor-welcome.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Mistlane's Blog" type="application/atom+xml">
+</head><body><div class="bg-animation" id="web_bg" style="background-color: #f2f5f4;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="page type-archive-hub" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><h1 class="title-seo">归档</h1></header><main class="layout hide-aside" id="content-inner"><div id="page"><div class="page-title">归档</div><div class="container" id="article-container"><div id="archive-hub" data-view="categories">
+  <section class="archive-hub-hero" aria-labelledby="archive-hub-title">
+    <div class="archive-hub-hero-copy">
+      <span class="archive-hub-kicker"><i class="fas fa-box-archive" aria-hidden="true"></i> KNOWLEDGE ARCHIVE</span>
+      <h1 id="archive-hub-title">归档</h1>
+      <p>按分类与标签整理的知识索引，留住每一次思考和记录。</p>
+    </div>
+    <dl class="archive-hub-stats" aria-label="归档统计">
+      <div><dt data-archive-category-count>--</dt><dd>个分类</dd></div>
+      <div><dt data-archive-tag-count>--</dt><dd>个标签</dd></div>
+      <div><dt data-archive-post-count>--</dt><dd>篇文章</dd></div>
+    </dl>
+  </section>
+
+  <section class="archive-hub-browser" aria-label="归档浏览">
+    <div class="archive-hub-switch" role="tablist" aria-label="归档类型">
+      <button class="is-active" type="button" role="tab" aria-selected="true" aria-controls="archive-hub-panel" data-archive-view="categories"><i class="fas fa-folder-tree" aria-hidden="true"></i> 分类</button>
+      <button type="button" role="tab" aria-selected="false" aria-controls="archive-hub-panel" data-archive-view="tags"><i class="fas fa-tags" aria-hidden="true"></i> 标签</button>
+    </div>
+    <p class="archive-hub-summary" data-archive-summary>正在整理分类索引…</p>
+  </section>
+
+  <section id="archive-hub-panel" class="archive-hub-panel" role="tabpanel" aria-live="polite"></section>
+</div>
+</div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div><div class="footer_custom_text"><div class="footer-main">
+  <section class="footer-intro" aria-label="站点信息">
+    <a class="footer-brand" href="/">Mistlane's Blog</a>
+    <p>记录代码、学习与日常中值得回看的片段。</p>
+  </section>
+  <nav class="footer-nav" aria-label="页脚导航">
+    <a href="/">首页</a>
+    <a href="/archive/">归档</a>
+    <a href="/about/">关于</a>
+  </nav>
+  <div class="footer-social" aria-label="社交链接">
+    <a href="https://github.com/Mistlane376" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://space.bilibili.com/1146476510" target="_blank" rel="noopener" title="B站" aria-label="B站"><i class="fas fa-play"></i></a>
+    <a href="/images/QQ.jpg" target="_blank" title="QQ" aria-label="QQ"><i class="fab fa-qq"></i></a>
+    <a href="/images/weixin.jpg" target="_blank" title="微信" aria-label="微信"><i class="fab fa-weixin"></i></a>
+    <a href="https://blog.csdn.net/ljl37" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN"><i class="fas fa-code"></i></a>
+  </div>
+  <a class="footer-record" href="https://icp.gov.moe/?keyword=20263737" target="_blank" rel="noopener">萌ICP备20263737号</a>
+</div>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/utils.min.js"></script><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/main.min.js"></script><div class="js-pjax"></div><script defer src="/js/petals.js"></script><script defer src="/js/visitor-welcome.js"></script><script defer src="/js/search-performance.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/hexo-theme-butterfly@5.6.1/source/js/search/local-search.min.js"></script></div></div>  <script data-page-assets="true" defer src="/js/archive-hub.js"></script>
+</body></html>

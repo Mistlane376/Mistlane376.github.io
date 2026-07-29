@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Mistlane&#39;s Blog</title>
   <icon>https://mistlane.cc.cd/images/favicon.png</icon>
-  <subtitle>临涧路的精神小屋</subtitle>
+  <subtitle>记录代码、学习与日常</subtitle>
   <link href="https://mistlane.cc.cd/atom.xml" rel="self"/>
   
   <link href="https://mistlane.cc.cd/"/>
@@ -10,7 +10,7 @@
   <id>https://mistlane.cc.cd/</id>
   
   <author>
-    <name>Mistlane376</name>
+    <name>Mistlane</name>
     
   </author>
   
