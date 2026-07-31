@@ -6,7 +6,7 @@ type: album
 top_img: false
 aside: false
 comments: false
-description: 按相册组与日期浏览 Mistlane376 的照片记录。
+description: 按相册组与日期浏览 Mistlane 的照片记录。
 ---
 
 <section id="photo-album" class="album-app" data-source="/album/data.json" aria-labelledby="album-title">

@@ -39,17 +39,17 @@ fi
 # 检查生成的站点
 echo ""
 echo "📋 检查生成的代码块..."
-if [ -f "public/posts/a7b8c9d0/index.html" ]; then
+if [ -f "public/posts/common-algorithm-templates/index.html" ]; then
   echo "   ✅ 文章页面已生成"
 
   # 检查代码块结构
-  if grep -q 'figure class="highlight' "public/posts/a7b8c9d0/index.html"; then
+  if grep -q 'figure class="highlight' "public/posts/common-algorithm-templates/index.html"; then
     echo "   ✅ figure.highlight 结构存在"
   else
     echo "   ⚠️  figure.highlight 结构未找到"
   fi
 
-  if grep -q '<table>' "public/posts/a7b8c9d0/index.html"; then
+  if grep -q '<table>' "public/posts/common-algorithm-templates/index.html"; then
     echo "   ✅ table 结构存在"
   else
     echo "   ⚠️  table 结构未找到"

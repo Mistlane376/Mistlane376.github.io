@@ -1,5 +1,5 @@
-- class_name: 友情链接
-  class_desc: 朋友们的个人站点
+- class_name: 个人博客
+  class_desc: 记录生活、技术与长期创作的个人站点
   link_list:
     - name: BAMBOOの赛博小屋
       link: https://bamboo2233.cc.cd

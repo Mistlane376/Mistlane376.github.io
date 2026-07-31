@@ -1,0 +1,80 @@
+/* Utterances comment frame */
+#post-comment {
+  position: relative;
+  z-index: 201;
+  margin-top: 42px;
+  padding-top: 12px;
+}
+
+#post-comment .comment-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+#post-comment .comment-head::after {
+  flex: 1;
+  height: 1px;
+  background: var(--ui-border, rgba(31, 41, 51, 0.11));
+  content: '';
+}
+
+#post-comment .comment-headline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ui-heading, #14212b);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+#post-comment .comment-headline i {
+  color: var(--ui-teal, #18756f);
+}
+
+#post-comment .comment-wrap {
+  min-height: 96px;
+  padding: 16px 18px 10px;
+  border: 1px solid var(--ui-border, rgba(31, 41, 51, 0.11));
+  border-left: 3px solid var(--ui-teal, #18756f);
+  border-radius: 8px;
+  background: var(--ui-surface, rgba(255, 255, 255, 0.96));
+  box-shadow: var(--ui-shadow-sm, 0 4px 14px rgba(28, 39, 49, 0.06));
+}
+
+#utterances-wrap {
+  width: 100%;
+  min-height: 72px;
+}
+
+#utterances-wrap iframe.utterances-frame {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 280px;
+  border: 0;
+  border-radius: 6px;
+}
+
+[data-theme='dark'] #post-comment .comment-headline {
+  color: var(--ui-heading, #f4f7f8);
+}
+
+[data-theme='dark'] #post-comment .comment-wrap {
+  border-color: var(--ui-border, rgba(226, 232, 236, 0.12));
+  border-left-color: var(--ui-teal, #56b7af);
+  background: var(--ui-surface, rgba(27, 34, 39, 0.97));
+  box-shadow: var(--ui-shadow-sm, 0 4px 16px rgba(0, 0, 0, 0.22));
+}
+
+@media screen and (max-width: 768px) {
+  #post-comment {
+    margin-top: 32px;
+  }
+
+  #post-comment .comment-wrap {
+    padding: 12px 10px 6px;
+    border-radius: 6px;
+  }
+}

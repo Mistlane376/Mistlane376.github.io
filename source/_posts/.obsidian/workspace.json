@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "bd66afb5acaad4a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "9345b96efe5a98a8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "55ab3cd2ef0cb145",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "大一结语.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "大一结语"
+            }
+          },
+          {
+            "id": "6a3c6c9d1b89907c",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "HTML知识学习.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "HTML知识学习"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "2e5c228dbc77ad63",
+    "type": "split",
+    "children": [
+      {
+        "id": "a4e6883a1732d821",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c60d34bd90228422",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "9f4b8b689cbca698",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "e6ef3d2bd7cd07cf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "86bfbd1e66791f0c",
+    "type": "split",
+    "children": [
+      {
+        "id": "795c5532168d681a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b109ad2241539963",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "大一结语.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "大一结语 的反向链接列表"
+            }
+          },
+          {
+            "id": "20d4decc43bcb434",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "大一结语.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "大一结语 的出链列表"
+            }
+          },
+          {
+            "id": "86abbe271aa8cc19",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "c0bf8e5226f58cb4",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "6ffa1b96dc501074",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "大一结语.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大一结语 的大纲"
+            }
+          },
+          {
+            "id": "0bc629a25eeac159",
+            "type": "leaf",
+            "state": {
+              "type": "file-properties",
+              "state": {
+                "file": "HTML知识学习.md"
+              },
+              "icon": "lucide-info",
+              "title": "HTML知识学习的笔记属性"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "6a3c6c9d1b89907c",
+  "lastOpenFiles": [
+    "markdown使用手册.md",
+    "项目实践：学生成绩管理系统.md",
+    "abc468CDEFG.md",
+    "HTML知识学习.md",
+    "大一结语.md",
+    "常用板子.md",
+    "2026-4-11 我的第一批文章.md",
+    "(模板补充)计算几何.md",
+    "未命名.base"
+  ]
+}

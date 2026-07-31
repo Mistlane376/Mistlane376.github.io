@@ -4,16 +4,16 @@
 
 # Site
 title: "Mistlane's Blog"
-subtitle: '临涧路的精神小屋'
-description: 齐鲁工业大学计算机专业学生 Mistlane376 的个人博客，记录算法竞赛、C/C++、数据结构与项目实践。
+subtitle: '记录代码、学习与日常'
+description: Mistlane 的个人博客，记录算法竞赛、C/C++、数据结构、项目实践与日常思考。
 keywords: 算法竞赛,C++,数据结构,计算机科学,个人博客
-author: Mistlane376
+author: Mistlane
 language: zh-CN
 timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://mistlane.cc.cd
+url: https://mistlane.top
 permalink: posts/:abbrlink/  # 此处可以自己设置，也可以直接使用 :abbrlink/
 permalink_defaults: 
 abbrlink:
@@ -67,6 +67,10 @@ index_generator:
   per_page: 10
   order_by: -date
 
+# This site does not expose an archive timeline.
+archive_generator:
+  enabled: false
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -100,6 +104,7 @@ ignore:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: butterfly
+
 
 # Feed
 feed:

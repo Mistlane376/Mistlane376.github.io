@@ -19,14 +19,11 @@ nav:
 
 menu:
   首页: / || fas fa-home
-  时间轴: /archives/ || fas fa-archive
-  分类: /categories/ || fas fa-folder-open
-  标签: /tags/ || fas fa-tags
+  归档: /archive/ || fas fa-box-archive
   相册: /album/ || fas fa-images
   探索 || fas fa-compass:
     追番: /bangumis/ || fas fa-play-circle
     友链: /link/ || fas fa-link
-    版本: /versions/ || fas fa-history
   关于: /about/ || fas fa-user
 
 # --------------------------------------
@@ -97,7 +94,7 @@ tag_per_img:
   生活: /images/selection1.jpg
 
 # 注意：这是单个分类页，不是分类总览页
-category_img: false
+category_img: true
 
 # 可以为每个分类单独设置横幅图片
 # 格式：
@@ -106,9 +103,11 @@ category_per_img:
   日常: /images/selection1.jpg
   教程: /images/selection1.jpg
   项目练习: /images/selection2.jpg
+  算法模板: /images/selection2.jpg
+  题解: /images/Bamboo.jpg
 
   # If set to false, no image will be shown
-footer_img: true
+footer_img: false
 
 # 网站背景
 # 可设为颜色值、图片 URL，或包含颜色/图片 URL 的数组
@@ -118,7 +117,7 @@ cover:
   # 是否启用封面图
   index_enable: true
   aside_enable: true
-  archives_enable: true
+  archives_enable: false
   # 当文章未设置封面时，显示的默认封面
   default_cover:  /images/selection1.jpg
     # - xxx.jpg
@@ -128,11 +127,6 @@ error_img:
   flink: /img/friend_404.gif
   post_page: /img/404.jpg
 # A simple 404 page
-error_404:
-  enable: false
-  subtitle: 'Page Not Found'
-  background: /img/error-page.png
-
 post_meta:
   # Home Page
   page:
@@ -171,9 +165,6 @@ subtitle:
   # Typewriter Effect
   effect: true
   loop: true
-  # Customize typed.js
-  # https://github.com/mattboldt/typed.js/#customization
-  typed_option:
   # Source - Call the third-party service API (Chinese only)
   # It will show the source first, then show the content of sub
   # Choose: false/1/2/3
@@ -237,26 +228,6 @@ post_copyright:
   license: CC BY-NC-SA 4.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
-# Sponsor/reward
-reward:
-  enable: false
-  text:
-  QR_code:
-    # - img: /img/wechat.jpg
-    #   link:
-    #   text: wechat
-    # - img: /img/alipay.jpg
-    #   link:
-    #   text: alipay
-
-# Post edit
-# Easily browse and edit blog source code online.
-post_edit:
-  enable: false
-  # url: https://github.com/user-name/repo-name/edit/branch-name/subdirectory-name/
-  # For example: https://github.com/jerryc127/butterfly.js.org/edit/main/source/
-  url:
-
 # Related Articles
 related_post:
   enable: true
@@ -271,18 +242,6 @@ related_post:
 # false: disable pagination
 post_pagination: 1
 
-# Displays outdated notice for a post
-noticeOutdate:
-  enable: false
-  # Style: simple / flat
-  style: flat
-  # When will it be shown
-  limit_day: 365
-  # Position: top / bottom
-  position: top
-  message_prev: It has been
-  message_next: days since the last update, the content of the article may be outdated.
-
 # --------------------------------------
 # Footer Settings
 # --------------------------------------
@@ -295,7 +254,26 @@ footer:
   copyright:
     enable: true
     version: true
-  custom_text:
+  custom_text: |
+    <div class="footer-main">
+      <section class="footer-intro" aria-label="站点信息">
+        <a class="footer-brand" href="/">Mistlane's Blog</a>
+        <p>记录代码、学习与日常中值得回看的片段。</p>
+      </section>
+      <nav class="footer-nav" aria-label="页脚导航">
+        <a href="/">首页</a>
+        <a href="/archive/">归档</a>
+        <a href="/about/">关于</a>
+      </nav>
+      <div class="footer-social" aria-label="社交链接">
+        <a href="https://github.com/Mistlane376" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://space.bilibili.com/1146476510" target="_blank" rel="noopener" title="B站" aria-label="B站"><i class="fas fa-play"></i></a>
+        <a href="/images/QQ.jpg" target="_blank" title="QQ" aria-label="QQ"><i class="fab fa-qq"></i></a>
+        <a href="/images/weixin.jpg" target="_blank" title="微信" aria-label="微信"><i class="fab fa-weixin"></i></a>
+        <a href="https://blog.csdn.net/ljl37" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN"><i class="fas fa-code"></i></a>
+      </div>
+      <a class="footer-record" href="https://icp.gov.moe/?keyword=20263737" target="_blank" rel="noopener">萌ICP备20263737号</a>
+    </div>
 
 # --------------------------------------
 # Aside Settings
@@ -319,7 +297,7 @@ aside:
     # 标签
     tag: true
     # 分类
-    category: true
+    category: false
     # 最近文章
     recent_posts: true
     # 文章目录
@@ -343,50 +321,7 @@ aside:
   # 公告卡片
   card_announcement:
     enable: true
-    content: 欢迎大家来到临涧路的精神小屋
-  card_recent_post:
-    enable: false
-    # If set 0 will show all
-    limit: 5
-    # Sort: date / updated
-    sort: date
-    sort_order:
-  card_newest_comments:
-    enable: false
-    sort_order:
-    limit: 6
-    # Unit: mins, save data to localStorage
-    storage: 10
-    avatar: true
-  card_categories:
-    enable: false
-    # If set 0 will show all
-    limit: 8
-    # Choose: none / true / false
-    expand: none
-    sort_order:
-  card_tags:
-    enable: false
-    # If set 0 will show all
-    limit: 40
-    color: false
-    custom_colors:
-    # Order of tags, random/name/length
-    orderby: random
-    # Sort of order. 1, asc for ascending; -1, desc for descending
-    order: 1
-    sort_order:
-  card_archives:
-    enable: false
-    # Type: monthly / yearly
-    type: monthly
-    # Eg: YYYY年MM月
-    format: MMMM YYYY
-    # Sort of order. 1, asc for ascending; -1, desc for descending
-    order: -1
-    # If set 0 will show all
-    limit: 8
-    sort_order:
+    content: 欢迎来到 Mistlane's Blog，愿这里的记录对你有所帮助。
   card_post_series:
     enable: true
     # The title shows the series name
@@ -403,7 +338,7 @@ aside:
     # Time difference between publish date and now
     # Formal: Month/Day/Year Time or Year/Month/Day Time
     # Leave it empty if you don't enable this feature
-    runtime_date:
+    runtime_date: 2026/04/11 18:00:00
 
 # --------------------------------------
 # Bottom right button
@@ -411,20 +346,6 @@ aside:
 
 # The distance between the bottom right button and the bottom (default unit: px)
 rightside_bottom:
-
-# Conversion between Traditional and Simplified Chinese
-translate:
-  enable: false
-  # The text of a button
-  default: 繁
-  # the language of website (1 - Traditional Chinese/ 2 - Simplified Chinese）
-  defaultEncoding: 2
-  # Time delay
-  translateDelay: 0
-  # The text of the button when the language is Simplified Chinese
-  msgToTraditionalChinese: '繁'
-  # The text of the button when the language is Traditional Chinese
-  msgToSimplifiedChinese: '簡'
 
 # Read Mode
 readmode: true
@@ -439,9 +360,6 @@ darkmode:
   # autoChangeMode: 2  Switch dark mode between 6 pm to 6 am
   # autoChangeMode: false
   autoChangeMode: 2
-  # Set the light mode time. The value is between 0 and 24. If not set, the default value is 6 and 18
-  start:
-  end:
 
 # Show scroll percent in scroll-to-top button
 rightside_scroll_percent: true
@@ -473,10 +391,6 @@ photofigcaption: false
 
 copy:
   enable: true
-  # Add the copyright information after copied content
-  copyright:
-    enable: false
-    limit_count: 150
 
 # Need to install the hexo-wordcount plugin
 wordcount:
@@ -490,8 +404,8 @@ wordcount:
 
 # Busuanzi count for PV / UV in site
 busuanzi:
-  site_uv: false
-  site_pv: false
+  site_uv: true
+  site_pv: true
   page_pv: false
 
 # --------------------------------------
@@ -514,10 +428,6 @@ math:
     # Choose: all / ams / none, This controls whether equations are numbered and how
     tags: none
 
-  katex:
-    # Enable the copy KaTeX formula
-    copy_tex: false
-
 # --------------------------------------
 # Search
 # --------------------------------------
@@ -526,53 +436,19 @@ search:
   # Choose: algolia_search / local_search / docsearch
   # leave it empty if you don't need search
   use: local_search
-  placeholder:
-
-  # Algolia Search
-  algolia_search:
-    # Number of search results per page
-    hitsPerPage: 6
-
   # Local Search
   local_search:
-    # Preload the search data when the page loads.
+    # Load the index when search is opened instead of fetching it on every page.
     preload: false
-    top_n_per_article: 1
+    # Surface more than one relevant context when an article contains several matches.
+    top_n_per_article: 2
     # Unescape html strings to the readable one.
-    unescape: false
+    unescape: true
     # Enable pagination for search results
     pagination:
-      enable: false
+      enable: true
       # Number of search results per page
       hitsPerPage: 8
-    CDN:
-
-  # Docsearch
-  # https://docsearch.algolia.com/
-  docsearch:
-    appId:
-    apiKey:
-    indexName:
-    option:
-
-# --------------------------------------
-# Share System
-# --------------------------------------
-
-share:
-  # Choose: sharejs / addtoany
-  # Leave it empty if you don't need share
-  use:
-
-  # Share.js
-  # https://github.com/overtrue/share.js
-  sharejs:
-    sites: facebook,x,wechat,weibo,qq
-
-  # AddToAny
-  # https://www.addtoany.com/
-  addtoany:
-    item: facebook,x,wechat,sina_weibo,facebook_messenger,email,copy_link
 
 # --------------------------------------
 # Comments System
@@ -581,7 +457,7 @@ share:
 comments:
   # Up to two comments system, the first will be shown as default
   # Leave it empty if you don't need comments
-  # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo/Giscus/Remark42/Artalk
+  # Comments are stored as GitHub Issues by Utterances; no Cloudflare service is required.
   # Format of two comments system : Disqus,Waline
   use: Utterances
   # Display the comment name next to the button
@@ -594,211 +470,15 @@ comments:
   # Display comment count in Home Page
   card_post_count: false
 
-# Disqus
-# https://disqus.com/
-disqus:
-  shortname:
-  # For newest comments widget
-  apikey:
-
-# Alternative Disqus - Render comments with Disqus API
-# https://github.com/SukkaW/DisqusJS
-disqusjs:
-  shortname:
-  apikey:
-  option:
-
-# Livere
-# https://www.livere.com/
-livere:
-  uid:
-
-# Gitalk
-# https://github.com/gitalk/gitalk
-gitalk:
-  client_id:
-  client_secret:
-  repo:
-  owner:
-  admin:
-  option:
-
-# Valine
-# https://valine.js.org
-valine:
-  appId:
-  appKey:
-  avatar: monsterid
-  # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
-  serverURLs:
-  bg:
-  # Use Valine visitor count as the page view count
-  visitor: false
-  option:
-
-# Waline - A simple comment system with backend support fork from Valine
-# https://waline.js.org/
-waline:
-  serverURL:
-  bg:
-  # Use Waline pageview count as the page view count
-  pageview: false
-  option:
-
 # Utterances
 # https://utteranc.es/
 utterances:
   repo: Mistlane376/Mistlane376.github.io
-  # Issue Mapping: pathname/url/title/og:title
+  # Each post is mapped to one GitHub Issue by its pathname.
   issue_term: pathname
   # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
   light_theme: github-light
   dark_theme: photon-dark
-  js:
-  option:
-
-# Facebook Comments Plugin
-# https://developers.facebook.com/docs/plugins/comments/
-facebook_comments:
-  app_id:
-  # optional
-  user_id:
-  pageSize: 10
-  # Choose: social / time / reverse_time
-  order_by: social
-  lang: en_US
-
-# Twikoo
-# https://github.com/imaegoo/twikoo
-twikoo:
-  envId:
-  region:
-  # Use Twikoo visitor count as the page view count
-  visitor: false
-  option:
-
-# Giscus
-# https://giscus.app/
-giscus:
-  repo:
-  repo_id:
-  category_id:
-  light_theme: light
-  dark_theme: dark
-  js:
-  option:
-
-# Remark42
-# https://remark42.com/docs/configuration/frontend/
-remark42:
-  host:
-  siteId:
-  option:
-
-# Artalk
-# https://artalk.js.org/guide/frontend/config.html
-artalk:
-  server:
-  site:
-  # Use Artalk visitor count as the page view count
-  visitor: false
-  option:
-
-# --------------------------------------
-# Chat Services
-# --------------------------------------
-
-chat:
-  # Choose: chatra/tidio/crisp
-  # Leave it empty if you don't need chat
-  use:
-  # Chat Button [recommend]
-  # It will create a button in the bottom right corner of website, and hide the origin button
-  rightside_button: false
-  # The origin chat button is displayed when scrolling up, and the button is hidden when scrolling down
-  button_hide_show: false
-
-# https://chatra.io/
-chatra:
-  id:
-
-# https://www.tidio.com/
-tidio:
-  public_key:
-
-# https://crisp.chat/en/
-crisp:
-  website_id:
-
-# --------------------------------------
-# Analysis
-# --------------------------------------
-
-# https://tongji.baidu.com/web/welcome/login
-baidu_analytics:
-
-# https://analytics.google.com/analytics/web/
-google_analytics:
-
-# https://www.cloudflare.com/zh-tw/web-analytics/
-cloudflare_analytics:
-
-# https://clarity.microsoft.com/
-microsoft_clarity:
-
-# https://umami.is/
-umami_analytics:
-  enable: false
-  # For self-hosted setups, configure the hostname of the Umami instance
-  serverURL:
-  script_name: script.js
-  website_id:
-  option:
-  UV_PV:
-    site_uv: false
-    site_pv: false
-    page_pv: false
-    # Umami Cloud (API key) / self-hosted Umami (token)
-    token:
-
-# https://www.googletagmanager.com/
-google_tag_manager:
-  tag_id:
-  # optional
-  domain:
-
-# --------------------------------------
-# Advertisement
-# --------------------------------------
-
-# Google Adsense
-google_adsense:
-  enable: false
-  auto_ads: true
-  js: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
-  client:
-  enable_page_level_ads: true
-
-# Insert ads manually
-# Leave it empty if you don't need ads
-ad:
-  # Insert ads in the index (every three posts)
-  index:
-  # Insert ads in aside
-  aside:
-  # Insert ads in the post (before pagination)
-  post:
-
-# --------------------------------------
-# Verification
-# --------------------------------------
-
-site_verification:
-  # - name: google-site-verification
-  #   content: xxxxxx
-  # - name: baidu-site-verification
-  #   content: xxxxxxx
-
 # --------------------------------------
 # Beautify / Effect
 # --------------------------------------
@@ -841,31 +521,11 @@ mask:
   header: true
   footer: false
 
-# Loading Animation
-preloader:
-  enable: false
-  # source
-  # 1. fullpage-loading
-  # 2. pace (progress bar)
-  source: 1
-  # pace theme (see https://codebyzach.github.io/pace/)
-  pace_css_url:
-
 # Page Transition
 enter_transitions: true
 
 # Default display mode - light (default) / dark
 display_mode: light
-
-# Configuration for beautifying the content of the article
-beautify:
-  enable: false
-  # Specify the field to beautify (site or post)
-  field: post
-  # Specify the icon to be used as a prefix for the title, such as '\f0c1'
-  title_prefix_icon:
-  # Specify the color of the title prefix icon, such as '#F47466'
-  title_prefix_icon_color:
 
 # Global font settings
 # Don't modify the following settings unless you know how they work
@@ -887,98 +547,9 @@ hr_icon:
   icon:
   icon_top:
 
-# Typewriter Effect
-# https://github.com/disjukr/activate-power-mode
-activate_power_mode:
-  enable: false
-  colorful: true
-  shake: true
-  mobile: false
-
-# Background effects
-# --------------------------------------
-
-# canvas_ribbon
-# See: https://github.com/hustcc/ribbon.js
-canvas_ribbon:
-  enable: false
-  # The size of ribbon
-  size: 150
-  # The opacity of ribbon (0 ~ 1)
-  alpha: 0.6
-  zIndex: -1
-  click_to_change: false
-  mobile: false
-
-# Fluttering Ribbon
-canvas_fluttering_ribbon:
-  enable: false
-  mobile: false
-
-# canvas_nest
-# https://github.com/hustcc/canvas-nest.js
-canvas_nest:
-  enable: false
-  # Color of lines, default: '0,0,0'; RGB values: (R,G,B).(note: use ',' to separate.)
-  color: '0,0,255'
-  # The opacity of line (0~1)
-  opacity: 0.7
-  # The z-index property of the background
-  zIndex: -1
-  # The number of lines
-  count: 99
-  mobile: false
-
-# Mouse click effects: fireworks
-fireworks:
-  enable: false
-  zIndex: 9999
-  mobile: false
-
-# Mouse click effects: Heart symbol
-click_heart:
-  enable: false
-  mobile: false
-
-# Mouse click effects: words
-clickShowText:
-  enable: false
-  text:
-    # - I
-    # - LOVE
-    # - YOU
-  fontSize: 15px
-  random: false
-  mobile: false
-
-# --------------------------------------
-# Lightbox Settings
-# --------------------------------------
-
-# Choose: fancybox / medium_zoom
-# https://github.com/francoischalifour/medium-zoom
-# https://fancyapps.com/fancybox/
-# Leave it empty if you don't need lightbox
-lightbox:
-
 # --------------------------------------
 # Tag Plugins settings
 # --------------------------------------
-
-# Series
-series:
-  enable: false
-  # Order by title or date
-  orderBy: 'title'
-  # Sort of order. 1, asc for ascending; -1, desc for descending
-  order: 1
-  number: true
-
-# ABCJS - The ABC Music Notation Plugin
-# https://github.com/paulrosen/abcjs
-abcjs:
-  enable: false
-  per_page: true
 
 # Mermaid
 # https://github.com/mermaid-js/mermaid
@@ -994,25 +565,6 @@ mermaid:
   open_in_new_tab: true
   # Enable zoom and pan interactions on diagrams
   zoom_pan: true
-
-# chartjs
-# see https://www.chartjs.org/docs/latest/
-chartjs:
-  enable: false
-  # Do not modify unless you understand how they work.
-  # The default settings are only used when the MD syntax is not specified.
-  # General font color for the chart
-  fontColor:
-    light: 'rgba(0, 0, 0, 0.8)'
-    dark: 'rgba(255, 255, 255, 0.8)'
-  # General border color for the chart
-  borderColor:
-    light: 'rgba(0, 0, 0, 0.1)'
-    dark: 'rgba(255, 255, 255, 0.2)'
-  # Background color for scale labels on radar and polar area charts
-  scale_ticks_backdropColor:
-    light: 'transparent'
-    dark: 'transparent'
 
 # Note - Bootstrap Callout
 note:
@@ -1032,27 +584,6 @@ note:
 # Other Settings
 # --------------------------------------
 
-# https://github.com/MoOx/pjax
-pjax:
-  enable: true
-  # Exclude the specified pages from pjax, such as '/music/'
-  exclude:
-    # - /xxxxxx/
-
-# Snackbar - Toast Notification
-# https://github.com/polonel/SnackBar
-# position: top-left / top-center / top-right / bottom-left / bottom-center / bottom-right
-snackbar:
-  enable: false
-  position: bottom-left
-  # The background color of Toast Notification in light mode and dark mode
-  bg_light: '#49b1f5'
-  bg_dark: '#1f1f1f'
-
-# Instant.page
-# https://instant.page/
-instantpage: false
-
 # Lazyload
 # https://github.com/verlok/vanilla-lazyload
 lazyload:
@@ -1064,24 +595,13 @@ lazyload:
   placeholder:
   blur: true
 
-# PWA
-# See https://github.com/JLHwung/hexo-offline
-# ---------------
-pwa:
-  enable: false
-  manifest:
-  apple_touch_icon:
-  favicon_32_32:
-  favicon_16_16:
-  mask_icon:
-
 # Open graph meta tags
 # https://hexo.io/docs/helpers#open-graph
 Open_Graph_meta:
   enable: true
   option:
-    # twitter_card:
-    # twitter_image:
+    twitter_card: summary_large_image
+    twitter_image: /images/selection1.jpg
     # twitter_id:
     # twitter_site:
     # google_plus:
@@ -1094,7 +614,7 @@ structured_data:
   enable: true
   # Alternate name for the site, used in structured data
   # Format: ['name1', 'name2']
-  alternate_name: ['临涧路的精神小屋', 'Mistlane376']
+  alternate_name: ['Mistlane', '临涧路 · 林间露']
 
 # Add the vendor prefixes to ensure compatibility
 css_prefix: true
@@ -1105,19 +625,21 @@ inject:
   head:
     - <style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style>
     # 个人卡片美化样式
-    - <link rel="stylesheet" href="/css/author-card.css">
     # 关于页面信封样式
-    - <link rel="stylesheet" href="/css/about-envelope.css">
     # 全局样式增强
     - <link rel="stylesheet" href="/css/global.css">
     # Markdown 样式美化
     - <link rel="stylesheet" href="/css/markdown.css">
     # 全站页面与功能页视觉统一
     - <link rel="stylesheet" href="/css/site-polish.css">
+    # 访客所在地欢迎卡片
+    - <link rel="stylesheet" href="/css/visitor-welcome.css">
+    # Comments use the theme's built-in Utterances integration.
     # 相册页面
-    - <link rel="stylesheet" href="/css/album.css">
   bottom:
-    - <script defer src="/js/album.js"></script>
+    - <script defer src="/js/petals.js"></script>
+    - <script defer src="/js/visitor-welcome.js"></script>
+    - <script defer src="/js/search-performance.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
