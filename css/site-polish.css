@@ -1261,6 +1261,22 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
 #aside-content .card-info .site-data a:hover { background: transparent; box-shadow: none; transform: none; }
 #aside-content .card-info .site-data .headline { color: var(--ui-faint); font-size: 0.64rem; letter-spacing: 0.04em; }
 #aside-content .card-info .site-data .length-num { color: var(--ui-heading); font-size: 1.05rem; }
+#aside-content .card-info .site-data strong { padding: 0; background: transparent; color: inherit; }
+#sidebar .site-data > a,
+#sidebar .site-data > a:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none;
+}
+#sidebar .site-data .length-num {
+  padding: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.28);
+}
+#sidebar .site-data .headline {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
 #aside-content .card-info #card-info-btn { width: 100%; min-height: 38px; margin: 0; padding: 0 14px; border: 1px solid var(--ui-teal); border-radius: 5px !important; background: var(--ui-teal); font-size: 0.82rem; line-height: 36px; }
 #aside-content .card-info #card-info-btn::before { display: none; }
 #aside-content .card-info-social-icons { gap: 5px; padding: 14px 0 0; }
@@ -1845,6 +1861,8 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
 
 .type-categories .category-card-title {
   margin-top: 6px;
+  padding: 0 !important;
+  background: transparent !important;
   color: var(--ui-heading);
   font-size: 1.28rem;
   font-weight: 760;

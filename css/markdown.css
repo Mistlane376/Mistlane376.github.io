@@ -336,7 +336,9 @@
 
 #post #article-container img:not(.emoji) {
   display: block;
+  width: auto;
   max-width: 100%;
+  max-height: min(68vh, 640px);
   height: auto;
   margin: 1.7em auto;
   border: 1px solid var(--ui-border, rgba(31, 41, 51, 0.11));
@@ -444,5 +446,10 @@
 
   #post #article-container blockquote {
     padding: 0.85em 1em;
+  }
+
+  #post #article-container img:not(.emoji) {
+    max-height: 60vh;
+    margin: 1.35em auto;
   }
 }

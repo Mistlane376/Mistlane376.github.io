@@ -542,7 +542,7 @@ i {
 [data-theme='dark'] strong,
 [data-theme='dark'] b {
   color: #f5f0e1;
-  background: rgba(234, 179, 8, 0.15);
+  background: transparent;
 }
 
 [data-theme='dark'] ::selection {
@@ -646,7 +646,7 @@ i {
 
   [data-theme='dark'] strong,
   [data-theme='dark'] b {
-    background: rgba(234, 179, 8, 0.08);
+    background: transparent;
   }
 
   [data-theme='dark'] .toc {
@@ -715,8 +715,8 @@ i {
 
   [data-theme='dark'] strong,
   [data-theme='dark'] b {
-    background: rgba(234, 179, 8, 0.12);
-    padding: 1px 4px;
+    padding: 0;
+    background: transparent;
   }
 
   [data-theme='dark'] pre {
