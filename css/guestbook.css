@@ -1,0 +1,203 @@
+/* Guestbook: a page-specific layer on top of the site's custom visual system. */
+.type-guestbook #page {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.type-guestbook #article-container {
+  max-width: none;
+}
+
+.type-guestbook .guestbook-intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 250px;
+  overflow: hidden;
+  padding: 40px 48px;
+  border: 1px solid rgba(81, 139, 151, 0.32);
+  border-radius: 8px;
+  background:
+    linear-gradient(105deg, rgba(17, 49, 61, 0.96), rgba(28, 91, 96, 0.82)),
+    url('/images/selection1.jpg') center / cover;
+  box-shadow: 0 16px 36px rgba(21, 62, 72, 0.16);
+  color: #fff;
+}
+
+.type-guestbook .guestbook-intro::after {
+  position: absolute;
+  top: -82px;
+  right: 8%;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(234, 249, 247, 0.25);
+  border-radius: 50%;
+  box-shadow: -48px 64px 0 -1px rgba(234, 249, 247, 0.13);
+  content: '';
+}
+
+.type-guestbook .guestbook-intro-copy,
+.type-guestbook .guestbook-stamp {
+  position: relative;
+  z-index: 1;
+}
+
+.type-guestbook .guestbook-kicker,
+.type-guestbook .guestbook-message > div > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #b8f2e9;
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.type-guestbook .guestbook-intro h1 {
+  margin: 13px 0 9px;
+  border: 0;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1.12;
+}
+
+.type-guestbook .guestbook-intro p {
+  max-width: 540px;
+  margin: 0;
+  color: rgba(245, 255, 254, 0.9);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.type-guestbook .guestbook-stamp {
+  display: grid;
+  width: 116px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(240, 255, 251, 0.5);
+  border-radius: 50%;
+  background: rgba(9, 36, 41, 0.26);
+  color: #e4fcf8;
+  transform: rotate(10deg);
+}
+
+.type-guestbook .guestbook-stamp i {
+  font-size: 1.5rem;
+}
+
+.type-guestbook .guestbook-stamp span {
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.type-guestbook .guestbook-guidelines {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0 42px;
+}
+
+.type-guestbook .guestbook-guidelines > div {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 2px 10px;
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid var(--ui-border);
+  border-radius: 8px;
+  background: var(--ui-surface);
+}
+
+.type-guestbook .guestbook-guidelines i {
+  grid-row: span 2;
+  padding-top: 2px;
+  color: var(--ui-teal);
+}
+
+.type-guestbook .guestbook-guidelines strong {
+  color: var(--ui-heading);
+  font-size: 0.92rem;
+}
+
+.type-guestbook .guestbook-guidelines span {
+  color: var(--ui-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.type-guestbook .guestbook-message {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 0 0 18px;
+  padding: 0 2px 18px;
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.type-guestbook .guestbook-message h2 {
+  margin: 5px 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--ui-heading);
+  font-size: 1.55rem;
+}
+
+.type-guestbook .guestbook-message p {
+  max-width: 380px;
+  margin: 0;
+  color: var(--ui-muted);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.type-guestbook #post-comment {
+  margin-top: 0;
+}
+
+.type-guestbook #post-comment .comment-headline span {
+  font-size: 0;
+}
+
+.type-guestbook #post-comment .comment-headline span::after {
+  content: '全部留言';
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .type-guestbook #page {
+    padding: 0 14px;
+  }
+
+  .type-guestbook .guestbook-intro {
+    display: block;
+    min-height: 0;
+    padding: 32px 24px 26px;
+  }
+
+  .type-guestbook .guestbook-intro h1 {
+    font-size: 2.35rem;
+  }
+
+  .type-guestbook .guestbook-stamp {
+    width: 84px;
+    margin-top: 24px;
+  }
+
+  .type-guestbook .guestbook-guidelines {
+    grid-template-columns: 1fr;
+    margin: 16px 0 32px;
+  }
+
+  .type-guestbook .guestbook-message {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .type-guestbook .guestbook-message p {
+    margin-top: 12px;
+  }
+}
