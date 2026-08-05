@@ -212,28 +212,593 @@
   pageType: 'post'
 }</script><link rel="stylesheet" href="/css/markdown.css"><link rel="stylesheet" href="/css/site-polish.css"><link rel="stylesheet" href="/css/guestbook.css"><link rel="stylesheet" href="/css/visitor-welcome.css"><link rel="stylesheet" href="/css/comments.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Mistlane's Blog" type="application/atom+xml">
   <link data-page-assets="true" rel="stylesheet" href="/css/comments.css">
-</head><body><div class="bg-animation" id="web_bg" style="background-color: #f2f5f4;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/selection4.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">LaTeX 数学公式指南</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX 数学公式指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-05T13:21:26.000Z" title="发表于 2026-08-05 21:21:26">2026-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-05T13:21:26.000Z" title="更新于 2026-08-05 21:21:26">2026-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>下面是一份<strong>完整的 LaTeX 数学公式指南</strong>（Markdown 格式），专为 Typora 等支持 MathJax&#x2F;KaTeX 的编辑器编写。你可以直接复制保存为 <code>.md</code> 文件，在 Typora 中打开即可看到渲染效果（请确保开启了“内联公式”支持）。</p>
+</head><body><div class="bg-animation" id="web_bg" style="background-color: #f2f5f4;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/selection4.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">LaTeX 数学公式指南</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">LaTeX 数学公式指南</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-08-05T13:21:26.000Z" title="发表于 2026-08-05 21:21:26">2026-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-08-05T13:21:26.000Z" title="更新于 2026-08-05 21:21:26">2026-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%99%E7%A8%8B/">教程</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>下面是一份<strong>完整的 LaTeX 数学公式指南</strong>（Markdown 格式），专为 Typora 等支持 MathJax&#x2F;KaTeX 的编辑器编写。你可以直接复制保存为 <code>.md</code> 文件，在 Typora 中打开即可看到渲染效果（请确保开启了“内联公式”支持）。</p>
 <hr>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># LaTeX 数学公式速查指南（Typora 版）</span></span><br><span class="line"></span><br><span class="line"><span class="quote">&gt; 本指南适用于 Typora、Obsidian、Jupyter Notebook、知乎等支持 LaTeX 数学渲染的环境。  </span></span><br><span class="line"><span class="quote">&gt; <span class="strong">**Typora 设置**</span>：`偏好设置 → Markdown → 勾选“内联公式”`。</span></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line"><span class="section">## 1. 基础语法</span></span><br><span class="line"></span><br><span class="line">| 功能 | LaTeX 代码 | 渲染效果 |</span><br><span class="line">| :--- | :--- | :--- |</span><br><span class="line">| 上标 | <span class="code">`x^2`</span> 或 <span class="code">`x^&#123;a+b&#125;`</span> | \(x^2\)，\(x^&#123;a+b&#125;\) |</span><br><span class="line">| 下标 | <span class="code">`x_2`</span> 或 <span class="code">`x_&#123;a+b&#125;`</span> | \(x<span class="emphasis">_2\)，\(x_</span>&#123;a+b&#125;\) |</span><br><span class="line">| 上下标结合 | <span class="code">`x_1^2`</span> 或 <span class="code">`x_&#123;ij&#125;^&#123;2k&#125;`</span> | \(x<span class="emphasis">_1^2\) |</span></span><br><span class="line"><span class="emphasis">| 分数 | `\frac&#123;分子&#125;&#123;分母&#125;` | \(\frac&#123;a&#125;&#123;b&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 平方根 | `\sqrt&#123;x&#125;` | \(\sqrt&#123;x&#125;\) |</span></span><br><span class="line"><span class="emphasis">| n 次方根 | `\sqrt[n]&#123;x&#125;` | \(\sqrt[n]&#123;x&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 绝对值 | `\lvert x \rvert` | \(\lvert x \rvert\) |</span></span><br><span class="line"><span class="emphasis">| 组合数 | `\binom&#123;n&#125;&#123;k&#125;` | \(\binom&#123;n&#125;&#123;k&#125;\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 2. 希腊字母</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 小写 | 代码 | 大写 | 代码 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| \(\alpha\) | `\alpha` | \(A\) | `A` |</span></span><br><span class="line"><span class="emphasis">| \(\beta\) | `\beta` | \(B\) | `B` |</span></span><br><span class="line"><span class="emphasis">| \(\gamma\) | `\gamma` | \(\Gamma\) | `\Gamma` |</span></span><br><span class="line"><span class="emphasis">| \(\delta\) | `\delta` | \(\Delta\) | `\Delta` |</span></span><br><span class="line"><span class="emphasis">| \(\epsilon\) | `\epsilon` | \(E\) | `E` |</span></span><br><span class="line"><span class="emphasis">| \(\zeta\) | `\zeta` | \(Z\) | `Z` |</span></span><br><span class="line"><span class="emphasis">| \(\eta\) | `\eta` | \(H\) | `H` |</span></span><br><span class="line"><span class="emphasis">| \(\theta\) | `\theta` | \(\Theta\) | `\Theta` |</span></span><br><span class="line"><span class="emphasis">| \(\iota\) | `\iota` | \(I\) | `I` |</span></span><br><span class="line"><span class="emphasis">| \(\kappa\) | `\kappa` | \(K\) | `K` |</span></span><br><span class="line"><span class="emphasis">| \(\lambda\) | `\lambda` | \(\Lambda\) | `\Lambda` |</span></span><br><span class="line"><span class="emphasis">| \(\mu\) | `\mu` | \(M\) | `M` |</span></span><br><span class="line"><span class="emphasis">| \(\nu\) | `\nu` | \(N\) | `N` |</span></span><br><span class="line"><span class="emphasis">| \(\xi\) | `\xi` | \(\Xi\) | `\Xi` |</span></span><br><span class="line"><span class="emphasis">| \(\omicron\) | `\omicron` | \(O\) | `O` |</span></span><br><span class="line"><span class="emphasis">| \(\pi\) | `\pi` | \(\Pi\) | `\Pi` |</span></span><br><span class="line"><span class="emphasis">| \(\rho\) | `\rho` | \(P\) | `P` |</span></span><br><span class="line"><span class="emphasis">| \(\sigma\) | `\sigma` | \(\Sigma\) | `\Sigma` |</span></span><br><span class="line"><span class="emphasis">| \(\tau\) | `\tau` | \(T\) | `T` |</span></span><br><span class="line"><span class="emphasis">| \(\upsilon\) | `\upsilon` | \(\Upsilon\) | `\Upsilon` |</span></span><br><span class="line"><span class="emphasis">| \(\phi\) | `\phi` | \(\Phi\) | `\Phi` |</span></span><br><span class="line"><span class="emphasis">| \(\chi\) | `\chi` | \(X\) | `X` |</span></span><br><span class="line"><span class="emphasis">| \(\psi\) | `\psi` | \(\Psi\) | `\Psi` |</span></span><br><span class="line"><span class="emphasis">| \(\omega\) | `\omega` | \(\Omega\) | `\Omega` |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 3. 二元运算符</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 功能 | 代码 | 效果 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| 加 | `+` | \(+\) |</span></span><br><span class="line"><span class="emphasis">| 减 | `-` | \(-\) |</span></span><br><span class="line"><span class="emphasis">| 乘（点） | `\cdot` | \(\cdot\) |</span></span><br><span class="line"><span class="emphasis">| 乘（叉） | `\times` | \(\times\) |</span></span><br><span class="line"><span class="emphasis">| 除 | `\div` | \(\div\) |</span></span><br><span class="line"><span class="emphasis">| 正负 / 负正 | `\pm` / `\mp` | \(\pm\) / \(\mp\) |</span></span><br><span class="line"><span class="emphasis">| 圆点（向量点乘） | `\bullet` | \(\bullet\) |</span></span><br><span class="line"><span class="emphasis">| 星号（卷积） | `\ast` | \(\ast\) |</span></span><br><span class="line"><span class="emphasis">| 圈加（异或） | `\oplus` | \(\oplus\) |</span></span><br><span class="line"><span class="emphasis">| 圈乘（同或/张量） | `\otimes` | \(\otimes\) |</span></span><br><span class="line"><span class="emphasis">| 圈点 | `\odot` | \(\odot\) |</span></span><br><span class="line"><span class="emphasis">| 模运算 | `a \bmod b` | \(a \bmod b\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 4. 关系运算符</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 功能 | 代码 | 效果 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| 等于 | `=` | \(=\) |</span></span><br><span class="line"><span class="emphasis">| 不等于 | `\neq` 或 `\ne` | \(\neq\) |</span></span><br><span class="line"><span class="emphasis">| 约等于 | `\approx` | \(\approx\) |</span></span><br><span class="line"><span class="emphasis">| 大于等于 | `\geq` 或 `\ge` | \(\geq\) |</span></span><br><span class="line"><span class="emphasis">| 小于等于 | `\leq` 或 `\le` | \(\leq\) |</span></span><br><span class="line"><span class="emphasis">| 远大于/远小于 | `\gg` / `\ll` | \(\gg\) / \(\ll\) |</span></span><br><span class="line"><span class="emphasis">| 恒等于 | `\equiv` | \(\equiv\) |</span></span><br><span class="line"><span class="emphasis">| 相似 | `\sim` | \(\sim\) |</span></span><br><span class="line"><span class="emphasis">| 近似 | `\simeq` | \(\simeq\) |</span></span><br><span class="line"><span class="emphasis">| 正比于 | `\propto` | \(\propto\) |</span></span><br><span class="line"><span class="emphasis">| 属于 | `\in` | \(\in\) |</span></span><br><span class="line"><span class="emphasis">| 不属于 | `\notin` | \(\notin\) |</span></span><br><span class="line"><span class="emphasis">| 包含（反向属于） | `\ni` 或 `\owns` | \(\ni\) |</span></span><br><span class="line"><span class="emphasis">| 子集 | `\subset` | \(\subset\) |</span></span><br><span class="line"><span class="emphasis">| 子集或等 | `\subseteq` | \(\subseteq\) |</span></span><br><span class="line"><span class="emphasis">| 真子集 | `\subsetneq` | \(\subsetneq\) |</span></span><br><span class="line"><span class="emphasis">| 超集 | `\supset` | \(\supset\) |</span></span><br><span class="line"><span class="emphasis">| 超集或等 | `\supseteq` | \(\supseteq\) |</span></span><br><span class="line"><span class="emphasis">| 并集 | `\cup` | \(\cup\) |</span></span><br><span class="line"><span class="emphasis">| 交集 | `\cap` | \(\cap\) |</span></span><br><span class="line"><span class="emphasis">| 空集 | `\varnothing` 或 `\emptyset` | \(\varnothing\) |</span></span><br><span class="line"><span class="emphasis">| 全称量词 | `\forall` | \(\forall\) |</span></span><br><span class="line"><span class="emphasis">| 存在量词 | `\exists` | \(\exists\) |</span></span><br><span class="line"><span class="emphasis">| 不存在 | `\nexists` | \(\nexists\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 5. 大型运算符</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 功能 | 代码 | 效果 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| 求和（行内） | `\sum_</span>&#123;i=1&#125;^&#123;n&#125; a<span class="emphasis">_i` | \(\sum_</span>&#123;i=1&#125;^&#123;n&#125; a<span class="emphasis">_i\) |</span></span><br><span class="line"><span class="emphasis">| 求和（独立公式） | `$$\sum_</span>&#123;i=1&#125;^&#123;n&#125; a<span class="emphasis">_i$$` | 居中显示，上下标更大 |</span></span><br><span class="line"><span class="emphasis">| 累乘 | `\prod_</span>&#123;i=1&#125;^&#123;n&#125; a<span class="emphasis">_i` | \(\prod_</span>&#123;i=1&#125;^&#123;n&#125; a<span class="emphasis">_i\) |</span></span><br><span class="line"><span class="emphasis">| 积分 | `\int_</span>&#123;a&#125;^&#123;b&#125; f(x) dx` | \(\int<span class="emphasis">_&#123;a&#125;^&#123;b&#125; f(x) dx\) |</span></span><br><span class="line"><span class="emphasis">| 二重积分 | `\iint` | \(\iint\) |</span></span><br><span class="line"><span class="emphasis">| 三重积分 | `\iiint` | \(\iiint\) |</span></span><br><span class="line"><span class="emphasis">| 曲线积分 | `\oint` | \(\oint\) |</span></span><br><span class="line"><span class="emphasis">| 极限 | `\lim_</span>&#123;x \to \infty&#125; f(x)` | \(\lim<span class="emphasis">_&#123;x \to \infty&#125; f(x)\) |</span></span><br><span class="line"><span class="emphasis">| 批量异或（大运算符） | `\bigoplus_</span>&#123;i=1&#125;^&#123;n&#125; A<span class="emphasis">_i` | \(\bigoplus_</span>&#123;i=1&#125;^&#123;n&#125; A<span class="emphasis">_i\) |</span></span><br><span class="line"><span class="emphasis">| 批量交集/并集 | `\bigcap` / `\bigcup` | \(\bigcap\) / \(\bigcup\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">&gt; <span class="strong">**提示**</span>：在独立公式（`$$...$$`）中，上下标会自动放在求和/积分符号的正上方/正下方；行内公式中默认放在右侧。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 6. 括号与定界符（自动缩放）</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 普通写法（不缩放） | 自动缩放写法 | 效果 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| `(\frac&#123;a&#125;&#123;b&#125;)` | `\left( \frac&#123;a&#125;&#123;b&#125; \right)` | \(\left( \frac&#123;a&#125;&#123;b&#125; \right)\) |</span></span><br><span class="line"><span class="emphasis">| `[\frac&#123;a&#125;&#123;b&#125;]` | `\left[ \frac&#123;a&#125;&#123;b&#125; \right]` | \(\left[ \frac&#123;a&#125;&#123;b&#125; \right]\) |</span></span><br><span class="line"><span class="emphasis">| `\&#123;\frac&#123;a&#125;&#123;b&#125;\&#125;` | `\left\&#123; \frac&#123;a&#125;&#123;b&#125; \right\&#125;` | \(\left\&#123; \frac&#123;a&#125;&#123;b&#125; \right\&#125;\) |</span></span><br><span class="line"><span class="emphasis">| `\lvert x \rvert` | 本身已定界 | \(\lvert x \rvert\) |</span></span><br><span class="line"><span class="emphasis">| 上取整 | `\left\lceil x \right\rceil` | \(\left\lceil x \right\rceil\) |</span></span><br><span class="line"><span class="emphasis">| 下取整 | `\left\lfloor x \right\rfloor` | \(\left\lfloor x \right\rfloor\) |</span></span><br><span class="line"><span class="emphasis">| 尖括号 | `\left\langle x \right\rangle` | \(\left\langle x \right\rangle\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">&gt; 如果只需要一个定界符，可以用 `\left.` 或 `\right.` 作为占位符（不显示）。  </span></span><br><span class="line"><span class="emphasis">&gt; 例：`\left. \frac&#123;dy&#125;&#123;dx&#125; \right|_</span>&#123;x=0&#125;` → \(\left. \frac&#123;dy&#125;&#123;dx&#125; \right|<span class="emphasis">_&#123;x=0&#125;\)</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 7. 矩阵</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">使用 `\begin&#123;matrix&#125; ... \end&#123;matrix&#125;`，`&amp;` 分隔列，`\\` 分隔行。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">| 类型 | 代码 | 效果 |</span></span><br><span class="line"><span class="emphasis">| :--- | :--- | :--- |</span></span><br><span class="line"><span class="emphasis">| 无括号 | `\begin&#123;matrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;matrix&#125;` | \(\begin&#123;matrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;matrix&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 圆括号 | `\begin&#123;pmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;pmatrix&#125;` | \(\begin&#123;pmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;pmatrix&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 方括号 | `\begin&#123;bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;bmatrix&#125;` | \(\begin&#123;bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;bmatrix&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 花括号 | `\begin&#123;Bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Bmatrix&#125;` | \(\begin&#123;Bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Bmatrix&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 竖线（行列式） | `\begin&#123;vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;vmatrix&#125;` | \(\begin&#123;vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;vmatrix&#125;\) |</span></span><br><span class="line"><span class="emphasis">| 双竖线（范数） | `\begin&#123;Vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Vmatrix&#125;` | \(\begin&#123;Vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Vmatrix&#125;\) |</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">&gt; 矩阵中可以插入省略号：`\cdots`（横向）、`\vdots`（竖向）、`\ddots`（对角线）。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">---</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">## 8. 多行公式（对齐）</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">使用 `\begin&#123;aligned&#125; ... \end&#123;aligned&#125;` 环境，用 `&amp;` 标记对齐位置，`\\` 换行。</span></span><br><span class="line"><span class="emphasis"></span></span><br><span class="line"><span class="emphasis">```latex</span></span><br><span class="line"><span class="emphasis">\begin&#123;aligned&#125;</span></span><br><span class="line"><span class="emphasis">f(x) &amp; = (a+b)^2 \\</span></span><br><span class="line"><span class="emphasis">     &amp; = a^2 + 2ab + b^2</span></span><br><span class="line"><span class="emphasis">\end&#123;aligned&#125;</span></span><br></pre></td></tr></table></figure>
+<h1 id="LaTeX-数学公式速查指南（Typora-版）"><a href="#LaTeX-数学公式速查指南（Typora-版）" class="headerlink" title="LaTeX 数学公式速查指南（Typora 版）"></a>LaTeX 数学公式速查指南（Typora 版）</h1><blockquote>
+<p>本指南适用于 Typora、Obsidian、Jupyter Notebook、知乎等支持 LaTeX 数学渲染的环境。<br><strong>Typora 设置</strong>：<code>偏好设置 → Markdown → 勾选“内联公式”</code>。</p>
+</blockquote>
+<hr>
+<h2 id="1-基础语法"><a href="#1-基础语法" class="headerlink" title="1. 基础语法"></a>1. 基础语法</h2><table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">LaTeX 代码</th>
+<th align="left">渲染效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">上标</td>
+<td align="left"><code>x^2</code> 或 <code>x^&#123;a+b&#125;</code></td>
+<td align="left">$x^2$，$x^{a+b}$</td>
+</tr>
+<tr>
+<td align="left">下标</td>
+<td align="left"><code>x_2</code> 或 <code>x_&#123;a+b&#125;</code></td>
+<td align="left">$x_2$，$x_{a+b}$</td>
+</tr>
+<tr>
+<td align="left">上下标结合</td>
+<td align="left"><code>x_1^2</code> 或 <code>x_&#123;ij&#125;^&#123;2k&#125;</code></td>
+<td align="left">$x_1^2$</td>
+</tr>
+<tr>
+<td align="left">分数</td>
+<td align="left"><code>\frac&#123;分子&#125;&#123;分母&#125;</code></td>
+<td align="left">$\frac{a}{b}$</td>
+</tr>
+<tr>
+<td align="left">平方根</td>
+<td align="left"><code>\sqrt&#123;x&#125;</code></td>
+<td align="left">$\sqrt{x}$</td>
+</tr>
+<tr>
+<td align="left">n 次方根</td>
+<td align="left"><code>\sqrt[n]&#123;x&#125;</code></td>
+<td align="left">$\sqrt[n]{x}$</td>
+</tr>
+<tr>
+<td align="left">绝对值</td>
+<td align="left"><code>\lvert x \rvert</code></td>
+<td align="left">$\lvert x \rvert$</td>
+</tr>
+<tr>
+<td align="left">组合数</td>
+<td align="left"><code>\binom&#123;n&#125;&#123;k&#125;</code></td>
+<td align="left">$\binom{n}{k}$</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="2-希腊字母"><a href="#2-希腊字母" class="headerlink" title="2. 希腊字母"></a>2. 希腊字母</h2><table>
+<thead>
+<tr>
+<th align="left">小写</th>
+<th align="left">代码</th>
+<th align="left">大写</th>
+<th align="left">代码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">$\alpha$</td>
+<td align="left"><code>\alpha</code></td>
+<td align="left">$A$</td>
+<td align="left"><code>A</code></td>
+</tr>
+<tr>
+<td align="left">$\beta$</td>
+<td align="left"><code>\beta</code></td>
+<td align="left">$B$</td>
+<td align="left"><code>B</code></td>
+</tr>
+<tr>
+<td align="left">$\gamma$</td>
+<td align="left"><code>\gamma</code></td>
+<td align="left">$\Gamma$</td>
+<td align="left"><code>\Gamma</code></td>
+</tr>
+<tr>
+<td align="left">$\delta$</td>
+<td align="left"><code>\delta</code></td>
+<td align="left">$\Delta$</td>
+<td align="left"><code>\Delta</code></td>
+</tr>
+<tr>
+<td align="left">$\epsilon$</td>
+<td align="left"><code>\epsilon</code></td>
+<td align="left">$E$</td>
+<td align="left"><code>E</code></td>
+</tr>
+<tr>
+<td align="left">$\zeta$</td>
+<td align="left"><code>\zeta</code></td>
+<td align="left">$Z$</td>
+<td align="left"><code>Z</code></td>
+</tr>
+<tr>
+<td align="left">$\eta$</td>
+<td align="left"><code>\eta</code></td>
+<td align="left">$H$</td>
+<td align="left"><code>H</code></td>
+</tr>
+<tr>
+<td align="left">$\theta$</td>
+<td align="left"><code>\theta</code></td>
+<td align="left">$\Theta$</td>
+<td align="left"><code>\Theta</code></td>
+</tr>
+<tr>
+<td align="left">$\iota$</td>
+<td align="left"><code>\iota</code></td>
+<td align="left">$I$</td>
+<td align="left"><code>I</code></td>
+</tr>
+<tr>
+<td align="left">$\kappa$</td>
+<td align="left"><code>\kappa</code></td>
+<td align="left">$K$</td>
+<td align="left"><code>K</code></td>
+</tr>
+<tr>
+<td align="left">$\lambda$</td>
+<td align="left"><code>\lambda</code></td>
+<td align="left">$\Lambda$</td>
+<td align="left"><code>\Lambda</code></td>
+</tr>
+<tr>
+<td align="left">$\mu$</td>
+<td align="left"><code>\mu</code></td>
+<td align="left">$M$</td>
+<td align="left"><code>M</code></td>
+</tr>
+<tr>
+<td align="left">$\nu$</td>
+<td align="left"><code>\nu</code></td>
+<td align="left">$N$</td>
+<td align="left"><code>N</code></td>
+</tr>
+<tr>
+<td align="left">$\xi$</td>
+<td align="left"><code>\xi</code></td>
+<td align="left">$\Xi$</td>
+<td align="left"><code>\Xi</code></td>
+</tr>
+<tr>
+<td align="left">$\omicron$</td>
+<td align="left"><code>\omicron</code></td>
+<td align="left">$O$</td>
+<td align="left"><code>O</code></td>
+</tr>
+<tr>
+<td align="left">$\pi$</td>
+<td align="left"><code>\pi</code></td>
+<td align="left">$\Pi$</td>
+<td align="left"><code>\Pi</code></td>
+</tr>
+<tr>
+<td align="left">$\rho$</td>
+<td align="left"><code>\rho</code></td>
+<td align="left">$P$</td>
+<td align="left"><code>P</code></td>
+</tr>
+<tr>
+<td align="left">$\sigma$</td>
+<td align="left"><code>\sigma</code></td>
+<td align="left">$\Sigma$</td>
+<td align="left"><code>\Sigma</code></td>
+</tr>
+<tr>
+<td align="left">$\tau$</td>
+<td align="left"><code>\tau</code></td>
+<td align="left">$T$</td>
+<td align="left"><code>T</code></td>
+</tr>
+<tr>
+<td align="left">$\upsilon$</td>
+<td align="left"><code>\upsilon</code></td>
+<td align="left">$\Upsilon$</td>
+<td align="left"><code>\Upsilon</code></td>
+</tr>
+<tr>
+<td align="left">$\phi$</td>
+<td align="left"><code>\phi</code></td>
+<td align="left">$\Phi$</td>
+<td align="left"><code>\Phi</code></td>
+</tr>
+<tr>
+<td align="left">$\chi$</td>
+<td align="left"><code>\chi</code></td>
+<td align="left">$X$</td>
+<td align="left"><code>X</code></td>
+</tr>
+<tr>
+<td align="left">$\psi$</td>
+<td align="left"><code>\psi</code></td>
+<td align="left">$\Psi$</td>
+<td align="left"><code>\Psi</code></td>
+</tr>
+<tr>
+<td align="left">$\omega$</td>
+<td align="left"><code>\omega</code></td>
+<td align="left">$\Omega$</td>
+<td align="left"><code>\Omega</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="3-二元运算符"><a href="#3-二元运算符" class="headerlink" title="3. 二元运算符"></a>3. 二元运算符</h2><table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">代码</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">加</td>
+<td align="left"><code>+</code></td>
+<td align="left">$+$</td>
+</tr>
+<tr>
+<td align="left">减</td>
+<td align="left"><code>-</code></td>
+<td align="left">$-$</td>
+</tr>
+<tr>
+<td align="left">乘（点）</td>
+<td align="left"><code>\cdot</code></td>
+<td align="left">$\cdot$</td>
+</tr>
+<tr>
+<td align="left">乘（叉）</td>
+<td align="left"><code>\times</code></td>
+<td align="left">$\times$</td>
+</tr>
+<tr>
+<td align="left">除</td>
+<td align="left"><code>\div</code></td>
+<td align="left">$\div$</td>
+</tr>
+<tr>
+<td align="left">正负 &#x2F; 负正</td>
+<td align="left"><code>\pm</code> &#x2F; <code>\mp</code></td>
+<td align="left">$\pm$ &#x2F; $\mp$</td>
+</tr>
+<tr>
+<td align="left">圆点（向量点乘）</td>
+<td align="left"><code>\bullet</code></td>
+<td align="left">$\bullet$</td>
+</tr>
+<tr>
+<td align="left">星号（卷积）</td>
+<td align="left"><code>\ast</code></td>
+<td align="left">$\ast$</td>
+</tr>
+<tr>
+<td align="left">圈加（异或）</td>
+<td align="left"><code>\oplus</code></td>
+<td align="left">$\oplus$</td>
+</tr>
+<tr>
+<td align="left">圈乘（同或&#x2F;张量）</td>
+<td align="left"><code>\otimes</code></td>
+<td align="left">$\otimes$</td>
+</tr>
+<tr>
+<td align="left">圈点</td>
+<td align="left"><code>\odot</code></td>
+<td align="left">$\odot$</td>
+</tr>
+<tr>
+<td align="left">模运算</td>
+<td align="left"><code>a \bmod b</code></td>
+<td align="left">$a \bmod b$</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="4-关系运算符"><a href="#4-关系运算符" class="headerlink" title="4. 关系运算符"></a>4. 关系运算符</h2><table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">代码</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">等于</td>
+<td align="left"><code>=</code></td>
+<td align="left">$&#x3D;$</td>
+</tr>
+<tr>
+<td align="left">不等于</td>
+<td align="left"><code>\neq</code> 或 <code>\ne</code></td>
+<td align="left">$\neq$</td>
+</tr>
+<tr>
+<td align="left">约等于</td>
+<td align="left"><code>\approx</code></td>
+<td align="left">$\approx$</td>
+</tr>
+<tr>
+<td align="left">大于等于</td>
+<td align="left"><code>\geq</code> 或 <code>\ge</code></td>
+<td align="left">$\geq$</td>
+</tr>
+<tr>
+<td align="left">小于等于</td>
+<td align="left"><code>\leq</code> 或 <code>\le</code></td>
+<td align="left">$\leq$</td>
+</tr>
+<tr>
+<td align="left">远大于&#x2F;远小于</td>
+<td align="left"><code>\gg</code> &#x2F; <code>\ll</code></td>
+<td align="left">$\gg$ &#x2F; $\ll$</td>
+</tr>
+<tr>
+<td align="left">恒等于</td>
+<td align="left"><code>\equiv</code></td>
+<td align="left">$\equiv$</td>
+</tr>
+<tr>
+<td align="left">相似</td>
+<td align="left"><code>\sim</code></td>
+<td align="left">$\sim$</td>
+</tr>
+<tr>
+<td align="left">近似</td>
+<td align="left"><code>\simeq</code></td>
+<td align="left">$\simeq$</td>
+</tr>
+<tr>
+<td align="left">正比于</td>
+<td align="left"><code>\propto</code></td>
+<td align="left">$\propto$</td>
+</tr>
+<tr>
+<td align="left">属于</td>
+<td align="left"><code>\in</code></td>
+<td align="left">$\in$</td>
+</tr>
+<tr>
+<td align="left">不属于</td>
+<td align="left"><code>\notin</code></td>
+<td align="left">$\notin$</td>
+</tr>
+<tr>
+<td align="left">包含（反向属于）</td>
+<td align="left"><code>\ni</code> 或 <code>\owns</code></td>
+<td align="left">$\ni$</td>
+</tr>
+<tr>
+<td align="left">子集</td>
+<td align="left"><code>\subset</code></td>
+<td align="left">$\subset$</td>
+</tr>
+<tr>
+<td align="left">子集或等</td>
+<td align="left"><code>\subseteq</code></td>
+<td align="left">$\subseteq$</td>
+</tr>
+<tr>
+<td align="left">真子集</td>
+<td align="left"><code>\subsetneq</code></td>
+<td align="left">$\subsetneq$</td>
+</tr>
+<tr>
+<td align="left">超集</td>
+<td align="left"><code>\supset</code></td>
+<td align="left">$\supset$</td>
+</tr>
+<tr>
+<td align="left">超集或等</td>
+<td align="left"><code>\supseteq</code></td>
+<td align="left">$\supseteq$</td>
+</tr>
+<tr>
+<td align="left">并集</td>
+<td align="left"><code>\cup</code></td>
+<td align="left">$\cup$</td>
+</tr>
+<tr>
+<td align="left">交集</td>
+<td align="left"><code>\cap</code></td>
+<td align="left">$\cap$</td>
+</tr>
+<tr>
+<td align="left">空集</td>
+<td align="left"><code>\varnothing</code> 或 <code>\emptyset</code></td>
+<td align="left">$\varnothing$</td>
+</tr>
+<tr>
+<td align="left">全称量词</td>
+<td align="left"><code>\forall</code></td>
+<td align="left">$\forall$</td>
+</tr>
+<tr>
+<td align="left">存在量词</td>
+<td align="left"><code>\exists</code></td>
+<td align="left">$\exists$</td>
+</tr>
+<tr>
+<td align="left">不存在</td>
+<td align="left"><code>\nexists</code></td>
+<td align="left">$\nexists$</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="5-大型运算符"><a href="#5-大型运算符" class="headerlink" title="5. 大型运算符"></a>5. 大型运算符</h2><table>
+<thead>
+<tr>
+<th align="left">功能</th>
+<th align="left">代码</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">求和（行内）</td>
+<td align="left"><code>\sum_&#123;i=1&#125;^&#123;n&#125; a_i</code></td>
+<td align="left">$\sum_{i&#x3D;1}^{n} a_i$</td>
+</tr>
+<tr>
+<td align="left">求和（独立公式）</td>
+<td align="left"><code>$$\sum_&#123;i=1&#125;^&#123;n&#125; a_i$$</code></td>
+<td align="left">居中显示，上下标更大</td>
+</tr>
+<tr>
+<td align="left">累乘</td>
+<td align="left"><code>\prod_&#123;i=1&#125;^&#123;n&#125; a_i</code></td>
+<td align="left">$\prod_{i&#x3D;1}^{n} a_i$</td>
+</tr>
+<tr>
+<td align="left">积分</td>
+<td align="left"><code>\int_&#123;a&#125;^&#123;b&#125; f(x) dx</code></td>
+<td align="left">$\int_{a}^{b} f(x) dx$</td>
+</tr>
+<tr>
+<td align="left">二重积分</td>
+<td align="left"><code>\iint</code></td>
+<td align="left">$\iint$</td>
+</tr>
+<tr>
+<td align="left">三重积分</td>
+<td align="left"><code>\iiint</code></td>
+<td align="left">$\iiint$</td>
+</tr>
+<tr>
+<td align="left">曲线积分</td>
+<td align="left"><code>\oint</code></td>
+<td align="left">$\oint$</td>
+</tr>
+<tr>
+<td align="left">极限</td>
+<td align="left"><code>\lim_&#123;x \to \infty&#125; f(x)</code></td>
+<td align="left">$\lim_{x \to \infty} f(x)$</td>
+</tr>
+<tr>
+<td align="left">批量异或（大运算符）</td>
+<td align="left"><code>\bigoplus_&#123;i=1&#125;^&#123;n&#125; A_i</code></td>
+<td align="left">$\bigoplus_{i&#x3D;1}^{n} A_i$</td>
+</tr>
+<tr>
+<td align="left">批量交集&#x2F;并集</td>
+<td align="left"><code>\bigcap</code> &#x2F; <code>\bigcup</code></td>
+<td align="left">$\bigcap$ &#x2F; $\bigcup$</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>提示</strong>：在独立公式（<code>$$...$$</code>）中，上下标会自动放在求和&#x2F;积分符号的正上方&#x2F;正下方；行内公式中默认放在右侧。</p>
+</blockquote>
+<hr>
+<h2 id="6-括号与定界符（自动缩放）"><a href="#6-括号与定界符（自动缩放）" class="headerlink" title="6. 括号与定界符（自动缩放）"></a>6. 括号与定界符（自动缩放）</h2><table>
+<thead>
+<tr>
+<th align="left">普通写法（不缩放）</th>
+<th align="left">自动缩放写法</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>(\frac&#123;a&#125;&#123;b&#125;)</code></td>
+<td align="left"><code>\left( \frac&#123;a&#125;&#123;b&#125; \right)</code></td>
+<td align="left">$\left( \frac{a}{b} \right)$</td>
+</tr>
+<tr>
+<td align="left"><code>[\frac&#123;a&#125;&#123;b&#125;]</code></td>
+<td align="left"><code>\left[ \frac&#123;a&#125;&#123;b&#125; \right]</code></td>
+<td align="left">$\left[ \frac{a}{b} \right]$</td>
+</tr>
+<tr>
+<td align="left"><code>\&#123;\frac&#123;a&#125;&#123;b&#125;\&#125;</code></td>
+<td align="left"><code>\left\&#123; \frac&#123;a&#125;&#123;b&#125; \right\&#125;</code></td>
+<td align="left">$\left{ \frac{a}{b} \right}$</td>
+</tr>
+<tr>
+<td align="left"><code>\lvert x \rvert</code></td>
+<td align="left">本身已定界</td>
+<td align="left">$\lvert x \rvert$</td>
+</tr>
+<tr>
+<td align="left">上取整</td>
+<td align="left"><code>\left\lceil x \right\rceil</code></td>
+<td align="left">$\left\lceil x \right\rceil$</td>
+</tr>
+<tr>
+<td align="left">下取整</td>
+<td align="left"><code>\left\lfloor x \right\rfloor</code></td>
+<td align="left">$\left\lfloor x \right\rfloor$</td>
+</tr>
+<tr>
+<td align="left">尖括号</td>
+<td align="left"><code>\left\langle x \right\rangle</code></td>
+<td align="left">$\left\langle x \right\rangle$</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>如果只需要一个定界符，可以用 <code>\left.</code> 或 <code>\right.</code> 作为占位符（不显示）。<br>例：<code>\left. \frac&#123;dy&#125;&#123;dx&#125; \right|_&#123;x=0&#125;</code> → $\left. \frac{dy}{dx} \right|_{x&#x3D;0}$</p>
+</blockquote>
+<hr>
+<h2 id="7-矩阵"><a href="#7-矩阵" class="headerlink" title="7. 矩阵"></a>7. 矩阵</h2><p>使用 <code>\begin&#123;matrix&#125; ... \end&#123;matrix&#125;</code>，<code>&amp;</code> 分隔列，<code>\\</code> 分隔行。</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">代码</th>
+<th align="left">效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">无括号</td>
+<td align="left"><code>\begin&#123;matrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;matrix&#125;</code></td>
+<td align="left">$\begin{matrix} 1 &amp; 2 \ 3 &amp; 4 \end{matrix}$</td>
+</tr>
+<tr>
+<td align="left">圆括号</td>
+<td align="left"><code>\begin&#123;pmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;pmatrix&#125;</code></td>
+<td align="left">$\begin{pmatrix} 1 &amp; 2 \ 3 &amp; 4 \end{pmatrix}$</td>
+</tr>
+<tr>
+<td align="left">方括号</td>
+<td align="left"><code>\begin&#123;bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;bmatrix&#125;</code></td>
+<td align="left">$\begin{bmatrix} 1 &amp; 2 \ 3 &amp; 4 \end{bmatrix}$</td>
+</tr>
+<tr>
+<td align="left">花括号</td>
+<td align="left"><code>\begin&#123;Bmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Bmatrix&#125;</code></td>
+<td align="left">$\begin{Bmatrix} 1 &amp; 2 \ 3 &amp; 4 \end{Bmatrix}$</td>
+</tr>
+<tr>
+<td align="left">竖线（行列式）</td>
+<td align="left"><code>\begin&#123;vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;vmatrix&#125;</code></td>
+<td align="left">$\begin{vmatrix} 1 &amp; 2 \ 3 &amp; 4 \end{vmatrix}$</td>
+</tr>
+<tr>
+<td align="left">双竖线（范数）</td>
+<td align="left"><code>\begin&#123;Vmatrix&#125; 1 &amp; 2 \\ 3 &amp; 4 \end&#123;Vmatrix&#125;</code></td>
+<td align="left">$\begin{Vmatrix} 1 &amp; 2 \ 3 &amp; 4 \end{Vmatrix}$</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>矩阵中可以插入省略号：<code>\cdots</code>（横向）、<code>\vdots</code>（竖向）、<code>\ddots</code>（对角线）。</p>
+</blockquote>
+<hr>
+<h2 id="8-多行公式（对齐）"><a href="#8-多行公式（对齐）" class="headerlink" title="8. 多行公式（对齐）"></a>8. 多行公式（对齐）</h2><p>使用 <code>\begin&#123;aligned&#125; ... \end&#123;aligned&#125;</code> 环境，用 <code>&amp;</code> 标记对齐位置，<code>\\</code> 换行。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;aligned&#125;</span><br><span class="line">f(x) <span class="built_in">&amp;</span> = (a+b)<span class="built_in">^</span>2 <span class="keyword">\\</span></span><br><span class="line">     <span class="built_in">&amp;</span> = a<span class="built_in">^</span>2 + 2ab + b<span class="built_in">^</span>2</span><br><span class="line"><span class="keyword">\end</span>&#123;aligned&#125;</span><br></pre></td></tr></table></figure>
 
 <p>渲染效果：</p>
-<p>[
+<p>$$
 \begin{aligned}
 f(x) &amp; &#x3D; (a+b)^2 \
      &amp; &#x3D; a^2 + 2ab + b^2
 \end{aligned}
-]</p>
+$$</p>
 <hr>
 <h2 id="9-分段函数（cases-环境）"><a href="#9-分段函数（cases-环境）" class="headerlink" title="9. 分段函数（cases 环境）"></a>9. 分段函数（cases 环境）</h2><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">f(x) = </span><br><span class="line"><span class="keyword">\begin</span>&#123;cases&#125;</span><br><span class="line">x<span class="built_in">^</span>2, <span class="built_in">&amp;</span> x <span class="keyword">\ge</span> 0 <span class="keyword">\\</span></span><br><span class="line">-x, <span class="built_in">&amp;</span> x &lt; 0</span><br><span class="line"><span class="keyword">\end</span>&#123;cases&#125;</span><br></pre></td></tr></table></figure>
 
 <p>效果：</p>
-<p>[
+<p>$$
 f(x) &#x3D; 
 \begin{cases}
 x^2, &amp; x \ge 0 \
 -x, &amp; x &lt; 0
 \end{cases}
-]</p>
+$$</p>
 <hr>
 <h2 id="10-顶部符号（修饰符）"><a href="#10-顶部符号（修饰符）" class="headerlink" title="10. 顶部符号（修饰符）"></a>10. 顶部符号（修饰符）</h2><table>
 <thead>
@@ -246,57 +811,57 @@ x^2, &amp; x \ge 0 \
 <tbody><tr>
 <td align="left">横线（平均）</td>
 <td align="left"><code>\bar&#123;x&#125;</code></td>
-<td align="left">(\bar{x})</td>
+<td align="left">$\bar{x}$</td>
 </tr>
 <tr>
 <td align="left">长横线（上方）</td>
 <td align="left"><code>\overline&#123;ABC&#125;</code></td>
-<td align="left">(\overline{ABC})</td>
+<td align="left">$\overline{ABC}$</td>
 </tr>
 <tr>
 <td align="left">向量箭头</td>
 <td align="left"><code>\vec&#123;v&#125;</code></td>
-<td align="left">(\vec{v})</td>
+<td align="left">$\vec{v}$</td>
 </tr>
 <tr>
 <td align="left">箭头（长）</td>
 <td align="left"><code>\overrightarrow&#123;AB&#125;</code></td>
-<td align="left">(\overrightarrow{AB})</td>
+<td align="left">$\overrightarrow{AB}$</td>
 </tr>
 <tr>
 <td align="left">帽子（估计）</td>
 <td align="left"><code>\hat&#123;x&#125;</code></td>
-<td align="left">(\hat{x})</td>
+<td align="left">$\hat{x}$</td>
 </tr>
 <tr>
 <td align="left">宽帽子</td>
 <td align="left"><code>\widehat&#123;ABC&#125;</code></td>
-<td align="left">(\widehat{ABC})</td>
+<td align="left">$\widehat{ABC}$</td>
 </tr>
 <tr>
 <td align="left">点（导数）</td>
 <td align="left"><code>\dot&#123;x&#125;</code></td>
-<td align="left">(\dot{x})</td>
+<td align="left">$\dot{x}$</td>
 </tr>
 <tr>
 <td align="left">双点（二阶导）</td>
 <td align="left"><code>\ddot&#123;x&#125;</code></td>
-<td align="left">(\ddot{x})</td>
+<td align="left">$\ddot{x}$</td>
 </tr>
 <tr>
 <td align="left">波浪线</td>
 <td align="left"><code>\tilde&#123;x&#125;</code></td>
-<td align="left">(\tilde{x})</td>
+<td align="left">$\tilde{x}$</td>
 </tr>
 <tr>
 <td align="left">宽波浪</td>
 <td align="left"><code>\widetilde&#123;ABC&#125;</code></td>
-<td align="left">(\widetilde{ABC})</td>
+<td align="left">$\widetilde{ABC}$</td>
 </tr>
 <tr>
 <td align="left">下箭头（极限）</td>
 <td align="left"><code>\underset&#123;x\to0&#125;&#123;f(x)&#125;</code></td>
-<td align="left">(\underset{x\to0}{f(x)})</td>
+<td align="left">$\underset{x\to0}{f(x)}$</td>
 </tr>
 </tbody></table>
 <hr>
@@ -312,69 +877,69 @@ x^2, &amp; x \ge 0 \
 </thead>
 <tbody><tr>
 <td align="left"><code>\sin</code></td>
-<td align="left">(\sin)</td>
+<td align="left">$\sin$</td>
 <td align="left"><code>\cos</code></td>
-<td align="left">(\cos)</td>
+<td align="left">$\cos$</td>
 </tr>
 <tr>
 <td align="left"><code>\tan</code></td>
-<td align="left">(\tan)</td>
+<td align="left">$\tan$</td>
 <td align="left"><code>\cot</code></td>
-<td align="left">(\cot)</td>
+<td align="left">$\cot$</td>
 </tr>
 <tr>
 <td align="left"><code>\sec</code></td>
-<td align="left">(\sec)</td>
+<td align="left">$\sec$</td>
 <td align="left"><code>\csc</code></td>
-<td align="left">(\csc)</td>
+<td align="left">$\csc$</td>
 </tr>
 <tr>
 <td align="left"><code>\arcsin</code></td>
-<td align="left">(\arcsin)</td>
+<td align="left">$\arcsin$</td>
 <td align="left"><code>\arccos</code></td>
-<td align="left">(\arccos)</td>
+<td align="left">$\arccos$</td>
 </tr>
 <tr>
 <td align="left"><code>\arctan</code></td>
-<td align="left">(\arctan)</td>
+<td align="left">$\arctan$</td>
 <td align="left"><code>\sinh</code></td>
-<td align="left">(\sinh)</td>
+<td align="left">$\sinh$</td>
 </tr>
 <tr>
 <td align="left"><code>\cosh</code></td>
-<td align="left">(\cosh)</td>
+<td align="left">$\cosh$</td>
 <td align="left"><code>\tanh</code></td>
-<td align="left">(\tanh)</td>
+<td align="left">$\tanh$</td>
 </tr>
 <tr>
 <td align="left"><code>\log</code></td>
-<td align="left">(\log)</td>
+<td align="left">$\log$</td>
 <td align="left"><code>\ln</code></td>
-<td align="left">(\ln)</td>
+<td align="left">$\ln$</td>
 </tr>
 <tr>
 <td align="left"><code>\lg</code></td>
-<td align="left">(\lg)</td>
+<td align="left">$\lg$</td>
 <td align="left"><code>\exp</code></td>
-<td align="left">(\exp)</td>
+<td align="left">$\exp$</td>
 </tr>
 <tr>
 <td align="left"><code>\max</code></td>
-<td align="left">(\max)</td>
+<td align="left">$\max$</td>
 <td align="left"><code>\min</code></td>
-<td align="left">(\min)</td>
+<td align="left">$\min$</td>
 </tr>
 <tr>
 <td align="left"><code>\lim</code></td>
-<td align="left">(\lim)</td>
+<td align="left">$\lim$</td>
 <td align="left"><code>\sup</code></td>
-<td align="left">(\sup)</td>
+<td align="left">$\sup$</td>
 </tr>
 <tr>
 <td align="left"><code>\inf</code></td>
-<td align="left">(\inf)</td>
+<td align="left">$\inf$</td>
 <td align="left"><code>\deg</code></td>
-<td align="left">(\deg)</td>
+<td align="left">$\deg$</td>
 </tr>
 </tbody></table>
 <hr>
@@ -389,69 +954,69 @@ x^2, &amp; x \ge 0 \
 </thead>
 <tbody><tr>
 <td align="left"><code>\to</code> 或 <code>\rightarrow</code></td>
-<td align="left">(\to)</td>
+<td align="left">$\to$</td>
 <td align="left"><code>\leftarrow</code></td>
-<td align="left">(\leftarrow)</td>
+<td align="left">$\leftarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\Rightarrow</code></td>
-<td align="left">(\Rightarrow)</td>
+<td align="left">$\Rightarrow$</td>
 <td align="left"><code>\Leftarrow</code></td>
-<td align="left">(\Leftarrow)</td>
+<td align="left">$\Leftarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\leftrightarrow</code></td>
-<td align="left">(\leftrightarrow)</td>
+<td align="left">$\leftrightarrow$</td>
 <td align="left"><code>\Leftrightarrow</code></td>
-<td align="left">(\Leftrightarrow)</td>
+<td align="left">$\Leftrightarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\longrightarrow</code></td>
-<td align="left">(\longrightarrow)</td>
+<td align="left">$\longrightarrow$</td>
 <td align="left"><code>\longleftarrow</code></td>
-<td align="left">(\longleftarrow)</td>
+<td align="left">$\longleftarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\Longrightarrow</code></td>
-<td align="left">(\Longrightarrow)</td>
+<td align="left">$\Longrightarrow$</td>
 <td align="left"><code>\Longleftarrow</code></td>
-<td align="left">(\Longleftarrow)</td>
+<td align="left">$\Longleftarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\mapsto</code></td>
-<td align="left">(\mapsto)</td>
+<td align="left">$\mapsto$</td>
 <td align="left"><code>\longmapsto</code></td>
-<td align="left">(\longmapsto)</td>
+<td align="left">$\longmapsto$</td>
 </tr>
 <tr>
 <td align="left"><code>\uparrow</code></td>
-<td align="left">(\uparrow)</td>
+<td align="left">$\uparrow$</td>
 <td align="left"><code>\downarrow</code></td>
-<td align="left">(\downarrow)</td>
+<td align="left">$\downarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\updownarrow</code></td>
-<td align="left">(\updownarrow)</td>
+<td align="left">$\updownarrow$</td>
 <td align="left"><code>\Uparrow</code></td>
-<td align="left">(\Uparrow)</td>
+<td align="left">$\Uparrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\Downarrow</code></td>
-<td align="left">(\Downarrow)</td>
+<td align="left">$\Downarrow$</td>
 <td align="left"><code>\Updownarrow</code></td>
-<td align="left">(\Updownarrow)</td>
+<td align="left">$\Updownarrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\nearrow</code></td>
-<td align="left">(\nearrow)</td>
+<td align="left">$\nearrow$</td>
 <td align="left"><code>\searrow</code></td>
-<td align="left">(\searrow)</td>
+<td align="left">$\searrow$</td>
 </tr>
 <tr>
 <td align="left"><code>\swarrow</code></td>
-<td align="left">(\swarrow)</td>
+<td align="left">$\swarrow$</td>
 <td align="left"><code>\nwarrow</code></td>
-<td align="left">(\nwarrow)</td>
+<td align="left">$\nwarrow$</td>
 </tr>
 </tbody></table>
 <hr>
@@ -466,67 +1031,67 @@ x^2, &amp; x \ge 0 \
 <tbody><tr>
 <td align="left">与（AND）</td>
 <td align="left"><code>\land</code> 或 <code>\wedge</code></td>
-<td align="left">(\land)</td>
+<td align="left">$\land$</td>
 </tr>
 <tr>
 <td align="left">或（OR）</td>
 <td align="left"><code>\lor</code> 或 <code>\vee</code></td>
-<td align="left">(\lor)</td>
+<td align="left">$\lor$</td>
 </tr>
 <tr>
 <td align="left">非（NOT）</td>
 <td align="left"><code>\lnot</code> 或 <code>\neg</code></td>
-<td align="left">(\lnot) &#x2F; (\neg)</td>
+<td align="left">$\lnot$ &#x2F; $\neg$</td>
 </tr>
 <tr>
 <td align="left">异或（XOR）</td>
 <td align="left"><code>\oplus</code></td>
-<td align="left">(\oplus)</td>
+<td align="left">$\oplus$</td>
 </tr>
 <tr>
 <td align="left">同或（XNOR）</td>
 <td align="left"><code>\odot</code></td>
-<td align="left">(\odot)</td>
+<td align="left">$\odot$</td>
 </tr>
 <tr>
 <td align="left">蕴含</td>
 <td align="left"><code>\implies</code></td>
-<td align="left">(\implies)</td>
+<td align="left">$\implies$</td>
 </tr>
 <tr>
 <td align="left">等价</td>
 <td align="left"><code>\iff</code></td>
-<td align="left">(\iff)</td>
+<td align="left">$\iff$</td>
 </tr>
 <tr>
 <td align="left">空集</td>
 <td align="left"><code>\varnothing</code> 或 <code>\emptyset</code></td>
-<td align="left">(\varnothing)</td>
+<td align="left">$\varnothing$</td>
 </tr>
 <tr>
 <td align="left">自然数集</td>
 <td align="left"><code>\mathbb&#123;N&#125;</code></td>
-<td align="left">(\mathbb{N})</td>
+<td align="left">$\mathbb{N}$</td>
 </tr>
 <tr>
 <td align="left">整数集</td>
 <td align="left"><code>\mathbb&#123;Z&#125;</code></td>
-<td align="left">(\mathbb{Z})</td>
+<td align="left">$\mathbb{Z}$</td>
 </tr>
 <tr>
 <td align="left">有理数集</td>
 <td align="left"><code>\mathbb&#123;Q&#125;</code></td>
-<td align="left">(\mathbb{Q})</td>
+<td align="left">$\mathbb{Q}$</td>
 </tr>
 <tr>
 <td align="left">实数集</td>
 <td align="left"><code>\mathbb&#123;R&#125;</code></td>
-<td align="left">(\mathbb{R})</td>
+<td align="left">$\mathbb{R}$</td>
 </tr>
 <tr>
 <td align="left">复数集</td>
 <td align="left"><code>\mathbb&#123;C&#125;</code></td>
-<td align="left">(\mathbb{C})</td>
+<td align="left">$\mathbb{C}$</td>
 </tr>
 </tbody></table>
 <hr>
@@ -541,62 +1106,62 @@ x^2, &amp; x \ge 0 \
 <tbody><tr>
 <td align="left">无穷</td>
 <td align="left"><code>\infty</code></td>
-<td align="left">(\infty)</td>
+<td align="left">$\infty$</td>
 </tr>
 <tr>
 <td align="left">偏导数</td>
 <td align="left"><code>\partial</code></td>
-<td align="left">(\partial)</td>
+<td align="left">$\partial$</td>
 </tr>
 <tr>
 <td align="left">梯度（nabla）</td>
 <td align="left"><code>\nabla</code></td>
-<td align="left">(\nabla)</td>
+<td align="left">$\nabla$</td>
 </tr>
 <tr>
 <td align="left">点乘（求导）</td>
 <td align="left"><code>\cdot</code></td>
-<td align="left">(\cdot)</td>
+<td align="left">$\cdot$</td>
 </tr>
 <tr>
 <td align="left">三角形（三角形）</td>
 <td align="left"><code>\triangle</code></td>
-<td align="left">(\triangle)</td>
+<td align="left">$\triangle$</td>
 </tr>
 <tr>
 <td align="left">角度</td>
 <td align="left"><code>\angle</code></td>
-<td align="left">(\angle)</td>
+<td align="left">$\angle$</td>
 </tr>
 <tr>
 <td align="left">度符号</td>
 <td align="left"><code>^\circ</code></td>
-<td align="left">(^\circ)（例如 (30^\circ)）</td>
+<td align="left">$^\circ$（例如 $30^\circ$）</td>
 </tr>
 <tr>
 <td align="left">平行</td>
 <td align="left"><code>\parallel</code></td>
-<td align="left">(\parallel)</td>
+<td align="left">$\parallel$</td>
 </tr>
 <tr>
 <td align="left">垂直</td>
 <td align="left"><code>\perp</code></td>
-<td align="left">(\perp)</td>
+<td align="left">$\perp$</td>
 </tr>
 <tr>
 <td align="left">因为</td>
 <td align="left"><code>\because</code></td>
-<td align="left">(\because)</td>
+<td align="left">$\because$</td>
 </tr>
 <tr>
 <td align="left">所以</td>
 <td align="left"><code>\therefore</code></td>
-<td align="left">(\therefore)</td>
+<td align="left">$\therefore$</td>
 </tr>
 <tr>
 <td align="left">存在唯一</td>
 <td align="left"><code>\exists!</code></td>
-<td align="left">(\exists!)</td>
+<td align="left">$\exists!$</td>
 </tr>
 </tbody></table>
 <hr>
@@ -611,42 +1176,42 @@ x^2, &amp; x \ge 0 \
 <tbody><tr>
 <td align="left">黑板粗体（数集）</td>
 <td align="left"><code>\mathbb&#123;R&#125;</code></td>
-<td align="left">(\mathbb{R})</td>
+<td align="left">$\mathbb{R}$</td>
 </tr>
 <tr>
 <td align="left">花体（手写）</td>
 <td align="left"><code>\mathcal&#123;L&#125;</code></td>
-<td align="left">(\mathcal{L})</td>
+<td align="left">$\mathcal{L}$</td>
 </tr>
 <tr>
 <td align="left">哥特体（德文）</td>
 <td align="left"><code>\mathfrak&#123;P&#125;</code></td>
-<td align="left">(\mathfrak{P})</td>
+<td align="left">$\mathfrak{P}$</td>
 </tr>
 <tr>
 <td align="left">直立罗马体（文字）</td>
 <td align="left"><code>\mathrm&#123;ABC&#125;</code></td>
-<td align="left">(\mathrm{ABC})</td>
+<td align="left">$\mathrm{ABC}$</td>
 </tr>
 <tr>
 <td align="left">加粗</td>
 <td align="left"><code>\mathbf&#123;x&#125;</code></td>
-<td align="left">(\mathbf{x})</td>
+<td align="left">$\mathbf{x}$</td>
 </tr>
 <tr>
 <td align="left">斜体（默认）</td>
 <td align="left"><code>x</code></td>
-<td align="left">(x)</td>
+<td align="left">$x$</td>
 </tr>
 <tr>
 <td align="left">颜色（红色）</td>
 <td align="left"><code>\color&#123;red&#125;&#123;x&#125;</code></td>
-<td align="left">(\color{red}{x})</td>
+<td align="left">$\color{red}{x}$</td>
 </tr>
 <tr>
 <td align="left">颜色（自定义）</td>
 <td align="left"><code>\color[HTML]&#123;FF00FF&#125;&#123;y&#125;</code></td>
-<td align="left">(\color[HTML]{FF00FF}{y})</td>
+<td align="left">$\color[HTML]{FF00FF}{y}$</td>
 </tr>
 </tbody></table>
 <blockquote>
@@ -654,14 +1219,14 @@ x^2, &amp; x \ge 0 \
 </blockquote>
 <hr>
 <h2 id="16-行内与独立公式"><a href="#16-行内与独立公式" class="headerlink" title="16. 行内与独立公式"></a>16. 行内与独立公式</h2><ul>
-<li><p><strong>行内公式</strong>：<code>$ ... $</code><br>例：<code>$E = mc^2$</code> → (E &#x3D; mc^2)</p>
+<li><p><strong>行内公式</strong>：<code>$ ... $</code><br>例：<code>$E = mc^2$</code> → $E &#x3D; mc^2$</p>
 </li>
 <li><p><strong>独立公式（居中）</strong>：<code>$$ ... $$</code><br>例：</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line">E = mc<span class="built_in">^</span>2</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure>
 <p>效果（居中）：</p>
-<p>[
+<p>$$
 E &#x3D; mc^2
-]</p>
+$$</p>
 </li>
 <li><p><strong>编号公式</strong>（需额外宏包，Typora 默认不支持自动编号，但可手动添加标签）：</p>
 <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br><span class="line"><span class="keyword">\tag</span>&#123;1.2&#125; E = mc<span class="built_in">^</span>2</span><br><span class="line"><span class="built_in">$</span><span class="built_in">$</span></span><br></pre></td></tr></table></figure></li>
@@ -719,7 +1284,7 @@ E &#x3D; mc^2
   <span class="author-tag">#算法竞赛</span>
   <span class="author-tag">#数据结构</span>
 </div>
-</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Mistlane's Blog，愿这里的记录对你有所帮助。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%88%86%E6%AE%B5%E5%87%BD%E6%95%B0%EF%BC%88cases-%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">9. 分段函数（cases 环境）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%A1%B6%E9%83%A8%E7%AC%A6%E5%8F%B7%EF%BC%88%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">10. 顶部符号（修饰符）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%E5%90%8D%EF%BC%88%E6%AD%A3%E4%BD%93%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">11. 常见函数名（正体）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E7%AE%AD%E5%A4%B4"><span class="toc-number">4.</span> <span class="toc-text">12. 箭头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="toc-number">5.</span> <span class="toc-text">13. 逻辑与集合常用符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%B8%B8%E7%94%A8%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-number">6.</span> <span class="toc-text">14. 常用特殊符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E5%AD%97%E4%BD%93%E4%B8%8E%E9%A2%9C%E8%89%B2"><span class="toc-number">7.</span> <span class="toc-text">15. 字体与颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E8%A1%8C%E5%86%85%E4%B8%8E%E7%8B%AC%E7%AB%8B%E5%85%AC%E5%BC%8F"><span class="toc-number">8.</span> <span class="toc-text">16. 行内与独立公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%8E%AF%E5%A2%83%E6%B1%87%E6%80%BB"><span class="toc-number">9.</span> <span class="toc-text">17. 常用数学环境汇总</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%EF%BC%9A%E5%B8%B8%E8%A7%81%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="toc-number">10.</span> <span class="toc-text">18. 快速参考：常见组合示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%9B%B4%E5%A4%9A%E6%8A%80%E5%B7%A7"><span class="toc-number">11.</span> <span class="toc-text">19. 更多技巧</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div><div class="footer_custom_text"><div class="footer-main">
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">16</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Mistlane's Blog，愿这里的记录对你有所帮助。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LaTeX-%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E9%80%9F%E6%9F%A5%E6%8C%87%E5%8D%97%EF%BC%88Typora-%E7%89%88%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">LaTeX 数学公式速查指南（Typora 版）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">1. 基础语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="toc-number">1.2.</span> <span class="toc-text">2. 希腊字母</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.3.</span> <span class="toc-text">3. 二元运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.4.</span> <span class="toc-text">4. 关系运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%A4%A7%E5%9E%8B%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.</span> <span class="toc-text">5. 大型运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%8B%AC%E5%8F%B7%E4%B8%8E%E5%AE%9A%E7%95%8C%E7%AC%A6%EF%BC%88%E8%87%AA%E5%8A%A8%E7%BC%A9%E6%94%BE%EF%BC%89"><span class="toc-number">1.6.</span> <span class="toc-text">6. 括号与定界符（自动缩放）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E7%9F%A9%E9%98%B5"><span class="toc-number">1.7.</span> <span class="toc-text">7. 矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%A4%9A%E8%A1%8C%E5%85%AC%E5%BC%8F%EF%BC%88%E5%AF%B9%E9%BD%90%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">8. 多行公式（对齐）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%88%86%E6%AE%B5%E5%87%BD%E6%95%B0%EF%BC%88cases-%E7%8E%AF%E5%A2%83%EF%BC%89"><span class="toc-number">1.9.</span> <span class="toc-text">9. 分段函数（cases 环境）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E9%A1%B6%E9%83%A8%E7%AC%A6%E5%8F%B7%EF%BC%88%E4%BF%AE%E9%A5%B0%E7%AC%A6%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">10. 顶部符号（修饰符）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%B8%B8%E8%A7%81%E5%87%BD%E6%95%B0%E5%90%8D%EF%BC%88%E6%AD%A3%E4%BD%93%EF%BC%89"><span class="toc-number">1.11.</span> <span class="toc-text">11. 常见函数名（正体）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E7%AE%AD%E5%A4%B4"><span class="toc-number">1.12.</span> <span class="toc-text">12. 箭头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E9%80%BB%E8%BE%91%E4%B8%8E%E9%9B%86%E5%90%88%E5%B8%B8%E7%94%A8%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.13.</span> <span class="toc-text">13. 逻辑与集合常用符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-%E5%B8%B8%E7%94%A8%E7%89%B9%E6%AE%8A%E7%AC%A6%E5%8F%B7"><span class="toc-number">1.14.</span> <span class="toc-text">14. 常用特殊符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-%E5%AD%97%E4%BD%93%E4%B8%8E%E9%A2%9C%E8%89%B2"><span class="toc-number">1.15.</span> <span class="toc-text">15. 字体与颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#16-%E8%A1%8C%E5%86%85%E4%B8%8E%E7%8B%AC%E7%AB%8B%E5%85%AC%E5%BC%8F"><span class="toc-number">1.16.</span> <span class="toc-text">16. 行内与独立公式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#17-%E5%B8%B8%E7%94%A8%E6%95%B0%E5%AD%A6%E7%8E%AF%E5%A2%83%E6%B1%87%E6%80%BB"><span class="toc-number">1.17.</span> <span class="toc-text">17. 常用数学环境汇总</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#18-%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%EF%BC%9A%E5%B8%B8%E8%A7%81%E7%BB%84%E5%90%88%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.18.</span> <span class="toc-text">18. 快速参考：常见组合示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#19-%E6%9B%B4%E5%A4%9A%E6%8A%80%E5%B7%A7"><span class="toc-number">1.19.</span> <span class="toc-text">19. 更多技巧</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.6.1</a></span></div><div class="footer_custom_text"><div class="footer-main">
   <section class="footer-intro" aria-label="站点信息">
     <a class="footer-brand" href="/">Mistlane's Blog</a>
     <p>记录代码、学习与日常中值得回看的片段。</p>
