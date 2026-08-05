@@ -1,7 +1,6 @@
 /* Twikoo comment surface, aligned with the site's paper-and-teal palette. */
 #post-comment {
   position: relative;
-  z-index: 201;
   margin-top: 42px;
   padding-top: 12px;
 }

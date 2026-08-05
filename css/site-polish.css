@@ -1104,6 +1104,80 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
   .home-latest-heading h2 { font-size: 1.45rem; }
 }
 
+/* Responsive content bounds and cards. Keep the location/address fact visible
+ * on narrow screens and prevent long URLs/descriptions from overflowing. */
+.about-redesign,
+.type-link #article-container {
+  width: min(100%, 1120px);
+  box-sizing: border-box;
+}
+
+.about-facts div {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.type-link .flink-list-item,
+.type-link .flink-list-item a {
+  min-width: 0;
+}
+
+.type-link .flink-item-name,
+.type-link .flink-item-desc {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  .about-redesign,
+  .type-link #article-container {
+    width: 100%;
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .about-facts {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .about-facts div {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .type-link #article-container {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .type-link .flink {
+    width: 100%;
+    overflow: visible;
+  }
+
+  .type-link .flink-list {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .type-link .flink-list-item a {
+    min-height: 96px;
+    padding: 14px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .about-redesign,
+  .type-link #article-container {
+    width: min(1120px, calc(100vw - 64px));
+  }
+}
+
 #page-header.full_page #nav .site-page,
 #page-header.full_page #nav .site-name,
 #page-header.full_page #nav #toggle-menu {
