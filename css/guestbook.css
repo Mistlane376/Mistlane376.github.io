@@ -83,8 +83,12 @@
   transform: rotate(10deg);
 }
 
-.type-guestbook .guestbook-stamp i {
-  font-size: 1.5rem;
+.type-guestbook .guestbook-stamp img {
+  width: 58px;
+  height: 58px;
+  border: 2px solid rgba(240, 255, 251, 0.58);
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .type-guestbook .guestbook-stamp span {
