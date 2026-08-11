@@ -363,6 +363,21 @@
   background: var(--ui-border, rgba(31, 41, 51, 0.11));
 }
 
+/* MathJax blocks should behave like Typora's centered display equations. */
+#post #article-container mjx-container[display='true'] {
+  display: block;
+  max-width: 100%;
+  margin: 1.35em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.15em 0;
+  text-align: center;
+}
+
+#post #article-container mjx-container:not([display='true']) {
+  margin: 0 0.08em;
+}
+
 #post #article-container kbd {
   padding: 2px 6px;
   border: 1px solid var(--ui-border-strong, rgba(31, 41, 51, 0.18));

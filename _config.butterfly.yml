@@ -24,6 +24,7 @@ menu:
   探索 || fas fa-compass:
     追番: /bangumis/ || fas fa-play-circle
     友链: /link/ || fas fa-link
+    留言板: /guestbook/ || fas fa-pen-to-square
   关于: /about/ || fas fa-user
 
 # --------------------------------------
@@ -293,13 +294,13 @@ aside:
   # 侧边栏显示内容
   display:
     # 归档
-    archive: true
+    archive: false
     # 标签
-    tag: true
+    tag: false
     # 分类
     category: false
     # 最近文章
-    recent_posts: true
+    recent_posts: false
     # 文章目录
     toc: true
   # 个人卡片设置
@@ -322,6 +323,14 @@ aside:
   card_announcement:
     enable: true
     content: 欢迎来到 Mistlane's Blog，愿这里的记录对你有所帮助。
+  card_recent_post:
+    enable: false
+  card_categories:
+    enable: false
+  card_tags:
+    enable: false
+  card_archives:
+    enable: false
   card_post_series:
     enable: true
     # The title shows the series name
@@ -332,13 +341,6 @@ aside:
     order: -1
   card_webinfo:
     enable: true
-    post_count: true
-    last_push_date: true
-    sort_order:
-    # Time difference between publish date and now
-    # Formal: Month/Day/Year Time or Year/Month/Day Time
-    # Leave it empty if you don't enable this feature
-    runtime_date: 2026/04/11 18:00:00
 
 # --------------------------------------
 # Bottom right button
@@ -419,7 +421,8 @@ math:
   # Choose: mathjax, katex
   # Leave it empty if you don't need math
   use: mathjax
-  per_page: false
+  # Load MathJax automatically on every post/page.
+  per_page: true
   hide_scrollbar: false
 
   mathjax:
@@ -457,9 +460,9 @@ search:
 comments:
   # Up to two comments system, the first will be shown as default
   # Leave it empty if you don't need comments
-  # Comments are stored as GitHub Issues by Utterances; no Cloudflare service is required.
+  # Twikoo stores comments in its own database; configure the endpoint below after deployment.
   # Format of two comments system : Disqus,Waline
-  use: Utterances
+  use: Twikoo
   # Display the comment name next to the button
   text: true
   # Lazyload: The comment system will be load when comment element enters the browser's viewport.
@@ -470,15 +473,14 @@ comments:
   # Display comment count in Home Page
   card_post_count: false
 
-# Utterances
-# https://utteranc.es/
-utterances:
-  repo: Mistlane376/Mistlane376.github.io
-  # Each post is mapped to one GitHub Issue by its pathname.
-  issue_term: pathname
-  # Theme: github-light/github-dark/github-dark-orange/icy-dark/dark-blue/photon-dark
-  light_theme: github-light
-  dark_theme: photon-dark
+# Twikoo
+# https://twikoo.js.org/
+twikoo:
+  envId: 'https://mistlane.netlify.app/.netlify/functions/twikoo'
+  region: ''
+  visitor: false
+  option:
+    lang: zh-CN
 # --------------------------------------
 # Beautify / Effect
 # --------------------------------------
@@ -623,23 +625,24 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
-    - <style>#footer{background:transparent!important}#footer-wrap{color:var(--font-color)}</style>
     # 个人卡片美化样式
     # 关于页面信封样式
     # 全局样式增强
-    - <link rel="stylesheet" href="/css/global.css">
     # Markdown 样式美化
     - <link rel="stylesheet" href="/css/markdown.css">
     # 全站页面与功能页视觉统一
+    # Site polish is the single source of truth for the custom visual system.
     - <link rel="stylesheet" href="/css/site-polish.css">
+    - <link rel="stylesheet" href="/css/guestbook.css">
     # 访客所在地欢迎卡片
     - <link rel="stylesheet" href="/css/visitor-welcome.css">
-    # Comments use the theme's built-in Utterances integration.
+    - <link rel="stylesheet" href="/css/comments.css">
     # 相册页面
   bottom:
     - <script defer src="/js/petals.js"></script>
     - <script defer src="/js/visitor-welcome.js"></script>
     - <script defer src="/js/search-performance.js"></script>
+    - <script defer src="/js/site-stats-cache.js"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
@@ -681,7 +684,7 @@ CDN:
     # fancybox:
     # fancybox_css:
     # fireworks:
-    fontawesome: /vendor/fontawesome/css/all.min.css
+    fontawesome: https://lib.baomitu.com/font-awesome/7.0.0/css/all.min.css
     # gitalk:
     # gitalk_css:
     # giscus:
@@ -689,10 +692,12 @@ CDN:
     # katex:
     # katex_copytex:
     # lazyload:
-    # local_search:
-    # main:
+    # Butterfly internal scripts: use npmmirror for mainland-friendly delivery.
+    local_search: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/search/local-search.min.js
+    main: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/main.min.js
     # main_css:
-    # mathjax:
+    # MathJax loads fonts/extensions dynamically; jsdmirror preserves its npm paths.
+    mathjax: https://cdn.jsdmirror.com/npm/mathjax@4.1.3/tex-mml-chtml.js
     # medium_zoom:
     # mermaid:
     # meting_js:
@@ -705,9 +710,9 @@ CDN:
     # snackbar:
     # snackbar_css:
     # translate:
-    # twikoo:
+    twikoo: https://cdn.jsdmirror.com/npm/twikoo@1.7.15/dist/twikoo.all.min.js
     # typed:
-    # utils:
+    utils: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/utils.min.js
     # valine:
     # waline_css:
     # waline_js:

@@ -1,0 +1,74 @@
+<!--
+  Paste this entire template into Twikoo Admin > Notification Settings > Owner notification template.
+  Twikoo variables used: ${SITE_URL}, ${SITE_NAME}, ${NICK}, ${COMMENT}, ${POST_URL}, ${IP}, ${MAIL}, ${IMG}
+-->
+<div style="margin:0;padding:0;background-color:#c6e3eb;background-image:linear-gradient(180deg,#d8f0f4 0%,#c6e3eb 100%);color:#263238;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',Arial,sans-serif;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#c6e3eb" style="width:100%;margin:0;padding:28px 12px;background-color:#c6e3eb;background-image:linear-gradient(180deg,#d8f0f4 0%,#c6e3eb 100%);">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;max-width:640px;background:#ffffff;border:1px solid #dce5e3;border-radius:8px;overflow:hidden;box-shadow:0 4px 14px rgba(28,39,49,.08);">
+          <tr>
+            <td style="height:5px;background:#18756f;font-size:0;line-height:0;">&nbsp;</td>
+          </tr>
+          <tr>
+            <td style="padding:28px 32px 22px;">
+              <p style="margin:0 0 8px;color:#18756f;font-size:12px;font-weight:700;letter-spacing:1.2px;line-height:18px;">NEW COMMENT</p>
+              <h1 style="margin:0;color:#14212b;font-size:23px;font-weight:700;letter-spacing:0;line-height:32px;">${SITE_NAME} 收到一条新评论</h1>
+              <p style="margin:12px 0 0;color:#60716e;font-size:14px;line-height:22px;">有新的想法停靠在你的博客，去看看吧。</p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:0 32px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border:1px solid #dce5e3;border-left:3px solid #18756f;border-radius:6px;background:#f8fbfa;">
+                <tr>
+                  <td style="padding:18px 18px 16px;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                      <tr>
+                        <td valign="top" style="padding-right:12px;">
+                          <img src="${IMG}" width="42" height="42" alt="${NICK}" style="display:block;width:42px;height:42px;border:0;border-radius:50%;background:#dce5e3;" />
+                        </td>
+                        <td valign="middle">
+                          <p style="margin:0;color:#14212b;font-size:16px;font-weight:700;line-height:22px;">${NICK}</p>
+                          <p style="margin:3px 0 0;color:#74827f;font-size:12px;line-height:18px;">在你的博客留下了评论</p>
+                        </td>
+                      </tr>
+                    </table>
+                    <div style="margin:16px 0 0;padding:14px 16px;border-radius:4px;background:#ffffff;border:1px solid #e5ecea;color:#31413f;font-size:15px;line-height:25px;word-break:break-word;">${COMMENT}</div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:22px 32px 16px;">
+              <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;border-collapse:collapse;">
+                <tr>
+                  <td style="width:88px;padding:8px 0;border-bottom:1px solid #e6edeb;color:#74827f;font-size:13px;line-height:20px;">评论页面</td>
+                  <td style="padding:8px 0;border-bottom:1px solid #e6edeb;font-size:13px;line-height:20px;word-break:break-all;"><a href="${POST_URL}" style="color:#18756f;text-decoration:none;">${POST_URL}</a></td>
+                </tr>
+                <tr>
+                  <td style="width:88px;padding:8px 0;border-bottom:1px solid #e6edeb;color:#74827f;font-size:13px;line-height:20px;">访客邮箱</td>
+                  <td style="padding:8px 0;border-bottom:1px solid #e6edeb;color:#31413f;font-size:13px;line-height:20px;word-break:break-all;">${MAIL}</td>
+                </tr>
+                <tr>
+                  <td style="width:88px;padding:8px 0;color:#74827f;font-size:13px;line-height:20px;">访客 IP</td>
+                  <td style="padding:8px 0;color:#31413f;font-size:13px;line-height:20px;word-break:break-all;">${IP}</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:4px 32px 30px;">
+              <a href="${POST_URL}" style="display:inline-block;padding:11px 20px;border-radius:5px;background:#18756f;color:#ffffff;font-size:14px;font-weight:700;line-height:20px;text-align:center;text-decoration:none;">查看并回复评论</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:18px 32px;background:#f8fbfa;border-top:1px solid #e2eae8;">
+              <p style="margin:0;color:#74827f;font-size:12px;line-height:20px;">此邮件由 <a href="${SITE_URL}" style="color:#18756f;text-decoration:none;">${SITE_NAME}</a> 的 Twikoo 评论系统自动发送。</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

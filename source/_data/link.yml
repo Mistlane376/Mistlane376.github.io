@@ -1,8 +1,50 @@
+
 - class_name: 个人博客
+  class_desc: 记录生活、技术与长期创作的个人站点
+  link_list:
+    - name: mccsjs
+      link: https://hexo.seln.cn/
+      avatar: https://hexo.seln.cn/img/ico.jpg
+      descr: 点一盏灯，等一个迷路的夜🍁🍁🍁
+      siteshot: https://hexo.seln.cn/img/a.jpg
+    - name: 阿叶Ayeez的小站
+      link: https://blog.Ayeez.cn
+      avatar: https://qiniu.ayeez.cn/avatar.jpg
+      descr: 记录学习历程，记录美好生活
+      siteshot: 
+    - name: Pinktu
+      link: https://tutu.pink
+      avatar: https://tutu.pink/images/logo.png
+      descr: 我的世界，你不懂
+      siteshot: 
+    - name: sliorean
+      link: https://sliorean.site
+      avatar: https://sliorean.site/images/avatar.webp
+      descr: 个人技术博客，记录 AI Agent 研究与日常折腾
+      siteshot: 
+    - name: Dinosaur的博客
+      link: https://blog.dinonode.org
+      avatar: https://blog.dinonode.org/tx.png
+      descr: 暂无
+      siteshot: 
+    - name: 720 科技的博客
+      link: https://720info.eu.cc/
+      avatar: https://s41.ax1x.com/2026/08/03/pm5dUyR.jpg
+      descr: 用代码解决问题，用文字收藏平凡日子
+      siteshot: 
+    
+  
+- class_name: 现实里的朋友
   class_desc: 记录生活、技术与长期创作的个人站点
   link_list:
     - name: BAMBOOの赛博小屋
       link: https://bamboo2233.cc.cd
       avatar: /images/Bamboo.jpg
-      descr: 一位朋友的个人博客
-      siteshot: /images/Bamboo.jpg
+      descr: 你好呀，要进来逛逛吗(๑>؂<๑）
+      siteshot: 
+    - name: zenithXの芯途小站
+      link:  https://zenithx76-cell.github.io
+      avatar: https://zenithx76-cell.github.io/img/my_head.png
+      descr:  你代码与硅片之间寻找最优解
+      siteshot:
+    

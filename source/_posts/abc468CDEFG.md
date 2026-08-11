@@ -1,13 +1,13 @@
 ---
 title: abc468CDEFG
 date: 2026-07-27 16:30:50
-tags: 
- -算法
- -题解
- -C/C++
+tags:
+  - 算法
+  - 题解
+  - ACM
 categories: 题解
 description: 赛后题解书写，以便梳理
-cover: 
+cover: /images/selection3.jpg
 abbrlink: abc468cdefg
 ---
 

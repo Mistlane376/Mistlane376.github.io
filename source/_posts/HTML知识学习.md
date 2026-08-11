@@ -275,11 +275,11 @@ target表示打开方式
 这是我的博客链接这个可以是任何的格式，比如图片标签
 
 ```html
-<a href="https://mistlane.cc.cd/">这是我的博客链接</a>
-<a href="https://mistlane.cc.cd/" target="_blank">这是我的博客链接</a>
-<a href="https://mistlane.cc.cd/" target="_parent">这是我的博客链接</a>
-<a href="https://mistlane.cc.cd/" target="_self">这是我的博客链接</a>
-<a href="https://mistlane.cc.cd/" target="_top">这是我的博客链接</a>
+<a href="https://blog.mistlane.top/">这是我的博客链接</a>
+<a href="https://blog.mistlane.top/" target="_blank">这是我的博客链接</a>
+<a href="https://blog.mistlane.top/" target="_parent">这是我的博客链接</a>
+<a href="https://blog.mistlane.top/" target="_self">这是我的博客链接</a>
+<a href="https://blog.mistlane.top/" target="_top">这是我的博客链接</a>
 ```
 
 ## 图片标签:

@@ -28,7 +28,7 @@ comments: true
 <div class="link-exchange-details">
 <article class="link-exchange-code">
 <h3>本站信息</h3>
-<pre><code>name: Mistlane's Blog<br>link: https://mistlane.top<br>avatar: https://mistlane.top/images/marcus.png<br>descr: 记录代码、学习与日常</code></pre>
+<pre><code>name: Mistlane's Blog<br>link: https://blog.mistlane.top<br>avatar: https://blog.mistlane.top/images/marcus.png<br>descr: 记录代码、学习与日常<br>siteshot: https://blog.mistlane.top/images/a.jpg</code></pre>
 </article>
 
 <article class="link-exchange-code">
