@@ -4,16 +4,17 @@
  * cache each feature independently.
  */
 const pageAssets = [
-  { test: /^index\.html$/, scripts: ['/js/home-hero.js'] },
-  { test: /^archive\/index\.html$/, scripts: ['/js/archive-hub.js'] },
-  { test: /^categories\/index\.html$/, scripts: ['/js/category-cards.js'] },
-  { test: /^categories\/[^/]+\/index\.html$/, scripts: ['/js/category-detail.js'] },
-  { test: /^album\/index\.html$/, styles: ['/css/album.css'], scripts: ['/js/album.js'] },
-  { test: /^about\/index\.html$/, styles: ['/css/about-envelope.css'] },
-  { test: /^link\/index\.html$/, scripts: ['/js/link-directory.js'] },
+  { test: /^index\.html$/, scripts: ['/js/mistlane/home-hero.js'] },
+  { test: /^archive\/index\.html$/, scripts: ['/js/mistlane/archive-hub.js'] },
+  { test: /^categories\/index\.html$/, scripts: ['/js/mistlane/category-cards.js'] },
+  { test: /^categories\/[^/]+\/index\.html$/, scripts: ['/js/mistlane/category-detail.js'] },
+  { test: /^album\/index\.html$/, styles: ['/css/mistlane/album.css'], scripts: ['/js/mistlane/album.js'] },
+  { test: /^about\/index\.html$/, styles: ['/css/mistlane/about-envelope.css'] },
+  { test: /^projects\/index\.html$/, styles: ['/css/mistlane/projects.css'] },
+  { test: /^link\/index\.html$/, scripts: ['/js/mistlane/link-directory.js'] },
   {
     test: /^posts\/[^/]+\/index\.html$/,
-    styles: ['/css/comments.css']
+    styles: ['/css/mistlane/comments.css']
   }
 ];
 
