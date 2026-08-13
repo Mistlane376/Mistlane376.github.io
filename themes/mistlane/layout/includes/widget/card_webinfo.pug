@@ -17,26 +17,18 @@ if theme.aside.card_webinfo.enable
         .webinfo-item
           .item-name= `${_p('aside.card_webinfo.site_wordcount')} :`
           .item-count= totalcount(site)
-      if theme.umami_analytics.enable && theme.umami_analytics.UV_PV.site_uv
-        .webinfo-item
-          .item-name= `${_p('aside.card_webinfo.site_uv_name')} :`
-          .item-count#umami-site-uv
-            i.fa-solid.fa-spinner.fa-spin
-      else if theme.busuanzi.site_uv
-        .webinfo-item
-          .item-name= `${_p('aside.card_webinfo.site_uv_name')} :`
-          .item-count#busuanzi_value_site_uv
-            i.fa-solid.fa-spinner.fa-spin
-      if theme.umami_analytics.enable && theme.umami_analytics.UV_PV.site_pv
-        .webinfo-item
-          .item-name= `${_p('aside.card_webinfo.site_pv_name')} :`
-          .item-count#umami-site-pv
-            i.fa-solid.fa-spinner.fa-spin
-      else if theme.busuanzi.site_pv
-        .webinfo-item
-          .item-name= `${_p('aside.card_webinfo.site_pv_name')} :`
-          .item-count#busuanzi_value_site_pv
-            i.fa-solid.fa-spinner.fa-spin
+      .webinfo-item
+        .item-name 总访客数 :
+        .item-count#vercount_value_site_uv(data-vercount-fallback="--")
+          i.fa-solid.fa-spinner.fa-spin
+      .webinfo-item
+        .item-name 总访问量 :
+        .item-count#vercount_value_site_pv(data-vercount-fallback="--")
+          i.fa-solid.fa-spinner.fa-spin
+      .webinfo-item
+        .item-name 当前页阅读 :
+        .item-count#vercount_value_page_pv(data-vercount-fallback="--")
+          i.fa-solid.fa-spinner.fa-spin
       if theme.aside.card_webinfo.last_push_date
         .webinfo-item
           .item-name= `${_p('aside.card_webinfo.last_push_date.name')} :`

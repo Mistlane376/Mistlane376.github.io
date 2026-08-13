@@ -5,6 +5,34 @@
   border-color: color-mix(in srgb, var(--ui-teal) 25%, var(--ui-border));
 }
 
+.aside-column-right .card-visitor-welcome {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+  padding: 17px !important;
+  border-left: 0;
+}
+
+.aside-column-right .card-visitor-welcome::before {
+  top: 0;
+  right: 0;
+  bottom: auto;
+  width: auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ui-teal), var(--ui-blue));
+}
+
+.aside-column-right .visitor-welcome-copy {
+  min-height: 0;
+  font-size: .72rem;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.aside-column-right .visitor-welcome-signature {
+  margin-top: 12px;
+  font-size: .6rem;
+}
+
 #aside-content .card-visitor-welcome::before {
   position: absolute;
   top: 0;

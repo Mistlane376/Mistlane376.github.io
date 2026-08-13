@@ -344,7 +344,6 @@ html:not([data-theme='dark']) .petal-layer {
   0%, 100% { opacity: 0.04; transform: rotate(0deg) scale(0.5); }
   50% { opacity: 0.92; transform: rotate(45deg) scale(1); }
 }
-}
 
 @media (max-width: 768px) {
   .petal:nth-child(n + 13) {
@@ -2620,6 +2619,11 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
   order: -1;
   padding: 44px 0 34px;
   text-align: left;
+}
+
+/* Butterfly wraps custom footer markup once before placing it in footer-other. */
+#footer .footer_custom_text {
+  order: -1;
 }
 
 #footer .footer-intro p {

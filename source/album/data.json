@@ -1,4 +1,13 @@
 {
+  "privateAlbums": [
+    {
+      "id": "quiet-moments",
+      "name": "未公开的片刻",
+      "date": "2026-08-12",
+      "photoCount": 2,
+      "envelope": "/album/private/quiet-moments.json"
+    }
+  ],
   "albums": [
     {
       "id": "summer-distance",

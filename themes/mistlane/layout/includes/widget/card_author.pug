@@ -2,7 +2,11 @@ if theme.aside.card_author.enable
   .card-widget.card-info.text-center
     .avatar-img
       img(src=url_for(theme.avatar.img) onerror=`this.onerror=null;this.src='` + url_for(theme.error_img.flink) + `'` alt="avatar")
+      span.author-presence(title="持续记录中" aria-label="持续记录中")
     .author-info-name= config.author
+    .author-role
+      i.fas.fa-code
+      span 计算机科学 · ACM
     .author-info-description!= theme.aside.card_author.description || config.description
 
     .site-data

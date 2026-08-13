@@ -1,8 +1,8 @@
 (() => {
   'use strict'
 
-  const cacheKey = 'mistlane-site-stats'
-  const ids = ['busuanzi_value_site_uv', 'busuanzi_value_site_pv']
+  const cacheKey = 'mistlane-vercount-stats'
+  const ids = ['vercount_value_site_uv', 'vercount_value_site_pv', 'vercount_value_page_pv']
   const elements = () => ids.map((id) => document.getElementById(id)).filter(Boolean)
 
   const readCache = () => {
@@ -21,14 +21,17 @@
     }
   }
 
-  const cached = readCache()
+  let cached = readCache()
   const refresh = () => {
     const next = { ...cached }
     elements().forEach((element) => {
       const value = element.textContent.trim()
       if (value && !element.querySelector('.fa-spinner')) next[element.id] = value
     })
-    if (Object.keys(next).length) writeCache(next)
+    if (Object.keys(next).length) {
+      cached = next
+      writeCache(next)
+    }
   }
 
   const showCachedValues = () => {
@@ -37,16 +40,20 @@
     })
   }
 
-  showCachedValues()
+  const initialize = () => {
+    showCachedValues()
+    window.setTimeout(() => {
+      elements().forEach((element) => {
+        if (element.querySelector('.fa-spinner')) {
+          element.textContent = cached[element.id] || element.dataset.vercountFallback || '--'
+          element.title = 'Vercount 暂未返回数据，将在可用时自动更新'
+        }
+      })
+    }, 4500)
+  }
+  initialize()
   const observer = new MutationObserver(refresh)
   observer.observe(document.documentElement, { childList: true, characterData: true, subtree: true })
 
-  window.setTimeout(() => {
-    elements().forEach((element) => {
-      if (element.querySelector('.fa-spinner')) {
-        element.textContent = cached[element.id] || '--'
-        element.title = '统计服务响应较慢，将在可用时自动更新'
-      }
-    })
-  }, 3500)
+  document.addEventListener('pjax:complete', initialize)
 })()

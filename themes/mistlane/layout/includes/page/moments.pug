@@ -1,0 +1,42 @@
+.mistlane-moments-page
+  header.mistlane-feature-intro
+    span.mistlane-feature-eyebrow MOMENTS
+    h1 学习与生活的即时切片
+    p 比文章更轻一些，用来保存刷题记录、学习进度和偶然出现的想法。
+  if page.moments && page.moments.length
+    .mistlane-moment-timeline
+      each moment in page.moments
+        article.mistlane-moment-card(id=`moment-${moment.id}` class=moment.pinned ? 'is-pinned' : '')
+          .mistlane-moment-date
+            strong= date(moment.date, 'DD')
+            span= date(moment.date, 'YYYY.MM')
+          .mistlane-moment-body
+            header
+              time(datetime=date_xml(moment.date))= date(moment.date, 'YYYY-MM-DD HH:mm')
+              if moment.pinned
+                span.mistlane-moment-pin
+                  i.fas.fa-thumbtack
+                  |  置顶
+              if moment.mood
+                span
+                  i.far.fa-face-smile
+                  |  #{moment.mood}
+              if moment.location
+                span
+                  i.fas.fa-location-dot
+                  |  #{moment.location}
+            .mistlane-moment-content!= moment.content
+            if moment.images.length
+              .mistlane-moment-images(class=`image-count-${Math.min(moment.images.length, 3)}`)
+                each image in moment.images
+                  a(href=url_for(image) data-fancybox=`moment-${moment.id}`)
+                    img(src=url_for(image) loading="lazy" alt="动态图片")
+            if moment.tags.length
+              footer
+                each tag in moment.tags
+                  span # #{tag}
+  else
+    .mistlane-empty-state
+      i.far.fa-note-sticky
+      strong 还没有动态
+      p 使用 npm run moment:new -- "内容" 创建第一条记录。

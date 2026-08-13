@@ -8,24 +8,14 @@ const initializeArchiveHub = async () => {
   const buttons = [...hub.querySelectorAll('[data-archive-view]')]
 
   try {
-    const [categoriesResponse, tagsResponse, detailsResponse] = await Promise.all([
-      fetch('/categories/'),
-      fetch('/tags/'),
-      fetch('/data/category-cards.json')
+    const [archiveResponse, detailsResponse] = await Promise.all([
+      fetch('/data/archive-hub.json', { cache: 'force-cache' }),
+      fetch('/data/category-cards.json', { cache: 'force-cache' })
     ])
-    const categoriesDocument = new DOMParser().parseFromString(await categoriesResponse.text(), 'text/html')
-    const tagsDocument = new DOMParser().parseFromString(await tagsResponse.text(), 'text/html')
+    const archiveData = archiveResponse.ok ? await archiveResponse.json() : { categories: [], tags: [] }
     const details = detailsResponse.ok ? await detailsResponse.json() : {}
-    const categories = [...categoriesDocument.querySelectorAll('.category-list-item')].map((item) => {
-      const link = item.querySelector('.category-list-link')
-      const count = item.querySelector('.category-list-count')
-      return link ? { name: link.textContent.trim(), href: link.getAttribute('href'), count: count?.textContent.trim() || '0' } : null
-    }).filter(Boolean)
-    const tags = [...tagsDocument.querySelectorAll('.tag-cloud-list a')].map((link) => ({
-      name: link.textContent.trim().replace(/^#\s*/, ''),
-      href: link.getAttribute('href'),
-      count: link.querySelector('sup')?.textContent.trim() || ''
-    }))
+    const categories = archiveData.categories || []
+    const tags = archiveData.tags || []
     const postCount = categories.reduce((total, category) => total + Number(category.count || 0), 0)
 
     hub.querySelector('[data-archive-category-count]').textContent = categories.length

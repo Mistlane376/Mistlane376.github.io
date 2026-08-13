@@ -1,0 +1,130 @@
+#mistlane-global-controls
+  audio#mistlane-global-audio(preload="none" crossorigin="anonymous")
+
+  button#mistlane-settings-backdrop(type="button" tabindex="-1" aria-label="关闭外观设置" data-close-settings)
+
+  aside#mistlane-settings-panel.mistlane-control-panel(aria-hidden="true" aria-labelledby="mistlane-settings-title")
+    header.mistlane-panel-header
+      .mistlane-panel-title
+        span.mistlane-panel-mark
+          i.fas.fa-wand-magic-sparkles
+        div
+          span.mistlane-panel-eyebrow PERSONALIZE
+          h2#mistlane-settings-title 外观设置
+      button.mistlane-panel-close(type="button" data-close-settings aria-label="关闭外观设置" title="关闭")
+        i.fas.fa-xmark
+    .mistlane-appearance-summary(aria-live="polite")
+      .mistlane-summary-orbit
+        span
+          i.fas.fa-font
+      div
+        small 当前外观
+        strong#mistlane-appearance-summary 默认字体 · 自动模式
+      i.fas.fa-check
+    .mistlane-panel-scroll
+      section.mistlane-setting-section
+        .mistlane-setting-heading
+          span.mistlane-setting-icon
+            i.fas.fa-font
+          div
+            strong 页面字体
+            small TYPOGRAPHY
+        .mistlane-font-options(role="radiogroup" aria-label="页面字体")
+          button(type="button" data-font="system" role="radio")
+            span.font-option-preview Aa
+            span
+              strong 默认字体
+              small System
+            i.fas.fa-check
+          button(type="button" data-font="geely" role="radio")
+            span.font-option-preview.font-geely 字
+            span
+              strong 几何设计体
+              small Geely Design
+            i.fas.fa-check
+          button(type="button" data-font="xiangcui" role="radio")
+            span.font-option-preview.font-xiangcui 文
+            span
+              strong 香萃集雪松
+              small Xiangcui
+            i.fas.fa-check
+      section.mistlane-setting-section
+        .mistlane-setting-heading
+          span.mistlane-setting-icon
+            i.fas.fa-circle-half-stroke
+          div
+            strong 颜色模式
+            small APPEARANCE
+        .mistlane-segmented(role="radiogroup" aria-label="颜色模式")
+          button(type="button" data-color-mode="auto" role="radio")
+            i.fas.fa-desktop
+            span 自动
+          button(type="button" data-color-mode="light" role="radio")
+            i.far.fa-sun
+            span 浅色
+          button(type="button" data-color-mode="dark" role="radio")
+            i.far.fa-moon
+            span 深色
+      section.mistlane-setting-section
+        .mistlane-setting-heading
+          span.mistlane-setting-icon
+            i.fas.fa-text-height
+          div
+            strong 阅读字号
+            small TEXT SIZE
+        .mistlane-range-control
+          label.mistlane-range-label(for="mistlane-font-size-range")
+            span 全站字体大小
+            output#mistlane-font-size-output 100%
+          input#mistlane-font-size-range(type="range" min="90" max="115" step="5" value="100")
+          .mistlane-range-scale(aria-hidden="true")
+            span 紧凑
+            span 舒展
+        .mistlane-setting-row
+          span.mistlane-row-icon
+            i.fas.fa-feather
+          div
+            strong 减少动态效果
+            small 静态浏览
+          label.mistlane-switch
+            input#mistlane-motion-toggle(type="checkbox")
+            span
+    footer.mistlane-panel-footer
+      button#mistlane-settings-reset.mistlane-reset-button(type="button")
+        i.fas.fa-rotate-left
+        span 恢复默认
+      span 设置自动保存
+
+  aside#mistlane-music-panel.mistlane-control-panel(aria-hidden="true" aria-labelledby="mistlane-music-title")
+    header.mistlane-panel-header
+      div
+        span.mistlane-panel-eyebrow NOW PLAYING
+        h2#mistlane-music-title 音乐播放器
+      button.mistlane-panel-close(type="button" data-close-music aria-label="关闭音乐播放器" title="关闭")
+        i.fas.fa-xmark
+    .mistlane-track
+      .mistlane-track-cover
+        i.fas.fa-music
+      .mistlane-track-copy
+        strong#mistlane-track-name 暂无歌曲
+        span#mistlane-track-artist 等待载入
+    .mistlane-progress
+      input#mistlane-music-progress(type="range" min="0" max="1000" value="0" aria-label="播放进度")
+      div
+        span#mistlane-current-time 0:00
+        span#mistlane-duration 0:00
+    .mistlane-player-actions
+      button(type="button" data-music-mode aria-label="顺序播放" title="顺序播放")
+        i.fas.fa-repeat
+      button(type="button" data-music-prev aria-label="上一首" title="上一首")
+        i.fas.fa-backward-step
+      button.mistlane-play-button(type="button" data-music-play aria-label="播放" title="播放或暂停")
+        i.fas.fa-play
+      button(type="button" data-music-next aria-label="下一首" title="下一首")
+        i.fas.fa-forward-step
+    #mistlane-current-lyric.mistlane-current-lyric(aria-live="polite") 暂无歌词
+    .mistlane-volume
+      button(type="button" data-music-mute aria-label="静音" title="静音")
+        i.fas.fa-volume-low
+      input#mistlane-music-volume(type="range" min="0" max="100" value="35" aria-label="音量")
+    #mistlane-playlist.mistlane-playlist

@@ -1,0 +1,37 @@
+.card-widget.card-quick-links
+  .item-headline
+    i.fas.fa-compass
+    span 快捷入口
+  nav.quick-link-grid(aria-label="站点快捷入口")
+    a(href=url_for('/series/'))
+      i.fas.fa-route
+      span 学习路径
+      small SERIES
+    a(href=url_for('/moments/'))
+      i.fas.fa-bolt
+      span 动态
+      small MOMENTS
+    a(href=url_for('/archive/'))
+      i.fas.fa-box-archive
+      span 归档
+      small ARCHIVE
+    a(href=url_for('/categories/'))
+      i.fas.fa-folder-tree
+      span 分类
+      small TOPICS
+    a(href=url_for('/tags/'))
+      i.fas.fa-tags
+      span 标签
+      small TAGS
+    a(href=url_for('/album/'))
+      i.fas.fa-images
+      span 相册
+      small GALLERY
+    a(href=url_for('/link/'))
+      i.fas.fa-link
+      span 友链
+      small LINKS
+    a(href=url_for('/rss/'))
+      i.fas.fa-rss
+      span RSS
+      small SUBSCRIBE

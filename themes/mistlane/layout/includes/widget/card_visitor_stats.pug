@@ -1,0 +1,17 @@
+.card-widget.card-visitor-stats
+  .item-headline
+    i.fas.fa-users
+    span 访客记录
+  .visitor-stat-grid
+    .visitor-stat-item
+      span 总访客
+      strong#vercount_value_site_uv(data-vercount-fallback="--")
+        i.fa-solid.fa-spinner.fa-spin
+    .visitor-stat-item
+      span 总访问
+      strong#vercount_value_site_pv(data-vercount-fallback="--")
+        i.fa-solid.fa-spinner.fa-spin
+    .visitor-stat-item.visitor-stat-wide
+      span 当前页阅读
+      strong#vercount_value_page_pv(data-vercount-fallback="--")
+        i.fa-solid.fa-spinner.fa-spin

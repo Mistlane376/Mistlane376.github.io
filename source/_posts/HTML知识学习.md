@@ -5,6 +5,7 @@ tags:
   - 知识学习
   - 总结
 title: HTML知识学习
+series: 写作与前端基础
 categories:
   - 教程
 cover: /images/selection3.jpg

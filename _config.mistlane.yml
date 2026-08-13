@@ -25,10 +25,12 @@ mistlane:
   upstream: Butterfly 5.6.1
 
 menu:
-  Projects: /projects/ || fas fa-folder-tree
   首页: / || fas fa-home
   归档: /archive/ || fas fa-box-archive
   相册: /album/ || fas fa-images
+  记录 || fas fa-book-open:
+    学习路径: /series/ || fas fa-route
+    动态: /moments/ || fas fa-bolt
   探索 || fas fa-compass:
     追番: /bangumis/ || fas fa-play-circle
     友链: /link/ || fas fa-link
@@ -414,8 +416,8 @@ wordcount:
 
 # Busuanzi count for PV / UV in site
 busuanzi:
-  site_uv: true
-  site_pv: true
+  site_uv: false
+  site_pv: false
   page_pv: false
 
 # --------------------------------------
@@ -645,12 +647,37 @@ inject:
     # 访客所在地欢迎卡片
     - <link rel="stylesheet" href="/css/mistlane/visitor-welcome.css">
     - <link rel="stylesheet" href="/css/mistlane/comments.css">
-    # 相册页面
+    - <link rel="stylesheet" href="/css/mistlane/album.css">
+    - <link rel="stylesheet" href="/css/mistlane/about-envelope.css">
+    - <link rel="stylesheet" href="/css/mistlane/link-directory.css">
+    - <link rel="stylesheet" href="/css/mistlane/appearance-settings.css">
+    - <link rel="stylesheet" href="/css/mistlane/music-player.css">
+    - <link rel="stylesheet" href="/css/mistlane/sidebar-architecture.css">
+    - <link rel="stylesheet" href="/css/mistlane/content-paths.css">
+    - <link rel="stylesheet" href="/css/mistlane/rss.css">
+    - <link rel="stylesheet" href="/css/mistlane/code-enhancements.css">
   bottom:
     - <script defer src="/js/mistlane/petals.js"></script>
     - <script defer src="/js/mistlane/visitor-welcome.js"></script>
     - <script defer src="/js/mistlane/search-performance.js"></script>
     - <script defer src="/js/mistlane/site-stats-cache.js"></script>
+    - <script defer src="/js/mistlane/home-hero.js"></script>
+    - <script defer src="/js/mistlane/archive-hub.js"></script>
+    - <script defer src="/js/mistlane/category-cards.js"></script>
+    - <script defer src="/js/mistlane/category-detail.js"></script>
+    - <script defer src="/js/mistlane/album.js"></script>
+    - <script defer src="/js/mistlane/link-directory.js"></script>
+    - <script defer src="/js/mistlane/appearance-settings.js"></script>
+    - <script defer src="/js/mistlane/music-manager.js"></script>
+    - <script defer src="/js/mistlane/sidebar-widgets.js"></script>
+    - <script defer src="/js/mistlane/code-enhancements.js"></script>
+    - <script defer src="/js/mistlane/rss.js"></script>
+
+# Keep the global music kernel alive while page content is replaced.
+pjax:
+  enable: true
+  exclude:
+    - /atom.xml
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
@@ -670,6 +697,7 @@ CDN:
   custom_format:
 
   option:
+    pjax: /js/pjax.min.js
     # abcjs_basic_js:
     # activate_power_mode:
     # algolia_js:
@@ -692,7 +720,7 @@ CDN:
     # fancybox:
     # fancybox_css:
     # fireworks:
-    fontawesome: https://lib.baomitu.com/font-awesome/7.0.0/css/all.min.css
+    fontawesome: /vendor/fontawesome/css/all.min.css
     # gitalk:
     # gitalk_css:
     # giscus:
@@ -701,8 +729,8 @@ CDN:
     # katex_copytex:
     # lazyload:
     # Butterfly internal scripts: use npmmirror for mainland-friendly delivery.
-    local_search: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/search/local-search.min.js
-    main: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/main.min.js
+    local_search: /js/search/local-search.js
+    main: /js/main.js
     # main_css:
     # MathJax loads fonts/extensions dynamically; jsdmirror preserves its npm paths.
     mathjax: https://cdn.jsdmirror.com/npm/mathjax@4.1.3/tex-mml-chtml.js
@@ -720,7 +748,7 @@ CDN:
     # translate:
     twikoo: https://cdn.jsdmirror.com/npm/twikoo@1.7.15/dist/twikoo.all.min.js
     # typed:
-    utils: https://cdn.jsdmirror.com/npm/hexo-theme-butterfly@5.6.1/source/js/utils.min.js
+    utils: /js/utils.js
     # valine:
     # waline_css:
     # waline_js:

@@ -29,11 +29,17 @@
     if (!aside || aside.querySelector('.card-visitor-welcome')) return;
 
     var card = createCard();
+    var rightRail = aside.querySelector('.aside-column-right .sticky_layout');
+    var quickLinks = rightRail && rightRail.querySelector('.card-quick-links');
     var announcement = aside.querySelector('.card-announcement');
     var author = aside.querySelector('.card-info');
 
-    if (announcement) {
+    if (announcement && rightRail && rightRail.contains(announcement)) {
       announcement.insertAdjacentElement('afterend', card);
+    } else if (quickLinks) {
+      quickLinks.insertAdjacentElement('beforebegin', card);
+    } else if (rightRail) {
+      rightRail.appendChild(card);
     } else if (author) {
       author.insertAdjacentElement('afterend', card);
     } else {

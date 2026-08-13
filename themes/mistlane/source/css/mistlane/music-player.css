@@ -1,0 +1,31 @@
+#nav-music-button { display: inline-flex; min-width: 38px; height: 34px; align-items: center; gap: 6px; padding: 0 10px; border-radius: 6px; background: rgba(255, 255, 255, .1); color: var(--light-grey); font-size: .82rem; backdrop-filter: blur(12px); }
+#nav-music-button.is-playing i { animation: mistlane-music-pulse 1.4s ease-in-out infinite; color: #5ccfc3; }
+#mistlane-music-panel { top: 68px; right: 22px; padding: 18px; }
+#mistlane-music-panel .mistlane-panel-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+#mistlane-music-panel .mistlane-panel-header h2 { margin: 2px 0 0; padding: 0; color: #1f3b44; font-size: 1.2rem; line-height: 1.25; }
+#mistlane-music-panel .mistlane-panel-header h2::before { display: none !important; content: none !important; }
+.mistlane-track { display: grid; grid-template-columns: 52px minmax(0, 1fr); align-items: center; gap: 12px; }
+.mistlane-track-cover { display: grid; width: 52px; height: 52px; place-items: center; border-radius: 7px; background: linear-gradient(145deg, #277f79, #6f6587); color: #fff; }
+.mistlane-track-cover.has-cover { background-position: center; background-size: cover; }
+.mistlane-track-cover.has-cover i { display: none; }
+.mistlane-track-copy { min-width: 0; }
+.mistlane-track-copy strong, .mistlane-track-copy span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mistlane-track-copy strong { color: #294750; font-size: .95rem; }
+.mistlane-track-copy span { margin-top: 4px; color: #71858c; font-size: .75rem; }
+.mistlane-progress { margin-top: 16px; }
+.mistlane-progress > div { display: flex; justify-content: space-between; color: #7b8f96; font-size: .68rem; }
+.mistlane-player-actions { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 13px 0; }
+.mistlane-player-actions button { width: 34px; height: 34px; border-radius: 50%; color: #49636c; }
+.mistlane-player-actions .mistlane-play-button { width: 44px; height: 44px; background: #277f79; color: #fff; }
+.mistlane-current-lyric { min-height: 1.5em; margin: -2px 0 12px; overflow: hidden; color: #71858c; font-size: .75rem; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
+.mistlane-volume { display: grid; grid-template-columns: 28px 1fr; align-items: center; gap: 8px; color: #71858c; }
+.mistlane-volume button { display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; color: inherit; }
+.mistlane-volume button:hover { background: rgba(39,127,121,.1); color: #168c84; }
+.mistlane-playlist { max-height: 140px; margin-top: 14px; overflow: auto; border-top: 1px solid rgba(91, 121, 132, .16); }
+.mistlane-playlist button { display: grid; width: 100%; grid-template-columns: 24px minmax(0, 1fr); gap: 7px; padding: 9px 4px; color: #617982; text-align: left; }
+.mistlane-playlist button.is-active { color: #168c84; }
+.mistlane-playlist button span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+[data-theme='dark'] .mistlane-track-copy strong { color: #edf4f5; }
+[data-theme='dark'] #mistlane-music-panel .mistlane-panel-header h2 { color: #edf4f5; }
+@keyframes mistlane-music-pulse { 50% { transform: scale(.82); opacity: .65; } }
+@media (max-width: 600px) { #mistlane-music-panel { top: 60px; right: 12px; } .nav-music-label { display: none; } #nav-music-button { padding: 0 9px; } }

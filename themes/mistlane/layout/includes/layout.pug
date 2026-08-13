@@ -38,11 +38,13 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
           })()
 
     !=partial('includes/sidebar', {}, {cache: true})
+    include ./mistlane-global-controls.pug
 
     #body-wrap(class=pageType)
       include ./header/index.pug
 
-      main#content-inner.layout(class=hideAside)
+      - const useDoubleAside = theme.aside.enable && page.aside !== false && globalPageType !== 'post'
+      main#content-inner.layout(class=[hideAside, useDoubleAside ? 'mistlane-double-aside' : ''])
         if body
           div!= body
         else

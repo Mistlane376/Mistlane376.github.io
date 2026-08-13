@@ -1,0 +1,41 @@
+- const calendarPosts = site.posts.toArray().filter(post => !post.draft).map(post => ({ title: post.title, path: url_for(post.path), date: date(post.date, 'YYYY-MM-DD') }))
+.card-widget.card-calendar(data-sidebar-calendar)
+  script.calendar-post-data(type="application/json")!= safeJSON(calendarPosts)
+  .calendar-card-header
+    .item-headline
+      i.far.fa-calendar-days
+      span 内容日历
+    .calendar-card-actions
+      button(type="button" data-calendar-prev aria-label="上个月" title="上个月")
+        i.fas.fa-chevron-left
+      button.calendar-today-button(type="button" data-calendar-today title="回到今天") 今天
+      button(type="button" data-calendar-next aria-label="下个月" title="下个月")
+        i.fas.fa-chevron-right
+  .calendar-month-overview
+    button.calendar-card-title(type="button" data-calendar-title title="回到本月")
+    .calendar-month-stats
+      span
+        strong(data-calendar-post-count) 0
+        |  篇文章
+      span
+        strong(data-calendar-active-days) 0
+        |  个活跃日
+  .calendar-weekdays(aria-hidden="true")
+    each weekday in ['一', '二', '三', '四', '五', '六', '日']
+      span= weekday
+  .calendar-days(data-calendar-grid aria-label="内容日历")
+  .calendar-legend(aria-hidden="true")
+    span
+      i.calendar-legend-today
+      | 今天
+    span
+      i.calendar-legend-post
+      | 有文章
+  .calendar-selection(data-calendar-selection aria-live="polite")
+    .calendar-selection-head
+      div
+        small SELECTED DATE
+        strong(data-calendar-selected-date) 选择日期查看记录
+      span(data-calendar-selected-count) 0 篇
+    .calendar-selection-list(data-calendar-selected-list)
+      p 点击带圆点的日期，可以查看当天发布的文章。

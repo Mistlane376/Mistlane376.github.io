@@ -1,4 +1,4 @@
-if page.total !== 1
+if page.total !== 1 && globalPageType !== 'home'
   -
     var options = {
       prev_text: '<i class="fas fa-chevron-left fa-fw"></i>',
@@ -33,6 +33,4 @@ if page.total !== 1
   else
     nav#pagination
       .pagination
-        if globalPageType === 'home'
-          - options.format = 'page/%d/#content-inner'
         !=paginator(options)

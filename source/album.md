@@ -49,6 +49,31 @@ description: 按相册组与日期浏览 Mistlane 的照片记录。
     <p>在相册数据文件中加入照片后，这里会自动生成分组与时间视图。</p>
   </div>
 
+  <dialog class="private-album-dialog" id="private-album-dialog" aria-labelledby="private-album-title">
+    <form class="private-album-unlock" id="private-album-form" method="dialog">
+      <button type="button" class="private-album-close" data-private-close aria-label="关闭密码窗口">
+        <i class="fas fa-xmark" aria-hidden="true"></i>
+      </button>
+      <span class="private-album-dialog-icon"><i class="fas fa-lock" aria-hidden="true"></i></span>
+      <span class="private-album-eyebrow">PRIVATE ALBUM</span>
+      <h2 id="private-album-title">解锁私密相册</h2>
+      <p id="private-album-description">输入密码后，照片将在当前设备内解密。</p>
+      <label for="private-album-password">访问密码</label>
+      <div class="private-password-field">
+        <input id="private-album-password" name="password" type="password" autocomplete="current-password" required maxlength="128" aria-describedby="private-album-error">
+        <button type="button" data-private-password-toggle aria-label="显示密码" title="显示或隐藏密码">
+          <i class="fas fa-eye" aria-hidden="true"></i>
+        </button>
+      </div>
+      <p class="private-album-error" id="private-album-error" role="alert" aria-live="polite"></p>
+      <button class="private-album-submit" type="submit">
+        <i class="fas fa-key" aria-hidden="true"></i>
+        <span>解锁相册</span>
+      </button>
+      <small><i class="fas fa-shield-halved" aria-hidden="true"></i> 密码只用于本地解密，不会发送到服务器</small>
+    </form>
+  </dialog>
+
   <dialog class="album-lightbox" id="album-lightbox" aria-labelledby="lightbox-title">
     <div class="album-lightbox-shell">
       <header class="album-lightbox-header">

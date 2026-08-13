@@ -18,6 +18,27 @@
 
   const safeText = value => typeof value === 'string' ? value.trim() : '';
 
+  const decodeBase64 = value => Uint8Array.from(atob(value), character => character.charCodeAt(0));
+
+  const decryptPrivateAlbum = async (envelope, password) => {
+    if (!window.crypto?.subtle || envelope?.version !== 1) throw new Error('当前浏览器不支持安全解密');
+    const material = await crypto.subtle.importKey(
+      'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']
+    );
+    const key = await crypto.subtle.deriveKey({
+      name: 'PBKDF2',
+      salt: decodeBase64(envelope.salt),
+      iterations: Number(envelope.iterations),
+      hash: 'SHA-256'
+    }, material, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+    const plaintext = await crypto.subtle.decrypt({
+      name: 'AES-GCM',
+      iv: decodeBase64(envelope.iv),
+      tagLength: 128
+    }, key, decodeBase64(envelope.data));
+    return JSON.parse(new TextDecoder().decode(plaintext));
+  };
+
   const normalizeDate = value => {
     const date = safeText(value);
     return /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : '';
@@ -105,7 +126,15 @@
     const nextButton = root.querySelector('[data-lightbox-next]');
     const closeButton = root.querySelector('[data-lightbox-close]');
     const stage = root.querySelector('.album-lightbox-stage');
+    const privateDialog = root.querySelector('#private-album-dialog');
+    const privateForm = root.querySelector('#private-album-form');
+    const privatePassword = root.querySelector('#private-album-password');
+    const privateError = root.querySelector('#private-album-error');
+    const privateTitle = root.querySelector('#private-album-title');
+    const privateDescription = root.querySelector('#private-album-description');
     let albums = [];
+    let privateAlbums = [];
+    let selectedPrivateAlbum = null;
     let activeView = 'groups';
     let activeAlbum = null;
     let activePhotoIndex = 0;
@@ -204,6 +233,31 @@
     const renderGroups = () => {
       const grid = createElement('div', 'album-group-grid');
 
+      privateAlbums.forEach(metadata => {
+        const card = createElement('article', 'album-group-card private-album-card');
+        const lock = createElement('button', 'private-album-lock');
+        lock.type = 'button';
+        lock.setAttribute('aria-label', `解锁私密相册：${metadata.name}`);
+        lock.append(createIcon('fas fa-lock'));
+        lock.append(createElement('span', '', '输入密码解锁'));
+        lock.addEventListener('click', () => {
+          selectedPrivateAlbum = metadata;
+          privateTitle.textContent = `解锁「${metadata.name}」`;
+          privateDescription.textContent = `此相册包含 ${metadata.photoCount || 0} 张加密照片，密码只在本地使用。`;
+          privateError.textContent = '';
+          privatePassword.value = '';
+          if (typeof privateDialog.showModal === 'function') privateDialog.showModal();
+          else privateDialog.setAttribute('open', '');
+          requestAnimationFrame(() => privatePassword.focus());
+        }, { signal });
+        const copy = createElement('div', 'album-group-copy');
+        const kicker = createElement('div', 'album-group-kicker');
+        kicker.append(createIcon('fas fa-shield-halved'), document.createTextNode(' 私密相册'));
+        copy.append(kicker, createElement('h2', '', metadata.name), createElement('p', 'album-group-description', '内容已加密，解锁后仅在当前页面显示。'));
+        card.append(lock, copy);
+        grid.append(card);
+      });
+
       albums.forEach(album => {
         const card = createElement('article', 'album-group-card');
         const stack = createElement('button', 'album-stack');
@@ -297,6 +351,41 @@
     nextButton.addEventListener('click', () => showPhoto(activePhotoIndex + 1), { signal });
     closeButton.addEventListener('click', closeLightbox, { signal });
 
+    root.querySelector('[data-private-close]')?.addEventListener('click', () => privateDialog.close(), { signal });
+    root.querySelector('[data-private-password-toggle]')?.addEventListener('click', event => {
+      const button = event.currentTarget;
+      const show = privatePassword.type === 'password';
+      privatePassword.type = show ? 'text' : 'password';
+      button.setAttribute('aria-label', show ? '隐藏密码' : '显示密码');
+      button.querySelector('i').className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+    }, { signal });
+    privateForm?.addEventListener('submit', async event => {
+      event.preventDefault();
+      if (!selectedPrivateAlbum || !privatePassword.value) return;
+      const submit = privateForm.querySelector('.private-album-submit');
+      submit.disabled = true;
+      privateError.textContent = '正在本地解密...';
+      try {
+        const response = await fetch(selectedPrivateAlbum.envelope, { cache: 'no-store' });
+        if (!response.ok) throw new Error(`加密相册读取失败 (${response.status})`);
+        const decrypted = await decryptPrivateAlbum(await response.json(), privatePassword.value);
+        const [album] = normalizeAlbums({ albums: [decrypted] });
+        if (!album) throw new Error('相册内容无效');
+        albums.unshift(album);
+        privateAlbums = privateAlbums.filter(item => item.id !== selectedPrivateAlbum.id);
+        privateDialog.close();
+        renderGroups();
+        renderDates();
+        activateView('groups');
+      } catch (error) {
+        console.error('[private-album]', error);
+        privateError.textContent = error.name === 'OperationError' ? '密码不正确，请重新输入。' : error.message;
+        privatePassword.select();
+      } finally {
+        submit.disabled = false;
+      }
+    }, { signal });
+
     dialog.addEventListener('click', event => {
       if (event.target === dialog) closeLightbox();
     }, { signal });
@@ -335,9 +424,12 @@
       })
       .then(payload => {
         albums = normalizeAlbums(payload);
+        privateAlbums = Array.isArray(payload.privateAlbums)
+          ? payload.privateAlbums.filter(item => item && item.envelope && item.name)
+          : [];
         loading.hidden = true;
 
-        if (albums.length === 0) {
+        if (albums.length === 0 && privateAlbums.length === 0) {
           result.textContent = '0 组相册 · 0 张照片';
           showEmptyState('还没有照片', '新的影像记录会出现在这里。');
           return;

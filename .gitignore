@@ -40,3 +40,10 @@ pnpm-debug.log*
 .env
 .env.local
 .env.*.local
+
+# Private album source files and passwords. Only encrypted output is published.
+private-albums/
+
+# Local browser profiles and visual regression screenshots
+.chrome-twikoo-check/
+.qa-*.png

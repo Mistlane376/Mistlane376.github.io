@@ -2338,7 +2338,7 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
 .type-link #article-container { max-width: 1060px; margin: 0 auto; }
 .type-link .flink { position: relative; padding-top: 358px; }
 .type-link .flink::before { position: absolute; top: 0; left: 0; width: 100%; height: 318px; border: 1px solid rgba(230, 133, 168, 0.3); border-radius: 8px; background: linear-gradient(90deg, rgba(11, 18, 30, 0.92) 0%, rgba(27, 23, 42, 0.78) 41%, rgba(57, 29, 51, 0.42) 68%, rgba(55, 24, 51, 0.14) 100%), linear-gradient(180deg, rgba(7, 10, 22, 0.06) 0%, rgba(13, 10, 24, 0.48) 100%), url('/images/link-cover.png') center 45% / cover; box-shadow: 0 18px 42px rgba(49, 21, 42, 0.24); content: ''; }
-.type-link .flink::after { position: absolute; top: 66px; left: 48px; max-width: 420px; color: #fff; content: '鍙嬮摼\A\A 鏀惰棌鍊煎緱闀挎湡鍥炶鐨勪釜浜虹珯鐐逛笌鍒涗綔绌洪棿銆?; font-size: 1rem; font-weight: 500; line-height: 1.7; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.66); white-space: pre-line; }
+.type-link .flink::after { display: none; content: none; }
 .type-link .flink[data-directory-ready='true']::after { display: none; }
 .link-directory-hero-copy { position: absolute; top: 82px; left: 48px; z-index: 2; max-width: 560px; color: #fff; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.58); }
 .link-directory-kicker { display: inline-flex; align-items: center; gap: 8px; color: #ffd08a; font-size: 0.68rem; font-weight: 800; letter-spacing: 0.16em; }
@@ -2387,7 +2387,7 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
 @media screen and (max-width: 768px) {
   .bangumi-shelf-hero { display: block; min-height: 340px; padding: 32px 24px 22px; }.bangumi-shelf-hero h1 { font-size: 2.5rem; }.bangumi-shelf-hero dl { margin-top: 28px; width: max-content; }.bangumi-shelf-controls { display: flex; width: 100%; }.bangumi-shelf-controls button { flex: 1; min-width: 0; }.bangumi-shelf-grid { grid-template-columns: 1fr; }.bangumi-shelf-card a { grid-template-columns: 108px minmax(0, 1fr); min-height: 194px; }.bangumi-shelf-info { padding: 16px; }
   .type-link .flink { padding-top: 346px; }.type-link .flink::before { height: 306px; background-position: 59% center; }.type-link .flink::after { top: 34px; left: 24px; right: 24px; font-size: 0.92rem; }.type-link .flink-list { grid-template-columns: 1fr; }.type-link .flink-list-item a { grid-template-columns: 66px minmax(0, 1fr); }.type-link .flink-item-icon { width: 52px; height: 52px; }
-  .type-link .flink::after { content: '鍙嬮摼\A\A 鏀惰棌鍊煎緱闀挎湡鍥炶鐨勪釜浜虹珯鐐广€?; }
+  .type-link .flink::after { display: none; content: none; }
   .link-directory-hero-copy { top: 32px; right: 24px; left: 24px; }
   .link-directory-hero-copy h1 { margin-top: 10px; font-size: 2.25rem; }
   .link-directory-hero-copy p { font-size: 0.84rem; }

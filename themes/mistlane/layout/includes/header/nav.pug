@@ -13,6 +13,9 @@ nav#nav
           span= '  ' + _p('post.back_to_home')
 
   #menus
+    button#nav-music-button.nav-tool-button(type="button" title="打开音乐播放器" aria-label="打开音乐播放器" aria-expanded="false" aria-controls="mistlane-music-panel")
+      i.fas.fa-music
+      span.nav-music-label 音乐
     if theme.search.use
       #search-button
         span.site-page.social-icon.search

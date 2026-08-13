@@ -1,0 +1,35 @@
+.mistlane-series-page
+  header.mistlane-feature-intro
+    span.mistlane-feature-eyebrow LEARNING PATHS
+    h1 把零散文章连成可以持续阅读的路径
+    p 按顺序阅读算法模板、竞赛题解与前端学习笔记，也可以随时从上次的位置继续。
+  if page.seriesGroups && page.seriesGroups.length
+    .mistlane-series-grid
+      each group in page.seriesGroups
+        article.mistlane-series-card(id=`series-${group.slug}`)
+          header
+            .mistlane-series-heading
+              span.mistlane-series-icon
+                i.fas.fa-layer-group
+              div
+                h2= group.name
+                p= group.description || `${group.count} 篇文章组成的学习路径`
+            span.mistlane-series-count= `${group.count} 篇`
+          ol.mistlane-series-list
+            each item in group.posts
+              li
+                span.mistlane-series-index= String(item.index).padStart(2, '0')
+                a(href=url_for(item.path))
+                  strong= item.title
+                  if item.description
+                    small= strip_html(item.description)
+          footer
+            span
+              i.far.fa-clock
+              |  更新于 #{date(group.latest, 'YYYY-MM-DD')}
+            a(href=url_for(group.posts[0].path)) 开始阅读
+  else
+    .mistlane-empty-state
+      i.fas.fa-route
+      strong 暂无学习路径
+      p 给文章 front matter 添加 series 后会自动出现在这里。

@@ -1,0 +1,37 @@
+#post #article-container figure.highlight { position: relative; }
+
+#post #article-container .highlight-tools {
+  min-height: 36px;
+  border-bottom: 1px solid var(--article-code-border) !important;
+  background: color-mix(in srgb, var(--article-code-bg) 88%, var(--ui-surface, #fff));
+}
+
+#post #article-container .highlight-tools .mistlane-code-file {
+  display: inline-flex;
+  max-width: min(56%, 360px);
+  align-items: center;
+  gap: 6px;
+  margin-left: 10px;
+  overflow: hidden;
+  color: var(--ui-heading, #14212b);
+  font-size: .72rem;
+  font-weight: 680;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#post #article-container .highlight-tools .mistlane-code-file::before { color: var(--ui-teal, #18756f); content: '\f15b'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
+#post #article-container .highlight-tools .copy-button.is-copied { color: var(--ui-teal, #18756f) !important; }
+#post #article-container .highlight-tools .copy-button.is-copied::after { position: absolute; right: 34px; padding: 2px 6px; border-radius: 3px; background: var(--ui-teal, #18756f); color: #fff; content: '已复制'; font-family: var(--global-font); font-size: .62rem; font-weight: 600; }
+
+#post #article-container figure.highlight.mistlane-code-long:not(.expand-done) { max-height: 520px; overflow: hidden; }
+#post #article-container figure.highlight.mistlane-code-long:not(.expand-done)::after { position: absolute; right: 0; bottom: 0; left: 0; height: 92px; background: linear-gradient(transparent, var(--article-code-bg) 82%); content: ''; pointer-events: none; }
+#post #article-container figure.highlight.mistlane-code-long .mistlane-code-toggle { position: absolute; z-index: 3; right: 12px; bottom: 10px; display: inline-flex; min-height: 29px; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--article-code-border); border-radius: 5px; background: var(--ui-surface, #fff); color: var(--ui-muted, #68737d); font-size: .67rem; cursor: pointer; }
+#post #article-container figure.highlight.mistlane-code-long.expand-done .mistlane-code-toggle { position: sticky; float: right; margin: 8px; }
+
+#post #article-container figure.highlight[data-highlight-lines] .line.is-emphasized { display: inline-block; width: 100%; margin: 0 -18px; padding: 0 18px; border-left: 2px solid var(--ui-teal, #18756f); background: var(--ui-teal-soft, rgba(24, 117, 111, .1)); }
+
+@media (max-width: 600px) {
+  #post #article-container .highlight-tools .mistlane-code-file { max-width: 42%; }
+}

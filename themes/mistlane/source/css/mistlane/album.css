@@ -823,3 +823,26 @@ body.album-modal-open {
     min-height: 200px;
   }
 }
+.private-album-card { border-style: dashed !important; }
+.private-album-lock { position: relative; display: flex; min-height: 210px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; overflow: hidden; border-radius: 7px; background: linear-gradient(145deg, rgba(41, 71, 80, .9), rgba(70, 70, 92, .92)), url('/images/album-hero.png') center / cover; color: #fff; }
+.private-album-lock i { display: grid; width: 54px; height: 54px; place-items: center; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; background: rgba(255,255,255,.1); font-size: 1.1rem; backdrop-filter: blur(10px); }
+.private-album-lock span { font-size: .78rem; font-weight: 700; }
+.private-album-dialog { width: min(430px, calc(100vw - 24px)); padding: 0; border: 0; border-radius: 8px; background: transparent; color: inherit; }
+.private-album-dialog::backdrop { background: rgba(8, 16, 22, .7); backdrop-filter: blur(6px); }
+.private-album-unlock { position: relative; padding: 30px; border: 1px solid rgba(109, 137, 148, .24); border-radius: 8px; background: rgba(250, 252, 252, .94); box-shadow: 0 30px 90px rgba(0,0,0,.35); }
+.private-album-close { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; color: #687e85; }
+.private-album-dialog-icon { display: grid; width: 52px; height: 52px; place-items: center; margin-bottom: 16px; border-radius: 50%; background: rgba(39, 155, 146, .13); color: #168c84; }
+.private-album-eyebrow { color: #168c84; font-size: .68rem; font-weight: 800; letter-spacing: .08em; }
+.private-album-unlock h2 { margin: 5px 0 8px; padding: 0; font-size: 1.35rem; }
+.private-album-unlock h2::before { display: none !important; content: none !important; }
+.private-album-unlock > p { color: #71858c; font-size: .82rem; }
+.private-album-unlock label { display: block; margin: 18px 0 7px; color: #3d5962; font-size: .78rem; font-weight: 700; }
+.private-password-field { display: grid; grid-template-columns: 1fr 42px; overflow: hidden; border: 1px solid rgba(91, 121, 132, .25); border-radius: 6px; }
+.private-password-field input { min-width: 0; padding: 10px 12px; border: 0; background: transparent; color: #294750; outline: 0; }
+.private-password-field button { color: #617982; }
+.private-album-error { min-height: 20px; margin: 7px 0 !important; color: #b5485b !important; font-size: .74rem !important; }
+.private-album-submit { display: flex; width: 100%; align-items: center; justify-content: center; gap: 8px; padding: 11px; border-radius: 6px; background: #277f79; color: #fff; }
+.private-album-submit:disabled { cursor: wait; opacity: .65; }
+.private-album-unlock small { display: block; margin-top: 12px; color: #7b8f96; font-size: .68rem; text-align: center; }
+[data-theme='dark'] .private-album-unlock { background: rgba(24, 34, 39, .96); color: #edf4f5; }
+[data-theme='dark'] .private-password-field input { color: #edf4f5; }

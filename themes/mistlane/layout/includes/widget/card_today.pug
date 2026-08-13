@@ -1,0 +1,16 @@
+.card-widget.card-today(data-sidebar-today)
+  .item-headline
+    i.fas.fa-chart-pie
+    span 一年进度
+  .today-date
+    strong(data-today-day) --
+    div
+      span(data-today-month) ----年--月
+      small(data-today-weekday) 星期-
+  .today-progress
+    .today-progress-copy
+      span 本年进度
+      strong(data-year-progress) 0%
+    .today-progress-track
+      i(data-year-progress-bar)
+  p(data-today-greeting) 今天也留下一点值得回看的记录。

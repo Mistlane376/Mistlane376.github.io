@@ -61,8 +61,8 @@
       entry.list.before(section)
     })
 
-    directory.insertBefore(heroCopy, lists[0])
-    directory.insertBefore(summary, lists[0])
+    directory.prepend(heroCopy)
+    heroCopy.after(summary)
   }
 
   if (document.readyState === 'loading') {

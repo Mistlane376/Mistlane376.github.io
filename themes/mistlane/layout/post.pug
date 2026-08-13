@@ -5,6 +5,8 @@ block content
     if top_img === false
       include includes/header/post-info.pug
 
+    include includes/post/series-progress.pug
+
     article#article-container.container.post-content
       if theme.noticeOutdate.enable && page.noticeOutdate !== false
         include includes/post/outdate-notice.pug

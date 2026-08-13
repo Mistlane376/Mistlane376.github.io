@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run bangumi:update && hexo generate",
+    "build": "npm run assets:prepare && npm run bangumi:update && hexo generate && npm run check:site",
+    "assets:prepare": "node scripts/copy-pjax.js",
     "bangumi:update": "node tools/update-bangumi.js",
+    "album:encrypt": "node tools/private-album.js",
     "admin": "node tools/blog-manager.js",
+    "moment:new": "hexo moment",
+    "post:new": "hexo new-template",
+    "check:site": "node tools/regression-check.js",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server"
@@ -32,6 +37,7 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^5.6.1",
-    "hexo-wordcount": "^6.0.1"
+    "hexo-wordcount": "^6.0.1",
+    "pjax": "^0.2.8"
   }
 }

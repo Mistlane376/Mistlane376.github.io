@@ -1,0 +1,21 @@
+- const context = seriesContext(page)
+if context
+  nav.mistlane-post-series(aria-label=`${context.name}系列阅读进度`)
+    .mistlane-post-series-head
+      div
+        span 系列学习路径
+        a(href=url_for(`/series/#series-${context.slug}`))= context.name
+      strong= `${context.current} / ${context.count}`
+    .mistlane-series-progress(role="progressbar" aria-valuemin="1" aria-valuemax=context.count aria-valuenow=context.current)
+      i(style=`width:${context.percent}%`)
+    .mistlane-post-series-nav
+      if context.previous
+        a.previous(href=url_for(context.previous.path))
+          small 上一篇
+          span= context.previous.title
+      else
+        span
+      if context.next
+        a.next(href=url_for(context.next.path))
+          small 下一篇
+          span= context.next.title

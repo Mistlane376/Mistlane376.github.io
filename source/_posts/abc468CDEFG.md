@@ -1,5 +1,6 @@
 ---
 title: abc468CDEFG
+series: 竞赛题解
 date: 2026-07-27 16:30:50
 tags:
   - 算法
@@ -396,4 +397,3 @@ signed main(){
 }
 
 ```
-
