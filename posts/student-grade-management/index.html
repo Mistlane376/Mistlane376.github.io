@@ -1,0 +1,611 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>项目实践：学生成绩管理系统 | Mistlane's Blog</title><meta name="author" content="Mistlane"><meta name="copyright" content="Mistlane"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="大一java课程设计作业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目实践：学生成绩管理系统">
+<meta property="og:url" content="https://blog.mistlane.top/posts/student-grade-management/">
+<meta property="og:site_name" content="Mistlane&#39;s Blog">
+<meta property="og:description" content="大一java课程设计作业">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.mistlane.top/images/top.jpg">
+<meta property="article:published_time" content="2026-06-19T08:20:49.000Z">
+<meta property="article:modified_time" content="2026-06-19T08:20:49.000Z">
+<meta property="article:author" content="Mistlane">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="项目">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.mistlane.top/images/selection1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "项目实践：学生成绩管理系统",
+  "url": "https://blog.mistlane.top/posts/student-grade-management/",
+  "image": "https://blog.mistlane.top/images/top.jpg",
+  "datePublished": "2026-06-19T08:20:49.000Z",
+  "dateModified": "2026-06-19T08:20:49.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Mistlane",
+      "url": "https://github.com/Mistlane376"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/images/favicon.png"><link rel="canonical" href="https://blog.mistlane.top/posts/student-grade-management/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="https://events.vercount.one" crossorigin="anonymous"/><link rel="stylesheet" href="/css/index.css?v=1.0.0"><link rel="stylesheet" href="/vendor/fontawesome/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          const hour = new Date().getHours()
+          const start = 6
+          const end = 18
+          const isNight =
+            start < end
+                ? hour < start || hour >= end
+                : hour >= start || hour < end
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":2,"unescape":true,"pagination":{"enable":true,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '项目实践：学生成绩管理系统',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/mistlane/markdown.css"><link rel="stylesheet" href="/css/mistlane/site-polish.css"><link rel="stylesheet" href="/css/mistlane/guestbook.css"><link rel="stylesheet" href="/css/mistlane/visitor-welcome.css"><link rel="stylesheet" href="/css/mistlane/comments.css"><link rel="stylesheet" href="/css/mistlane/album.css"><link rel="stylesheet" href="/css/mistlane/about-envelope.css"><link rel="stylesheet" href="/css/mistlane/link-directory.css"><link rel="stylesheet" href="/css/mistlane/appearance-settings.css"><link rel="stylesheet" href="/css/mistlane/music-player.css"><link rel="stylesheet" href="/css/mistlane/sidebar-architecture.css"><link rel="stylesheet" href="/css/mistlane/content-paths.css"><link rel="stylesheet" href="/css/mistlane/rss.css"><link rel="stylesheet" href="/css/mistlane/code-enhancements.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Mistlane's Blog" type="application/atom+xml">
+</head><body><div class="bg-animation" id="web_bg" style="background-color: #f2f5f4;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 记录</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/series/"><i class="fa-fw fas fa-route"></i><span> 学习路径</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-bolt"></i><span> 动态</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div></div></div><div id="mistlane-global-controls"><audio id="mistlane-global-audio" preload="none" crossorigin="anonymous"></audio><button id="mistlane-settings-backdrop" type="button" tabindex="-1" aria-label="关闭外观设置" data-close-settings></button><aside class="mistlane-control-panel" id="mistlane-settings-panel" aria-hidden="true" aria-labelledby="mistlane-settings-title"><header class="mistlane-panel-header"><div class="mistlane-panel-title"><span class="mistlane-panel-mark"><i class="fas fa-wand-magic-sparkles"></i></span><div><span class="mistlane-panel-eyebrow">PERSONALIZE</span><h2 id="mistlane-settings-title">外观设置</h2></div></div><button class="mistlane-panel-close" type="button" data-close-settings aria-label="关闭外观设置" title="关闭"><i class="fas fa-xmark"></i></button></header><div class="mistlane-appearance-summary" aria-live="polite"><div class="mistlane-summary-orbit"><span><i class="fas fa-font"></i></span></div><div><small>当前外观</small><strong id="mistlane-appearance-summary">默认字体 · 自动模式</strong></div><i class="fas fa-check"></i></div><div class="mistlane-panel-scroll"><section class="mistlane-setting-section"><div class="mistlane-setting-heading"><span class="mistlane-setting-icon"><i class="fas fa-font"></i></span><div><strong>页面字体</strong><small>TYPOGRAPHY</small></div></div><div class="mistlane-font-options" role="radiogroup" aria-label="页面字体"><button type="button" data-font="system" role="radio"><span class="font-option-preview">Aa</span><span><strong>默认字体</strong><small>System</small></span><i class="fas fa-check"></i></button><button type="button" data-font="geely" role="radio"><span class="font-option-preview font-geely">字</span><span><strong>几何设计体</strong><small>Geely Design</small></span><i class="fas fa-check"></i></button><button type="button" data-font="xiangcui" role="radio"><span class="font-option-preview font-xiangcui">文</span><span><strong>香萃集雪松</strong><small>Xiangcui</small></span><i class="fas fa-check"></i></button></div></section><section class="mistlane-setting-section"><div class="mistlane-setting-heading"><span class="mistlane-setting-icon"><i class="fas fa-circle-half-stroke"></i></span><div><strong>颜色模式</strong><small>APPEARANCE</small></div></div><div class="mistlane-segmented" role="radiogroup" aria-label="颜色模式"><button type="button" data-color-mode="auto" role="radio"><i class="fas fa-desktop"></i><span>自动</span></button><button type="button" data-color-mode="light" role="radio"><i class="far fa-sun"></i><span>浅色</span></button><button type="button" data-color-mode="dark" role="radio"><i class="far fa-moon"></i><span>深色</span></button></div></section><section class="mistlane-setting-section"><div class="mistlane-setting-heading"><span class="mistlane-setting-icon"><i class="fas fa-text-height"></i></span><div><strong>阅读字号</strong><small>TEXT SIZE</small></div></div><div class="mistlane-range-control"><label class="mistlane-range-label" for="mistlane-font-size-range"><span>全站字体大小</span><output id="mistlane-font-size-output">100%</output></label><input id="mistlane-font-size-range" type="range" min="90" max="115" step="5" value="100"><div class="mistlane-range-scale" aria-hidden="true"><span>紧凑</span><span>舒展</span></div></div><div class="mistlane-setting-row"><span class="mistlane-row-icon"><i class="fas fa-feather"></i></span><div><strong>减少动态效果</strong><small>静态浏览</small></div><label class="mistlane-switch"><input id="mistlane-motion-toggle" type="checkbox"><span></span></label></div></section></div><footer class="mistlane-panel-footer"><button class="mistlane-reset-button" id="mistlane-settings-reset" type="button"><i class="fas fa-rotate-left"></i><span>恢复默认</span></button><span>设置自动保存</span></footer></aside><aside class="mistlane-control-panel" id="mistlane-music-panel" aria-hidden="true" aria-labelledby="mistlane-music-title"><header class="mistlane-panel-header"><div><span class="mistlane-panel-eyebrow">NOW PLAYING</span><h2 id="mistlane-music-title">音乐播放器</h2></div><button class="mistlane-panel-close" type="button" data-close-music aria-label="关闭音乐播放器" title="关闭"><i class="fas fa-xmark"></i></button></header><div class="mistlane-track"><div class="mistlane-track-cover"><i class="fas fa-music"></i></div><div class="mistlane-track-copy"><strong id="mistlane-track-name">暂无歌曲</strong><span id="mistlane-track-artist">等待载入</span></div></div><div class="mistlane-progress"><input id="mistlane-music-progress" type="range" min="0" max="1000" value="0" aria-label="播放进度"><div><span id="mistlane-current-time">0:00</span><span id="mistlane-duration">0:00</span></div></div><div class="mistlane-player-actions"><button type="button" data-music-mode aria-label="顺序播放" title="顺序播放"><i class="fas fa-repeat"></i></button><button type="button" data-music-prev aria-label="上一首" title="上一首"><i class="fas fa-backward-step"></i></button><button class="mistlane-play-button" type="button" data-music-play aria-label="播放" title="播放或暂停"><i class="fas fa-play"></i></button><button type="button" data-music-next aria-label="下一首" title="下一首"><i class="fas fa-forward-step"></i></button></div><div class="mistlane-current-lyric" id="mistlane-current-lyric" aria-live="polite">暂无歌词</div><div class="mistlane-volume"><button type="button" data-music-mute aria-label="静音" title="静音"><i class="fas fa-volume-low"></i></button><input id="mistlane-music-volume" type="range" min="0" max="100" value="35" aria-label="音量"></div><div class="mistlane-playlist" id="mistlane-playlist"></div></aside></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/images/top.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/images/favicon.png" alt="Logo" loading='lazy'><span class="site-name">Mistlane's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">项目实践：学生成绩管理系统</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><button class="nav-tool-button" id="nav-music-button" type="button" title="打开音乐播放器" aria-label="打开音乐播放器" aria-expanded="false" aria-controls="mistlane-music-panel"><i class="fas fa-music"></i><span class="nav-music-label">音乐</span></button><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archive/"><i class="fa-fw fas fa-box-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/album/"><i class="fa-fw fas fa-images"></i><span> 相册</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book-open"></i><span> 记录</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/series/"><i class="fa-fw fas fa-route"></i><span> 学习路径</span></a></li><li><a class="site-page child" href="/moments/"><i class="fa-fw fas fa-bolt"></i><span> 动态</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-compass"></i><span> 探索</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/bangumis/"><i class="fa-fw fas fa-play-circle"></i><span> 追番</span></a></li><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/guestbook/"><i class="fa-fw fas fa-pen-to-square"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">项目实践：学生成绩管理系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-06-19T08:20:49.000Z" title="发表于 2026-06-19 16:20:49">2026-06-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-06-19T08:20:49.000Z" title="更新于 2026-06-19 16:20:49">2026-06-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%83%E4%B9%A0/">项目练习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>20分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="一、项目背景"><a href="#一、项目背景" class="headerlink" title="一、项目背景"></a>一、项目背景</h2><p>作为一名计科专业的学生，这学期《面向对象程序设计(Java)》的课程设计给了我一个将理论知识付诸实践的机会。我选择开发一个基于 Web 的课堂点名系统，主要解决传统课堂点名中存在的两个痛点：</p>
+<ul>
+<li><strong>随机点名不公</strong>：纯随机点名可能导致某些学生被频繁点到而另一些学生长期被忽略</li>
+<li><strong>数据难以沉淀</strong>：点名结果缺乏系统化记录和统计分析，教师无法回溯历史点名情况</li>
+</ul>
+<p>经过几周的努力，我完成了这个名为 <strong>AttendanceSystem</strong> 的项目。它不仅仅是一个点名工具，更是一个完整的学生管理与数据统计平台。</p>
+<hr>
+<h2 id="二、技术选型"><a href="#二、技术选型" class="headerlink" title="二、技术选型"></a>二、技术选型</h2><p>在技术栈的选择上，我采用了经典的 Java Web 组合：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>后端核心</td>
+<td>Java Servlet + JSP</td>
+</tr>
+<tr>
+<td>数据库</td>
+<td>MySQL 8.0</td>
+</tr>
+<tr>
+<td>数据库连接</td>
+<td>JDBC + 自封装 JDBCUtil</td>
+</tr>
+<tr>
+<td>Excel 处理</td>
+<td>Apache POI 5.2.5</td>
+</tr>
+<tr>
+<td>JSON 序列化</td>
+<td>Jackson 2.15.2</td>
+</tr>
+<tr>
+<td>数据可视化</td>
+<td>ECharts 5.5.0</td>
+</tr>
+<tr>
+<td>前端交互</td>
+<td>原生 JavaScript + Fetch API</td>
+</tr>
+<tr>
+<td>服务器</td>
+<td>Apache Tomcat 9.0</td>
+</tr>
+</tbody></table>
+<p>整套系统采用 <strong>MVC 分层架构</strong>，分为控制层（Servlet 接收请求分发）、服务层（Service 处理业务逻辑）、数据访问层（DAO 封装 SQL）和模型层（Model 数据实体），各层职责清晰。</p>
+<p><strong>包结构</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">com.attendance</span><br><span class="line">├── model/         数据实体层</span><br><span class="line">│   ├── Student.java      学生实体</span><br><span class="line">│   ├── Record.java       点名记录实体</span><br><span class="line">│   └── User.java         用户实体</span><br><span class="line">├── dao/           数据访问层</span><br><span class="line">│   ├── StudentDao.java   学生表 CRUD + 批量操作</span><br><span class="line">│   ├── RecordDao.java    点名记录表操作 + 统计查询</span><br><span class="line">│   └── UserDao.java      用户表操作</span><br><span class="line">├── service/       业务服务层</span><br><span class="line">│   ├── CallService.java       点名核心算法 + 事务管理</span><br><span class="line">│   └── StudentService.java    学生管理 + Excel/文本解析导入</span><br><span class="line">├── servlet/       控制层</span><br><span class="line">│   ├── CallServlet.java       点名 Ajax 接口</span><br><span class="line">│   ├── StatServlet.java       统计报表 + CSV 导出</span><br><span class="line">│   ├── ImportServlet.java     文件上传 + 批量导入</span><br><span class="line">│   ├── StudentServlet.java    学生编辑/删除/清空接口</span><br><span class="line">│   ├── LoginCheckServlet.java 登录验证（查数据库）</span><br><span class="line">│   └── RegisterServlet.java   注册接口</span><br><span class="line">└── util/          工具层</span><br><span class="line">    └── JDBCUtil.java          数据库连接工具</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、核心功能模块"><a href="#三、核心功能模块" class="headerlink" title="三、核心功能模块"></a>三、核心功能模块</h2><h3 id="3-1-用户注册与登录模块"><a href="#3-1-用户注册与登录模块" class="headerlink" title="3.1 用户注册与登录模块"></a>3.1 用户注册与登录模块</h3><p>系统支持多用户。注册时校验用户名是否重复（查数据库）、两次密码是否一致；登录时查询 <code>sys_user</code> 表验证用户名和密码。首次启动时自动创建 <code>admin/123</code> 默认管理员账号。</p>
+<p><strong>数据库建表</strong>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> sys_user (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    role <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;teacher&#x27;</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+
+<p><strong>RegisterServlet.java — 注册接口</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/register&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RegisterServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">UserDao</span> <span class="variable">userDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDao</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span><br><span class="line">            <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        req.setCharacterEncoding(<span class="string">&quot;UTF-8&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">password2</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;password2&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 校验用户名</span></span><br><span class="line">        <span class="keyword">if</span> (username == <span class="literal">null</span> || username.trim().length() &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            req.setAttribute(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;用户名至少2个字符&quot;</span>);</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;register.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 校验密码</span></span><br><span class="line">        <span class="keyword">if</span> (password == <span class="literal">null</span> || password.length() &lt; <span class="number">3</span>) &#123;</span><br><span class="line">            req.setAttribute(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;密码至少3位&quot;</span>);</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;register.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 校验两次密码一致</span></span><br><span class="line">        <span class="keyword">if</span> (!password.equals(password2)) &#123;</span><br><span class="line">            req.setAttribute(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;两次密码不一致&quot;</span>);</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;register.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 校验用户名不重复</span></span><br><span class="line">        <span class="keyword">if</span> (userDao.findByUsername(username.trim()) != <span class="literal">null</span>) &#123;</span><br><span class="line">            req.setAttribute(<span class="string">&quot;error&quot;</span>, <span class="string">&quot;用户名已存在&quot;</span>);</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;register.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 写入数据库</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">ok</span> <span class="operator">=</span> userDao.addUser(<span class="keyword">new</span> <span class="title class_">User</span>(username.trim(), password));</span><br><span class="line">        <span class="keyword">if</span> (ok) &#123;</span><br><span class="line">            req.setAttribute(<span class="string">&quot;msg&quot;</span>, <span class="string">&quot;注册成功，请登录&quot;</span>);</span><br><span class="line">            req.getRequestDispatcher(<span class="string">&quot;login.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>LoginCheckServlet.java — 登录验证（查数据库）</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/loginCheck&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginCheckServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">UserDao</span> <span class="variable">userDao</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserDao</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span></span><br><span class="line">            <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> req.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查数据库验证</span></span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userDao.findByUsername(username);</span><br><span class="line">        <span class="keyword">if</span> (user != <span class="literal">null</span> &amp;&amp; user.getPassword().equals(password)) &#123;</span><br><span class="line">            <span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line">            session.setAttribute(<span class="string">&quot;user&quot;</span>, username);</span><br><span class="line">            session.setAttribute(<span class="string">&quot;role&quot;</span>, user.getRole());</span><br><span class="line">            resp.sendRedirect(<span class="string">&quot;call.jsp&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 首次启动：数据库为空时 admin/123 自动入库</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;admin&quot;</span>.equals(username) &amp;&amp; <span class="string">&quot;123&quot;</span>.equals(password) &amp;&amp; userDao.countAll() == <span class="number">0</span>) &#123;</span><br><span class="line">            userDao.addUser(<span class="keyword">new</span> <span class="title class_">User</span>(<span class="string">&quot;admin&quot;</span>, <span class="string">&quot;123&quot;</span>));</span><br><span class="line">            req.getSession().setAttribute(<span class="string">&quot;user&quot;</span>, username);</span><br><span class="line">            resp.sendRedirect(<span class="string">&quot;call.jsp&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        req.setAttribute(<span class="string">&quot;errorMsg&quot;</span>, <span class="string">&quot;用户名或密码错误&quot;</span>);</span><br><span class="line">        req.getRequestDispatcher(<span class="string">&quot;login.jsp&quot;</span>).forward(req, resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-2-学生管理模块"><a href="#3-2-学生管理模块" class="headerlink" title="3.2 学生管理模块"></a>3.2 学生管理模块</h3><p>学生管理是系统的基础，涵盖全部 CRUD 操作。</p>
+<h4 id="3-2-1-批量导入学生"><a href="#3-2-1-批量导入学生" class="headerlink" title="3.2.1 批量导入学生"></a>3.2.1 批量导入学生</h4><p>支持两种导入方式：</p>
+<ul>
+<li><strong>文件导入</strong>：上传 Excel (.xlsx&#x2F;.xls) 或 CSV&#x2F;TXT 文件，后端用 Apache POI 解析，自动检测表头，兼容 3 列（学号&#x2F;姓名&#x2F;班级）和 4 列（学号&#x2F;姓名&#x2F;性别&#x2F;班级）格式</li>
+<li><strong>手动录入</strong>：网页端动态添加表格行，逐行填写后批量提交</li>
+</ul>
+<p><strong>StudentService.java — Excel 解析</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Student&gt; <span class="title function_">parseExcel</span><span class="params">(InputStream is, String fileName)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    List&lt;Student&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Workbook</span> <span class="variable">wb</span> <span class="operator">=</span> fileName.endsWith(<span class="string">&quot;.xlsx&quot;</span>) ? <span class="keyword">new</span> <span class="title class_">XSSFWorkbook</span>(is) : <span class="keyword">new</span> <span class="title class_">HSSFWorkbook</span>(is);</span><br><span class="line">    <span class="type">Sheet</span> <span class="variable">sheet</span> <span class="operator">=</span> wb.getSheetAt(<span class="number">0</span>);</span><br><span class="line">    <span class="type">int</span> <span class="variable">start</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">hasGender</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="type">Row</span> <span class="variable">hdr</span> <span class="operator">=</span> sheet.getRow(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (hdr != <span class="literal">null</span> &amp;&amp; hdr.getCell(<span class="number">0</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">v</span> <span class="operator">=</span> getStr(hdr.getCell(<span class="number">0</span>));</span><br><span class="line">        <span class="comment">// 检测表头</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="string">&quot;学号&quot;</span>.equals(v) || <span class="string">&quot;姓名&quot;</span>.equals(v) || <span class="string">&quot;name&quot;</span>.equalsIgnoreCase(v)) &#123;</span><br><span class="line">            start = <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 检测是否有&quot;性别&quot;列</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">c</span> <span class="operator">=</span> <span class="number">0</span>; c &lt;= <span class="number">3</span>; c++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="string">&quot;性别&quot;</span>.equals(getStr(hdr.getCell(c)).trim())) &#123; hasGender = <span class="literal">true</span>; <span class="keyword">break</span>; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> start; i &lt;= sheet.getLastRowNum(); i++) &#123;</span><br><span class="line">        <span class="type">Row</span> <span class="variable">row</span> <span class="operator">=</span> sheet.getRow(i);</span><br><span class="line">        <span class="keyword">if</span> (row == <span class="literal">null</span>) <span class="keyword">continue</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">sid</span> <span class="operator">=</span> getStr(row.getCell(<span class="number">0</span>)).trim();</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> getStr(row.getCell(<span class="number">1</span>)).trim();</span><br><span class="line">        <span class="comment">// 根据有无性别列决定读取方式</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">gender</span> <span class="operator">=</span> hasGender ? getStr(row.getCell(<span class="number">2</span>)).trim() : <span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">cls</span> <span class="operator">=</span> hasGender ? getStr(row.getCell(<span class="number">3</span>)).trim() : getStr(row.getCell(<span class="number">2</span>)).trim();</span><br><span class="line">        <span class="keyword">if</span> (!sid.isEmpty() || !name.isEmpty())</span><br><span class="line">            list.add(<span class="keyword">new</span> <span class="title class_">Student</span>(sid, name, gender, cls));</span><br><span class="line">    &#125;</span><br><span class="line">    wb.close(); <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>重复学号检测</strong>（<code>batchImport</code> 方法核心逻辑）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title function_">batchImport</span><span class="params">(List&lt;Student&gt; students)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">success</span> <span class="operator">=</span> <span class="number">0</span>, fail = <span class="number">0</span>, dup = <span class="number">0</span>;</span><br><span class="line">    Set&lt;String&gt; seen = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        conn = JDBCUtil.getConnection();</span><br><span class="line">        conn.setAutoCommit(<span class="literal">false</span>);  <span class="comment">// 手动事务</span></span><br><span class="line">        <span class="keyword">for</span> (Student s : students) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.getStudentId() == <span class="literal">null</span> || s.getStudentId().trim().isEmpty()</span><br><span class="line">                    || s.getName() == <span class="literal">null</span> || s.getName().trim().isEmpty()) &#123;</span><br><span class="line">                fail++; <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 本次导入中重复</span></span><br><span class="line">            <span class="keyword">if</span> (seen.contains(s.getStudentId())) &#123; dup++; <span class="keyword">continue</span>; &#125;</span><br><span class="line">            seen.add(s.getStudentId());</span><br><span class="line">            <span class="comment">// 数据库中已有学号</span></span><br><span class="line">            <span class="keyword">if</span> (studentDao.findByStudentId(s.getStudentId()) != <span class="literal">null</span>) &#123; dup++; <span class="keyword">continue</span>; &#125;</span><br><span class="line">            studentDao.addStudent(conn, s); success++;</span><br><span class="line">        &#125;</span><br><span class="line">        conn.commit();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="literal">null</span>) conn.rollback();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123; <span class="comment">/* 恢复 + 关闭连接 */</span> &#125;</span><br><span class="line">    <span class="comment">// 返回 success / fail / dup 三指标</span></span><br><span class="line">    result.put(<span class="string">&quot;success&quot;</span>, success);</span><br><span class="line">    result.put(<span class="string">&quot;fail&quot;</span>, fail);</span><br><span class="line">    result.put(<span class="string">&quot;dup&quot;</span>, dup);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-2-学生编辑与删除"><a href="#3-2-2-学生编辑与删除" class="headerlink" title="3.2.2 学生编辑与删除"></a>3.2.2 学生编辑与删除</h4><p>点名页面的学生列表中，每条记录旁有「编辑」和「删除」按钮：</p>
+<ul>
+<li><strong>编辑</strong>：点击后该行变为可编辑状态（姓名 input、性别 select、班级 input），修改后点「保存」发送 POST 请求到 <code>/student?action=edit</code></li>
+<li><strong>删除</strong>：确认后 POST 到 <code>/student?action=delete</code>，后端使用事务删除关联的点名记录和该学生</li>
+</ul>
+<h4 id="3-2-3-按班级删除-一键清空"><a href="#3-2-3-按班级删除-一键清空" class="headerlink" title="3.2.3 按班级删除 &amp; 一键清空"></a>3.2.3 按班级删除 &amp; 一键清空</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// StudentDao.java — 按班级删除</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">deleteByClass</span><span class="params">(String className)</span> &#123;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        conn = JDBCUtil.getConnection();</span><br><span class="line">        conn.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">        stmt.execute(<span class="string">&quot;SET FOREIGN_KEY_CHECKS = 0&quot;</span>);</span><br><span class="line">        <span class="comment">// 先删关联记录</span></span><br><span class="line">        <span class="string">&quot;DELETE FROM attendance_record WHERE student_id IN</span></span><br><span class="line"><span class="string">         (SELECT student_id FROM student WHERE class_name = ?)&quot;</span></span><br><span class="line">        <span class="comment">// 再删学生</span></span><br><span class="line">        <span class="string">&quot;DELETE FROM student WHERE class_name = ?&quot;</span></span><br><span class="line">        stmt.execute(<span class="string">&quot;SET FOREIGN_KEY_CHECKS = 1&quot;</span>);</span><br><span class="line">        conn.commit();</span><br><span class="line">    &#125; <span class="keyword">catch</span> ... &#123; rollback &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-3-★-智能点名模块"><a href="#3-3-★-智能点名模块" class="headerlink" title="3.3 ★ 智能点名模块"></a>3.3 ★ 智能点名模块</h3><p>这是系统的核心。传统随机点名完全靠概率，我设计了一个<strong>基于被点名次数的公平调度算法</strong>，并加入了<strong>连续答错保底机制</strong>。</p>
+<h4 id="3-3-1-公平调度算法"><a href="#3-3-1-公平调度算法" class="headerlink" title="3.3.1 公平调度算法"></a>3.3.1 公平调度算法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CallService.java</span></span><br><span class="line"><span class="keyword">public</span> Student <span class="title function_">selectStudent</span><span class="params">(<span class="type">boolean</span> needHighScore)</span> &#123;</span><br><span class="line">    List&lt;Student&gt; all = studentDao.getAllStudents();</span><br><span class="line">    <span class="keyword">if</span> (all.isEmpty()) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模式1：连续答错超阈值 → 从高分学生中抽取</span></span><br><span class="line">    <span class="keyword">if</span> (needHighScore) &#123;</span><br><span class="line">        List&lt;Student&gt; high = all.stream()</span><br><span class="line">            .filter(s -&gt; s.getTotalCalled() &gt; <span class="number">0</span>)</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line">        <span class="keyword">if</span> (!high.isEmpty()) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> high.stream()</span><br><span class="line">                .mapToInt(Student::getTotalCorrect).max().orElse(<span class="number">0</span>);</span><br><span class="line">            List&lt;Student&gt; c = high.stream()</span><br><span class="line">                .filter(s -&gt; s.getTotalCorrect() == max)</span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line">            <span class="keyword">return</span> c.get(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(c.size()));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 模式2：正常模式 → 优先选被点名次数最少的学生</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">min</span> <span class="operator">=</span> all.stream()</span><br><span class="line">        .mapToInt(Student::getTotalCalled).min().orElse(<span class="number">0</span>);</span><br><span class="line">    List&lt;Student&gt; c = all.stream()</span><br><span class="line">        .filter(s -&gt; s.getTotalCalled() == min)</span><br><span class="line">        .collect(Collectors.toList());</span><br><span class="line">    <span class="keyword">return</span> c.get(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(c.size()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>算法逻辑：将所有学生按 <code>total_called</code>（被点名次数）升序排列，取最小值的群体，从中随机抽一个。当连续答错达到阈值（默认3次）时，切换到「高分模式」，从答对次数最高的学生中抽取。</p>
+<h4 id="3-3-2-前端异步点名与记录"><a href="#3-3-2-前端异步点名与记录" class="headerlink" title="3.3.2 前端异步点名与记录"></a>3.3.2 前端异步点名与记录</h4><p><code>call.jsp</code> 通过 Fetch API 与后端 Ajax 交互，无需刷新页面：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 点名</span></span><br><span class="line">callBtn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">fetch</span>(<span class="string">&quot;call?action=getStudent&quot;</span>)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">r</span> =&gt;</span> r.<span class="title function_">json</span>())</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (data &amp;&amp; data.<span class="property">studentId</span>) &#123;</span><br><span class="line">                curSid = data.<span class="property">studentId</span>;</span><br><span class="line">                display.<span class="property">innerHTML</span> = data.<span class="property">name</span> +</span><br><span class="line">                    <span class="string">&#x27;&lt;div class=&quot;sub&quot;&gt;&#x27;</span> + data.<span class="property">studentId</span> + <span class="string">&#x27;&lt;/div&gt;&#x27;</span>;</span><br><span class="line">                okBtn.<span class="property">disabled</span> = <span class="literal">false</span>;</span><br><span class="line">                noBtn.<span class="property">disabled</span> = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 记录结果</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">record</span>(<span class="params">ok</span>) &#123;</span><br><span class="line">    <span class="title function_">fetch</span>(<span class="string">&quot;call?action=record&amp;studentId=&quot;</span></span><br><span class="line">        + <span class="built_in">encodeURIComponent</span>(curSid) + <span class="string">&quot;&amp;isCorrect=&quot;</span> + ok)</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">r</span> =&gt;</span> r.<span class="title function_">text</span>())</span><br><span class="line">        .<span class="title function_">then</span>(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (result === <span class="string">&quot;success&quot;</span>) &#123;</span><br><span class="line">                msg.<span class="property">textContent</span> = ok ? <span class="string">&quot;答对了!&quot;</span> : <span class="string">&quot;答错了&quot;</span>;</span><br><span class="line">                <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> location.<span class="title function_">reload</span>(), <span class="number">800</span>);  <span class="comment">// 刷新统计</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-3-点名事务保护"><a href="#3-3-3-点名事务保护" class="headerlink" title="3.3.3 点名事务保护"></a>3.3.3 点名事务保护</h4><p>每次点名需同时完成「更新学生统计」和「插入点名记录」两个操作，必须在同一事务中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CallService.java — recordResult</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">recordResult</span><span class="params">(String studentId, <span class="type">boolean</span> isCorrect)</span> &#123;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        conn = JDBCUtil.getConnection();</span><br><span class="line">        conn.setAutoCommit(<span class="literal">false</span>);                      <span class="comment">// 开启事务</span></span><br><span class="line">        <span class="keyword">if</span> (!studentDao.updateCallResult(conn, studentId, isCorrect))</span><br><span class="line">            &#123; conn.rollback(); <span class="keyword">return</span> <span class="literal">false</span>; &#125;          <span class="comment">// 失败回滚</span></span><br><span class="line">        <span class="keyword">if</span> (!recordDao.addRecord(conn,</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">Record</span>(studentId, <span class="keyword">new</span> <span class="title class_">Date</span>(), isCorrect)))</span><br><span class="line">            &#123; conn.rollback(); <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        conn.commit();                                  <span class="comment">// 成功提交</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="literal">null</span>) conn.rollback();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123; <span class="comment">/* 恢复 autoCommit + 关闭连接 */</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-4-统计报表模块"><a href="#3-4-统计报表模块" class="headerlink" title="3.4 统计报表模块"></a>3.4 统计报表模块</h3><p>点名数据只有被看见才有价值。统计模块通过 StatServlet 提供页面展示和 CSV 导出。</p>
+<h4 id="3-4-1-ECharts-图表展示"><a href="#3-4-1-ECharts-图表展示" class="headerlink" title="3.4.1 ECharts 图表展示"></a>3.4.1 ECharts 图表展示</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stat.jsp — 柱状图（点名次数）+ 折线图（正确率）</span></span><br><span class="line"><span class="keyword">var</span> ch = echarts.<span class="title function_">init</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;chart&quot;</span>));</span><br><span class="line">ch.<span class="title function_">setOption</span>(&#123;</span><br><span class="line">    <span class="attr">tooltip</span>: &#123; <span class="attr">trigger</span>: <span class="string">&quot;axis&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">xAxis</span>: &#123; <span class="attr">type</span>: <span class="string">&quot;category&quot;</span>, <span class="attr">data</span>: names &#125;,</span><br><span class="line">    <span class="attr">yAxis</span>: [</span><br><span class="line">        &#123; <span class="attr">type</span>: <span class="string">&quot;value&quot;</span>, <span class="attr">name</span>: <span class="string">&quot;次数&quot;</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">type</span>: <span class="string">&quot;value&quot;</span>, <span class="attr">name</span>: <span class="string">&quot;正确率%&quot;</span> &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">series</span>: [</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;点名次数&quot;</span>, <span class="attr">type</span>: <span class="string">&quot;bar&quot;</span>, <span class="attr">data</span>: calledCounts, <span class="attr">color</span>: <span class="string">&quot;#4a90d9&quot;</span> &#125;,</span><br><span class="line">        &#123; <span class="attr">name</span>: <span class="string">&quot;正确率%&quot;</span>, <span class="attr">type</span>: <span class="string">&quot;line&quot;</span>, <span class="attr">yAxisIndex</span>: <span class="number">1</span>, <span class="attr">data</span>: rates, <span class="attr">color</span>: <span class="string">&quot;#27ae60&quot;</span> &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-2-CSV-导出（Excel-友好）"><a href="#3-4-2-CSV-导出（Excel-友好）" class="headerlink" title="3.4.2 CSV 导出（Excel 友好）"></a>3.4.2 CSV 导出（Excel 友好）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// StatServlet.java</span></span><br><span class="line"><span class="keyword">if</span> (<span class="string">&quot;csv&quot;</span>.equals(fmt)) &#123;</span><br><span class="line">    resp.setContentType(<span class="string">&quot;text/csv;charset=UTF-8&quot;</span>);</span><br><span class="line">    resp.setHeader(<span class="string">&quot;Content-Disposition&quot;</span>,</span><br><span class="line">        <span class="string">&quot;attachment; filename=\&quot;stats_&quot;</span> + timestamp + <span class="string">&quot;.csv\&quot;&quot;</span>);</span><br><span class="line">    <span class="type">PrintWriter</span> <span class="variable">w</span> <span class="operator">=</span> resp.getWriter();</span><br><span class="line">    w.print(<span class="string">&#x27;﻿&#x27;</span>);  <span class="comment">// UTF-8 BOM 确保 Excel 正确识别中文</span></span><br><span class="line">    w.println(<span class="string">&quot;排名,学号,姓名,性别,班级,点名次数,答对次数,正确率&quot;</span>);</span><br><span class="line">    List&lt;Student&gt; list = studentService.getAllStudents();</span><br><span class="line">    list.sort((a, b) -&gt; Double.compare(b.getCorrectRate(), a.getCorrectRate()));</span><br><span class="line">    <span class="type">int</span> <span class="variable">rank</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (Student s : list) &#123;</span><br><span class="line">        <span class="comment">// csv() 方法自动处理逗号、引号转义</span></span><br><span class="line">        w.printf(<span class="string">&quot;%d,%s,%s,%s,%s,%d,%d,%.1f%%\n&quot;</span>, rank++,</span><br><span class="line">                csv(s.getStudentId()), csv(s.getName()),</span><br><span class="line">                csv(s.getGender()), csv(s.getClassName()),</span><br><span class="line">                s.getTotalCalled(), s.getTotalCorrect(), s.getCorrectRate());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-5-★-全局搜索功能"><a href="#3-5-★-全局搜索功能" class="headerlink" title="3.5 ★ 全局搜索功能"></a>3.5 ★ 全局搜索功能</h3><p>在点名页面右侧学生列表中实现了<strong>纯前端实时过滤</strong>，不请求后端：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">filter</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> q = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;search&quot;</span>).<span class="property">value</span>.<span class="title function_">toLowerCase</span>();</span><br><span class="line">    <span class="keyword">var</span> rows = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&quot;#tbody tr&quot;</span>);</span><br><span class="line">    rows.<span class="title function_">forEach</span>(<span class="keyword">function</span>(<span class="params">tr</span>) &#123;</span><br><span class="line">        <span class="comment">// 一行代码完成多列匹配</span></span><br><span class="line">        tr.<span class="property">style</span>.<span class="property">display</span> =</span><br><span class="line">            (!q || tr.<span class="property">textContent</span>.<span class="title function_">toLowerCase</span>().<span class="title function_">indexOf</span>(q) &gt;= <span class="number">0</span>)</span><br><span class="line">            ? <span class="string">&quot;&quot;</span> : <span class="string">&quot;none&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>技术亮点</strong>：通过 <code>textContent</code> 匹配整行文本，一次比较覆盖学号、姓名、性别、班级所有列，无需逐列遍历。</p>
+<hr>
+<h2 id="四、数据库设计"><a href="#四、数据库设计" class="headerlink" title="四、数据库设计"></a>四、数据库设计</h2><p>系统使用 MySQL，设计了四张核心表：</p>
+<p><strong>E-R 关系</strong>：<code>sys_user</code> 独立，<code>student</code> 与 <code>attendance_record</code> 通过 <code>student_id</code> 一对一多关联，删除学生时先删记录再删学生。</p>
+<h3 id="student-表"><a href="#student-表" class="headerlink" title="student 表"></a>student 表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> student (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    student_id <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    gender <span class="type">VARCHAR</span>(<span class="number">10</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    class_name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    total_called <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">    total_correct <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">    status TINYINT <span class="keyword">DEFAULT</span> <span class="number">1</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+
+<p><strong>设计考量</strong>：<code>total_called</code> 和 <code>total_correct</code> 为冗余字段，避免每次统计都 JOIN 记录表做 COUNT 聚合。更新点名结果时直接用 <code>UPDATE ... SET total_called = total_called + 1</code>，一次 SQL 完成。</p>
+<h3 id="attendance-record-表"><a href="#attendance-record-表" class="headerlink" title="attendance_record 表"></a>attendance_record 表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> attendance_record (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    student_id <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    call_time <span class="type">TIMESTAMP</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span>,</span><br><span class="line">    is_correct TINYINT(<span class="number">1</span>) <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">    <span class="keyword">FOREIGN KEY</span> (student_id) <span class="keyword">REFERENCES</span> student(student_id) <span class="keyword">ON</span> <span class="keyword">DELETE</span> CASCADE</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+
+<h3 id="sys-user-表"><a href="#sys-user-表" class="headerlink" title="sys_user 表"></a>sys_user 表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE TABLE</span> sys_user (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY KEY</span>,</span><br><span class="line">    username <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span> <span class="keyword">UNIQUE</span>,</span><br><span class="line">    password <span class="type">VARCHAR</span>(<span class="number">50</span>) <span class="keyword">NOT NULL</span>,</span><br><span class="line">    role <span class="type">VARCHAR</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;teacher&#x27;</span></span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、★-开发中遇到的三个核心困难"><a href="#五、★-开发中遇到的三个核心困难" class="headerlink" title="五、★ 开发中遇到的三个核心困难"></a>五、★ 开发中遇到的三个核心困难</h2><h3 id="困难一：外键约束导致删除失败"><a href="#困难一：外键约束导致删除失败" class="headerlink" title="困难一：外键约束导致删除失败"></a>困难一：外键约束导致删除失败</h3><p><strong>问题</strong>：最初删除学生时，<code>attendance_record</code> 表的 <code>FOREIGN KEY</code> 约束阻止了删除操作，因为该学生有历史点名记录。</p>
+<p><strong>解决</strong>：在 DAO 的 <code>deleteStudent()</code> 方法中，使用 <code>SET FOREIGN_KEY_CHECKS = 0</code> 临时关闭外键约束，先删除关联记录，再删除学生，最后恢复约束：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">deleteStudent</span><span class="params">(String studentId)</span> &#123;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        conn = JDBCUtil.getConnection();</span><br><span class="line">        conn.setAutoCommit(<span class="literal">false</span>);</span><br><span class="line">        stmt.execute(<span class="string">&quot;SET FOREIGN_KEY_CHECKS = 0&quot;</span>);</span><br><span class="line">        <span class="comment">// 删除关联记录</span></span><br><span class="line">        <span class="string">&quot;DELETE FROM attendance_record WHERE student_id = ?&quot;</span></span><br><span class="line">        <span class="comment">// 删除学生</span></span><br><span class="line">        <span class="string">&quot;DELETE FROM student WHERE student_id = ?&quot;</span></span><br><span class="line">        stmt.execute(<span class="string">&quot;SET FOREIGN_KEY_CHECKS = 1&quot;</span>);</span><br><span class="line">        conn.commit();</span><br><span class="line">    &#125; <span class="keyword">catch</span> ... &#123;</span><br><span class="line">        conn.rollback();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="comment">// 确保 finally 中恢复外键检查</span></span><br><span class="line">        stmt.execute(<span class="string">&quot;SET FOREIGN_KEY_CHECKS = 1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>收获</strong>：异常处理中必须考虑<strong>恢复现场</strong>——无论是否发生异常，<code>SET FOREIGN_KEY_CHECKS = 1</code> 必须在 <code>finally</code> 中再次执行，否则整个数据库会话的外键检查都被永久关闭。</p>
+<hr>
+<h3 id="困难二：双表操作的事务一致性"><a href="#困难二：双表操作的事务一致性" class="headerlink" title="困难二：双表操作的事务一致性"></a>困难二：双表操作的事务一致性</h3><p><strong>问题</strong>：点名时需要同时执行两个 SQL——更新 <code>student</code> 表的统计字段和向 <code>attendance_record</code> 表插入记录。最初两个操作各自从 <code>JDBCUtil.getConnection()</code> 获取独立连接，导致一个成功一个失败时数据不一致（学生统计更新了但记录没写入）。</p>
+<p><strong>解决</strong>：在 <code>CallService</code> 层统一获取一个 <code>Connection</code> 对象，关闭自动提交，将同一个连接作为参数传入两个 DAO 方法，最后统一 <code>commit</code> 或 <code>rollback</code>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">recordResult</span><span class="params">(String studentId, <span class="type">boolean</span> isCorrect)</span> &#123;</span><br><span class="line">    <span class="type">Connection</span> <span class="variable">conn</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        conn = JDBCUtil.getConnection();</span><br><span class="line">        conn.setAutoCommit(<span class="literal">false</span>);   <span class="comment">// 手动事务</span></span><br><span class="line">        <span class="keyword">if</span> (!studentDao.updateCallResult(conn, studentId, isCorrect))</span><br><span class="line">            &#123; conn.rollback(); <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        <span class="keyword">if</span> (!recordDao.addRecord(conn, <span class="keyword">new</span> <span class="title class_">Record</span>(...)))</span><br><span class="line">            &#123; conn.rollback(); <span class="keyword">return</span> <span class="literal">false</span>; &#125;</span><br><span class="line">        conn.commit();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">        <span class="keyword">if</span> (conn != <span class="literal">null</span>) conn.rollback();</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>收获</strong>：良好的分层设计需要为事务场景预留灵活性。DAO 方法应当提供接受外部 <code>Connection</code> 参数的重载版本，让 Service 层有能力控制事务边界。</p>
+<hr>
+<h3 id="困难三：JSP-模板字符串与-EL-表达式冲突"><a href="#困难三：JSP-模板字符串与-EL-表达式冲突" class="headerlink" title="困难三：JSP 模板字符串与 EL 表达式冲突"></a>困难三：JSP 模板字符串与 EL 表达式冲突</h3><p><strong>问题</strong>：前端 JavaScript 中使用了 ES6 的模板字符串语法 <code>`$&#123;变量名&#125;`</code>，与 JSP 的 EL 表达式（<code>$&#123;...&#125;</code>）语法完全一致。Tomcat 的 JSP 编译器在编译 <code>.jsp</code> 文件时，将 <code>&lt;script&gt;</code> 标签内的 <code>$&#123;...&#125;</code> 当作 JSP 表达式处理，导致 <code>ClassNotFoundException</code> 和 <code>500 Internal Server Error</code>。</p>
+<p><strong>错误日志</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">org.apache.jasper.JasperException: java.lang.ClassNotFoundException:</span><br><span class="line">    org.apache.jsp.student_005fmanage_jsp</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决</strong>：将所有 JavaScript 模板字符串改为传统字符串拼接（<code>+</code> 连接），同时将箭头函数 <code>=&gt;</code> 改为 <code>function</code>，<code>let/const</code> 改为 <code>var</code>，确保最大兼容性：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误写法（会与 JSP EL 冲突）</span></span><br><span class="line">rows.<span class="title function_">push</span>(<span class="string">`&lt;tr&gt;&lt;td&gt;<span class="subst">$&#123;s.studentId&#125;</span>&lt;/td&gt;&lt;/tr&gt;`</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确写法（兼容 JSP 编译器）</span></span><br><span class="line">rows.<span class="title function_">push</span>(<span class="string">&#x27;&lt;tr&gt;&lt;td&gt;&#x27;</span> + s.<span class="property">studentId</span> + <span class="string">&#x27;&lt;/td&gt;&lt;/tr&gt;&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>收获</strong>：JSP 虽然是 Java Web 开发的经典技术，但在与现代 JavaScript 混用时存在语法冲突。后续可以考虑前后端分离（如 Vue.js + REST API）彻底避免这类问题。</p>
+<hr>
+<h3 id="困难四：文件上传时-FormData-导致-request-getParameter-获取不到参数"><a href="#困难四：文件上传时-FormData-导致-request-getParameter-获取不到参数" class="headerlink" title="困难四：文件上传时 FormData 导致 request.getParameter() 获取不到参数"></a>困难四：文件上传时 FormData 导致 request.getParameter() 获取不到参数</h3><p><strong>问题</strong>：编辑&#x2F;删除学生时，前端使用 <code>FormData</code> 封装参数并通过 <code>fetch</code> POST。但后端 <code>request.getParameter(&quot;action&quot;)</code> 始终返回 <code>null</code>，导致操作始终返回「未知操作」。</p>
+<p><strong>原因</strong>：<code>FormData</code> 默认使用 <code>multipart/form-data</code> 编码，Servlet 容器需要 <code>@MultipartConfig</code> 注解才会解析 multipart 请求体中的参数。</p>
+<p><strong>解决</strong>：在 <code>StudentServlet</code> 和 <code>SysServlet</code> 上添加 <code>@MultipartConfig</code> 注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/student&quot;)</span></span><br><span class="line"><span class="meta">@MultipartConfig</span>    <span class="comment">// 关键：启用 multipart 解析</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StudentServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、★-项目亮点"><a href="#六、★-项目亮点" class="headerlink" title="六、★ 项目亮点"></a>六、★ 项目亮点</h2><h3 id="6-1-公平调度点名算法"><a href="#6-1-公平调度点名算法" class="headerlink" title="6.1 公平调度点名算法"></a>6.1 公平调度点名算法</h3><p>不是简单的 <code>Math.random()</code>，而是基于「最少被点名优先」原则的加权随机。同时加入连续答错保底机制，避免了「差生永远答不出」的尴尬循环。</p>
+<h3 id="6-2-数据库冗余字段设计"><a href="#6-2-数据库冗余字段设计" class="headerlink" title="6.2 数据库冗余字段设计"></a>6.2 数据库冗余字段设计</h3><p><code>student</code> 表的 <code>total_called</code> 和 <code>total_correct</code> 是统计冗余字段。每次点名时用 <code>UPDATE ... SET total_called = total_called + 1</code> 原子更新，避免了 <code>SELECT COUNT(*) FROM attendance_record GROUP BY student_id</code> 的昂贵查询。</p>
+<h3 id="6-3-纯前端实时搜索"><a href="#6-3-纯前端实时搜索" class="headerlink" title="6.3 纯前端实时搜索"></a>6.3 纯前端实时搜索</h3><p>一行 <code>tr.textContent.indexOf(q)</code> 完成多列匹配，过滤延迟为零。</p>
+<h3 id="6-4-批量导入三级校验"><a href="#6-4-批量导入三级校验" class="headerlink" title="6.4 批量导入三级校验"></a>6.4 批量导入三级校验</h3><p>文件导入时经历了「前端去重 → 数据库查重 → SQL 异常兜底」三级防护，确保脏数据不进库。</p>
+<h3 id="6-5-CSV-导出-BOM-兼容"><a href="#6-5-CSV-导出-BOM-兼容" class="headerlink" title="6.5 CSV 导出 BOM 兼容"></a>6.5 CSV 导出 BOM 兼容</h3><p>导出 CSV 时在文件头写入 UTF-8 BOM (<code>﻿</code>)，确保用 Excel 打开时中文不乱码。</p>
+<hr>
+<h2 id="七、不足与改进方向"><a href="#七、不足与改进方向" class="headerlink" title="七、不足与改进方向"></a>七、不足与改进方向</h2><ol>
+<li><strong>密码明文存储</strong>：当前 <code>sys_user</code> 表密码为明文，应当改为 BCrypt 哈希存储</li>
+<li><strong>点名算法维度单一</strong>：目前只在全局范围内按次数分派，后续可以增加按班级维度点名的模式</li>
+<li><strong>缺少单元测试</strong>：重构时容易引入回归 bug，应补充 JUnit + Mockito 测试</li>
+<li><strong>前端代码冗余</strong>：原生 JavaScript 操作 DOM 代码量大，后续可引入 Vue.js 简化数据绑定</li>
+<li><strong>数据库连接</strong>：目前使用 <code>DriverManager</code> 每次获取新连接，生产环境应改用 Druid&#x2F;HikariCP 连接池</li>
+<li><strong>无权限控制</strong>：目前只有 <code>role</code> 字段但未实际使用，应区分管理员&#x2F;教师权限</li>
+</ol>
+<hr>
+<h2 id="八、课程设计感想"><a href="#八、课程设计感想" class="headerlink" title="八、课程设计感想"></a>八、课程设计感想</h2><p>这次课程设计让我完整经历了一个 Java Web 项目从零到一的开发过程。</p>
+<p>最大的收获不是写出多少行代码，而是<strong>踩坑后的思考</strong>。外键约束删除失败让我第一次认真阅读了 MySQL 关于 FOREIGN_KEY_CHECKS 的文档；事务一致性问题让我理解了为什么 Spring 选择声明式事务而非编程式事务；JSP 与 JavaScript 的语法冲突让我明白了前后端分离的价值。</p>
+<p>每一个 bug 都是一次学习机会。从 <code>500 Internal Server Error</code> 的茫然，到能根据堆栈信息定位到具体代码行，解决问题的效率在提升。我曾经花了两个多小时排查 <code>request.getParameter()</code> 返回 null 的问题，最后发现是 <code>@MultipartConfig</code> 注解没有加——这种经验在课本上是学不到的。</p>
+<p>另一个深有感触的是：<strong>好的设计需要前瞻性</strong>。比如 DAO 层提供接受外部 Connection 的方法，最初觉得是过度设计，但当需要事务保护时发现这是必要的。如果一开始就为这种场景预留了接口，后期改动的代价就小得多。</p>
+<hr>
+<h2 id="九、展望"><a href="#九、展望" class="headerlink" title="九、展望"></a>九、展望</h2><p><strong>马上要做的事</strong>：</p>
+<ol>
+<li>使用 Spring Boot + MyBatis 重构项目，用 AOP 管理事务、用注解替代 Servlet 配置</li>
+<li>密码改为 BCrypt 加密存储</li>
+<li>引入 Redis 缓存学生列表，减少数据库查询</li>
+<li>补充 JUnit 单元测试覆盖核心 DAO 和 Service 方法</li>
+</ol>
+<p><strong>未来想尝试的方向</strong>：</p>
+<ol>
+<li>用 Vue.js 重构前端，实现前后端分离</li>
+<li>增加 WebSocket 实现多点名终端同步（教师屏点名，学生屏实时显示结果）</li>
+<li>用 Docker 容器化部署（MySQL + Tomcat + 应用一键启动）</li>
+<li>学习 Spring Security 实现 OAuth2 登录</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Mistlane376">Mistlane</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.mistlane.top/posts/student-grade-management/">https://blog.mistlane.top/posts/student-grade-management/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.mistlane.top" target="_blank">Mistlane's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a><a class="post-meta__tags" href="/tags/%E9%A1%B9%E7%9B%AE/">项目</a></div><div class="post-share"><div class="social-share" data-image="/images/top.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/posts/common-algorithm-templates/" title="算法常用板子"><img class="cover" src="/images/selection2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post" loading='lazy'><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">算法常用板子</div></div><div class="info-2"><div class="info-item-1">算法竞赛常用模板集合，涵盖数论、图论、字符串、数据结构、动态规划等核心算法与数据结构。</div></div></div></a><a class="pagination-related" href="/posts/freshman-year-reflection/" title="大一结语"><img class="cover" src="/images/top.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post" loading='lazy'><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">大一结语</div></div><div class="info-2"><div class="info-item-1">回顾大一这一年，总结成长与收获。</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/images/marcus.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/ loading='lazy'><span class="author-presence" title="持续记录中" aria-label="持续记录中"></span></div><div class="author-info-name">Mistlane</div><div class="author-role"><i class="fas fa-code"></i><span>计算机科学 · ACM</span></div><div class="author-info-description">齐鲁工业大学 · 计算机科学与技术 | 算法竞赛选手 (ACMer)
+
+<div class="author-tags">
+  <span class="author-tag">#C++</span>
+  <span class="author-tag">#算法竞赛</span>
+  <span class="author-tag">#数据结构</span>
+</div>
+</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" href="/about"><i class="fas fa-user-astronaut"></i><span>了解更多</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Mistlane376" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="/images/QQ.jpg" target="_blank" title="QQ"><i class="fab fa-qq" style="color: #12b7f5;"></i></a><a class="social-icon" href="/images/weixin.jpg" target="_blank" title="微信"><i class="fab fa-weixin" style="color: #07c160;"></i></a><a class="social-icon" href="/images/douyin.jpg" target="_blank" title="抖音"><i class="fab fa-tiktok" style="color: #000000;"></i></a><a class="social-icon" href="https://space.bilibili.com/1146476510" target="_blank" title="B站"><i class="fas fa-play" style="color: #fb7299;"></i></a><a class="social-icon" href="https://blog.csdn.net/ljl37" target="_blank" title="CSDN"><i class="fas fa-code" style="color: #fc5531;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到 Mistlane's Blog，愿这里的记录对你有所帮助。</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text">一、项目背景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-number">2.</span> <span class="toc-text">二、技术选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">三、核心功能模块</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E7%94%A8%E6%88%B7%E6%B3%A8%E5%86%8C%E4%B8%8E%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 用户注册与登录模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%AD%A6%E7%94%9F%E7%AE%A1%E7%90%86%E6%A8%A1%E5%9D%97"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 学生管理模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E5%AD%A6%E7%94%9F"><span class="toc-number">3.2.1.</span> <span class="toc-text">3.2.1 批量导入学生</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-%E5%AD%A6%E7%94%9F%E7%BC%96%E8%BE%91%E4%B8%8E%E5%88%A0%E9%99%A4"><span class="toc-number">3.2.2.</span> <span class="toc-text">3.2.2 学生编辑与删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E6%8C%89%E7%8F%AD%E7%BA%A7%E5%88%A0%E9%99%A4-%E4%B8%80%E9%94%AE%E6%B8%85%E7%A9%BA"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.2.3 按班级删除 &amp; 一键清空</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E2%98%85-%E6%99%BA%E8%83%BD%E7%82%B9%E5%90%8D%E6%A8%A1%E5%9D%97"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 ★ 智能点名模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1 公平调度算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-%E5%89%8D%E7%AB%AF%E5%BC%82%E6%AD%A5%E7%82%B9%E5%90%8D%E4%B8%8E%E8%AE%B0%E5%BD%95"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2 前端异步点名与记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-%E7%82%B9%E5%90%8D%E4%BA%8B%E5%8A%A1%E4%BF%9D%E6%8A%A4"><span class="toc-number">3.3.3.</span> <span class="toc-text">3.3.3 点名事务保护</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E7%BB%9F%E8%AE%A1%E6%8A%A5%E8%A1%A8%E6%A8%A1%E5%9D%97"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 统计报表模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-1-ECharts-%E5%9B%BE%E8%A1%A8%E5%B1%95%E7%A4%BA"><span class="toc-number">3.4.1.</span> <span class="toc-text">3.4.1 ECharts 图表展示</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-CSV-%E5%AF%BC%E5%87%BA%EF%BC%88Excel-%E5%8F%8B%E5%A5%BD%EF%BC%89"><span class="toc-number">3.4.2.</span> <span class="toc-text">3.4.2 CSV 导出（Excel 友好）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E2%98%85-%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 ★ 全局搜索功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.</span> <span class="toc-text">四、数据库设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#student-%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text">student 表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attendance-record-%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">attendance_record 表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sys-user-%E8%A1%A8"><span class="toc-number">4.3.</span> <span class="toc-text">sys_user 表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E2%98%85-%E5%BC%80%E5%8F%91%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E5%9B%B0%E9%9A%BE"><span class="toc-number">5.</span> <span class="toc-text">五、★ 开发中遇到的三个核心困难</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE%E4%B8%80%EF%BC%9A%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E5%AF%BC%E8%87%B4%E5%88%A0%E9%99%A4%E5%A4%B1%E8%B4%A5"><span class="toc-number">5.1.</span> <span class="toc-text">困难一：外键约束导致删除失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE%E4%BA%8C%EF%BC%9A%E5%8F%8C%E8%A1%A8%E6%93%8D%E4%BD%9C%E7%9A%84%E4%BA%8B%E5%8A%A1%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">5.2.</span> <span class="toc-text">困难二：双表操作的事务一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE%E4%B8%89%EF%BC%9AJSP-%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E-EL-%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%86%B2%E7%AA%81"><span class="toc-number">5.3.</span> <span class="toc-text">困难三：JSP 模板字符串与 EL 表达式冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%B0%E9%9A%BE%E5%9B%9B%EF%BC%9A%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%97%B6-FormData-%E5%AF%BC%E8%87%B4-request-getParameter-%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E5%8F%82%E6%95%B0"><span class="toc-number">5.4.</span> <span class="toc-text">困难四：文件上传时 FormData 导致 request.getParameter() 获取不到参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E2%98%85-%E9%A1%B9%E7%9B%AE%E4%BA%AE%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text">六、★ 项目亮点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E5%85%AC%E5%B9%B3%E8%B0%83%E5%BA%A6%E7%82%B9%E5%90%8D%E7%AE%97%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 公平调度点名算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%97%E4%BD%99%E5%AD%97%E6%AE%B5%E8%AE%BE%E8%AE%A1"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 数据库冗余字段设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E7%BA%AF%E5%89%8D%E7%AB%AF%E5%AE%9E%E6%97%B6%E6%90%9C%E7%B4%A2"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 纯前端实时搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E6%89%B9%E9%87%8F%E5%AF%BC%E5%85%A5%E4%B8%89%E7%BA%A7%E6%A0%A1%E9%AA%8C"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 批量导入三级校验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-5-CSV-%E5%AF%BC%E5%87%BA-BOM-%E5%85%BC%E5%AE%B9"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 CSV 导出 BOM 兼容</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E4%B8%8D%E8%B6%B3%E4%B8%8E%E6%94%B9%E8%BF%9B%E6%96%B9%E5%90%91"><span class="toc-number">7.</span> <span class="toc-text">七、不足与改进方向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E8%AF%BE%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%84%9F%E6%83%B3"><span class="toc-number">8.</span> <span class="toc-text">八、课程设计感想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%B1%95%E6%9C%9B"><span class="toc-number">9.</span> <span class="toc-text">九、展望</span></a></li></ol></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2025 - 2026 By Mistlane</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="/about/">Mistlane 1.0.0</a></span></div><div class="footer_custom_text"><div class="footer-main">
+  <section class="footer-intro" aria-label="站点信息">
+    <a class="footer-brand" href="/">Mistlane's Blog</a>
+    <p>记录代码、学习与日常中值得回看的片段。</p>
+  </section>
+  <nav class="footer-nav" aria-label="页脚导航">
+    <a href="/">首页</a>
+    <a href="/archive/">归档</a>
+    <a href="/about/">关于</a>
+  </nav>
+  <div class="footer-social" aria-label="社交链接">
+    <a href="https://github.com/Mistlane376" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://space.bilibili.com/1146476510" target="_blank" rel="noopener" title="B站" aria-label="B站"><i class="fas fa-play"></i></a>
+    <a href="/images/QQ.jpg" target="_blank" title="QQ" aria-label="QQ"><i class="fab fa-qq"></i></a>
+    <a href="/images/weixin.jpg" target="_blank" title="微信" aria-label="微信"><i class="fab fa-weixin"></i></a>
+    <a href="https://blog.csdn.net/ljl37" target="_blank" rel="noopener" title="CSDN" aria-label="CSDN"><i class="fas fa-code"></i></a>
+  </div>
+  <a class="footer-record" href="https://icp.gov.moe/?keyword=20263737" target="_blank" rel="noopener">萌ICP备20263737号</a>
+</div>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button></div><div id="rightside-config-show"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="mistlane-settings-toggle" type="button" title="外观设置" aria-label="打开外观设置" aria-expanded="false" aria-controls="mistlane-settings-panel"><i class="fas fa-sliders-h"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>(() => {
+  const changeScriptToMath = article => {
+    article.querySelectorAll('script[type^="math/tex"]').forEach(el => {
+      const display = /mode=display/.test(el.type)
+      const node = document.createElement(display ? 'div' : 'span')
+      node.textContent = display
+        ? `$$${el.textContent}$$`
+        : `$${el.textContent}$`
+      el.parentNode.replaceChild(node, el)
+    })
+  }
+
+  const loadMathjax = () => {
+    const article = document.getElementById('article-container')
+    if (!article || article.querySelector('.hbe-container')) return
+    changeScriptToMath(article)
+
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem',
+            'ui/lazy'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          lazyMargin: '200px',
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdmirror.com/npm/mathjax@4.1.3/tex-mml-chtml.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.typesetClear()
+      MathJax.typesetPromise([ article ])
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"lang":"zh-CN"}
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://mistlane.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = (el = document, path = location.pathname) => {
+    twikoo.init({
+      el: el.querySelector('#twikoo-wrap'),
+      envId: 'https://mistlane.netlify.app/.netlify/functions/twikoo',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    
+
+    isShuoshuo && (window.shuoshuoComment.destroyTwikoo = () => {
+      if (el.children.length) {
+        el.innerHTML = ''
+        el.classList.add('no-comment')
+      }
+    })
+  }
+
+  const loadTwikoo = (el, path) => {
+    if (typeof twikoo === 'object') setTimeout(() => init(el, path), 0)
+    else btf.getScript('https://cdn.jsdmirror.com/npm/twikoo@1.7.15/dist/twikoo.all.min.js').then(() => init(el, path))
+  }
+
+  if (isShuoshuo) {
+    'Twikoo' === 'Twikoo'
+      ? window.shuoshuoComment = { loadComment: loadTwikoo }
+      : window.loadOtherComment = loadTwikoo
+    return
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><script defer src="/js/mistlane/petals.js"></script><script defer src="/js/mistlane/visitor-welcome.js"></script><script defer src="/js/mistlane/search-performance.js"></script><script defer src="/js/mistlane/site-stats-cache.js"></script><script defer src="/js/mistlane/home-hero.js"></script><script defer src="/js/mistlane/archive-hub.js"></script><script defer src="/js/mistlane/category-cards.js"></script><script defer src="/js/mistlane/category-detail.js"></script><script defer src="/js/mistlane/album.js"></script><script defer src="/js/mistlane/link-directory.js"></script><script defer src="/js/mistlane/appearance-settings.js"></script><script defer src="/js/mistlane/music-manager.js"></script><script defer src="/js/mistlane/sidebar-widgets.js"></script><script defer src="/js/mistlane/code-enhancements.js"></script><script defer src="/js/mistlane/rss.js"></script><script src="/js/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([data-fancybox]):not([href="/atom.xml"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || ''
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
+      false
+        ? pjax.loadUrl('/404')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
+    }
+  })
+})</script><script defer data-pjax src="https://events.vercount.one/js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>

@@ -1,0 +1,106 @@
+/* Visitor greeting card */
+#aside-content .card-visitor-welcome {
+  position: relative;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--ui-teal) 25%, var(--ui-border));
+}
+
+.aside-column-right .card-visitor-welcome {
+  margin-top: 0 !important;
+  margin-bottom: 16px !important;
+  padding: 17px !important;
+  border-left: 0;
+}
+
+.aside-column-right .card-visitor-welcome::before {
+  top: 0;
+  right: 0;
+  bottom: auto;
+  width: auto;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ui-teal), var(--ui-blue));
+}
+
+.aside-column-right .visitor-welcome-copy {
+  min-height: 0;
+  font-size: .72rem;
+  line-height: 1.65;
+  text-align: left;
+}
+
+.aside-column-right .visitor-welcome-signature {
+  margin-top: 12px;
+  font-size: .6rem;
+}
+
+#aside-content .card-visitor-welcome::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 3px;
+  background: var(--ui-teal);
+  content: '';
+}
+
+#aside-content .card-visitor-welcome .item-headline {
+  margin-bottom: 14px;
+}
+
+#aside-content .card-visitor-welcome .item-headline i {
+  color: var(--ui-teal);
+}
+
+#aside-content .visitor-welcome-copy {
+  min-height: 6.2em;
+  margin: 0;
+  color: var(--ui-muted);
+  font-size: 0.88rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+#aside-content .visitor-location {
+  display: inline;
+  margin: 0 0.22em;
+  padding: 0 0.12em 2px;
+  border-bottom: 2px solid color-mix(in srgb, var(--ui-amber) 45%, transparent);
+  background: transparent !important;
+  color: var(--ui-amber);
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+#aside-content .visitor-welcome-signature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+  color: var(--ui-faint);
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+#aside-content .visitor-welcome-signature span {
+  height: 1px;
+  flex: 1;
+  background: var(--ui-border);
+}
+
+#aside-content .visitor-welcome-loading {
+  color: var(--ui-faint);
+}
+
+#aside-content .card-visitor-welcome.is-fallback::before {
+  background: var(--ui-amber);
+}
+
+@supports not (color: color-mix(in srgb, white, black)) {
+  #aside-content .card-visitor-welcome {
+    border-color: var(--ui-border-strong);
+  }
+
+  #aside-content .visitor-location {
+    border-bottom-color: var(--ui-amber);
+  }
+}
