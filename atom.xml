@@ -6,7 +6,7 @@
   <link href="https://blog.mistlane.top/atom.xml" rel="self"/>
   
   <link href="https://blog.mistlane.top/"/>
-  <updated>2026-08-14T12:55:43.000Z</updated>
+  <updated>2026-08-23T14:19:29.000Z</updated>
   <id>https://blog.mistlane.top/</id>
   
   <author>
@@ -15,6 +15,97 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>从零搭建DOMjudge：XCPC校赛技术筹备指南</title>
+    <link href="https://blog.mistlane.top/posts/xcpc-campus-contest-technically/"/>
+    <id>https://blog.mistlane.top/posts/xcpc-campus-contest-technically/</id>
+    <published>2026-08-23T14:19:29.000Z</published>
+    <updated>2026-08-23T14:19:29.000Z</updated>
+    
+    
+    <summary type="html">一篇关于XCPC办赛的教学</summary>
+    
+    
+    
+    <category term="XCPC办赛" scheme="https://blog.mistlane.top/categories/XCPC%E5%8A%9E%E8%B5%9B/"/>
+    
+    
+    <category term="教程" scheme="https://blog.mistlane.top/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="ACM" scheme="https://blog.mistlane.top/tags/ACM/"/>
+    
+    <category term="办赛" scheme="https://blog.mistlane.top/tags/%E5%8A%9E%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>将 Ubuntu 22.04 从 cgroup v2 切换到 cgroup v1 的完整配置教程</title>
+    <link href="https://blog.mistlane.top/posts/cgroup_v2_v1/"/>
+    <id>https://blog.mistlane.top/posts/cgroup_v2_v1/</id>
+    <published>2026-08-23T14:19:29.000Z</published>
+    <updated>2026-08-23T14:19:29.000Z</updated>
+    
+    
+    <summary type="html">解决Ubuntu 22.04存在的问题</summary>
+    
+    
+    
+    <category term="XCPC办赛" scheme="https://blog.mistlane.top/categories/XCPC%E5%8A%9E%E8%B5%9B/"/>
+    
+    
+    <category term="教程" scheme="https://blog.mistlane.top/tags/%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="ACM" scheme="https://blog.mistlane.top/tags/ACM/"/>
+    
+    <category term="办赛" scheme="https://blog.mistlane.top/tags/%E5%8A%9E%E8%B5%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABC_472-E题讲解</title>
+    <link href="https://blog.mistlane.top/posts/4a299758/"/>
+    <id>https://blog.mistlane.top/posts/4a299758/</id>
+    <published>2026-08-23T13:50:56.000Z</published>
+    <updated>2026-08-23T13:50:56.000Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;E-Odd-Cycle&quot;&gt;&lt;a href=&quot;#E-Odd-Cycle&quot; class=&quot;headerlink&quot; title=&quot;E - Odd Cycle&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://atcoder.jp/contests/abc472/tasks/abc472_e&quot;&gt;E - Odd Cycle&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;题目要求：在&lt;strong&gt;连通无向图&lt;/stron</summary>
+      
+    
+    
+    
+    <category term="题解" scheme="https://blog.mistlane.top/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="算法" scheme="https://blog.mistlane.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="题解" scheme="https://blog.mistlane.top/tags/%E9%A2%98%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>概率dp</title>
+    <link href="https://blog.mistlane.top/posts/Probability%20DP/"/>
+    <id>https://blog.mistlane.top/posts/Probability%20DP/</id>
+    <published>2026-08-22T03:54:35.000Z</published>
+    <updated>2026-08-22T03:54:35.000Z</updated>
+    
+    
+    <summary type="html">概率dp的知识整理</summary>
+    
+    
+    
+    <category term="算法学习" scheme="https://blog.mistlane.top/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="算法" scheme="https://blog.mistlane.top/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="ACM" scheme="https://blog.mistlane.top/tags/ACM/"/>
+    
+  </entry>
   
   <entry>
     <title>题解-牛客周赛-Round-156</title>
