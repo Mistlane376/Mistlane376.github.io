@@ -8,7 +8,7 @@
   const VOLUME_KEY = 'mistlane-music-volume'
   const modeNames = ['list', 'one', 'random']
   const modeLabels = ['顺序播放', '单曲循环', '随机播放']
-  const modeIcons = ['fas fa-repeat', 'fas fa-repeat-1', 'fas fa-shuffle']
+  const modeIcons = ['fas fa-list-ol', 'fas fa-repeat', 'fas fa-shuffle']
   let loadVersion = 0
   let trackUrls = []
   let trackUrlIndex = 0
