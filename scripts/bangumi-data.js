@@ -11,7 +11,7 @@ hexo.extend.generator.register('bangumi-data', function () {
     try {
       data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
     } catch (error) {
-      hexo.log.warn('Unable to read Bilibili bangumi data: ' + error.message);
+      hexo.log.warn('Unable to read Bangumi collection data: ' + error.message);
     }
   }
 

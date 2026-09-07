@@ -114,6 +114,11 @@ ignore:
 ## Themes: https://hexo.io/themes/
 theme: mistlane
 
+# Bangumi animation collection shown at /bangumis/.
+bangumi:
+  user: '1273462'
+  subject_type: 2
+
 
 # Feed
 feed:

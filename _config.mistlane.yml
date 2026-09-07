@@ -96,13 +96,6 @@ tag_img: false
 # 格式：
 #  - 标签名称: xxxxx
 tag_per_img:
-  博客: /images/selection1.jpg
-  Markdown: /images/selection1.jpg
-  C/C++: /images/selection2.jpg
-  项目: /images/selection2.jpg
-  总结: /images/selection1.jpg
-  大学: /images/selection1.jpg
-  生活: /images/selection1.jpg
 
 # 注意：这是单个分类页，不是分类总览页
 category_img: true
@@ -114,9 +107,10 @@ category_per_img:
   日常: /images/selection1.jpg
   教程: /images/selection1.jpg
   项目练习: /images/selection2.jpg
-  算法模板: /images/selection2.jpg
-  题解: /images/Bamboo.jpg
-
+  算法模板: /images/selection4.jpg
+  题解: /images/archive-hero.jpg
+  XCPC办赛: /images/少女.jpg
+  算法学习: /images/selection3.jpg
   # If set to false, no image will be shown
 footer_img: false
 
@@ -677,7 +671,7 @@ inject:
 pjax:
   enable: true
   exclude:
-    - /atom.xml
+    - /sitemap.xml
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work

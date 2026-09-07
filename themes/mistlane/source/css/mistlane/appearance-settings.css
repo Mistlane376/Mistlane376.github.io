@@ -93,6 +93,8 @@ html.mistlane-settings-open #mistlane-settings-backdrop { opacity: 1; pointer-ev
 [data-theme='dark'] #mistlane-settings-panel { box-shadow: 0 28px 80px rgba(0, 0, 0, .48); }
 
 @media (max-width: 600px) {
+  #rightside { right: 12px; bottom: calc(72px + env(safe-area-inset-bottom)); }
+  #rightside.rightside-show { transform: none; }
   #mistlane-settings-toggle { right: 58px; bottom: 12px; }
   #mistlane-settings-panel { right: 8px; bottom: 8px; left: 8px; width: auto; max-height: min(690px, calc(100dvh - 16px)); transform: translateY(24px); }
   #mistlane-settings-panel.is-open { transform: none; }

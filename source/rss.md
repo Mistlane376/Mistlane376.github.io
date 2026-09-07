@@ -18,31 +18,31 @@ comments: false
 
   <section class="rss-feed-box" aria-labelledby="rss-feed-title">
     <div class="rss-section-heading">
-      <div><p class="rss-kicker">FEED ADDRESS</p><h2 id="rss-feed-title">Atom 订阅源</h2></div>
-      <span class="rss-format">ATOM 1.0</span>
+      <div><p class="rss-kicker">SITEMAP ADDRESS</p><h2 id="rss-feed-title">站点地图</h2></div>
+      <span class="rss-format">SITEMAP XML</span>
     </div>
     <div class="rss-address-row">
-      <code id="rss-feed-url">https://blog.mistlane.top/atom.xml</code>
+      <code id="rss-feed-url">https://blog.mistlane.top/sitemap.xml</code>
       <button class="rss-copy" type="button" data-rss-copy="#rss-feed-url"><i class="fas fa-copy" aria-hidden="true"></i><span>复制地址</span></button>
-      <a class="rss-open" href="/atom.xml" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i><span>打开订阅源</span></a>
+      <a class="rss-open" href="/sitemap.xml" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i><span>打开站点地图</span></a>
     </div>
     <p class="rss-status" data-rss-status role="status" aria-live="polite"></p>
   </section>
 
   <section class="rss-stats" aria-label="订阅源信息">
-    <div><strong>Atom</strong><span>持续同步新文章</span></div>
-    <div><strong>Atom</strong><span>标准订阅格式</span></div>
+    <div><strong>Sitemap</strong><span>持续同步站点页面</span></div>
+    <div><strong>XML</strong><span>标准站点地图格式</span></div>
     <div><strong>随时</strong><span>可以取消订阅</span></div>
   </section>
 
   <section class="rss-readers" aria-labelledby="rss-readers-title">
     <div class="rss-section-heading"><div><p class="rss-kicker">QUICK START</p><h2 id="rss-readers-title">三步开始阅读</h2></div></div>
     <div class="rss-steps">
-      <article><span>01</span><h3>复制订阅地址</h3><p>点击上方复制按钮，取得 Atom 地址。</p></article>
+      <article><span>01</span><h3>复制站点地图地址</h3><p>点击上方复制按钮，取得 Sitemap 地址。</p></article>
       <article><span>02</span><h3>打开阅读器</h3><p>推荐使用 Feedly、Inoreader 或 NetNewsWire。</p></article>
-      <article><span>03</span><h3>添加订阅源</h3><p>粘贴地址并确认，更新会自动同步。</p></article>
+      <article><span>03</span><h3>提交站点地图</h3><p>将地址提交到搜索引擎或站长工具。</p></article>
     </div>
   </section>
 
-  <footer class="rss-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span>订阅源默认只提供文章摘要，打开原文即可阅读完整内容。</span></footer>
+  <footer class="rss-note"><i class="fas fa-circle-info" aria-hidden="true"></i><span>站点地图用于帮助搜索引擎发现和收录站内页面。</span></footer>
 </main>

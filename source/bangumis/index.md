@@ -5,7 +5,7 @@ type: "bangumis"
 top_img: false
 aside: false
 comments: false
-description: 正在收藏与回看的动画作品。
+description: 来自 Bangumi 的动画收藏。
 ---
 
 <section id="bangumi-shelf" class="bangumi-shelf" aria-labelledby="bangumi-shelf-title">
@@ -13,7 +13,7 @@ description: 正在收藏与回看的动画作品。
     <div>
       <span><i class="fas fa-clapperboard" aria-hidden="true"></i> ANIMATION SHELF</span>
       <h1 id="bangumi-shelf-title">追番</h1>
-      <p>收集那些在某个时刻留下余韵的故事。</p>
+      <p>来自 Bangumi 的公开动画收藏。</p>
     </div>
     <dl>
       <div><dt data-bangumi-count>--</dt><dd>部收藏</dd></div>
@@ -36,6 +36,13 @@ description: 正在收藏与回看的动画作品。
   const summary = shelf.querySelector('[data-bangumi-summary]');
   const buttons = [...shelf.querySelectorAll('[data-bangumi-status]')];
   const collections = { watched: [], watching: [], wantWatch: [] };
+  const escapeHtml = value => String(value || '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character]);
 
   const render = status => {
     const works = collections[status] || [];
@@ -50,10 +57,11 @@ description: 正在收藏与回看的动画作品。
       const card = document.createElement('article');
       card.className = 'bangumi-shelf-card';
       const link = document.createElement('a');
-      link.href = `https://www.bilibili.com/bangumi/media/md${work.id}/`;
+      link.href = `https://bangumi.tv/subject/${work.id}`;
       link.target = '_blank';
       link.rel = 'noopener';
-      link.innerHTML = `<img src="${work.cover}" alt="${work.title}" loading="lazy" referrerpolicy="no-referrer"><span class="bangumi-shelf-info"><small>${work.area || '未知地区'} · ${work.totalCount || '集数未知'}</small><strong>${work.title}</strong><em><i class="fas fa-star" aria-hidden="true"></i> ${work.score || '暂无评分'}</em><p>${work.des || '暂无简介'}</p><b>前往 Bilibili <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></b></span>`;
+      const score = work.rate ? `我的评分 ${work.rate}` : work.score ? `Bangumi ${work.score}` : '暂无评分';
+      link.innerHTML = `<img src="${escapeHtml(work.cover)}" alt="${escapeHtml(work.title)}" loading="lazy" referrerpolicy="no-referrer"><span class="bangumi-shelf-info"><small>${escapeHtml(work.date || '上映日期未知')} · ${escapeHtml(work.totalCount || '集数未知')}</small><strong>${escapeHtml(work.title)}</strong><em><i class="fas fa-star" aria-hidden="true"></i> ${escapeHtml(score)}</em><p>${escapeHtml(work.des || '暂无简介')}</p><b>前往 Bangumi <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i></b></span>`;
       card.append(link);
       grid.append(card);
     });
@@ -71,7 +79,7 @@ description: 正在收藏与回看的动画作品。
 
   fetch('/data/bangumis.json', { cache: 'no-store' })
     .then(response => {
-      if (!response.ok) throw new Error('Unable to load Bilibili data');
+      if (!response.ok) throw new Error('Unable to load Bangumi data');
       return response.json();
     })
     .then(data => {

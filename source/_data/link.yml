@@ -3,10 +3,10 @@
   class_desc: 记录生活、技术与长期创作的个人站点
   link_list:
     - name: mccsjs
-      link: https://hexo.seln.cn/
-      avatar: https://hexo.seln.cn/img/ico.jpg
+      link: https://mccsjs.cn/
+      avatar: https://mccsjs.cn/img/ico.jpg
       descr: 点一盏灯，等一个迷路的夜🍁🍁🍁
-      siteshot: https://hexo.seln.cn/img/a.jpg
+      siteshot: https://mccsjs.cn/img/a.jpg
     - name: 阿叶Ayeez的小站
       link: https://blog.Ayeez.cn
       avatar: https://qiniu.ayeez.cn/avatar.jpg

@@ -1,25 +1,29 @@
 {
-  "name": "hexo-site",
+  "name": "mistlane-blog",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "npm run assets:prepare && npm run bangumi:update && hexo generate && npm run check:site",
-    "assets:prepare": "node scripts/copy-pjax.js",
-    "bangumi:update": "node tools/update-bangumi.js",
+    "build": "npm run assets:prepare && astro build && npm run check:site",
+    "assets:prepare": "node scripts/prepare-astro-assets.mjs",
+    "dev": "npm run assets:prepare && astro dev",
+    "preview": "astro preview",
+    "check:site": "node tools/regression-check.js",
+    "test:theme": "playwright test",
     "album:encrypt": "node tools/private-album.js",
     "admin": "node tools/blog-manager.js",
-    "moment:new": "hexo moment",
-    "post:new": "hexo new-template",
-    "check:site": "node tools/regression-check.js",
-    "clean": "hexo clean",
-    "deploy": "hexo deploy",
-    "server": "hexo server"
+    "clean": "astro clean",
+    "server": "npm run dev"
   },
   "hexo": {
     "version": "7.3.0"
   },
   "dependencies": {
+    "@astrojs/rss": "4.0.19",
+    "@astrojs/sitemap": "3.7.4",
     "@fortawesome/fontawesome-free": "^7.3.1",
+    "astro": "5.18.2",
+    "cheerio": "1.2.0",
+    "gray-matter": "4.0.3",
     "hexo": "^7.3.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-butterfly-tag-plugins-plus": "^1.0.9",
@@ -37,7 +41,20 @@
     "hexo-renderer-stylus": "^3.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^5.6.1",
+    "hexo-util": "4.0.0",
     "hexo-wordcount": "^6.0.1",
-    "pjax": "^0.2.8"
+    "js-yaml": "4.3.2",
+    "marked": "18.0.11",
+    "moment-timezone": "0.6.3",
+    "nib": "1.2.0",
+    "pjax": "^0.2.8",
+    "pug": "3.0.4",
+    "rehype-katex": "7.0.1",
+    "remark-math": "6.0.0",
+    "stylus": "0.64.0",
+    "typed.js": "3.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
   }
 }

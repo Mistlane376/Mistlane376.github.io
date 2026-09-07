@@ -1,0 +1,14 @@
+---
+import { getThemeSite } from '../lib/theme-site.mjs';
+import { renderTheme } from '../lib/theme-renderer.mjs';
+
+export async function getStaticPaths() {
+  const site = await getThemeSite();
+  return [...site.routes.keys()].map((route) => ({ params: { route: route || undefined } }));
+}
+
+const site = await getThemeSite();
+const entry = site.routes.get(Astro.params.route || '');
+const html = renderTheme(entry.page, site, entry.template);
+---
+<Fragment set:html={html} />
