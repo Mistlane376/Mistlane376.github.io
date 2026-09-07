@@ -7,6 +7,7 @@ import { load } from 'cheerio';
 import { marked } from 'marked';
 import { escapeHTML, stripHTML, highlight } from 'hexo-util';
 import { readConfiguration, readYaml, root, themeDirectory } from './theme-config.mjs';
+import { optimizeHtml } from './optimize-html.mjs';
 
 export class Collection {
   constructor(data = []) { this.data = data; }
@@ -100,5 +101,5 @@ export function renderTheme(page, site, template = 'page') {
     return templates.get(filename)({ ...globals, ...data });
   };
   globals.partial = renderFile;
-  return renderFile(template).replace(/<a href="https:\/\/hexo.io">Hexo(?: [^<]*)?<\/a>/, '<a href="https://astro.build">Astro</a>');
+  return optimizeHtml(renderFile(template).replace(/<a href="https:\/\/hexo.io">Hexo(?: [^<]*)?<\/a>/, '<a href="https://astro.build">Astro</a>'));
 }

@@ -20,3 +20,17 @@ Dates without an offset use the timezone in `_config.yml`.
 Restart `npm run dev` after changing theme assets to recompile Stylus and copy
 browser resources. `astro.public`, `.astro`, `public`, and `test-results` are
 generated files. Original content and theme files are the source of truth.
+
+## Deployment security headers
+
+`vercel.json` enforces HSTS for this host, COOP `same-origin`, and denies
+framing through both X-Frame-Options and CSP. Its enforced CSP also restricts
+base URLs, blocks plugin objects and upgrades insecure resource requests.
+HSTS deliberately does not enroll other subdomains or request preload.
+
+Strict script CSP and Trusted Types are report-only while the theme's inline
+scripts, PJAX and third-party DOM operations are being adapted. This is diagnostic
+only: it does not enforce script allowlisting or prevent DOM XSS. Violations are
+visible in browser DevTools; no report collection endpoint is configured.
+Astro preview does not serve Vercel headers, so browser tests inject those headers
+on document responses. Verify the actual HTTPS response after deployment.

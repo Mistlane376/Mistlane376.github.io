@@ -55,8 +55,8 @@ html.mistlane-settings-open #mistlane-settings-backdrop { opacity: 1; pointer-ev
 .mistlane-font-options button { display: grid; min-width: 0; grid-template-columns: 38px minmax(0, 1fr) 18px; align-items: center; gap: 10px; min-height: 54px; padding: 7px 10px; border: 1px solid var(--ui-border, rgba(31, 41, 51, .11)); border-radius: 7px; background: var(--ui-surface, #fff); color: var(--ui-muted, #68737d); text-align: left; transition: border-color .16s ease, background .16s ease, transform .16s ease; }
 .mistlane-font-options button:hover { border-color: color-mix(in srgb, var(--ui-teal, #18756f) 55%, transparent); transform: translateX(2px); }
 .font-option-preview { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 6px; background: var(--ui-surface-soft, #f4f7f6); color: var(--ui-heading, #14212b); font-family: Arial, sans-serif; font-size: .84rem; font-weight: 750; }
-.font-option-preview.font-geely { font-family: 'Mistlane Geely', sans-serif; }
-.font-option-preview.font-xiangcui { font-family: 'Mistlane Xiangcui', sans-serif; }
+.is-open .font-option-preview.font-geely { font-family: 'Mistlane Geely', sans-serif; }
+.is-open .font-option-preview.font-xiangcui { font-family: 'Mistlane Xiangcui', sans-serif; }
 .mistlane-font-options button > span:nth-child(2) { min-width: 0; }
 .mistlane-font-options button strong,
 .mistlane-font-options button small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

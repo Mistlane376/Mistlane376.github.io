@@ -1,4 +1,16 @@
 import { test, expect } from '@playwright/test';
+import fs from 'node:fs';
+
+// Astro preview does not apply Vercel headers. Exercise them on document responses.
+test.beforeEach(async ({ page }) => {
+  const config = JSON.parse(fs.readFileSync('vercel.json', 'utf8'));
+  const headers = Object.fromEntries(config.headers.find((rule) => rule.source === '/(.*)').headers.map(({ key, value }) => [key.toLowerCase(), value]));
+  await page.route('**/*', async (route) => {
+    if (route.request().resourceType() !== 'document' || new URL(route.request().url()).hostname !== '127.0.0.1') return route.continue();
+    const response = await route.fetch();
+    await route.fulfill({ response, headers: { ...response.headers(), ...headers } });
+  });
+});
 
 test('original home layout and persistent controls survive Astro navigation', async ({ page }, testInfo) => {
   const errors = [];
@@ -10,6 +22,9 @@ test('original home layout and persistent controls survive Astro navigation', as
   await expect(page.locator('.home-bento')).toBeVisible();
   await expect(page.locator('.aside-column-left')).toBeVisible();
   await expect(page.locator('.aside-column-right')).toBeVisible();
+  expect(await page.evaluate(() => performance.getEntriesByType('resource').filter((entry) => entry.name.includes('/fonts/mistlane/')).length)).toBe(0);
+  await expect(page.locator('head link[rel="preload"][as="image"]')).toHaveAttribute('href', /\/optimized\/.*\.webp/);
+  expect(await page.locator('#aside-content img').evaluateAll((images) => images.every((image) => image.width > 0 && image.hasAttribute('width') && image.hasAttribute('height')))).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('home-desktop.png'), fullPage: true });
 
   await page.locator('#nav-music-button').click();
