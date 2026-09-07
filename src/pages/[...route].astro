@@ -1,6 +1,7 @@
 ---
 import { getThemeSite } from '../lib/theme-site.mjs';
 import { renderTheme } from '../lib/theme-renderer.mjs';
+import ThemeLayout from '../layouts/ThemeLayout.astro';
 
 export async function getStaticPaths() {
   const site = await getThemeSite();
@@ -11,4 +12,4 @@ const site = await getThemeSite();
 const entry = site.routes.get(Astro.params.route || '');
 const html = renderTheme(entry.page, site, entry.template);
 ---
-<Fragment set:html={html} />
+<ThemeLayout html={html} />

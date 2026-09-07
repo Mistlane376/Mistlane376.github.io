@@ -26,6 +26,9 @@ export function themeContent(html) {
   $('pre > code').each((_, element) => {
     const code = $(element);
     const lang = code.parent().attr('data-language') || (code.attr('class') || '').replace('language-', '');
+    // Legacy HTML pages use <br> inside code blocks. text() alone drops these
+    // separators; normalize actual elements, leaving escaped code examples intact.
+    code.find('br').replaceWith('\n');
     code.parent().replaceWith(highlight(code.text(), { lang, gutter: true, hljs: false, autoDetect: false }));
   });
   return $.html();

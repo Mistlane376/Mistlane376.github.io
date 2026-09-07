@@ -1,9 +1,34 @@
-# Astro + Mistlane
+# Astro + React + Svelte + Mistlane
 
 The site is built by Astro. Its existing Mistlane Pug templates, Stylus, CSS,
 fonts and browser scripts are rendered through `src/lib/theme-renderer.mjs`.
 The adapter supplies template helpers and content collections without starting
 Hexo or using `.deploy_git` as a build input.
+
+`src/layouts/ThemeLayout.astro` owns the HTML document and mounts two server-rendered
+islands using Astro's official React and Svelte integrations:
+
+- `src/components/Appearance.jsx`: React state for fonts, color mode, text size,
+  reduced motion, storage, keyboard focus and panel visibility.
+- `src/components/Search.svelte`: Svelte 5 search with a lazily fetched
+  `/data/search.json` index, text-only results, pagination and request retry.
+
+Both hydrate with `client:load` so existing navigation buttons work immediately.
+They are outside PJAX replacement selectors and survive page navigation. Each
+component cleans up its event listeners; old appearance/search scripts and markup
+are removed by the layout adapter before output, so there is only one DOM owner.
+The existing music engine, PJAX, static Pug content templates and theme styles remain
+in use. This is an interactive component refactor, not a full removal of the legacy
+theme adapter. New framework components belong in `src/components`; do not attach
+legacy DOM-mutating scripts to their internal elements.
+
+The friend directory hero/statistics/section headings are rendered at build time
+by `src/lib/link-directory.mjs`, avoiding insertion above visible cards after paint.
+Friend avatars retain the external URLs in `source/_data/link.yml`. Explicit
+dimensions and lazy loading reserve their layout without copying or proxying images.
+External image size, availability, cookies and cache headers remain host-controlled.
+Comments load when scrolled into view. `src/scripts/astro-theme.js` supplies missing
+Twikoo 1.7.15 accessibility labels and image dimensions, including after replies.
 
 - `npm run dev`: prepare assets and start Astro development server.
 - `npm run build`: compile the theme, build into `public`, run existing site checks.

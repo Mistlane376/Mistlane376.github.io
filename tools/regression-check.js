@@ -29,13 +29,18 @@ const requiredAssets = [
   '/css/mistlane/rss.css',
   '/css/mistlane/code-enhancements.css',
   '/js/mistlane/music-manager.js',
-  '/js/mistlane/appearance-settings.js',
   '/js/mistlane/code-enhancements.js'
   ,'/js/mistlane/rss.js'
 ]
 requiredAssets.forEach(asset => assert(home.includes(asset), `global asset included: ${asset}`))
 
 const idCount = (html, id) => (html.match(new RegExp(`id=["']${id}["']`, 'g')) || []).length
+assert(!home.includes('src="/js/mistlane/appearance-settings.js"'), 'legacy appearance script is replaced')
+assert(!home.includes('src="/js/search/local-search.js"'), 'legacy search script is replaced')
+assert(home.includes('component-export="default"') && home.includes('Appearance.'), 'React appearance island is rendered')
+assert(home.includes('Search.') && home.includes('svelte'), 'Svelte search island is rendered')
+assert(idCount(home, 'mistlane-settings-panel') === 1 && idCount(home, 'local-search') === 1, 'interactive panels have a single owner')
+assert(Boolean(read('data/search.json')) && !read('data/search.json').includes('/album/private/'), 'lazy search index excludes private albums')
 assert(idCount(home, 'mistlane-settings-toggle') === 1, 'one settings toggle on home page')
 assert(/id=["']rightside["'][\s\S]*id=["']mistlane-settings-toggle["']/.test(home), 'settings toggle is integrated into rightside tools')
 assert(idCount(home, 'mistlane-global-audio') === 1, 'one persistent audio element on home page')
