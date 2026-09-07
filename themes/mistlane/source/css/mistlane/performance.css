@@ -1,0 +1,15 @@
+/* Keep the existing visual states, animate only compositor-friendly properties. */
+#page-header, #nav, #rightside,
+#recent-posts .article-title, #recent-posts .article-meta-wrap a,
+#rightside button, #rightside a {
+  transition-property: transform, opacity;
+}
+
+/* Do not keep painting decorative layers in a background tab. */
+html[data-page-hidden='true'] .petal,
+html[data-page-hidden='true'] .petal::before,
+html[data-page-hidden='true'] .rain-drop,
+html[data-page-hidden='true'] .water-ripple,
+html[data-page-hidden='true'] .night-star {
+  animation-play-state: paused !important;
+}

@@ -37,6 +37,10 @@ test('original home layout and persistent controls survive Astro navigation', as
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.screenshot({ path: testInfo.outputPath('appearance-desktop.png') });
   await page.locator('[data-color-mode="light"]').click();
+  await page.locator('#mistlane-motion-toggle').check();
+  await expect(page.locator('.petal-layer, .day-rain-layer, .night-star-layer')).toHaveCount(0);
+  await page.locator('#mistlane-motion-toggle').uncheck();
+  await expect(page.locator('.day-rain-layer')).toHaveCount(1);
   await page.locator('#mistlane-settings-panel [data-close-settings]').click();
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.evaluate(() => { window.testOriginalAudio = document.querySelector('#mistlane-global-audio'); });

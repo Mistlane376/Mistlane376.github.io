@@ -131,8 +131,9 @@ const initializeHomeHero = () => {
     const runtimeDays = status.querySelector('.home-runtime-days')
     const siteVisits = status.querySelector('.home-site-visits')
     const startedAt = new Date('2026-04-11T18:00:00+08:00')
+    const clockFormatter = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
     const updateClock = () => {
-      clock.textContent = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }).format(new Date())
+      if (!document.hidden) clock.textContent = clockFormatter.format(new Date())
     }
     const updateMetrics = () => {
       runtimeDays.textContent = String(Math.max(1, Math.floor((Date.now() - startedAt.getTime()) / 86400000)))
@@ -141,8 +142,12 @@ const initializeHomeHero = () => {
     }
     updateClock()
     updateMetrics()
-    window.setInterval(updateClock, 1000)
-    window.setInterval(updateMetrics, 15000)
+    const clockTimer = window.setInterval(updateClock, 1000)
+    const metricsTimer = window.setInterval(updateMetrics, 15000)
+    document.addEventListener('pjax:send', () => {
+      window.clearInterval(clockTimer)
+      window.clearInterval(metricsTimer)
+    }, { once: true })
     showcase.append(status)
 
     articleItems[0].remove()

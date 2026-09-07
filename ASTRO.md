@@ -28,9 +28,10 @@ framing through both X-Frame-Options and CSP. Its enforced CSP also restricts
 base URLs, blocks plugin objects and upgrades insecure resource requests.
 HSTS deliberately does not enroll other subdomains or request preload.
 
-Strict script CSP and Trusted Types are report-only while the theme's inline
-scripts, PJAX and third-party DOM operations are being adapted. This is diagnostic
-only: it does not enforce script allowlisting or prevent DOM XSS. Violations are
-visible in browser DevTools; no report collection endpoint is configured.
+Strict script CSP and Trusted Types are not enabled yet: the theme's inline
+scripts, PJAX and third-party DOM operations require adaptation first. The
+diagnostic report-only policy was removed because it generated expected violations
+on every page without a report collection endpoint. The enforced CSP above remains;
+it does not provide a strict script allowlist or Trusted Types DOM XSS protection.
 Astro preview does not serve Vercel headers, so browser tests inject those headers
 on document responses. Verify the actual HTTPS response after deployment.

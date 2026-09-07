@@ -29,6 +29,7 @@ export function readConfiguration() {
   theme.math.use = false;
   theme.inject.head.push('<link rel="stylesheet" href="/vendor/katex/katex.min.css">');
   theme.inject.head.push('<link rel="alternate" type="application/atom+xml" title="Mistlane" href="/atom.xml">');
+  theme.inject.head.push('<link rel="stylesheet" href="/css/mistlane/performance.css">');
   theme.asset.typed = '/vendor/typed/typed.umd.js';
   theme.inject.bottom.push('<script defer src="/js/astro-theme.js"></script>');
   return { config, theme };

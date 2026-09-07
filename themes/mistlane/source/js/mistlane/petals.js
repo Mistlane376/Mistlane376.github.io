@@ -24,7 +24,7 @@
 
   const renderEffects = () => {
     removeEffects();
-    if (!effectsEnabled || reducedMotion) return;
+    if (!effectsEnabled || reducedMotion || document.documentElement.dataset.reduceMotion === 'true') return;
 
     const fragment = document.createDocumentFragment();
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -126,8 +126,8 @@
   }
 
   new MutationObserver((records) => {
-    if (records.some((record) => record.attributeName === 'data-theme')) renderEffects();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    if (records.some((record) => record.oldValue !== document.documentElement.getAttribute(record.attributeName))) renderEffects();
+  }).observe(document.documentElement, { attributes: true, attributeOldValue: true, attributeFilter: ['data-theme', 'data-reduce-motion'] });
 
   applyEffectsState(effectsEnabled);
 })();
