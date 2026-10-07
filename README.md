@@ -89,6 +89,21 @@ npm run deploy
 
 GitHub Pages 由该仓库的 `main` 分支直接提供，部署历史保存在 `.deploy_git/`。
 
+### 分支职责（重要）
+
+源码仓库与 GitHub Pages 产物仓库是同一个仓库，因此用分支区分「源码」与「产物」：
+
+| 远端分支 | 内容 | 用途 |
+| --- | --- | --- |
+| `main` | `hexo deploy` 推送的**纯静态产物**（`index.html`、`posts/`、`css/`…），无 `package.json` | GitHub Pages 发布分支 |
+| `source` | **源码工作树**（`_config.yml`、`package.json`、`source/`、`themes/`、`tools/`） | Vercel 等平台的构建源 |
+
+规则：
+
+- 本地 `main` 是源码工作树，推送源码时用 `git push origin main:source`，不要推 `main`；
+- 任何 CI/托管平台（Vercel 等）的 **Production Branch 必须设为 `source`**。若指向 `main` 或 `clean-deploy`，构建目录里没有 `package.json`，会直接报 `ENOENT: no such file or directory, open '.../package.json'`；
+- 站点里不应再有根目录 `package.json` 之类的源码文件出现在 `main` 上——历史上曾把源码推到 `main`，才导致托管平台误判为可构建工程。
+
 ## 排查
 
 | 现象 | 处理 |
@@ -97,5 +112,6 @@ GitHub Pages 由该仓库的 `main` 分支直接提供，部署历史保存在 `
 | 搜索无结果 | 确认 `_config.yml` 的 `search.path` 与主题 `_config.mistlane.yml` 的 `asset.local_search` 未被改动 |
 | 页面链接 404 | 检查 `permalink` 与 `abbrlink` 配置；`hexo clean` 后重建 |
 | 本地 404 页不生效 | 开发服务器由 `scripts/custom-404.js` 提供中间件 |
+| 托管平台报 `Could not read package.json` | 构建分支指到了产物分支，按上表把 Production Branch 改为 `source` |
 
 架构与实现细节见 [BLOG.md](BLOG.md)，版本历史见 [CHANGELOG.md](CHANGELOG.md)。

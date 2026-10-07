@@ -47,6 +47,7 @@
 ### 💡 注意事项
 - 文章、页面、动态、相册数据与本地主题 `themes/mistlane` 均未重写，内容与 URL 保持不变
 - 图片不再有构建期 WebP 压缩（那是 Astro 管线专有步骤），如需压缩请在提交前自行处理
+- 源码与 GitHub Pages 产物共用同一仓库，已用分支区分：`main` 放产物、`source` 放源码；Vercel 等平台的 Production Branch 必须指向 `source`，否则会因目录里没有 `package.json` 而构建失败（详见 README「分支职责」）
 
 ---
 
