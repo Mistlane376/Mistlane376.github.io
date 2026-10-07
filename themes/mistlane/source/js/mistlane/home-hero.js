@@ -130,6 +130,24 @@ const initializeHomeHero = () => {
     const clock = status.querySelector('.home-bento-clock')
     const runtimeDays = status.querySelector('.home-runtime-days')
     const siteVisits = status.querySelector('.home-site-visits')
+    // Site visits come from Vercount (see site-stats-cache.js). The counter script
+    // fills #vercount_value_site_pv asynchronously, so fall back to its localStorage
+    // cache and finally to a neutral placeholder instead of freezing on '--'.
+    const readSiteVisits = () => {
+      const live = [
+        'vercount_value_site_pv',
+        'busuanzi_value_site_pv'
+      ].map(id => document.getElementById(id)?.textContent.trim())
+        .find(value => value && !/^[-—]+$/.test(value) && !/^加载中|loading$/i.test(value))
+      if (live) return live
+      try {
+        const cached = JSON.parse(localStorage.getItem('mistlane-vercount-stats') || '{}')
+        if (cached.vercount_value_site_pv) return String(cached.vercount_value_site_pv)
+      } catch (_) {
+        // Ignore unavailable storage and keep the placeholder below.
+      }
+      return '—'
+    }
     const startedAt = new Date('2026-04-11T18:00:00+08:00')
     const clockFormatter = new Intl.DateTimeFormat('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })
     const updateClock = () => {
@@ -137,16 +155,21 @@ const initializeHomeHero = () => {
     }
     const updateMetrics = () => {
       runtimeDays.textContent = String(Math.max(1, Math.floor((Date.now() - startedAt.getTime()) / 86400000)))
-      const count = document.getElementById('busuanzi_value_site_pv')?.textContent.trim()
-      if (count && !/^加载中|loading$/i.test(count)) siteVisits.textContent = count
+      siteVisits.textContent = readSiteVisits()
     }
     updateClock()
     updateMetrics()
     const clockTimer = window.setInterval(updateClock, 1000)
     const metricsTimer = window.setInterval(updateMetrics, 15000)
+    // 计数脚本异步写入，轮询可能被节流；直接监听该元素的内容与占位符状态变化。
+    // （未拿到数据时元素会被写入 data-vercount-* 之外的 title，故一并观察 attributes。）
+    const vercountNode = document.getElementById('vercount_value_site_pv')
+    const visitsObserver = vercountNode ? new MutationObserver(updateMetrics) : null
+    if (visitsObserver) visitsObserver.observe(vercountNode, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['title'] })
     document.addEventListener('pjax:send', () => {
       window.clearInterval(clockTimer)
       window.clearInterval(metricsTimer)
+      if (visitsObserver) visitsObserver.disconnect()
     }, { once: true })
     showcase.append(status)
 

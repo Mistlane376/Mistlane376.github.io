@@ -51,8 +51,8 @@ div
   if theme.umami_analytics.enable
     != partial("includes/third-party/umami_analytics", {}, { cache: true })
 
-  script(defer data-pjax src="https://events.vercount.one/js")
-
+  //- 访问量由 themes/mistlane/source/js/mistlane/site-stats-cache.js 直接请求
+  //- Vercount 接口并写入 #vercount_value_*；不再加载其前端脚本，避免重复计数。
   != partial('includes/third-party/search/index', {}, { cache: true })
 
   if theme.google_tag_manager && theme.google_tag_manager.tag_id
