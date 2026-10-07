@@ -119,6 +119,20 @@ bangumi:
   user: '1273462'
   subject_type: 2
 
+# Local search index used by the theme's search dialog.
+# The theme reads the path through config.search.path (see
+# themes/mistlane/layout/includes/head/config.pug).
+search:
+  path: search.xml
+  field: post
+  content: true
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  rel: false
+  tags: true
+  categories: true
 
 # Feed
 feed:

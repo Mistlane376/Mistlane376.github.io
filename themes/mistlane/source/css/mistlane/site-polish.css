@@ -1,4 +1,4 @@
-﻿/* Site polish: calm reading surfaces and distinct functional pages. */
+/* Site polish: calm reading surfaces and distinct functional pages. */
 :root {
   --ui-ink: #1f2933;
   --ui-heading: #14212b;
@@ -343,7 +343,6 @@ html:not([data-theme='dark']) .petal-layer {
 @keyframes night-twinkle {
   0%, 100% { opacity: 0.04; transform: rotate(0deg) scale(0.5); }
   50% { opacity: 0.92; transform: rotate(45deg) scale(1); }
-}
 }
 
 @media (max-width: 768px) {
@@ -2788,7 +2787,7 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
   border-radius: 4px;
   background: rgba(24, 56, 63, 0.92);
   color: #fff;
-  content: '鏄剧ず璁剧疆';
+  content: '显示设置';
   font-size: 0.68rem;
   line-height: 1;
   white-space: nowrap;
@@ -3291,7 +3290,7 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
   padding-left: 12px;
   border-left: 1px solid rgba(24, 117, 111, 0.24);
   color: #5a7475;
-  content: '寰瓧鑰岃锛岄亣瑙佹棫鏃ョ瘒绔?;
+  content: '循字而行，遇见旧日篇章';
   font-size: 0.78rem;
   font-weight: 500;
 }

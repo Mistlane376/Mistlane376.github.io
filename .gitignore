@@ -7,10 +7,6 @@ Thumbs.db
 # Hexo
 node_modules/
 public/
-.astro/
-astro.public/
-test-results/
-playwright-report/
 .deploy*/
 .deploy_git/
 _multiconfig.yml/
@@ -26,7 +22,6 @@ db.json
 # 编辑器临时文件
 *.tmp
 *.temp
-*.bak
 *.bak
 
 # 系统文件
@@ -51,3 +46,6 @@ private-albums/
 # Local browser profiles and visual regression screenshots
 .chrome-twikoo-check/
 .qa-*.png
+
+# DSH 沙箱权限诊断报告（本地排查用，不入库）
+.dsh-acl-reports/

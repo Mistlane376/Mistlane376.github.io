@@ -1252,6 +1252,9 @@
   position: relative;
   z-index: 1;
 }
+
+/* 深色模式下与上方 .about-divider 相同的分隔线渐变 */
+[data-theme='dark'] .about-divider {
   background: linear-gradient(90deg,
       transparent,
       rgba(255, 255, 255, 0.1) 20%,

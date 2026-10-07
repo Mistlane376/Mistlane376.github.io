@@ -1,5 +1,12 @@
 'use strict'
 
+/**
+ * Hexo 站点回归检查。
+ *
+ * 在 `hexo generate` 之后运行，直接读取 public/ 输出，
+ * 确认主题资源、PJAX、搜索索引、订阅源与各功能页都在，防止改配置或改主题时静默回退。
+ */
+
 const fs = require('fs')
 const path = require('path')
 
@@ -29,18 +36,13 @@ const requiredAssets = [
   '/css/mistlane/rss.css',
   '/css/mistlane/code-enhancements.css',
   '/js/mistlane/music-manager.js',
-  '/js/mistlane/code-enhancements.js'
-  ,'/js/mistlane/rss.js'
+  '/js/mistlane/appearance-settings.js',
+  '/js/mistlane/code-enhancements.js',
+  '/js/mistlane/rss.js'
 ]
 requiredAssets.forEach(asset => assert(home.includes(asset), `global asset included: ${asset}`))
 
 const idCount = (html, id) => (html.match(new RegExp(`id=["']${id}["']`, 'g')) || []).length
-assert(!home.includes('src="/js/mistlane/appearance-settings.js"'), 'legacy appearance script is replaced')
-assert(!home.includes('src="/js/search/local-search.js"'), 'legacy search script is replaced')
-assert(home.includes('component-export="default"') && home.includes('Appearance.'), 'React appearance island is rendered')
-assert(home.includes('Search.') && home.includes('svelte'), 'Svelte search island is rendered')
-assert(idCount(home, 'mistlane-settings-panel') === 1 && idCount(home, 'local-search') === 1, 'interactive panels have a single owner')
-assert(Boolean(read('data/search.json')) && !read('data/search.json').includes('/album/private/'), 'lazy search index excludes private albums')
 assert(idCount(home, 'mistlane-settings-toggle') === 1, 'one settings toggle on home page')
 assert(/id=["']rightside["'][\s\S]*id=["']mistlane-settings-toggle["']/.test(home), 'settings toggle is integrated into rightside tools')
 assert(idCount(home, 'mistlane-global-audio') === 1, 'one persistent audio element on home page')
@@ -60,21 +62,25 @@ const rss = read('rss/index.html')
 assert(Boolean(rss), 'rss page generated')
 assert(rss.includes('/atom.xml'), 'rss page exposes Atom feed address')
 assert(rss.includes('data-rss-copy'), 'rss page includes copy action')
+assert(Boolean(read('atom.xml')), 'atom feed generated')
+assert(Boolean(read('sitemap.xml')), 'sitemap generated')
 
 assert(Boolean(read(path.join('series', 'index.html'))), 'learning paths page generated')
 assert(Boolean(read(path.join('moments', 'index.html'))), 'moments page generated')
 assert(!fs.existsSync(path.join(publicDir, 'projects', 'index.html')), 'removed projects page stays absent')
 
 const search = read('search.xml') || read('search.json')
+assert(Boolean(search), 'local search index generated')
 assert(!search.includes('/album/private/'), 'private album paths are excluded from search')
 
-const featurePages = ['about/index.html', 'album/index.html', 'link/index.html']
+const featurePages = ['about/index.html', 'album/index.html', 'link/index.html', 'categories/index.html', 'tags/index.html']
 featurePages.forEach(relative => assert(Boolean(read(relative)), `${relative} generated`))
 assert(home.includes('/series/') && home.includes('/moments/'), 'learning paths and moments are present in navigation')
 assert(!home.includes('id="pagination"'), 'home pagination is removed')
 assert(home.includes('card-today') && home.includes('card-calendar'), 'left sidebar includes year progress and calendar')
 assert(home.includes('card-announcement') && home.includes('card-visitor-stats') && home.includes('card-quick-links'), 'right sidebar includes announcement, visitor stats and quick links')
 assert(home.includes('href="/rss/"') && home.includes('SUBSCRIBE'), 'quick links include RSS subscription')
+assert(!home.includes('astro-island') && !home.includes('component-export='), 'output has no Astro islands left')
 
 passes.forEach(message => console.log(`[pass] ${message}`))
 if (failures.length) {
