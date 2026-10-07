@@ -10,7 +10,7 @@ source/ + themes/mistlane/
         ├─ scripts/*.js           Hexo 启动时自动加载（生成器、命令、过滤器）
         ├─ 主题 scripts/          helper / tag / before_generate 钩子
         ▼
-   hexo generate ──► public/ ──► hexo deploy ──► .deploy_git ──► GitHub Pages
+   hexo generate ──► public/ ──► Vercel（推送 main 自动构建发布）
         ▲
         └─ tools/regression-check.js 构建后回归检查（npm run check:site）
 ```
@@ -61,15 +61,19 @@ source/ + themes/mistlane/
 
 ## 部署
 
+- 托管平台为 **Vercel**，生产分支就是本仓库的 `main`：推送后自动 `npm run build`，把 `public/` 作为站点发布。
+- 根目录 `vercel.json` 定义构建与响应头：`buildCommand` 为 `npm run build`，`outputDirectory` 为 `public`，并声明 HSTS、`X-Frame-Options`、`COOP` 与 CSP。
+- `.vercelignore` 控制上传范围：`private-albums/`（加密相册明文与密码）、`.deploy_git/`、`public/`、`db.json`、日志与本地诊断目录不会上传。
+- 自定义域名 `blog.mistlane.top` 由 Vercel 管理（DNS CNAME 指向 `*.vercel-dns-017.com`），因此仓库里没有 `source/CNAME`。
+- `hexo-generator-sitemap` 生成 `sitemap.xml`，`hexo-generator-feed` 生成 `atom.xml`，供搜索引擎与阅读器使用。
+- CSP 目前只限制 `base-uri`、`object-src`、`frame-ancestors` 并升级不安全请求。严格脚本白名单和 Trusted Types 尚未启用：主题的内联脚本、PJAX 与第三方 DOM 操作需要先改造。
+- 已不再使用 `hexo deploy`／GitHub Pages：`_config.yml` 无 `deploy` 段，`hexo-deployer-git` 依赖已移除，`.deploy_git/` 与历史 `source`、`clean-deploy` 分支均已弃用。
+
 ### 维护提示：主题资源一律用 UTF-8 编辑
 
 主题的 CSS/JS 里有中文字符串（例如 `content: '显示设置'`）。曾经出现过用 GBK 方式读写这些文件、把中文变成乱码并顺手删掉引号/括号的情况，表现为规则解析错位、移动端整段样式失效。约定：
 
 - 编辑器统一 UTF-8（不带 BOM）；
 - 不要用 `powershell` 的 `Get-Content | Set-Content` 做批量替换（默认编码会破坏中文）；
+- 也不要把中文直接写进 PowerShell 命令：在 GBK 代码页下命令行会被破坏，回显看起来像「文件损坏」，容易误判；
 - 改完 CSS 后跑一次括号配对与乱码自检，再 `npm run build`。
-
-- `hexo deploy` 使用 `hexo-deployer-git` 推送到 `ssh://git@ssh.github.com:443/Mistlane376/Mistlane376.github.io.git` 的 `main` 分支。
-- `source/CNAME` 声明自定义域名，`hexo-generator-sitemap` 生成 `sitemap.xml`，`hexo-generator-feed` 生成 `atom.xml`。
-- 根目录 `vercel.json` 是备用托管（Vercel）的构建与响应头配置：`buildCommand` 为 `npm run build`，`outputDirectory` 为 `public`，并声明 HSTS、`X-Frame-Options`、`COOP` 与 CSP。GitHub Pages 不使用该文件；如只用 Pages，可以忽略。
-- CSP 目前只限制 `base-uri`、`object-src`、`frame-ancestors` 并升级不安全请求。严格脚本白名单和 Trusted Types 尚未启用：主题的内联脚本、PJAX 与第三方 DOM 操作需要先改造。

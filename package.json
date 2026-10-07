@@ -15,7 +15,7 @@
     "server": "hexo server",
     "dev": "hexo server",
     "clean": "hexo clean",
-    "deploy": "hexo clean && hexo generate && hexo deploy"
+    "deploy:prod": "npx vercel --prod"
   },
   "hexo": {
     "version": "7.3.0"
@@ -24,7 +24,6 @@
     "hexo": "^7.3.0",
     "hexo-abbrlink": "^2.2.1",
     "hexo-butterfly-tag-plugins-plus": "^1.0.9",
-    "hexo-deployer-git": "^4.0.0",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-feed": "^3.0.0",

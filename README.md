@@ -63,7 +63,7 @@ my-blog/
 | `npm run build` | 清理 → 复制 pjax → `hexo generate` → 站点回归检查 |
 | `npm run clean` | 清理 `public/` 与缓存 `db.json` |
 | `npm run check:site` | 只跑回归检查（需先构建） |
-| `npm run deploy` | 清理、构建并 `hexo deploy` 到 GitHub Pages |
+| `npm run deploy:prod` | 用 Vercel CLI 手动触发一次生产部署（需先 `vercel link` 过） |
 | `npm run post:new -- <solution\|algorithm\|project\|study> "标题"` | 按模板新建文章 |
 | `npm run moment:new -- "今天完成了…"` | 新建一条动态 |
 | `npm run bangumi:update` | 从 Bangumi API 同步追番收藏 |
@@ -81,28 +81,26 @@ my-blog/
 
 ## 部署
 
-`_config.yml` 中的 `deploy` 段指向 `ssh://git@ssh.github.com:443/Mistlane376/Mistlane376.github.io.git` 的 `main` 分支：
+站点由 **Vercel** 托管，生产域名 https://blog.mistlane.top（DNS 为 Vercel 托管，CNAME 指向 `*.vercel-dns-017.com`）。
+
+- **构建源**：仓库 `Mistlane376/Mistlane376.github.io` 的 `main` 分支（也就是本工作树）；
+- **构建命令**：`npm run build`（`vercel.json` 中的 `buildCommand`），输出目录 `public/`；
+- **触发方式**：推送到 `main` 即自动构建发布，无需手动部署；
+- **Vercel 项目设置**：Production Branch = `main`，Root Directory 留空，Framework Preset = Other；
+- **不上传的内容**：见 [.vercelignore](.vercelignore)（`private-albums/`、`.deploy_git/`、`public/`、`db.json` 等）。
 
 ```powershell
-npm run deploy
+git push origin main        # 触发 Vercel 生产部署
+npm run deploy:prod         # 可选：用 Vercel CLI 手动发一次
 ```
 
-GitHub Pages 由该仓库的 `main` 分支直接提供，部署历史保存在 `.deploy_git/`。
+### 历史说明
 
-### 分支职责（重要）
+早期用 `hexo deploy` 把 `public/` 推到本仓库分支、由 GitHub Pages 发布。现在已完全改用 Vercel：
 
-源码仓库与 GitHub Pages 产物仓库是同一个仓库，因此用分支区分「源码」与「产物」：
-
-| 远端分支 | 内容 | 用途 |
-| --- | --- | --- |
-| `main` | `hexo deploy` 推送的**纯静态产物**（`index.html`、`posts/`、`css/`…），无 `package.json` | GitHub Pages 发布分支 |
-| `source` | **源码工作树**（`_config.yml`、`package.json`、`source/`、`themes/`、`tools/`） | Vercel 等平台的构建源 |
-
-规则：
-
-- 本地 `main` 是源码工作树，推送源码时用 `git push origin main:source`，不要推 `main`；
-- 任何 CI/托管平台（Vercel 等）的 **Production Branch 必须设为 `source`**。若指向 `main` 或 `clean-deploy`，构建目录里没有 `package.json`，会直接报 `ENOENT: no such file or directory, open '.../package.json'`；
-- 站点里不应再有根目录 `package.json` 之类的源码文件出现在 `main` 上——历史上曾把源码推到 `main`，才导致托管平台误判为可构建工程。
+- `_config.yml` 中不再有 `deploy` 段，`hexo-deployer-git` 依赖已移除；
+- `source/CNAME`（Pages 自定义域名文件）已删除，域名由 Vercel 管理；
+- 旧的 `source` 分支（曾作为 Vercel 构建源）已删除，`.deploy_git/` 与 `clean-deploy` 分支不再使用。
 
 ## 排查
 
@@ -112,6 +110,7 @@ GitHub Pages 由该仓库的 `main` 分支直接提供，部署历史保存在 `
 | 搜索无结果 | 确认 `_config.yml` 的 `search.path` 与主题 `_config.mistlane.yml` 的 `asset.local_search` 未被改动 |
 | 页面链接 404 | 检查 `permalink` 与 `abbrlink` 配置；`hexo clean` 后重建 |
 | 本地 404 页不生效 | 开发服务器由 `scripts/custom-404.js` 提供中间件 |
-| 托管平台报 `Could not read package.json` | 构建分支指到了产物分支，按上表把 Production Branch 改为 `source` |
+| Vercel 报 `Could not read package.json` | 构建分支或 Root Directory 指错了：Production Branch 应为 `main`，Root Directory 应留空 |
+| 线上没变化 | 先确认改动已 `git push`（未提交的文件不会进构建），再确认 Vercel 那次部署成功、并绕过边缘缓存（`x-vercel-cache`） |
 
 架构与实现细节见 [BLOG.md](BLOG.md)，版本历史见 [CHANGELOG.md](CHANGELOG.md)。

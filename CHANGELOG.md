@@ -40,14 +40,24 @@
 - 删除空目录 `source/projects/`、`source/versions/`（`/projects/` 按回归检查要求保持不生成；`/versions/` 页面已不存在，本文件相关链接同步修正）
 - `source/vendor/fontawesome/` 保留：主题配置 `CDN.option.fontawesome` 指向 `/vendor/fontawesome/css/all.min.css`，实际在用
 
+#### 托管切换：Vercel 单一来源
+- 站点改由 Vercel 托管，生产分支为本仓库的 `main`（即源码工作树）：推送后自动 `npm run build`，输出 `public/`
+- `_config.yml` 移除 `deploy` 段，`package.json` 移除 `hexo-deployer-git`，新增 `deploy:prod`（`npx vercel --prod`）
+- 删除 `source/CNAME`（GitHub Pages 的自定义域名文件），域名 `blog.mistlane.top` 由 Vercel 管理
+- 新增 `.vercelignore`：`private-albums/`、`.deploy_git/`、`public/`、`db.json`、日志与本地诊断目录不上传
+- 删除历史 `source` 分支与 Pages 产物分支的用途；`.deploy_git/` 仅作本地残留
+
 #### 验证
 - `npm run build`：`hexo clean` → `hexo generate`（197 个文件）→ 回归检查 44/44 通过
 - `hexo server` 实测：首页、文章页、`/series/`、`/moments/`、`/album/`、`/rss/`、`atom.xml`、`sitemap.xml`、`search.xml` 全部 200，未知路径按自定义 404 返回 404
+- 干净环境复现：复制工作树后 `npm ci` + `npm run build` 同样 44/44 通过（模拟托管平台的安装与构建）
+- 线上比对：`https://blog.mistlane.top` 的 `site-polish.css` 等资源与本机构建 SHA256 一致
 
 ### 💡 注意事项
 - 文章、页面、动态、相册数据与本地主题 `themes/mistlane` 均未重写，内容与 URL 保持不变
 - 图片不再有构建期 WebP 压缩（那是 Astro 管线专有步骤），如需压缩请在提交前自行处理
-- 源码与 GitHub Pages 产物共用同一仓库，已用分支区分：`main` 放产物、`source` 放源码；Vercel 等平台的 Production Branch 必须指向 `source`，否则会因目录里没有 `package.json` 而构建失败（详见 README「分支职责」）
+- 源码与 GitHub Pages 产物曾共用同一仓库、用分支区分（`main` 放产物、`source` 放源码）。现已改为**单一托管：Vercel + `main` 分支源码**，不再使用 GitHub Pages 与 `hexo deploy`
+- 详见 README「部署」一节
 
 ---
 

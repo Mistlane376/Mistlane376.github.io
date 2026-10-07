@@ -146,11 +146,9 @@ feed:
   autodiscovery: true
 
 # Deployment
-## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
-  type: git
-  repo: ssh://git@ssh.github.com:443/Mistlane376/Mistlane376.github.io.git
-  branch: main
+## 站点由 Vercel 托管：推送到 main 后自动构建，输出目录为 public/（见 vercel.json）。
+## 不再使用 `hexo deploy`，因此这里没有 deploy 段。
+
 # tag-plugins-plus
 # see https://akilar.top/posts/615e2dec/
 tag_plugins:

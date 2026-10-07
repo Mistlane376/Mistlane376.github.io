@@ -1,0 +1,24 @@
+# 不随构建上传到 Vercel 的内容（Vercel CLI 默认上传整个工作目录）。
+# 构建在 Vercel 侧执行，node_modules 由其按 package-lock.json 安装。
+
+# 加密相册的明文源与密码
+private-albums/
+
+# 旧的 GitHub Pages 部署仓库与本地缓存
+.deploy_git/
+public/
+db.json
+.deploy*/
+
+# 本地工具产物
+.dsh-acl-reports/
+.chrome-twikoo-check/
+.qa-*.png
+*.log
+
+# 依赖与编辑器
+node_modules/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
