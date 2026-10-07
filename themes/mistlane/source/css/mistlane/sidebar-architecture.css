@@ -114,7 +114,7 @@
 .card-visitor-stats { padding: 17px !important; }
 .visitor-stat-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; }
 .visitor-stat-item { display: flex; min-width: 0; flex-direction: column; gap: 4px; padding: 10px; border: 1px solid var(--ui-border); border-radius: 6px; background: var(--ui-surface-soft); }
-.visitor-stat-item span { color: var(--ui-faint); font-size: .58rem; }
+.visitor-stat-item span { color: var(--ui-muted); font-size: .63rem; letter-spacing: .01em; }
 .visitor-stat-item strong { overflow: hidden; color: var(--ui-heading); font-family: Consolas, monospace; font-size: .86rem; text-overflow: ellipsis; white-space: nowrap; }
 .visitor-stat-item strong i { color: var(--ui-teal); font-size: .65rem; }
 .visitor-stat-wide { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: space-between; }

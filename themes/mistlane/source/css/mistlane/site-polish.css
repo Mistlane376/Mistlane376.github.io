@@ -1221,13 +1221,23 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
 
 #page-header.not-top-img #nav .site-page,
 #page-header.not-top-img #nav .site-name,
-#page-header.not-top-img #nav #toggle-menu {
+#page-header.not-top-img #nav #toggle-menu,
+#page-header.not-top-img #nav #nav-music-button {
   color: var(--ui-ink);
   text-shadow: none;
 }
 
 #page-header.not-top-img #nav .site-page:hover {
   background: var(--ui-teal-soft);
+  color: var(--ui-teal);
+}
+
+/* 音乐按钮跟随同一状态变色，否则浅色页眉上仍是 --light-grey(#eee)，白底白字。 */
+#page-header.not-top-img #nav #nav-music-button {
+  background: var(--ui-teal-soft);
+}
+
+#page-header.not-top-img #nav #nav-music-button:hover {
   color: var(--ui-teal);
 }
 
