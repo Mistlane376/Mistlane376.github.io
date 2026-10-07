@@ -3606,6 +3606,245 @@ html.hide-aside #content-inner.home-bento-layout #aside-content {
   }
 }
 
+/* ---------- 搜索面板增强：结果计数 / 推荐查找 / 空结果 / 键盘导航 ---------- */
+
+#local-search .mistlane-search-count {
+  position: relative;
+  z-index: 1;
+  padding: 0 28px 0 30px;
+  color: color-mix(in srgb, var(--ui-teal) 72%, #16232b);
+  font-size: 0.76rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+#local-search .mistlane-search-count:not(:empty) {
+  padding-bottom: 12px;
+}
+
+#local-search .mistlane-search-suggest {
+  position: relative;
+  z-index: 1;
+  padding: 14px 28px 16px 30px;
+}
+
+#local-search .mistlane-search-suggest[hidden] {
+  display: none;
+}
+
+#local-search .mistlane-search-suggest-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 11px;
+  color: color-mix(in srgb, var(--ui-teal) 68%, #16232b);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+#local-search .mistlane-search-suggest-head i {
+  font-size: 0.78rem;
+}
+
+#local-search .mistlane-search-suggest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+#local-search .mistlane-search-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid rgba(24, 117, 111, 0.22);
+  border-radius: 999px;
+  background: #eef6f4;
+  color: color-mix(in srgb, var(--ui-teal) 78%, #16232b);
+  font: inherit;
+  font-size: 0.77rem;
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+#local-search .mistlane-search-chip i {
+  font-size: 0.66rem;
+  opacity: 0.75;
+}
+
+#local-search .mistlane-search-chip:hover,
+#local-search .mistlane-search-chip:focus-visible {
+  border-color: var(--ui-teal);
+  background: var(--ui-teal);
+  color: #fff;
+  outline: none;
+  transform: translateY(-1px);
+}
+
+#local-search .mistlane-search-chip[data-type='category'] {
+  border-color: rgba(158, 106, 31, 0.26);
+  background: #f8f1e3;
+  color: #8a5f20;
+}
+
+#local-search .mistlane-search-chip[data-type='category']:hover,
+#local-search .mistlane-search-chip[data-type='category']:focus-visible {
+  border-color: #c08b2f;
+  background: #c08b2f;
+  color: #fff;
+}
+
+#local-search .search-result-list .local-search-hit-item > a {
+  display: block;
+  color: inherit;
+}
+
+#local-search .search-result-list .local-search-hit-item > a.is-active {
+  padding-left: 6px;
+}
+
+/* 键盘选中的结果与鼠标悬停保持同一视觉语言 */
+#local-search .search-result-list .local-search-hit-item:has(> a.is-active) {
+  padding-left: 54px;
+  background: #f0f7f6;
+  box-shadow: inset 3px 0 0 var(--ui-teal);
+}
+
+#local-search .search-result-list .local-search-hit-item:has(> a.is-active)::before {
+  left: 16px;
+  background: var(--ui-teal);
+  color: #fff;
+}
+
+#local-search .search-result-empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0 2px;
+  color: color-mix(in srgb, var(--ui-teal) 42%, #4a5a61);
+  font-size: 0.86rem;
+}
+
+#local-search .search-result-empty i {
+  font-size: 0.82rem;
+  opacity: 0.8;
+}
+
+#local-search .mistlane-search-tip {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 11px 28px 12px 30px;
+  border-top: 1px solid rgba(31, 41, 51, 0.09);
+  background: #f6faf9;
+  color: color-mix(in srgb, var(--ui-teal) 42%, #4a5a61);
+  font-size: 0.72rem;
+}
+
+#local-search .mistlane-search-tip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+#local-search .mistlane-search-tip-item em {
+  font-style: normal;
+}
+
+#local-search .mistlane-search-tip kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  padding: 2px 6px;
+  border: 1px solid rgba(31, 41, 51, 0.16);
+  border-radius: 4px;
+  background: #fff;
+  color: #2c4049;
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 1px 0 rgba(31, 41, 51, 0.12);
+}
+
+#local-search .mistlane-search-tip-hint {
+  margin-left: auto;
+  opacity: 0.85;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-count,
+[data-theme='dark'] #local-search .mistlane-search-suggest-head,
+[data-theme='dark'] #local-search .search-result-empty,
+[data-theme='dark'] #local-search .mistlane-search-tip {
+  color: color-mix(in srgb, var(--ui-teal) 58%, #dfeceb);
+}
+
+[data-theme='dark'] #local-search .mistlane-search-chip {
+  border-color: rgba(93, 205, 194, 0.28);
+  background: #1b2f2e;
+  color: #9fe0d8;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-chip:hover,
+[data-theme='dark'] #local-search .mistlane-search-chip:focus-visible {
+  border-color: var(--ui-teal);
+  background: var(--ui-teal);
+  color: #10201f;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-chip[data-type='category'] {
+  border-color: rgba(192, 139, 47, 0.32);
+  background: #2c2519;
+  color: #e3ba79;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-chip[data-type='category']:hover,
+[data-theme='dark'] #local-search .mistlane-search-chip[data-type='category']:focus-visible {
+  border-color: #c08b2f;
+  background: #c08b2f;
+  color: #1d1608;
+}
+
+[data-theme='dark'] #local-search .search-result-list .local-search-hit-item:has(> a.is-active) {
+  background: #1d302f;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-tip {
+  border-top-color: rgba(255, 255, 255, 0.1);
+  background: #16211f;
+}
+
+[data-theme='dark'] #local-search .mistlane-search-tip kbd {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #223330;
+  color: #d7e6e4;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+@media screen and (max-width: 768px) {
+  #local-search .mistlane-search-count,
+  #local-search .mistlane-search-suggest {
+    padding-right: 20px;
+    padding-left: 22px;
+  }
+
+  #local-search .mistlane-search-tip {
+    padding: 10px 20px 11px 22px;
+  }
+
+  #local-search .mistlane-search-tip-hint {
+    display: none;
+  }
+}
+
 @keyframes search-panel-in {
   from { opacity: 0; }
   to { opacity: 1; }

@@ -272,6 +272,9 @@ window.addEventListener('load', () => {
   const $results = document.getElementById('local-search-results')
   const $pagination = document.getElementById('local-search-pagination')
   const $paginationList = document.querySelector('#local-search-pagination .ais-Pagination-list')
+  const $suggest = document.querySelector('.mistlane-search-suggest')
+  const $chips = document.querySelector('.mistlane-search-suggest-chips')
+  const $counter = document.getElementById('local-search-count')
   const isXml = !path.endsWith('json')
 
   // Pagination variables (only initialize if pagination is enabled)
@@ -317,10 +320,10 @@ window.addEventListener('load', () => {
 
     $results.innerHTML = `<ol class="search-result-list">${numberedItems.join('')}</ol>`
 
-    // Update stats
+    // 结果计数放在输入框正下方，方便一眼看到命中篇数
     const displayCount = enablePagination ? currentResultItems.length : resultItems.length
-    const stats = languages.hits_stats.replace(/\$\{hits}/, displayCount)
-    $statsItem.innerHTML = `<hr><div class="search-result-stats">${stats}</div>`
+    if ($counter) $counter.textContent = languages.hits_stats.replace(/\$\{hits}/, displayCount)
+    $statsItem.innerHTML = ''
 
     // Handle pagination
     if (enablePagination) {
@@ -399,6 +402,7 @@ window.addEventListener('load', () => {
   const clearSearchResults = () => {
     $results.textContent = ''
     $statsItem.textContent = ''
+    if ($counter) $counter.textContent = ''
     toggleResultsVisibility(false)
     if (enablePagination) {
       currentResultItems = []
@@ -406,13 +410,20 @@ window.addEventListener('load', () => {
     }
   }
 
-  // Show no results message
+  // Show no results message（用 DOM API 构造，避免把用户输入当 HTML 解析）
   const showNoResults = searchText => {
     $results.textContent = ''
-    const statsDiv = document.createElement('div')
-    statsDiv.className = 'search-result-stats'
-    statsDiv.textContent = languages.hits_empty.replace(/\$\{query}/, searchText)
-    $statsItem.innerHTML = statsDiv.outerHTML
+    const empty = document.createElement('div')
+    empty.className = 'search-result-stats search-result-empty'
+    const icon = document.createElement('i')
+    icon.className = 'fas fa-magnifying-glass'
+    icon.setAttribute('aria-hidden', 'true')
+    const message = document.createElement('span')
+    message.textContent = languages.hits_empty.replace(/\$\{query}/, searchText)
+    empty.append(icon, message)
+    $statsItem.textContent = ''
+    $statsItem.append(empty)
+    if ($counter) $counter.textContent = ''
     toggleResultsVisibility(false)
     if (enablePagination) {
       currentResultItems = []
@@ -426,6 +437,7 @@ window.addEventListener('load', () => {
     isXml && (searchText = searchText.replace(/</g, '&lt;').replace(/>/g, '&gt;'))
 
     if (searchText !== '') $loadingStatus.hidden = false
+    if ($suggest) $suggest.hidden = searchText.length > 0
 
     const keywords = searchText.split(/[-\s]+/)
     let resultItems = []
@@ -555,8 +567,105 @@ window.addEventListener('load', () => {
     $loadDataItem.remove()
   })
 
+  // ---- 推荐查找：把站点高频标签/分类渲染成可点的快捷搜索词 ----
+  const getChipTerms = () => {
+    if (!$suggest) return []
+    try {
+      const parsed = JSON.parse($suggest.dataset.suggestions || '[]')
+      return Array.isArray(parsed) ? parsed : []
+    } catch (_) {
+      return []
+    }
+  }
+
+  const renderSuggestChips = () => {
+    if (!$chips) return
+    const terms = getChipTerms()
+    if (!terms.length) {
+      $suggest.hidden = true
+      return
+    }
+    // 用 DOM API 构造，标签/分类名不会被当作 HTML 解析
+    $chips.textContent = ''
+    terms.forEach((term, index) => {
+      const name = String(term && term.name ? term.name : '').trim()
+      if (!name) return
+      const type = term.type === 'category' ? 'category' : 'tag'
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'mistlane-search-chip'
+      button.dataset.term = name
+      button.dataset.termIndex = String(index)
+      button.dataset.type = type
+      const icon = document.createElement('i')
+      icon.className = `fas ${type === 'category' ? 'fa-folder-tree' : 'fa-hashtag'}`
+      icon.setAttribute('aria-hidden', 'true')
+      const label = document.createElement('span')
+      label.textContent = name
+      button.append(icon, label)
+      $chips.append(button)
+    })
+  }
+
+  // ---- 结果键盘导航（↑/↓ 选择，Enter 打开）----
+  let activeResultIndex = -1
+
+  const getResultLinks = () => $results.querySelectorAll('.local-search-hit-item > a')
+
+  const setActiveResult = index => {
+    const links = getResultLinks()
+    links.forEach(link => link.classList.remove('is-active'))
+    if (!links.length) {
+      activeResultIndex = -1
+      return
+    }
+    activeResultIndex = Math.max(0, Math.min(index, links.length - 1))
+    const active = links[activeResultIndex]
+    active.classList.add('is-active')
+    if (active.scrollIntoView) active.scrollIntoView({ block: 'nearest' })
+  }
+
+  const clearActiveResult = () => {
+    getResultLinks().forEach(link => link.classList.remove('is-active'))
+    activeResultIndex = -1
+  }
+
+  const handleResultKeys = event => {
+    if (event.isComposing) return
+    const links = getResultLinks()
+    if (event.key === 'ArrowDown') {
+      if (!links.length) return
+      event.preventDefault()
+      setActiveResult(activeResultIndex + 1)
+    } else if (event.key === 'ArrowUp') {
+      if (!links.length) return
+      event.preventDefault()
+      setActiveResult(activeResultIndex <= 0 ? links.length - 1 : activeResultIndex - 1)
+    } else if (event.key === 'Enter') {
+      event.preventDefault()
+      if (activeResultIndex < 0) return
+      const active = links[activeResultIndex]
+      if (active) window.location.assign(active.getAttribute('href'))
+    }
+  }
+
+  // 点击推荐词：填入搜索框并立即出结果（localSearch.getResultItems 可直接调用）
+  const selectSuggestTerm = event => {
+    const chip = event.target.closest('.mistlane-search-chip')
+    if (!chip) return
+    const term = chip.dataset.term || chip.textContent.trim()
+    if (!term) return
+    $input.value = term
+    inputEventFunction()
+    $input.focus()
+  }
+
   searchClickFn()
   searchFnOnce()
+  renderSuggestChips()
+  $input.addEventListener('keydown', handleResultKeys)
+  $input.addEventListener('input', clearActiveResult)
+  if ($chips) $chips.addEventListener('click', selectSuggestTerm)
 
   // pjax
   window.addEventListener('pjax:complete', () => {

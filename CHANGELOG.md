@@ -47,6 +47,16 @@
 - 新增 `.vercelignore`：`private-albums/`、`.deploy_git/`、`public/`、`db.json`、日志与本地诊断目录不上传
 - 删除历史 `source` 分支与 Pages 产物分支的用途；`.deploy_git/` 仅作本地残留
 
+#### 搜索界面改版
+- 结果计数移到输入框正下方（`#local-search-count`），不再埋在结果列表底部，也不再显示无意义的「耗时 N 毫秒」
+- 新增「推荐查找」：从站点高频标签与分类自动生成可点击的搜索词胶囊（标签 teal、分类金色区分），点击即填入并立即出结果
+- 新增底部键盘提示条（↑↓ 选择 / Enter 打开 / Esc 关闭 + 多关键词说明），并按语言本地化
+- 新增结果键盘导航：↑↓ 在结果间移动（视觉与鼠标悬停一致），Enter 直接打开
+- 空结果状态改为图标 + 文案的组合提示
+- 副标题等文案改走语言包（`search.suggest`、`search.tip_*`、`search.close_button`），中英文都补齐
+- 用 DOM API 构造推荐词与空结果节点，避免把用户输入当 HTML 解析
+- `tools/regression-check.js` 增加 6 条搜索面板断言，防止改主题时静默退化
+
 #### 验证
 - `npm run build`：`hexo clean` → `hexo generate`（197 个文件）→ 回归检查 44/44 通过
 - `hexo server` 实测：首页、文章页、`/series/`、`/moments/`、`/album/`、`/rss/`、`atom.xml`、`sitemap.xml`、`search.xml` 全部 200，未知路径按自定义 404 返回 404

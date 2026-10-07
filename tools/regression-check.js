@@ -73,6 +73,14 @@ const search = read('search.xml') || read('search.json')
 assert(Boolean(search), 'local search index generated')
 assert(!search.includes('/album/private/'), 'private album paths are excluded from search')
 
+// 搜索面板：推荐查找 / 键盘提示 / 结果计数容器必须存在，否则面板会退化成光秃秃的输入框
+assert(home.includes('mistlane-search-suggest') && home.includes('mistlane-search-suggest-chips'), 'search panel keeps the quick-search suggestions')
+assert(home.includes('data-suggestions='), 'search panel ships suggestion data')
+assert(home.includes('mistlane-search-count') && home.includes('local-search-count'), 'search panel keeps the result counter')
+assert(home.includes('mistlane-search-tip') && home.includes('<kbd>'), 'search panel keeps the keyboard hints')
+assert(home.includes('/js/search/local-search.js'), 'local search script is loaded')
+assert(!home.includes('events.vercount.one/js'), 'third-party counter script is not loaded')
+
 const featurePages = ['about/index.html', 'album/index.html', 'link/index.html', 'categories/index.html', 'tags/index.html']
 featurePages.forEach(relative => assert(Boolean(read(relative)), `${relative} generated`))
 assert(home.includes('/series/') && home.includes('/moments/'), 'learning paths and moments are present in navigation')

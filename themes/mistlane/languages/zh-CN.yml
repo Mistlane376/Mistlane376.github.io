@@ -39,6 +39,12 @@ search:
   title: 搜索
   load_data: 数据加载中
   input_placeholder: 搜索文章
+  close_button: 关闭搜索
+  suggest: 推荐查找
+  tip_choose: 选择
+  tip_open: 打开
+  tip_close: 关闭
+  tip_hint: 支持多关键词，用空格分隔
   algolia_search:
     hits_empty: '未找到符合您查询的内容：${query}'
     hits_stats: '找到 ${hits} 条结果，耗时 ${time} 毫秒'

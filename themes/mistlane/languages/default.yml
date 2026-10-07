@@ -38,6 +38,12 @@ search:
   title: Search
   load_data: Loading Database
   input_placeholder: Search for Posts
+  close_button: Close search
+  suggest: Suggest
+  tip_choose: Choose
+  tip_open: Open
+  tip_close: Close
+  tip_hint: Separate several keywords with spaces
   algolia_search:
     hits_empty: 'No results found for: ${query}'
     hits_stats: '${hits} results found in ${time} ms'
