@@ -1,0 +1,22 @@
+/* Series progress card on post pages (layout/includes/post/series-progress.pug). */
+.mistlane-post-series { margin: 0 auto 24px; padding: 17px 20px; border: 1px solid var(--ui-border, rgba(31, 41, 51, .11)); border-radius: 8px; background: var(--ui-surface-soft, #f4f7f6); }
+.mistlane-post-series-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.mistlane-post-series-head div { display: flex; min-width: 0; flex-direction: column; gap: 2px; }
+.mistlane-post-series-head span { color: var(--ui-muted, #68737d); font-size: .66rem; }
+.mistlane-post-series-head a { overflow: hidden; color: var(--ui-heading, #14212b); font-size: .9rem; font-weight: 760; text-overflow: ellipsis; white-space: nowrap; }
+.mistlane-post-series-head strong { color: var(--ui-teal, #18756f); font-size: .76rem; font-variant-numeric: tabular-nums; }
+.mistlane-series-progress { height: 5px; margin: 13px 0; overflow: hidden; border-radius: 3px; background: var(--ui-border, rgba(31, 41, 51, .11)); }
+.mistlane-series-progress i { display: block; height: 100%; border-radius: inherit; background: var(--ui-teal, #18756f); }
+.mistlane-post-series-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.mistlane-post-series-nav a { display: flex; min-width: 0; flex-direction: column; color: var(--ui-heading, #14212b); }
+.mistlane-post-series-nav a.next { text-align: right; }
+.mistlane-post-series-nav small { color: var(--ui-muted, #68737d); font-size: .64rem; }
+.mistlane-post-series-nav span { overflow: hidden; font-size: .74rem; font-weight: 680; text-overflow: ellipsis; white-space: nowrap; }
+
+.card-post-series .aside-list-item.is-current { border-left: 2px solid var(--ui-teal, #18756f); background: var(--ui-teal-soft, #e5f3f1); }
+
+@media (max-width: 600px) {
+  .mistlane-post-series { padding: 15px; }
+  .mistlane-post-series-nav { grid-template-columns: 1fr; gap: 9px; }
+  .mistlane-post-series-nav a.next { text-align: left; }
+}

@@ -1,0 +1,341 @@
+/* Guestbook: a page-specific layer on top of the site's custom visual system. */
+.type-guestbook #page {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.type-guestbook #page > .page-title {
+  display: none;
+}
+
+.type-guestbook #article-container {
+  max-width: none;
+  padding: 0;
+}
+
+.type-guestbook .guestbook-intro {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 250px;
+  overflow: hidden;
+  padding: 40px 48px;
+  border: 1px solid rgba(81, 139, 151, 0.32);
+  border-radius: 8px;
+  background:
+    linear-gradient(105deg, rgba(17, 49, 61, 0.96), rgba(28, 91, 96, 0.82)),
+    url('/images/selection1.jpg') center / cover;
+  box-shadow: 0 16px 36px rgba(21, 62, 72, 0.16);
+  color: #fff;
+}
+
+.type-guestbook .guestbook-intro::before {
+  position: absolute;
+  right: 30%;
+  bottom: -46px;
+  color: rgba(234, 249, 247, 0.1);
+  content: '\201C';
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 12rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.type-guestbook .guestbook-intro::after {
+  position: absolute;
+  top: -82px;
+  right: 8%;
+  width: 260px;
+  height: 260px;
+  border: 1px solid rgba(234, 249, 247, 0.25);
+  border-radius: 50%;
+  box-shadow: -48px 64px 0 -1px rgba(234, 249, 247, 0.13);
+  content: '';
+}
+
+.type-guestbook .guestbook-intro-copy,
+.type-guestbook .guestbook-stamp {
+  position: relative;
+  z-index: 1;
+}
+
+.type-guestbook .guestbook-kicker,
+.type-guestbook .guestbook-message > div > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #b8f2e9;
+  font-size: 0.72rem;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.type-guestbook .guestbook-intro h1 {
+  margin: 13px 0 9px;
+  border: 0;
+  color: #fff;
+  font-size: 3rem;
+  line-height: 1.12;
+}
+
+.type-guestbook .guestbook-intro p {
+  max-width: 540px;
+  margin: 0;
+  color: rgba(245, 255, 254, 0.9);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.type-guestbook .guestbook-stamp {
+  display: flex;
+  width: 124px;
+  aspect-ratio: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(240, 255, 251, 0.5);
+  border-radius: 50%;
+  background: rgba(9, 36, 41, 0.26);
+  color: #e4fcf8;
+  transform: rotate(10deg);
+  transition: transform 0.35s ease;
+}
+
+.type-guestbook .guestbook-intro:hover .guestbook-stamp {
+  transform: rotate(0deg) scale(1.04);
+}
+
+.type-guestbook .guestbook-stamp img {
+  display: block;
+  width: 72px;
+  max-width: none;
+  height: 72px;
+  margin: 0;
+  border: 2px solid rgba(240, 255, 251, 0.58);
+  border-radius: 50%;
+  box-shadow: none;
+  object-fit: cover;
+}
+
+.type-guestbook .guestbook-stamp span {
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.type-guestbook .guestbook-guidelines {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 24px 0 42px;
+}
+
+.type-guestbook .guestbook-guidelines > div {
+  --guide-accent: var(--ui-teal);
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: 3px 12px;
+  min-width: 0;
+  padding: 16px 17px;
+  border: 1px solid var(--ui-border);
+  border-radius: 10px;
+  background: var(--ui-surface);
+  animation: guestbook-card-in 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) backwards;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.type-guestbook .guestbook-guidelines > div:nth-child(2) {
+  --guide-accent: var(--ui-coral);
+  animation-delay: 70ms;
+}
+
+.type-guestbook .guestbook-guidelines > div:nth-child(3) {
+  --guide-accent: var(--ui-blue);
+  animation-delay: 140ms;
+}
+
+.type-guestbook .guestbook-guidelines > div:hover {
+  border-color: var(--guide-accent);
+  box-shadow: 0 12px 22px color-mix(in srgb, var(--guide-accent) 15%, rgba(21, 62, 72, 0.1));
+  transform: translateY(-3px);
+}
+
+.type-guestbook .guestbook-guidelines i {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  grid-row: span 2;
+  place-items: center;
+  align-self: start;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--guide-accent) 13%, transparent);
+  color: var(--guide-accent);
+  font-size: 0.9rem;
+}
+
+.type-guestbook .guestbook-guidelines strong {
+  color: var(--ui-heading);
+  font-size: 0.92rem;
+}
+
+.type-guestbook .guestbook-guidelines span {
+  color: var(--ui-muted);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+@keyframes guestbook-card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.type-guestbook .guestbook-message {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin: 0 0 18px;
+  padding: 0 2px 18px;
+  border-bottom: 1px solid var(--ui-border);
+}
+
+.type-guestbook .guestbook-message h2 {
+  margin: 5px 0 0;
+  padding: 0;
+  border: 0;
+  color: var(--ui-heading);
+  font-size: 1.55rem;
+}
+
+.type-guestbook .guestbook-message p {
+  max-width: 380px;
+  margin: 0;
+  color: var(--ui-muted);
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+
+.type-guestbook .guestbook-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 15px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.type-guestbook .guestbook-steps li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 13px 7px 8px;
+  border: 1px solid var(--ui-border);
+  border-radius: 999px;
+  background: var(--ui-surface);
+  color: var(--ui-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.type-guestbook .guestbook-steps b {
+  display: grid;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--ui-teal) 14%, transparent);
+  color: var(--ui-teal);
+  font-size: 0.68rem;
+}
+
+.type-guestbook .guestbook-steps li:nth-child(2) b {
+  background: color-mix(in srgb, var(--ui-coral) 14%, transparent);
+  color: var(--ui-coral);
+}
+
+.type-guestbook .guestbook-steps li:nth-child(3) b {
+  background: color-mix(in srgb, var(--ui-blue) 14%, transparent);
+  color: var(--ui-blue);
+}
+
+.type-guestbook #post-comment {
+  margin-top: 0;
+}
+
+.type-guestbook #post-comment .comment-wrap {
+  min-height: 340px;
+  padding: 18px 20px 14px;
+  border-radius: 12px;
+}
+
+.type-guestbook #post-comment .comment-headline span {
+  font-size: 0;
+}
+
+.type-guestbook #post-comment .comment-headline span::after {
+  content: '全部留言';
+  font-size: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .type-guestbook .guestbook-guidelines > div {
+    animation: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .type-guestbook #page {
+    padding: 0 14px !important;
+  }
+
+  .type-guestbook .guestbook-intro {
+    display: block;
+    min-height: 0;
+    padding: 32px 24px 26px;
+  }
+
+  .type-guestbook .guestbook-intro::before {
+    display: none;
+  }
+
+  .type-guestbook .guestbook-intro h1 {
+    font-size: 2.35rem;
+  }
+
+  .type-guestbook .guestbook-stamp {
+    width: 96px;
+    margin-top: 24px;
+  }
+
+  .type-guestbook .guestbook-stamp img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .type-guestbook .guestbook-guidelines {
+    grid-template-columns: 1fr;
+    margin: 16px 0 32px;
+  }
+
+  .type-guestbook .guestbook-message {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .type-guestbook .guestbook-message p {
+    margin-top: 12px;
+  }
+
+  .type-guestbook #post-comment .comment-wrap {
+    padding: 14px 12px 8px;
+    border-radius: 10px;
+  }
+}

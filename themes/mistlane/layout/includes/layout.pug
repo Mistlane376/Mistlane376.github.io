@@ -41,6 +41,7 @@ html(lang=config.language data-theme=theme.display_mode class=htmlClassHideAside
     include ./mistlane-global-controls.pug
 
     #body-wrap(class=pageType)
+      != mistlane_page_bundles(globalPageType, page)
       include ./header/index.pug
 
       - const useDoubleAside = theme.aside.enable && page.aside !== false && globalPageType !== 'post'

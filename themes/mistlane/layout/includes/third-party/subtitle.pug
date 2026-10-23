@@ -17,7 +17,9 @@ script.
         if (typeof Typed === 'function') {
           subtitleType()
         } else {
-          btf.getScript('!{url_for(theme.asset.typed)}').then(subtitleType)
+          btf.getScript('!{url_for(theme.asset.typed)}').then(subtitleType).catch(error => {
+            console.error('Failed to load Typed.js:', error)
+          })
         }
       } else {
         subtitleType()
@@ -44,7 +46,7 @@ script.
       }
     }
   }
-  btf.addGlobalFn('pjaxSendOnce', () => { typed && typed.destroy() }, 'typedDestroy')
+  btf.addGlobalFn('pjaxSendOnce', () => { typeof typed !== 'undefined' && typed.destroy() }, 'typedDestroy')
 
 case source
   when 1

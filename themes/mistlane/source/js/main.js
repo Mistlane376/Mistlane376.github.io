@@ -514,15 +514,17 @@ document.addEventListener('DOMContentLoaded', () => {
   * toc, anchor
   */
   const scrollFnToDo = $article => {
-    const isToc = GLOBAL_CONFIG_SITE.isToc
+    let isToc = GLOBAL_CONFIG_SITE.isToc
     const isAnchor = GLOBAL_CONFIG.isAnchor
 
     if (!($article && (isToc || isAnchor))) return
 
     let $tocLink, $cardToc, autoScrollToc, $tocPercentage, isExpand
 
+    const $cardTocLayout = document.getElementById('card-toc')
+    if (!$cardTocLayout) isToc = false
+
     if (isToc) {
-      const $cardTocLayout = document.getElementById('card-toc')
       $cardToc = $cardTocLayout.querySelector('.toc-content')
       $tocLink = $cardToc.querySelectorAll('.toc-link')
       $tocPercentage = $cardTocLayout.querySelector('.toc-percentage')
@@ -712,6 +714,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     'mobile-toc-button': (p, item) => { // Show mobile toc
       const tocEle = document.getElementById('card-toc')
+      if (!tocEle) return
       tocEle.style.transition = 'transform 0.3s ease-in-out'
 
       const tocEleHeight = tocEle.clientHeight
@@ -934,7 +937,11 @@ document.addEventListener('DOMContentLoaded', () => {
       btf.addGlobalFn('pjaxCompleteOnce', () => { masonryItem.destroy() }, 'removeJustifiedIndexPostUI')
     }
 
-    typeof InfiniteGrid === 'function' ? init() : btf.getScript(`${GLOBAL_CONFIG.infinitegrid.js}`).then(init)
+    typeof InfiniteGrid === 'function'
+      ? init()
+      : btf.getScript(`${GLOBAL_CONFIG.infinitegrid.js}`).then(init).catch(error => {
+        console.error('InfiniteGrid loading failed:', error)
+      })
   }
 
   const unRefreshFn = () => {

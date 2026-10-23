@@ -43,6 +43,11 @@ description: 留下一句问候、建议或想聊的话。
   <div>
     <span>WRITE A NOTE</span>
     <h2 id="guestbook-message-title">写下你的留言</h2>
+    <ol class="guestbook-steps">
+      <li><b>1</b>填写昵称和邮箱</li>
+      <li><b>2</b>写下想说的话</li>
+      <li><b>3</b>发送，等我来回复</li>
+    </ol>
   </div>
   <p>填写昵称和邮箱后即可留言。邮箱仅用于接收回复提醒，不会公开展示。</p>
 </section>

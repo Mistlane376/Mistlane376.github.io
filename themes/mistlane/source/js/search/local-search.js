@@ -254,7 +254,9 @@ class LocalSearch {
   }
 }
 
-window.addEventListener('load', () => {
+// The search script may be injected lazily (first open of the panel), so the
+// boot below runs immediately when the load event has already fired.
+const initLocalSearch = () => {
   // Search
   const { path, top_n_per_article, unescape, languages, pagination } = GLOBAL_CONFIG.localSearch
   const enablePagination = pagination && pagination.enable
@@ -673,4 +675,7 @@ window.addEventListener('load', () => {
     localSearch.highlightSearchWords(document.getElementById('article-container'))
     searchClickFn()
   })
-})
+}
+
+if (document.readyState === 'complete') initLocalSearch()
+else window.addEventListener('load', initLocalSearch)

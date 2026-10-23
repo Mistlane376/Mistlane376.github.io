@@ -29,6 +29,8 @@
         .aside-rail-label
           span DISCOVER
           strong 导航与状态
+        if showToc
+          include ./card_post_toc.pug
         !=partial('includes/widget/card_announcement', {}, {cache: true})
         include ./card_quick_links.pug
         include ./card_visitor_stats.pug

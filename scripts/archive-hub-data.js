@@ -6,7 +6,19 @@ hexo.extend.generator.register('data/archive-hub.json', function (locals) {
     if (Array.isArray(collection.data)) return collection.data
     return Array.isArray(collection) ? collection : []
   }
-  const categories = list(locals.categories).map(item => ({ name: item.name, count: item.length || 0, href: `/categories/${encodeURIComponent(item.name)}/` }))
+  const recentOf = item => {
+    try {
+      if (!item.posts || typeof item.posts.sort !== 'function') return []
+      return item.posts
+        .sort('-date')
+        .limit(3)
+        .toArray()
+        .map(post => ({ title: post.title, date: post.date.format('YYYY-MM-DD') }))
+    } catch (_) {
+      return []
+    }
+  }
+  const categories = list(locals.categories).map(item => ({ name: item.name, count: item.length || 0, href: `/categories/${encodeURIComponent(item.name)}/`, recent: recentOf(item) }))
   const tags = list(locals.tags).map(item => ({ name: item.name, count: item.length || 0, href: `/tags/${encodeURIComponent(item.name)}/` }))
   return { path: 'data/archive-hub.json', data: JSON.stringify({ categories, tags }) }
 })

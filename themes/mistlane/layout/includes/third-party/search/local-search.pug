@@ -14,7 +14,7 @@
   ;(site.categories ? site.categories.toArray() : []).slice().sort(byLength).slice(0, 4).forEach(item => pushQuick(item.name, 'category'))
   const quickData = JSON.stringify(quickItems.slice(0, 9))
 
-#local-search
+#local-search(data-script=url_for(theme.asset.local_search))
   .search-dialog(role="dialog" aria-modal="true" aria-label=_p('search.title'))
     nav.search-nav
       span.search-dialog-title= _p('search.title')
@@ -58,4 +58,3 @@
       span.mistlane-search-tip-hint= _p('search.tip_hint')
 
   #search-mask
-  script(src=url_for(theme.asset.local_search))

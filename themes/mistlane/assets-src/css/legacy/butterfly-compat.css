@@ -1,0 +1,39 @@
+/* Component-only additions. Do not override Butterfly's global layout or type. */
+:root {
+  --ui-teal: #18756f;
+  --ui-amber: #bd7d1d;
+  --ui-heading: var(--font-color, #1f2d3d);
+  --ui-muted: #6c757d;
+  --ui-border: rgba(31, 45, 61, 0.13);
+}
+
+[data-theme='dark'] {
+  --ui-teal: #56b7af;
+  --ui-amber: #e1a64d;
+  --ui-heading: var(--font-color, #e5edf3);
+  --ui-muted: #a6b0b7;
+  --ui-border: rgba(226, 232, 236, 0.16);
+}
+
+/* Ensure friend-link/address cards use the viewport width safely on mobile. */
+.type-link .flink-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.type-link .flink-list-item,
+.type-link .flink-list-item a {
+  min-width: 0;
+}
+
+.type-link .flink-item-name,
+.type-link .flink-item-desc {
+  overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 768px) {
+  .type-link .flink-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

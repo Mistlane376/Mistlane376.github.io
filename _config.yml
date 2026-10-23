@@ -32,6 +32,10 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - 404.html
+  # JSON 数据一律作为静态资源原样复制：
+  # 1. 私密相册数据（album/private/*.json）不能进入页面集合，否则会泄漏到 sitemap.xml；
+  # 2. 站点运行数据（data/*.json、album/data.json）与搜索/订阅无关，不生成页面记录。
+  - '**/*.json'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -135,12 +139,19 @@ sitemap:
   categories: true
 
 # Feed
+# 同时输出 Atom 与 RSS 2.0；path 顺序必须与 type 顺序一致。
+# content: false 表示输出摘要（content_limit）而非全文，避免相对链接/图片在阅读器中失效。
 feed:
-  type: atom
-  path: atom.xml
+  type:
+    - atom
+    - rss2
+  path:
+    - atom.xml
+    - rss2.xml
   limit: 20
   content: false
   content_limit: 200
+  content_limit_delim: ' '
   order_by: -date
   icon: /images/favicon.png
   autodiscovery: true
@@ -156,11 +167,11 @@ tag_plugins:
   priority: 5 #过滤器优先权
   issues: false #issues标签依赖注入开关
   link:
-    placeholder: /img/link.png #link_card标签默认的图标图片
+    placeholder: /img/link.svg #link_card标签默认的图标图片
   CDN:
-    anima: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css #动画标签anima的依赖
+    anima: /vendor/tag-plugins/font-awesome-animation.min.css #动画标签anima的依赖
     jquery: https://npm.elemecdn.com/jquery@latest/dist/jquery.min.js #issues标签依赖
     issues: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/issues.js #issues标签依赖
     iconfont:
-    carousel: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js
-    tag_plugins_css: https://npm.elemecdn.com/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css
+    carousel: /vendor/tag-plugins/carousel-touch.js
+    tag_plugins_css: /vendor/tag-plugins/tag_plugins.css

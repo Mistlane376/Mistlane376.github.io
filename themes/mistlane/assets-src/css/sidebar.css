@@ -1,0 +1,4 @@
+/* Non-post pages: the double aside architecture and the bespoke feature-page
+   layouts (series hub, moments, empty states). */
+@import './parts/sidebar-architecture.css';
+@import './parts/content-paths.css';

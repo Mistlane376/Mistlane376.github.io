@@ -5,15 +5,16 @@
   "description": "Mistlane 的个人博客，由 Hexo 和本地主题 themes/mistlane 构建。",
   "scripts": {
     "build": "npm run assets:prepare && hexo clean && hexo generate && npm run check:site",
-    "assets:prepare": "node scripts/copy-pjax.js",
+    "assets:prepare": "node scripts/copy-pjax.js && node tools/vendor-assets.js && node themes/mistlane/build/build.mjs",
+    "assets:watch": "node themes/mistlane/build/build.mjs --watch",
     "bangumi:update": "node tools/update-bangumi.js",
     "album:encrypt": "node tools/private-album.js",
     "admin": "node tools/blog-manager.js",
     "post:new": "hexo new-template",
     "moment:new": "hexo moment",
     "check:site": "node tools/regression-check.js",
-    "server": "hexo server",
-    "dev": "hexo server",
+    "server": "npm run assets:prepare && hexo server",
+    "dev": "npm run assets:prepare && hexo server",
     "clean": "hexo clean",
     "deploy:prod": "npx vercel --prod"
   },
@@ -43,5 +44,11 @@
     "nib": "^1.2.0",
     "pjax": "^0.2.8",
     "stylus": "^0.64.0"
+  },
+  "devDependencies": {
+    "@egjs/infinitegrid": "^4.13.0",
+    "butterfly-extsrc": "^1.1.6",
+    "esbuild": "^0.28.2",
+    "typed.js": "^3.0.0"
   }
 }
