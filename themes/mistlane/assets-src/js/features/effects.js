@@ -3,10 +3,11 @@ import { readLocal, writeLocal } from '../lib/storage'
 
 const storageKey = 'mistlane-effects-enabled-v2'
 const effectsSelector = '.petal-layer, .day-rain-layer, .night-star-layer'
-const compactView = window.matchMedia('(max-width: 768px)').matches
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const compactQuery = window.matchMedia('(max-width: 768px)')
+const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
 
 let effectsEnabled = readLocal(storageKey, true) !== false
+let renderFrame = 0
 
 const removeEffects = () => document.querySelectorAll(effectsSelector).forEach(layer => layer.remove())
 
@@ -17,57 +18,76 @@ const createLayer = className => {
   return layer
 }
 
-const renderEffects = () => {
-  removeEffects()
-  if (!effectsEnabled || reducedMotion || document.documentElement.dataset.reduceMotion === 'true') return
+const reducedMotion = () => reducedMotionQuery.matches || document.documentElement.dataset.reduceMotion === 'true'
 
+const renderEffects = () => {
+  renderFrame = 0
+  removeEffects()
+  if (!effectsEnabled || reducedMotion()) return
+
+  const compact = compactQuery.matches
   const fragment = document.createDocumentFragment()
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
 
   if (isDark) {
     const petals = createLayer('petal-layer')
     const palettes = ['petal-sky', 'petal-sky', 'petal-sun', 'petal-sun', 'petal-rose']
-    const petalCount = compactView ? 12 : 22
-    for (let index = 0; index < petalCount; index += 1) {
+    for (let index = 0; index < (compact ? 18 : 34); index += 1) {
       const petal = document.createElement('span')
-      const size = 10 + Math.random() * 13
-      const opacity = 0.48 + Math.random() * 0.28
-      const drift = -16 + Math.random() * 32
+      const size = 14 + Math.random() * 14
+      const opacity = 0.6 + Math.random() * 0.3
+      const drift = -24 + Math.random() * 48
+      const sway = -7 + Math.random() * 14
       petal.className = `petal ${palettes[index % palettes.length]}`
       petal.style.setProperty('--petal-left', `${Math.random() * 100}vw`)
       petal.style.setProperty('--petal-size', `${size}px`)
       petal.style.setProperty('--petal-opacity', `${opacity}`)
-      petal.style.setProperty('--petal-night-opacity', `${opacity * 0.82}`)
-      petal.style.setProperty('--petal-duration', `${8 + Math.random() * 9}s`)
-      petal.style.setProperty('--petal-delay', `${-Math.random() * 16}s`)
+      petal.style.setProperty('--petal-night-opacity', `${opacity}`)
+      petal.style.setProperty('--petal-duration', `${6.5 + Math.random() * 5.5}s`)
+      petal.style.setProperty('--petal-delay', `${-Math.random() * 20}s`)
       petal.style.setProperty('--petal-drift', `${drift}vw`)
-      petal.style.setProperty('--petal-night-drift', `${drift * -0.35}vw`)
-      petal.style.setProperty('--petal-spin', `${2.8 + Math.random() * 3.2}s`)
+      petal.style.setProperty('--petal-night-drift', `${drift * 0.65}vw`)
+      petal.style.setProperty('--petal-sway', `${sway}vw`)
+      petal.style.setProperty('--petal-spin', `${2.8 + Math.random() * 3.8}s`)
       petals.appendChild(petal)
     }
 
     const stars = createLayer('night-star-layer')
-    for (let index = 0; index < (compactView ? 11 : 20); index += 1) {
+    for (let index = 0; index < (compact ? 18 : 30); index += 1) {
       const star = document.createElement('span')
       star.className = 'night-star'
       star.style.setProperty('--effect-left', `${Math.random() * 100}vw`)
       star.style.setProperty('--effect-top', `${Math.random() * 92}vh`)
-      star.style.setProperty('--effect-size', `${5 + Math.random() * 8}px`)
-      star.style.setProperty('--effect-delay', `${-Math.random() * 8}s`)
-      star.style.setProperty('--effect-duration', `${2.5 + Math.random() * 4.5}s`)
+      star.style.setProperty('--effect-size', `${8 + Math.random() * 10}px`)
+      star.style.setProperty('--effect-opacity', `${0.7 + Math.random() * 0.28}`)
+      star.style.setProperty('--effect-delay', `${-Math.random() * 9}s`)
+      star.style.setProperty('--effect-duration', `${2 + Math.random() * 2.4}s`)
       stars.appendChild(star)
+    }
+    for (let index = 0; index < (compact ? 2 : 3); index += 1) {
+      const shootingStar = document.createElement('span')
+      shootingStar.className = 'shooting-star'
+      shootingStar.style.setProperty('--shooting-left', `${12 + Math.random() * 72}vw`)
+      shootingStar.style.setProperty('--shooting-top', `${5 + Math.random() * 45}vh`)
+      shootingStar.style.setProperty('--shooting-delay', `${-index * 3.4}s`)
+      shootingStar.style.setProperty('--shooting-duration', `${8 + index * 2.1}s`)
+      stars.appendChild(shootingStar)
     }
     fragment.append(petals, stars)
   } else {
     const rain = createLayer('day-rain-layer')
-    for (let index = 0; index < (compactView ? 12 : 26); index += 1) {
+    for (let index = 0; index < (compact ? 22 : 42); index += 1) {
       const impact = document.createElement('span')
       impact.className = 'rain-impact'
       impact.style.setProperty('--impact-left', `${4 + Math.random() * 92}vw`)
       impact.style.setProperty('--impact-top', `${8 + Math.random() * 84}vh`)
-      impact.style.setProperty('--impact-size', `${42 + Math.random() * 88}px`)
-      impact.style.setProperty('--impact-delay', `${-Math.random() * 5.5}s`)
-      impact.style.setProperty('--impact-duration', `${3.2 + Math.random() * 3.8}s`)
+      impact.style.setProperty('--impact-size', `${compact ? 36 + Math.random() * 46 : 46 + Math.random() * 66}px`)
+      impact.style.setProperty('--impact-delay', `${-Math.random() * 7}s`)
+      impact.style.setProperty('--impact-duration', `${2.6 + Math.random() * 1.8}s`)
+      impact.style.setProperty('--rain-angle', `${7 + Math.random() * 8}deg`)
+      impact.style.setProperty('--rain-length', `${compact ? 24 + Math.random() * 14 : 30 + Math.random() * 20}px`)
+      impact.style.setProperty('--rain-width', `${1.3 + Math.random() * 0.8}px`)
+      impact.style.setProperty('--rain-opacity', `${0.65 + Math.random() * 0.25}`)
       const drop = document.createElement('span')
       drop.className = 'rain-drop'
       const ripple = document.createElement('span')
@@ -79,6 +99,16 @@ const renderEffects = () => {
   }
 
   document.body.appendChild(fragment)
+  syncPaused()
+}
+
+const syncPaused = () => {
+  document.documentElement.classList.toggle('effects-paused', document.hidden)
+}
+
+const scheduleRender = () => {
+  if (renderFrame) return
+  renderFrame = window.requestAnimationFrame(renderEffects)
 }
 
 const syncToggle = () => {
@@ -112,11 +142,21 @@ const ensureToggle = () => {
   syncToggle()
 }
 
+const listen = (query, handler) => {
+  if (typeof query.addEventListener === 'function') query.addEventListener('change', handler)
+  else query.addListener(handler)
+}
+
 new MutationObserver(records => {
-  if (records.some(record => record.oldValue !== document.documentElement.getAttribute(record.attributeName))) renderEffects()
+  if (records.some(record => record.oldValue !== document.documentElement.getAttribute(record.attributeName))) scheduleRender()
 }).observe(document.documentElement, { attributes: true, attributeOldValue: true, attributeFilter: ['data-theme', 'data-reduce-motion'] })
 
+listen(compactQuery, scheduleRender)
+listen(reducedMotionQuery, scheduleRender)
+document.addEventListener('visibilitychange', syncPaused)
+
 onMount(() => {
+  syncPaused()
   document.documentElement.classList.toggle('effects-disabled', !effectsEnabled)
   ensureToggle()
   if (!document.querySelector(effectsSelector)) renderEffects()

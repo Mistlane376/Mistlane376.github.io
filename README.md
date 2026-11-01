@@ -70,6 +70,13 @@ my-blog/
 | `npm run album:encrypt` | 生成/更新加密相册数据 |
 | `npm run admin` | 启动本地内容管理后台（默认 4173 端口） |
 
+## 音乐听音室
+
+- `/music/` 是独立的唱片播放器页面，左下角悬浮唱片在全站提供统一控制；站内跳转保留播放状态，刷新页面不自动播放。
+- 歌单配置在 `source/data/music.json`，支持在线 Meting 歌单和 `local.playlist`；在线接口不可用时自动使用本地歌单。
+- 本地歌曲放在 `source/music/`，每首可配置 `name`、`artist`、`url`、`pic` 和 `lrc`（LRC 文本或地址）。缺少封面、歌词时自动显示替代内容。
+- 听音室样式单独打包在 `assets-src/css/music.css`；音频内核与共享控件在 `assets-src/js/features/music.js`、`music-views.js`。
+
 ## 写作
 
 - 新建文章：`npx hexo new "标题"`，或使用带模板的 `npm run post:new`。

@@ -1,5 +1,5 @@
 ---
-abbrlink: Learning about HTML
+abbrlink: learning-about-html
 tags:
   - 前端
   - 知识学习

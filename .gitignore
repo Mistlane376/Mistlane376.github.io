@@ -62,5 +62,8 @@ private-albums/
 # DSH 沙箱权限诊断报告（本地排查用，不入库）
 .dsh-acl-reports/
 
+# 本地 Agent 工作笔记（属于个人记录，不随站点发布）
+.workbuddy/
+
 .vercel
 .env*

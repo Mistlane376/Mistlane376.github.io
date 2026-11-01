@@ -1,0 +1,104 @@
+/* Shared final touches: softer surfaces, readable menus and keyboard cues. */
+:root { --ui-shadow-sm: 0 4px 20px rgba(28,48,49,.045); --ui-shadow-md: 0 12px 34px rgba(28,48,49,.075); }
+[data-theme='dark'] { --ui-shadow-sm: 0 4px 20px rgba(0,0,0,.2); --ui-shadow-md: 0 12px 34px rgba(0,0,0,.28); }
+:where(button, a, input, select, textarea):focus-visible { outline: 2px solid var(--ui-teal); outline-offset: 4px; }
+button, input { -webkit-tap-highlight-color: transparent; }
+body { background-image: none; }
+.music-room-active .day-rain-layer, .music-room-active .night-star-layer, .music-room-active .petal-layer { opacity: .55; }
+#recent-posts > .recent-post-item, #aside-content .card-widget, #aside-left .card-widget { border-radius: 14px; }
+#nav .menus_items .menus_item .menus_item_child { padding: 7px; border-color: var(--ui-border); border-radius: 12px; background: var(--ui-surface-solid); background: color-mix(in srgb, var(--ui-surface-solid) 95%, transparent); box-shadow: var(--ui-shadow-md); }
+#nav .menus_items .menus_item .menus_item_child li a,
+#page-header.not-top-img #nav .menus_items .menus_item .menus_item_child li a,
+#page-header.not-top-img #nav .menus_items .menus_item .menus_item_child li a i,
+#nav .menus_items .menus_item .menus_item_child li a i { color: var(--ui-ink) !important; text-shadow: none !important; }
+#nav .menus_items .menus_item .menus_item_child li:hover,
+#nav .menus_items .menus_item .menus_item_child li a:hover,
+#page-header.not-top-img #nav .menus_items .menus_item .menus_item_child li:hover,
+#page-header.not-top-img #nav .menus_items .menus_item .menus_item_child li a:hover { background: var(--ui-teal-soft); color: var(--ui-teal) !important; }
+#nav .menus_items .menus_item .menus_item_child li a { border-radius: 7px; }
+/* 页眉处于 full_page（首页大图）时，#page-header.full_page #nav .site-page 的白色 !important 特异性更高，
+   会把浅色下拉面板里的文字也刷成白色，变成白底白字。这里用更高特异性把面板内文字拉回 --ui-ink。 */
+#page-header #nav .menus_items .menus_item .menus_item_child li > a,
+#page-header #nav .menus_items .menus_item .menus_item_child li > a i { color: var(--ui-ink) !important; text-shadow: none !important; }
+#page-header #nav .menus_items .menus_item .menus_item_child li:hover,
+#page-header #nav .menus_items .menus_item .menus_item_child li > a:hover { background: var(--ui-teal-soft); color: var(--ui-teal) !important; }
+#page-header #nav .menus_items .menus_item .menus_item_child li > a:hover i,
+#page-header #nav .menus_items .menus_item .menus_item_child li > a.is-current { color: var(--ui-teal) !important; }
+#page-header #nav .menus_items .menus_item .menus_item_child li > a.is-current { background: var(--ui-teal-soft); }
+#footer { padding-bottom: 35px; }
+@media (max-width: 600px) { #footer { padding-bottom: 100px; } }
+
+/* ── Touch targets ────────────────────────────────────────────
+   图标按钮的视觉尺寸普遍停在 20–40px（播放键、面板关闭、顺序播放、社交图标等），
+   低于 44px 的舒适触控值。直接放大元素会把徽章式排版撑变形，所以视觉保持不变，
+   只叠一层透明 ::after 把命中区向外扩到 44px。仅对触摸设备与窄屏生效。
+   分两组：孤立按钮向四周扩；成排/贴边的按钮只扩高度，避免抢走邻位或滑块的点击。 */
+@media (pointer: coarse), (max-width: 768px) {
+  .mistlane-panel-close,
+  .private-album-close,
+  .music-float-toggle,
+  #local-search .search-close-button,
+  #search-button,
+  #to_comment,
+  #footer .footer-social a,
+  .mistlane-player-actions button {
+    position: relative;
+  }
+
+  .mistlane-panel-close::after,
+  .private-album-close::after,
+  .music-float-toggle::after,
+  #local-search .search-close-button::after,
+  #search-button::after,
+  #to_comment::after,
+  #footer .footer-social a::after,
+  .mistlane-player-actions button::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+    content: '';
+  }
+
+  .mistlane-volume button,
+  .mistlane-segmented button,
+  .album-view-button,
+  .mistlane-reset-button,
+  .home-hero-primary,
+  .home-hero-secondary {
+    position: relative;
+  }
+
+  .mistlane-volume button::after,
+  .mistlane-segmented button::after,
+  .album-view-button::after,
+  .mistlane-reset-button::after,
+  .home-hero-primary::after,
+  .home-hero-secondary::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+    content: '';
+  }
+
+  /* 面板里整行文字的按钮本来就只有高度偏小，补齐到 44px 即可。 */
+  .music-mini-lyric,
+  .music-mini-footer a,
+  .mistlane-playlist button { min-height: 44px; }
+
+  /* 日历头部是三个紧邻的小按钮，扩命中区会互相覆盖，直接把自身放大。 */
+  .calendar-card-actions { gap: 1px; padding: 2px; }
+  .calendar-card-actions button { min-width: 40px; height: 40px; }
+  .calendar-card-actions .calendar-today-button { min-width: 44px; }
+
+  /* 滑块本体只有 4–16px 高，用等量负外边距抵消内边距，视觉与排版都不动，
+     只把可拖拽的纵向范围撑到 40px 以上。 */
+  #mistlane-music-panel input[type='range'],
+  #music-room input[type='range'] { padding-block: 14px; margin-block: -14px; }
+  #mistlane-settings-panel input[type='range'] { padding-block: 20px; margin-block: -20px; }
+}

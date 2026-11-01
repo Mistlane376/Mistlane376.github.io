@@ -64,12 +64,15 @@ const pages = (() => {
   }
   return list
 })()
+// /archives/ 这类迁移跳转页（meta refresh）不套主题布局，只有壳没有正文，不参与页面级断言
+const isRedirectPage = html => /http-equiv=["']refresh["']/i.test(html)
+const contentPages = pages.filter(page => !isRedirectPage(page.html))
 const postPages = pages.filter(page => /class="post[^"]*" id="body-wrap"/.test(page.html))
 
 if (manifest) {
   const jsNames = Object.keys(manifest.js)
   const cssNames = Object.keys(manifest.css)
-  assert(jsNames.length === 6 && cssNames.length === 6, `manifest covers all bundles (${jsNames.length} js, ${cssNames.length} css)`)
+  assert(jsNames.length === 6 && cssNames.length === 7, `manifest covers all bundles (${jsNames.length} js, ${cssNames.length} css)`)
 
   Object.entries(manifest.js).forEach(([name, file]) =>
     assert(fs.existsSync(path.join(publicDir, 'js', 'mistlane', 'dist', file)), `bundle built and copied: js/${name} -> ${file}`))
@@ -107,6 +110,12 @@ if (manifest) {
   assert(album.includes(bundleRef('js', 'album')) && album.includes(bundleRef('css', 'album')), 'album page loads the album bundle')
   const link = read('link/index.html')
   assert(link.includes(bundleRef('js', 'browse')) && link.includes(bundleRef('css', 'link')), 'link page loads browse.js and link.css')
+  const music = read('music/index.html')
+  assert(music.includes('id="music-room"') && music.includes('data-music-lyrics') && music.includes('data-music-search'), 'music room includes the player, lyrics and searchable collection')
+  assert(music.includes(bundleRef('css', 'music')) && !home.includes(bundleRef('css', 'music')), 'music room styles load only where needed')
+  const musicBundles = markerBundles(music)
+  assert(Boolean(musicBundles?.css.music), 'PJAX marker carries music page styles')
+  assert((music.match(/<audio\b/g) || []).length === 1, 'music room shares the single persistent audio element')
 
   // 旧的无哈希注入必须彻底移除，避免重复加载
   assert(!home.includes('/css/mistlane/markdown.css') && !home.includes('/js/mistlane/petals.js'), 'legacy unhashed inject entries are removed')
@@ -118,12 +127,17 @@ if (manifest) {
   assert(sidebarCss.includes('.mistlane-double-aside') && sidebarCss.includes('.calendar-day'), 'sidebar css carries the double aside and calendar styles')
   assert(!coreCss.includes('.mistlane-double-aside') && !coreCss.includes('.calendar-day'), 'core css drops the non-post sidebar styles')
   assert(!coreCss.includes('.about-intro') && !coreCss.includes('.about-site-grid'), 'core css excludes about-page styles')
+  assert(coreCss.includes('.motion-pending') && coreCss.includes('.motion-page-enter'), 'core css ships the global motion system')
+  assert(coreCss.includes('.mistlane-reading-progress') && coreCss.includes('.site-page.is-current'), 'core css ships navigation and reading progress polish')
 }
 
 const idCount = (html, id) => (html.match(new RegExp(`id=["']${id}["']`, 'g')) || []).length
 assert(idCount(home, 'mistlane-settings-toggle') === 1, 'one settings toggle on home page')
 assert(/id=["']rightside["'][\s\S]*id=["']mistlane-settings-toggle["']/.test(home), 'settings toggle is integrated into rightside tools')
 assert(idCount(home, 'mistlane-global-audio') === 1, 'one persistent audio element on home page')
+assert(contentPages.every(page => idCount(page.html, 'mistlane-music-orb') === 1), 'every page includes one persistent music orb')
+assert(home.includes('href="/music/"') && home.includes('data-music-room-link'), 'music room is reachable from navigation and pocket player')
+assert(home.includes('aria-labelledby="mistlane-music-title" inert'), 'closed music panel starts outside keyboard navigation')
 assert(home.includes('new Pjax('), 'PJAX navigation is initialized')
 assert(/<script[^>]+src=["'][^"']*pjax[^"']*\.js/.test(home), 'PJAX runtime is loaded')
 assert(home.includes('src="/js/pjax.min.js"'), 'PJAX runtime is served locally')
@@ -131,6 +145,9 @@ assert(home.includes('data-pjax'), 'persistent third-party scripts retain PJAX m
 
 // 音乐内核已并入 core 包；因压缩会重命名函数，只断言字符串字面量
 const coreBundle = manifest ? read(`js/mistlane/dist/${manifest.js.core}`) : ''
+assert(coreBundle.includes('IntersectionObserver') && coreBundle.includes('motion-pending'), 'core script reveals content with the motion observer')
+assert(coreBundle.includes('mistlane-reading-progress') && coreBundle.includes('aria-current'), 'core script syncs navigation state and reading progress')
+assert(coreBundle.includes('effects-paused') && coreBundle.includes('visibilitychange'), 'ambient effects pause while the page is hidden')
 assert(coreBundle.includes('fm:play-state'), 'music views share Firefly-style state events')
 assert(coreBundle.includes('/data/music.json'), 'music kernel loads the playlist lazily')
 assert(!coreBundle.includes('mistlane-music-state-v2'), 'music kernel does not restore playback after navigation')
@@ -147,7 +164,7 @@ const vendorFiles = [
   'vendor/sharejs/fonts/iconfont.woff2'
 ]
 vendorFiles.forEach(relative => assert(exists(relative), `vendored third-party file exists: ${relative}`))
-assert(pages.every(page => !page.html.includes('cdn.jsdelivr.net')), 'no page references cdn.jsdelivr.net')
+assert(contentPages.every(page => !page.html.includes('cdn.jsdelivr.net')), 'no page references cdn.jsdelivr.net')
 assert(postPages.some(page => page.html.includes('/vendor/sharejs/js/social-share.min.js')), 'post pages serve the share script locally')
 assert(home.includes('preload="none"'), 'global audio does not preload or autoplay')
 

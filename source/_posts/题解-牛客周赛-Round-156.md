@@ -9,7 +9,7 @@ categories:
   - 题解
 description: 赛后题解书写，以便梳理
 cover: /images/selection4.jpg
-abbrlink: Nowcoder Weekly Contest - Round 156
+abbrlink: nowcoder-weekly-contest-round-156
 ---
 
 AB略(●'◡'●)

@@ -32,6 +32,9 @@ code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
   - 404.html
+  # 旧的 /archives/ 只是一张跳转页（meta refresh + JS），必须原样输出：
+  # 套上主题布局后 <title> 会被覆盖，内联脚本也会被 HTML 转义而失效。
+  - archives/index.html
   # JSON 数据一律作为静态资源原样复制：
   # 1. 私密相册数据（album/private/*.json）不能进入页面集合，否则会泄漏到 sitemap.xml；
   # 2. 站点运行数据（data/*.json、album/data.json）与搜索/订阅无关，不生成页面记录。

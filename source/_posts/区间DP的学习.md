@@ -8,7 +8,7 @@ categories:
   - 算法学习
 description: 区间DP的知识整理
 cover: /images/初音.webp
-abbrlink: Interval DP
+abbrlink: interval-dp
 ---
 
 > 学习视频：

@@ -95,36 +95,79 @@
         span 恢复默认
       span 设置自动保存
 
-  aside#mistlane-music-panel.mistlane-control-panel(aria-hidden="true" aria-labelledby="mistlane-music-title")
-    header.mistlane-panel-header
-      div
-        span.mistlane-panel-eyebrow NOW PLAYING
-        h2#mistlane-music-title 音乐播放器
-      button.mistlane-panel-close(type="button" data-close-music aria-label="关闭音乐播放器" title="关闭")
-        i.fas.fa-xmark
-    .mistlane-track
-      .mistlane-track-cover
-        i.fas.fa-music
-      .mistlane-track-copy
-        strong#mistlane-track-name 暂无歌曲
-        span#mistlane-track-artist 等待载入
-    .mistlane-progress
-      input#mistlane-music-progress(type="range" min="0" max="1000" value="0" aria-label="播放进度")
-      div
-        span#mistlane-current-time 0:00
-        span#mistlane-duration 0:00
-    .mistlane-player-actions
-      button(type="button" data-music-mode aria-label="顺序播放" title="顺序播放")
-        i.fas.fa-list-ol
-      button(type="button" data-music-prev aria-label="上一首" title="上一首")
-        i.fas.fa-backward-step
-      button.mistlane-play-button(type="button" data-music-play aria-label="播放" title="播放或暂停")
-        i.fas.fa-play
-      button(type="button" data-music-next aria-label="下一首" title="下一首")
-        i.fas.fa-forward-step
-    #mistlane-current-lyric.mistlane-current-lyric(aria-live="polite") 暂无歌词
-    .mistlane-volume
-      button(type="button" data-music-mute aria-label="静音" title="静音")
-        i.fas.fa-volume-low
-      input#mistlane-music-volume(type="range" min="0" max="100" value="35" aria-label="音量")
-    #mistlane-playlist.mistlane-playlist
+  .music-float-dock
+    button#mistlane-music-orb(type="button" aria-label="打开音乐播放器" title="打开音乐播放器" aria-expanded="false" aria-controls="mistlane-music-panel")
+      span.music-orb-disc(data-music-cover aria-hidden="true")
+      span.music-float-copy
+        strong(data-music-name) 留一点时间给音乐
+        small
+          span.music-orb-status-light
+          span(data-music-status) 等你按下播放
+      span.music-orb-caret(aria-hidden="true")
+        i.fas.fa-chevron-up
+      span.music-float-progress(aria-hidden="true")
+        span
+    button.music-float-toggle(type="button" data-music-play aria-label="播放" title="播放")
+      i.fas.fa-play(aria-hidden="true")
+
+  aside#mistlane-music-panel.mistlane-control-panel(aria-hidden="true" aria-labelledby="mistlane-music-title" inert)
+    .music-mini-hero
+      .music-mini-atmosphere(data-music-cover aria-hidden="true")
+      header.mistlane-panel-header
+        .music-mini-brand
+          i.fas.fa-compact-disc(aria-hidden="true")
+          h2#mistlane-music-title 随身听
+          span POCKET RADIO
+        button.mistlane-panel-close(type="button" data-close-music aria-label="收起音乐播放器" title="收起")
+          i.fas.fa-chevron-down(aria-hidden="true")
+      .mistlane-track
+        .music-mini-artwork(aria-hidden="true")
+          span.music-mini-vinyl
+          .mistlane-track-cover(data-music-cover)
+        .mistlane-track-copy
+          strong#mistlane-track-name(data-music-name) 一首歌的时间
+          span#mistlane-track-artist(data-music-artist) 选一首喜欢的，慢慢听。
+          .music-mini-track-state
+            span.music-mini-equalizer(aria-hidden="true")
+              i
+              i
+              i
+            span(data-music-status) 等你按下播放
+    .music-mini-body
+      .mistlane-progress
+        input#mistlane-music-progress(type="range" min="0" max="1000" value="0" data-music-progress aria-label="播放进度")
+        div
+          span#mistlane-current-time(data-music-elapsed) 0:00
+          span#mistlane-duration(data-music-duration) 0:00
+      .mistlane-player-actions
+        button(type="button" data-music-mode aria-label="顺序播放" title="顺序播放")
+          i.fas.fa-list-ol(aria-hidden="true")
+        button(type="button" data-music-prev aria-label="上一首" title="上一首")
+          i.fas.fa-backward-step(aria-hidden="true")
+        button.mistlane-play-button(type="button" data-music-play aria-label="播放" title="播放或暂停")
+          i.fas.fa-play(aria-hidden="true")
+        button(type="button" data-music-next aria-label="下一首" title="下一首")
+          i.fas.fa-forward-step(aria-hidden="true")
+        button(type="button" data-music-queue-toggle aria-label="收起歌单" title="收起歌单" aria-expanded="true" aria-controls="music-mini-queue")
+          i.fas.fa-list-ul(aria-hidden="true")
+      .music-mini-lyric
+        i.fas.fa-quote-left(aria-hidden="true")
+        #mistlane-current-lyric.mistlane-current-lyric(aria-live="polite") 让旋律陪你片刻
+      .music-mini-volume-row
+        .mistlane-volume
+          button(type="button" data-music-mute aria-label="静音" title="静音")
+            i.fas.fa-volume-low(aria-hidden="true")
+          input#mistlane-music-volume(type="range" min="0" max="100" value="35" data-music-volume aria-label="音量")
+        span(data-music-mode-label) 顺序播放
+      p.music-mini-notice(data-music-notice role="status" hidden)
+    section#music-mini-queue(aria-label="播放队列")
+      .music-mini-queue-heading
+        span 播放队列
+        small(data-music-mini-count) ···
+      #mistlane-playlist.mistlane-playlist(data-music-playlist="mini" aria-label="歌曲列表")
+    footer.music-mini-footer
+      a(href=url_for('/music/') data-music-room-link)
+        span
+          i.fas.fa-headphones(aria-hidden="true")
+          |  打开完整听音室
+        i.fas.fa-arrow-right(aria-hidden="true")

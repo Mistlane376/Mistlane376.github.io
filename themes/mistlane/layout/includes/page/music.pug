@@ -1,0 +1,83 @@
+section#music-room(aria-labelledby="music-room-title")
+  header.music-room-header
+    div.music-room-intro
+      span.music-eyebrow MISTLANE'S MUSIC ROOM
+      h1#music-room-title 把日子，调成喜欢的频率。
+      p 在文字之外，留一点时间给旋律。
+    .music-room-stamp
+      span 私人听音室
+      span.music-room-stamp-vol VOL. 01
+  .music-player-stage
+    .music-stage-topline
+      span.music-live-label
+        span.music-status-dot
+        span(data-music-status) 等你按下播放
+      span.music-stage-edition SLOW MOMENTS · NO. 01
+    .music-deck
+      .music-turntable(aria-hidden="true")
+        .music-turntable-mechanism
+          span.music-orbit.music-orbit-outer
+          span.music-orbit.music-orbit-inner
+            span.music-orbit-dot
+          span.music-ripple
+          span.music-ripple.music-ripple-second
+          .music-vinyl
+            .music-vinyl-label(data-music-cover)
+            span.music-vinyl-pin
+          span.music-disc-sheen
+        span.music-turntable-caption SIDE A · A LITTLE TIME FOR YOURSELF
+      .music-now-playing
+        span.music-eyebrow NOW PLAYING
+        h2(data-music-name) 一首歌的时间
+        p.music-artist(data-music-artist) 选一首喜欢的，慢慢听。
+        .music-lyric-window(data-music-lyrics aria-label="歌词")
+          .music-lyrics-placeholder
+            i.fas.fa-quote-left(aria-hidden="true")
+            p 音乐响起的时候，世界也轻了一点。
+            small 歌词会在这里随旋律浮现
+        .mistlane-progress.music-page-progress
+          input(type="range" min="0" max="1000" value="0" data-music-progress aria-label="播放进度")
+          div
+            span(data-music-elapsed) 0:00
+            span(data-music-duration) 0:00
+        .music-deck-controls
+          .mistlane-player-actions
+            button(type="button" data-music-mode aria-label="顺序播放" title="顺序播放")
+              i.fas.fa-list-ol(aria-hidden="true")
+            button(type="button" data-music-prev aria-label="上一首" title="上一首")
+              i.fas.fa-backward-step(aria-hidden="true")
+            button.mistlane-play-button(type="button" data-music-play aria-label="播放" title="播放")
+              i.fas.fa-play(aria-hidden="true")
+            button(type="button" data-music-next aria-label="下一首" title="下一首")
+              i.fas.fa-forward-step(aria-hidden="true")
+          .mistlane-volume
+            button(type="button" data-music-mute aria-label="静音" title="静音")
+              i.fas.fa-volume-low(aria-hidden="true")
+            input(type="range" min="0" max="100" value="35" data-music-volume aria-label="音量")
+    footer.music-stage-footer
+      span
+        i.fas.fa-compact-disc(aria-hidden="true")
+        |  好的旋律，值得单曲循环
+      span(data-music-mode-label) 顺序播放
+  section.music-library(aria-labelledby="music-library-title")
+    .music-library-heading
+      div
+        span.music-eyebrow THE COLLECTION
+        h2#music-library-title 私藏歌单
+          span(data-music-count) ···
+      label.music-search
+        i.fas.fa-magnifying-glass(aria-hidden="true")
+        input(type="search" data-music-search placeholder="寻找歌曲或歌手" aria-label="搜索歌曲或歌手" autocomplete="off")
+    p.music-notice(data-music-notice role="status") 正在整理歌单…
+    .music-library-columns(aria-hidden="true")
+      span #
+      span 歌曲 / 歌手
+      span 播放
+    .music-library-list(data-music-playlist="full" aria-label="歌曲列表")
+    .music-library-empty(data-music-empty hidden)
+      i.fas.fa-record-vinyl(aria-hidden="true")
+      p 还没有找到这段旋律
+      span 试试其他歌名或歌手吧。
+  footer.music-room-footer
+    span SOME SONGS FEEL LIKE HOME.
+    p 在这里听歌，也带着旋律去读一篇文章。

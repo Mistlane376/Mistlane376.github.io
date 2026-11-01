@@ -40,6 +40,9 @@ const resolveBundles = (pageType, page) => {
   }
 
   switch (page && page.type) {
+    case 'music':
+      css.push('music')
+      break
     case 'archive-hub':
       js.push('archive')
       break

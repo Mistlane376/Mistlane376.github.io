@@ -8,7 +8,7 @@ categories:
   - 算法学习
 description: 概率dp的知识整理
 cover: /images/archive-hero.jpg
-abbrlink: Probability DP
+abbrlink: probability-dp
 ---
 
 # **概率 dp 设计理念：**

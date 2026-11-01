@@ -19,7 +19,7 @@ const jsOut = path.join(themeRoot, 'source', 'js', 'mistlane', 'dist')
 const cssOut = path.join(themeRoot, 'source', 'css', 'mistlane', 'dist')
 
 const jsEntries = ['core', 'sidebar', 'home', 'archive', 'browse', 'album']
-const cssEntries = ['core', 'sidebar', 'album', 'guestbook', 'about', 'link']
+const cssEntries = ['core', 'sidebar', 'album', 'guestbook', 'about', 'link', 'music']
 
 const entryPoints = (names, dir, ext) =>
   Object.fromEntries(names.map(name => [name, path.join(srcRoot, dir, `${name}.${ext}`)]))

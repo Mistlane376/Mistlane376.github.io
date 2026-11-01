@@ -1,0 +1,221 @@
+/* Site-wide motion: shared timing, scroll reveal, page entry and press feedback.
+
+   Reveal states are opt-in from features/motion.js so a script failure never
+   leaves content hidden. Only transform-independent properties are animated
+   on cards, which keeps their existing hover transforms intact. */
+:root {
+  --motion-duration-fast: 160ms;
+  --motion-duration-base: 300ms;
+  --motion-duration-reveal: 720ms;
+  --motion-ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --motion-ease-emphasized: cubic-bezier(0.2, 0.75, 0.3, 1);
+  --motion-ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.motion-pending {
+  opacity: 0;
+  translate: 0 36px;
+  transition:
+    opacity var(--motion-duration-reveal) var(--motion-ease-standard),
+    translate var(--motion-duration-reveal) var(--motion-ease-standard);
+  transition-delay: var(--motion-delay, 0ms);
+  will-change: opacity, translate;
+}
+
+.motion-pending.is-inview {
+  opacity: 1;
+  translate: 0 0;
+  will-change: auto;
+}
+
+@keyframes motion-page-in {
+  from {
+    opacity: 0;
+    translate: 0 22px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+#content-inner.motion-page-enter {
+  animation: motion-page-in 520ms var(--motion-ease-standard) backwards;
+}
+
+@keyframes motion-hero-in {
+  from {
+    opacity: 0;
+    translate: 0 30px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes motion-line-in {
+  from {
+    opacity: 0;
+    scale: 0 1;
+  }
+  to {
+    opacity: 1;
+    scale: 1 1;
+  }
+}
+
+#page-header.full_page #site-info > * {
+  animation: motion-hero-in 900ms var(--motion-ease-standard) backwards;
+}
+
+#page-header.full_page #site-info::before {
+  background-size: 200% 100%;
+  animation:
+    motion-line-in 560ms var(--motion-ease-emphasized) 20ms backwards,
+    motion-accent-flow 4.2s ease-in-out 900ms infinite;
+  transform-origin: left center;
+}
+
+@keyframes motion-accent-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes hero-button-sheen {
+  from { background-position: 120% 0; }
+  to { background-position: -120% 0; }
+}
+
+#page-header.full_page #site-title {
+  animation-delay: 60ms;
+}
+
+#page-header.full_page #site-info > .home-hero-manifesto {
+  animation-delay: 180ms;
+}
+
+#page-header.full_page #site-info > .home-hero-actions {
+  animation-delay: 300ms;
+}
+
+#page-header.full_page #site-info > .home-hero-stats {
+  animation-delay: 420ms;
+}
+
+/* Give every custom card the same easing while preserving its existing hover
+   transform and shadow rules. */
+:is(
+  #recent-posts .recent-post-item,
+  .home-bento-card,
+  .home-bento-info,
+  .home-bento-archive,
+  .type-link .flink-list-item,
+  .album-group-card,
+  .album-photo-tile,
+  .bangumi-shelf-card,
+  .type-guestbook .guestbook-guidelines > div
+) {
+  transition-timing-function: var(--motion-ease-standard);
+}
+
+:is(
+  #recent-posts .recent-post-item,
+  .home-bento-card,
+  .home-bento-info,
+  .home-bento-archive,
+  .album-group-card,
+  .album-photo-tile,
+  .bangumi-shelf-card,
+  .type-link .flink-list-item
+):active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+:is(
+  .home-hero-actions a,
+  .home-quick-nav-grid a,
+  .link-exchange-copy,
+  .album-view-button,
+  .bangumi-shelf-more-button,
+  .mistlane-reset-button,
+  .mistlane-panel-close
+):active {
+  transform: translateY(0) scale(0.98);
+}
+
+:is(
+  #recent-posts .recent-post-item,
+  .home-bento-card,
+  .home-bento-info,
+  .home-bento-archive,
+  .type-link .flink-list-item,
+  .album-group-card,
+  .bangumi-shelf-card,
+  .home-hero-actions a,
+  .home-quick-nav-grid a
+):focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ui-teal) 62%, transparent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-delay: 0ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .motion-pending,
+  .motion-pending.is-inview {
+    opacity: 1;
+    translate: none;
+    transition: none;
+    will-change: auto;
+  }
+
+  :is(
+    #recent-posts .recent-post-item,
+    .home-bento-card,
+    .home-bento-info,
+    .home-bento-archive,
+    .album-group-card,
+    .album-photo-tile,
+    .bangumi-shelf-card,
+    .type-link .flink-list-item,
+    .home-hero-actions a,
+    .home-quick-nav-grid a,
+    .link-exchange-copy,
+    .album-view-button,
+    .bangumi-shelf-more-button,
+    .mistlane-reset-button,
+    .mistlane-panel-close
+  ):active {
+    transform: none;
+  }
+}
+
+html[data-reduce-motion='true'] *,
+html[data-reduce-motion='true'] *::before,
+html[data-reduce-motion='true'] *::after {
+  animation-delay: 0ms !important;
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-delay: 0ms !important;
+}
+
+html[data-reduce-motion='true'] .motion-pending,
+html[data-reduce-motion='true'] .motion-pending.is-inview {
+  opacity: 1;
+  translate: none;
+  transition: none;
+  will-change: auto;
+}

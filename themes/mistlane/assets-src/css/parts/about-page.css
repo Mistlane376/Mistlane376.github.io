@@ -378,7 +378,21 @@
   font-size: 0.9rem;
 }
 
-.about-facts span {
+/* RHYTHM 卡是自绘的节奏柱（四根圆头竖条）：Font Awesome 里的笔尖、羽毛在
+   0.9rem 下都会退化成一根细斜线，重量比左边的定位针、学士帽轻一截，
+   看起来像掉进来的装饰线条。实心竖条能保住同样的体量，语义也更贴"节奏"。 */
+.about-fact-glyph {
+  display: block;
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+/* 只作用于右侧的文字列。早先这里写的是 `.about-facts span`，特异性 (0,1,1)
+   高于 `.about-fact-icon` 的 (0,1,0)，把图标格子从 grid 顶成了「纵向 flex」，
+   默认 justify-content 是 flex-start，于是三个图标全部贴在方格上沿（实测偏上
+   9–11px）。用 last-child 限定到文字列，图标格子才能保住 place-items: center。 */
+.about-facts > div > span:last-child {
   display: flex;
   min-width: 0;
   flex-direction: column;
@@ -748,5 +762,82 @@
   .about-contact-links a {
     flex: 1 1 100%;
     justify-content: center;
+  }
+}
+
+/* ---------- Motion ---------- */
+@keyframes about-motion-hero-in {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes about-motion-avatar-in {
+  from {
+    opacity: 0;
+    scale: 0.92;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.about-intro-copy > * {
+  animation: about-motion-hero-in 620ms var(--motion-ease-standard, cubic-bezier(0.22, 0.61, 0.36, 1)) backwards;
+}
+
+.about-intro-copy > :nth-child(2) {
+  animation-delay: 70ms;
+}
+
+.about-intro-copy > :nth-child(3) {
+  animation-delay: 130ms;
+}
+
+.about-intro-copy > :nth-child(4) {
+  animation-delay: 190ms;
+}
+
+.about-intro-copy > :nth-child(5) {
+  animation-delay: 250ms;
+}
+
+.about-avatar-frame {
+  animation: about-motion-avatar-in 780ms var(--motion-ease-spring, cubic-bezier(0.34, 1.4, 0.64, 1)) 150ms backwards;
+}
+
+.about-site-grid article {
+  transition-timing-function: var(--motion-ease-standard, cubic-bezier(0.22, 0.61, 0.36, 1));
+}
+
+.about-site-grid article:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+.about-site-grid article:focus-visible,
+.about-contact-links a:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--ui-teal) 62%, transparent);
+  outline-offset: 3px;
+}
+
+.about-contact-links a:active {
+  transform: translateY(0) scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-intro-copy > *,
+  .about-avatar-frame {
+    animation: none !important;
+  }
+
+  .about-site-grid article:active,
+  .about-contact-links a:active {
+    transform: none;
   }
 }

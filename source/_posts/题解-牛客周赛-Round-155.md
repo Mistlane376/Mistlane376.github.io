@@ -9,7 +9,7 @@ categories:
   - 题解
 description: 赛后题解书写，以便梳理
 cover: /images/selection3.jpg
-abbrlink: Nowcoder Weekly Contest - Round 155
+abbrlink: nowcoder-weekly-contest-round-155
 ---
 # [A-小月的奇偶灯控_牛客周赛 Round 155](https://ac.nowcoder.com/acm/contest/138240/A)
 

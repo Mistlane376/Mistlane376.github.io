@@ -31,6 +31,29 @@ const initializeHomeHero = () => {
   else siteInfo.append(manifesto)
   siteInfo.append(actions, stats)
 
+  const reduceMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+  const reduceMotion = () => reduceMotionQuery.matches || document.documentElement.dataset.reduceMotion === 'true'
+  if (!reduceMotion()) {
+    [...stats.querySelectorAll('strong')].forEach((element, index) => {
+      const target = Number.parseInt(element.textContent, 10)
+      if (!Number.isFinite(target) || target <= 0) return
+      const startedAt = performance.now() + index * 90
+      const duration = 820
+      const tick = now => {
+        if (!element.isConnected) return
+        if (reduceMotion()) {
+          element.textContent = String(target)
+          return
+        }
+        const progress = Math.min(1, Math.max(0, (now - startedAt) / duration))
+        element.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 3))))
+        if (progress < 1) window.requestAnimationFrame(tick)
+      }
+      element.textContent = '0'
+      window.requestAnimationFrame(tick)
+    })
+  }
+
   const bridge = document.createElement('section')
   bridge.className = 'home-hero-bridge'
   bridge.setAttribute('aria-label', '内容导览')
@@ -101,7 +124,7 @@ const initializeHomeHero = () => {
     const card = document.createElement('a')
     card.className = 'home-bento-archive home-bento-links'
     card.href = '/link/'
-    card.innerHTML = '<span class="home-bento-archive-icon"><i class="fas fa-link" aria-hidden="true"></i></span><div class="home-bento-archive-copy"><span>FRIEND LINKS</span><h2>友链</h2><p>和有趣的站点相遇，也把彼此的记录连在一起。</p></div><div class="home-bento-archive-stats"><span><strong>站点</strong>互访</span><span><strong>伙伴</strong>交流</span><span><strong>想法</strong>相遇</span></div>'
+    card.innerHTML = '<span class="home-bento-links-accent" aria-hidden="true"></span><span class="home-bento-archive-icon"><i class="fas fa-link" aria-hidden="true"></i></span><div class="home-bento-archive-copy"><span>FRIEND LINKS</span><h2>友链</h2><p>和有趣的站点相遇，也把彼此的记录连在一起。</p></div><div class="home-bento-archive-stats"><span><strong>站点</strong>互访</span><span><strong>伙伴</strong>交流</span><span><strong>想法</strong>相遇</span></div>'
     return card
   }
 
