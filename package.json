@@ -46,7 +46,7 @@
     "stylus": "^0.64.0"
   },
   "devDependencies": {
-    "@egjs/infinitegrid": "^4.13.0",
+    "@egjs/infinitegrid": "^4.13.1",
     "butterfly-extsrc": "^1.1.6",
     "esbuild": "^0.28.2",
     "typed.js": "^3.0.0"
